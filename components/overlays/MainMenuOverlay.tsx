@@ -127,7 +127,6 @@ export default function MainMenuOverlay() {
                     // Navigazione verso homepage con anchor: chiudi menu poi transizione
                     setMenuOpen(false);
                     startPageTransition(href, '#181A15');
-                    setTimeout(() => router.push(href), 900);
                 }
             } else if (href === '/') {
                 if (pathname === '/') {
@@ -140,13 +139,12 @@ export default function MainMenuOverlay() {
                     // Verso home da altra pagina: transizione
                     setMenuOpen(false);
                     startPageTransition('/', '#181A15');
-                    setTimeout(() => router.push('/'), 900);
                 }
             } else {
                 // Navigazione standard verso pagina inner: transizione
+                // La navigazione avviene nell'onComplete GSAP di GlobalTransitionOverlay
                 setMenuOpen(false);
                 startPageTransition(href, '#181A15');
-                setTimeout(() => router.push(href), 900);
             }
         }
     };
