@@ -91,7 +91,7 @@ const RenderDynamicPanel = ({ data }: { data: NavLink['panelData'] }) => {
 };
 
 export default function MainMenuOverlay() {
-    const { setMenuOpen, setConciergeOpen } = useAppStore();
+    const { setMenuOpen, setConciergeOpen, startPageTransition } = useAppStore();
     const tMenu = useTranslations('Overlays.mainMenu');
     const tNav = useTranslations('Navigation');
     const locale = useLocale();
@@ -108,9 +108,11 @@ export default function MainMenuOverlay() {
             setMenuOpen(false);
             setConciergeOpen(true);
         } else if (link.href) {
-            if (link.href.startsWith('/#')) {
+            const href = link.href; // narrowed to string
+            if (href.startsWith('/#')) {
                 if (pathname === '/') {
-                    const elId = link.href.replace('/#', '');
+                    // Anchor scroll sulla homepage: nessuna transizione di pagina
+                    const elId = href.replace('/#', '');
                     const el = document.getElementById(elId);
                     if (el) {
                         const lenis = (window as any).__lenis;
@@ -122,21 +124,29 @@ export default function MainMenuOverlay() {
                     }
                     setMenuOpen(false);
                 } else {
-                    router.push(link.href);
+                    // Navigazione verso homepage con anchor: chiudi menu poi transizione
                     setMenuOpen(false);
+                    startPageTransition(href, '#181A15');
+                    setTimeout(() => router.push(href), 900);
                 }
-            } else if (link.href === '/') {
+            } else if (href === '/') {
                 if (pathname === '/') {
+                    // Già sulla home: scroll to top senza transizione
                     const lenis = (window as any).__lenis;
                     if (lenis) lenis.scrollTo(0, { duration: 1.8 });
                     else window.scrollTo({ top: 0, behavior: 'smooth' });
+                    setMenuOpen(false);
                 } else {
-                    router.push('/');
+                    // Verso home da altra pagina: transizione
+                    setMenuOpen(false);
+                    startPageTransition('/', '#181A15');
+                    setTimeout(() => router.push('/'), 900);
                 }
-                setMenuOpen(false);
             } else {
-                router.push(link.href);
+                // Navigazione standard verso pagina inner: transizione
                 setMenuOpen(false);
+                startPageTransition(href, '#181A15');
+                setTimeout(() => router.push(href), 900);
             }
         }
     };
