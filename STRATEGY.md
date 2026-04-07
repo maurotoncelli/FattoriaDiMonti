@@ -15,12 +15,15 @@ Questo documento è il punto di riferimento per l'architettura del sito, lo stac
 | 3D / Canvas | React Three Fiber (`@react-three/fiber`) |
 | Stato globale | Zustand (`useAppStore`) |
 | Internazionalizzazione | next-intl |
+| Analytics | `@next/third-parties/google` (GA4, GDPR-aware) |
+| Deployment | Netlify + `@netlify/plugin-nextjs` |
+| Repo | GitHub (`maurotoncelli/FattoriaDiMonti`) |
 | Contenuto attuale | `messages/it.json` + `messages/en.json` |
 | Contenuto futuro | Sanity CMS (GROQ) |
 
 ---
 
-## 2. Architettura Data-Driven (in vigore da Aprile 2026)
+## 2. Architettura Data-Driven
 
 ### Principio fondamentale
 **Zero hardcoding** di stringhe visibili nel DOM. Ogni testo, label, aria-label o dato strutturato viene estratto da una sorgente centralizzata.
@@ -29,7 +32,7 @@ Questo documento è il punto di riferimento per l'architettura del sito, lo stac
 
 ```
 messages/
-├── it.json     ← fonte italiana di verità (UI chrome + contenuto pagine)
+├── it.json     ← fonte italiana di verità (UI chrome + contenuto pagine + SEO metadata)
 └── en.json     ← struttura identica (da tradurre)
 
 lib/
@@ -44,83 +47,119 @@ lib/
     ├── cereali.tsx      ← getCerealiData(t)
     ├── products.tsx     ← getProductsData(t)
     ├── menu.ts          ← getMainMenuLinks(t)
-    └── cucinaNomade.tsx ← getCucinaNomadeData(t) [prossima iterazione]
+    └── cucinaNomade.tsx ← getCucinaNomadeData(t)
 ```
 
 ### Pattern nelle pagine (client component)
 ```tsx
-// Ogni pagina inner chiama:
 const t = useTranslations();
 const pageData = getXData(t);
-// poi usa pageData.field per tutto il contenuto
-```
-
-### Pattern nei componenti (UI chrome)
-```tsx
-// Componenti di navigazione/UI:
-const t = useTranslations('UI.backButton');
-t('label')     // "✦ Indietro"
-t('ariaLabel') // "Torna alla pagina precedente"
+// usa pageData.field per tutto il contenuto
 ```
 
 ### Separazione UI chrome vs. contenuto pagina
 | Tipo | Dove vive | Esempio |
 |---|---|---|
-| Label pulsanti, aria-labels, sezione labels | `messages.UI.*` | `UI.backButton`, `UI.audio`, `UI.sectionLabels` |
+| Label pulsanti, aria-labels | `messages.UI.*` | `UI.backButton`, `UI.audio` |
 | Testi navigazione menu | `messages.Navigation.*` | `Navigation.olio.label` |
-| Contenuto pagine (titoli, testi, quote) | `messages.[Pagina].*` | `Olio.acts.act1.label` |
-| Config media (src immagini, colori, webgl) | `lib/data/*.tsx` | `textureSrc`, `bgColor`, `aspect` |
-| Form / overlays UI | `messages.Overlays.*` | `Overlays.concierge.*` |
+| Contenuto pagine | `messages.[Pagina].*` | `Olio.acts.act1.label` |
+| SEO metadata (title/description) | `messages.Metadata.pages.*` | `Metadata.pages.home.title` |
+| Config media (src, colori, webgl) | `lib/data/*.tsx` | `textureSrc`, `bgColor` |
+| Form / overlays | `messages.Overlays.*` | `Overlays.concierge.*` |
 | Footer | `messages.Footer.*` | `Footer.innerFooter.*` |
 
 ### Migrazione a Sanity (quando pronto)
-Per ogni pagina, si aggiorna SOLO la funzione `getXData` in `lib/data/`:
-```typescript
-// Attuale — usa next-intl
-export const getOlioData = (t: any): OlioContent => ({
-  acts: { act1: { label: t('Olio.acts.act1.label'), ... } }
-});
+Si aggiorna SOLO la funzione `getXData` in `lib/data/` — le interfacce in `lib/content/types.ts` corrispondono già ai document types di Sanity.
 
-// Con Sanity — stessa interfaccia OlioContent, fonte diversa
-export const getOlioData = async (locale: string): Promise<OlioContent> => {
-  const doc = await sanity.fetch(groq`*[_type == "olio"][0]`, { locale });
-  return { acts: { act1: { label: doc.acts.act1.label, ... } } };
-};
+---
+
+## 3. Navigazione — Transizioni di Pagina
+
+### Architettura
+1. **`TransitionLink`** (`components/ui/TransitionLink.tsx`): intercetta click, chiama `startPageTransition()`, naviga a **900ms** (quando il sipario copre il 97% dello schermo con `power4.inOut`)
+2. **`GlobalTransitionOverlay`** (`components/overlays/GlobalTransitionOverlay.tsx`): sipario GSAP con `hasCovered` ref per prevenire lift spurii
+3. **`useAppStore`** (Zustand): stato `isTransitioning`, `transitionBgColor`, `transitionKeyword`
+
+### Flusso corretto (post-fix Aprile 2026)
 ```
-Le interfacce in `lib/content/types.ts` corrispondono direttamente ai document types di Sanity.
+click TransitionLink
+  → startPageTransition() → isTransitioning = true
+  → sipario scende (1.2s, power4.inOut)
+  → a 900ms: router.push() → nuova pagina monta DIETRO il sipario coperto
+  → a 1200ms: hasCovered = true → endPageTransition() → isTransitioning = false
+  → sipario si alza (1.2s) → rivela nuova pagina già pronta
+```
+
+### Keyword di transizione
+Ogni `TransitionLink` accetta `transitionKeyword` opzionale (es. "OLIO", "STORIA") mostrata al centro del sipario durante la chiusura.
 
 ---
 
-## 3. Navigazione — Transizioni di Pagina Fluide
+## 4. SEO & Metadati
 
-L'obiettivo è far percepire il sito come SPA pur mantenendo il SSR di Next.js.
+### Metadata per pagina
+- **Root layout** (`app/[locale]/layout.tsx`): `generateMetadata` con `metadataBase`, template title, `alternates` (canonical + hreflang `it`/`en`/`x-default`), Open Graph, Twitter card
+- **Ogni sub-route** ha il proprio `layout.tsx` server component che esporta `generateMetadata` con title/description specifici, canonical URL, e OG image
+- **Testi SEO**: `messages.Metadata.pages.[pagina].title` + `.description`
 
-1. **`TransitionLink`**: intercetta click e attiva overlay di transizione GSAP
-2. **`useTransitionStore`**: gestisce lo stato globale della transizione
-3. **Animazione uscita** → cambio rotta sotto traccia → **animazione entrata**
-4. Zero flash di pagina bianca
+### Structured Data
+- `app/[locale]/page.tsx` (homepage): JSON-LD `AgriTourismBusiness` via `<Script type="application/ld+json">`
+
+### File tecnici
+- `app/sitemap.ts` — sitemap XML con tutte le rotte `it`/`en`, `lastModified`, `changeFrequency`, `priority`, `alternates` hreflang
+- `app/robots.ts` — `allow: /`, `disallow: ['/api/', '/_next/']`, link sitemap
+- `next.config.js` → `async headers()` — security headers per dev/hosting non-Netlify
+
+### Heading hierarchy verificata
+- Tutti i `<h1>` precedono i `<h2>` in ogni pagina
+- `HeroNomade`: small title convertito da `<h2>` a `<p>` (era prima dell'`<h1>`)
+- Immagini decorative con `aria-hidden="true" role="presentation"`
 
 ---
 
-## 4. Canvas WebGL — La Finestra sul Cielo
+## 5. Analytics — Google Analytics 4 (GDPR-aware)
 
-Il `SkyNoiseShader` (via React Three Fiber) vive nel `layout.tsx` globale — non viene mai distrutto tra una pagina e l'altra.
+### Componente
+`components/analytics/GoogleAnalytics.tsx` — client component con doppia guardia:
+1. `NEXT_PUBLIC_GA_MEASUREMENT_ID` deve essere settato
+2. Cookie `fdm_analytics_consent === 'granted'` (oppure `NEXT_PUBLIC_GA_FORCE_DEV=true` per test locali)
+
+### Helper pubblici
+```typescript
+import { grantAnalyticsConsent, revokeAnalyticsConsent } from '@/components/analytics/GoogleAnalytics';
+```
+Da chiamare nel futuro cookie banner per attivare/disattivare il tracking.
+
+### Event listener
+Il componente ascolta l'evento custom `fdm:analytics-consent-updated` — il cookie banner dovrà solo emettere questo evento dopo aver settato/rimosso il cookie.
+
+### Variabili d'ambiente
+```env
+NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX   # ID GA4 (da settare su Netlify)
+NEXT_PUBLIC_GA_FORCE_DEV=true                 # Solo per test locali — non committare
+```
+
+---
+
+## 6. Canvas WebGL — La Finestra sul Cielo
+
+Il `SkyNoiseShader` (via React Three Fiber) vive nel layout globale — non viene mai distrutto tra navigazioni.
 
 ### Pagine con cielo visibile
-- **Homepage** (`/`) — cielo visibile ai bordi di ogni slide prodotto e nella sezione terroir
-- **La Filiera** (`/la-filiera`) — cielo ai bordi della striscia centrale ACT 2
+- **Homepage** (`/`) — ai bordi di ogni slide prodotto e nella sezione terroir
+- **La Filiera** (`/la-filiera`) — ai bordi della striscia centrale ACT 2
 
 ### Logica di apertura (sky windows)
-- **HistoryTerroir**: filler tufo coprono tutto tranne strip destra (~10vw) dell'immagine
+- **HistoryTerroir**: filler tufo tranne strip destra (~10vw) dell'immagine
 - **ProductsHorizontalWalk**: sfondo insetato 8vh top/bottom → fasce orizzontali visibili
-- **LaFiliera ACT 2**: striscia centrale `left: 30vw / right: 30vw` su sfondo cream `#F3EFE7`
+- **LaFiliera ACT 2**: striscia centrale `left: 30vw / right: 30vw` su sfondo cream
 
 ### Canvas attivo su rotte
 `/` e `/la-filiera` (configurato in `CanvasZ0.tsx`)
 
 ---
 
-## 5. Sezioni Homepage
+## 7. Sezioni Homepage
 
 | ID | Section | Componente | Dati |
 |---|---|---|---|
@@ -132,7 +171,7 @@ Il `SkyNoiseShader` (via React Three Fiber) vive nel `layout.tsx` globale — no
 
 ---
 
-## 6. Pagine Inner
+## 8. Pagine Inner
 
 | Rotta | Pagina | Dati | Stato |
 |---|---|---|---|
@@ -147,18 +186,86 @@ Il `SkyNoiseShader` (via React Three Fiber) vive nel `layout.tsx` globale — no
 
 ---
 
-## 7. Overlays & Form
+## 9. Cucina Nomade — Menu con Accordion
 
-| Componente | Stato | Gestione |
-|---|---|---|
-| `MainMenuOverlay` | `isMenuOpen` Zustand | `getMainMenuLinks(t)` con `Navigation.*` |
-| `ConciergeForm` | `isConciergeOpen` Zustand | `messages.Overlays.concierge.*` |
-| `OilExtractionOverlay` | `isOilModalOpen` Zustand | `messages.Overlays.oilExtraction.*` |
-| Lightbox gallery | `isLightboxOpen` Zustand | locale in `ospitalita/page.tsx` |
+### Struttura dati (`lib/data/cucinaNomade.tsx`)
+Ogni item del `menuGallery` ha un campo opzionale `details?: string[]` con ingredienti/approfondimenti.
+
+### Componente accordion (`components/dom/MenuMansonry.tsx`)
+- `MasonryItem`: wrapper per ogni panino
+- `DetailsAccordion`: accordion GSAP con animazione altezza + rotazione freccia
+- Visibile solo se `item.details` esiste e il tipo è `text` o `mixed`
+- Tasto con `aria-expanded` per accessibilità
 
 ---
 
-## 8. Direzione Artistica — Palette Colori
+## 10. Overlays & Form
+
+| Componente | Stato | Gestione |
+|---|---|---|
+| `MainMenuOverlay` | `isMenuOpen` Zustand | `getMainMenuLinks(t)` — layout mobile/desktop condizionale |
+| `ConciergeForm` | `isConciergeOpen` Zustand | `messages.Overlays.concierge.*` |
+| `OilExtractionOverlay` | `isOilModalOpen` Zustand | `messages.Overlays.oilExtraction.*` |
+| Lightbox gallery | `isLightboxOpen` Zustand | locale in `ospitalita/page.tsx` |
+| `GlobalTransitionOverlay` | `isTransitioning` Zustand | sipario GSAP con `hasCovered` ref |
+
+---
+
+## 11. Mobile — Responsive Strategy
+
+### Approccio
+Mobile-first per layout; desktop rimane invariato. Responsive CSS tramite Tailwind breakpoints + CSS custom properties per safe area.
+
+### Utility globali (`app/[locale]/globals.css`)
+- `.pt-safe` / `.pb-safe` — `env(safe-area-inset-top/bottom)` per notch/home indicator
+- `.touch-target` — min 48×48px per touch targets accessibili
+- Media query `(hover: none) and (pointer: coarse)` — reset cursor custom su touch device
+- `.concierge-step-label` — nascosto su `max-width: 479px`
+- Fluid typography con `clamp()` su `h1`, `h2`, `p` per `max-width: 767px`
+
+### Hook
+`lib/hooks/useIsMobile.ts` — `useIsMobile(breakpoint?)` con `window.matchMedia` per conditional rendering JS
+
+### Componenti con layout mobile alternativo
+| Componente | Strategia mobile |
+|---|---|
+| `MainMenuOverlay` | Layout column, nessun panel editoriale, link full-width con animazione `slideUpItem` |
+| `ProductsHorizontalWalk` | `ProductCardMobile` vertical stack invece di horizontal scroll |
+| `Ospitalità gallery` | Grid 2 colonne `aspect-ratio: 3/4` invece di sticky horizontal scroll |
+| `HistoryTerroir` | `grid-cols-1 lg:grid-cols-[3fr_4fr]`, order Tailwind per stacking corretto |
+| `Hospitality` | Stats 2×2 su mobile, columns stacked, CTA verticali |
+| `FooterSection` | `grid-cols-1 md:grid-cols-2` |
+| `ConciergeForm` | `maxWidth: min(92vw, 680px)`, safe area buttons |
+| `La Filiera ACT 3` | Pin GSAP orizzontale solo su `min-width: 1024px` via `gsap.matchMedia` |
+
+---
+
+## 12. Deployment — Netlify + GitHub
+
+### Repo
+`https://github.com/maurotoncelli/FattoriaDiMonti.git`
+
+### netlify.toml
+- `command = "npm run build"`, `publish = ".next"`
+- Plugin `@netlify/plugin-nextjs` per compatibilità App Router
+- Security headers globali (`X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`)
+- Cache aggressiva per `/_next/static/*` e `/images/*`
+- **Nessun redirect locale** — gestito interamente da `next-intl` middleware (rimozione redirect `/it/*` ha risolto il loop infinito)
+
+### Variabili d'ambiente da settare su Netlify
+```env
+NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
+NEXT_PUBLIC_SITE_URL=https://fattoriadimonti.it
+```
+
+### File di configurazione
+- `netlify.toml` — build + plugin + headers
+- `.env.example` — template con tutte le variabili necessarie
+- `.gitignore` — esclude `.env*.local`, `.next/`, `node_modules/`
+
+---
+
+## 13. Direzione Artistica — Palette Colori
 
 | Variabile CSS | Valore | Utilizzo |
 |---|---|---|
@@ -171,41 +278,33 @@ Il `SkyNoiseShader` (via React Three Fiber) vive nel `layout.tsx` globale — no
 
 ---
 
-## 9. Strategia di Prodotto
-
-### Il Mucco Pisano
-Narrativa: allevatore orgoglioso di una materia prima eccezionalmente rara. **Non** una onlus di salvaguardia.
-- Parole chiave: naturalezza, genuinità, rarità, lenta maturazione, qualità assoluta
-- Struttura pagina: Hero brado → Tagli Nobili → Essiccata → Cucina Itinerante
-
-### La Casa Rossa
-Narrativa: ritiro esclusivo, disintossicazione digitale, lusso offline.
-- Parole chiave: silenzio, caminetto, stelle, privacy totale, 210mq
-- Struttura pagina: Ritiro → Calore (doppio soggiorno) → 4 Stanze Cromatiche → Osservatorio Notturno
-
----
-
-## 10. Roadmap
+## 14. Roadmap
 
 ### Completato ✅
 - Architettura data-driven: tutti i testi dal JSON, zero hardcoding
 - `lib/content/types.ts` con interfacce TypeScript (schema Sanity)
 - Funzioni `getXData(t)` per tutti i contenuti pagina
-- Section labels, aria-labels, UI chrome tutti da `messages.UI.*`
+- Section labels, aria-labels, UI chrome da `messages.UI.*`
 - Menu localizzato via `Navigation.*`
 - Sticky horizontal scroll con GSAP (Ospitalità + Homepage)
 - Hero con foto parallax + vignette (Mucco Pisano, Ospitalità)
 - Sky canvas visibile su `/` e `/la-filiera`
-- InnerFooter testi leggibili su sfondo scuro
 - Lightbox gallery + Zustand state per nascondere MenuTrigger
 - Pulsanti Concierge chiari (Invia/Salta) + X sul messaggio successo
 - Vino & Riserva nascosta (redirect home)
+- **SEO completo**: metadata per ogni pagina, hreflang, OG, Twitter card, JSON-LD, sitemap.ts, robots.ts
+- **GA4 predisposizione**: componente GDPR-aware, guard cookie consent, helper grant/revoke
+- **Mobile restyling**: menu overlay, products, ospitalità gallery, footer, hospitality, filiera
+- **Safe area insets**: notch/home indicator su tutti i controlli fissi
+- **Accordion ingredienti** Cucina Nomade: expand/collapse GSAP per ogni panino
+- **Transizioni pagina corrette**: fix race condition (navigate a 900ms) + `hasCovered` ref anti-spurious-lift
+- **Netlify deployment**: `netlify.toml`, plugin nextjs, security headers, fix redirect loop
+- **GitHub**: repo inizializzato, push, CI/CD automatico via Netlify
 
 ### Da fare — prossima iterazione 🔜
 - **Traduzione inglese**: compilare `messages/en.json` con veri testi EN (struttura già pronta)
-- **Sanity integration**: sostituire `getXData(t)` con GROQ queries (le interfacce sono già definite)
-- **Cucina Nomade data-driven**: aggiungere `CucinaNomade.*` a `messages/it.json` e convertire `getCucinaNomadeData` per accettare `t`
+- **Cookie banner GDPR**: UI banner → chiama `grantAnalyticsConsent()` / `revokeAnalyticsConsent()`
+- **Dominio custom**: collegare `fattoriadimonti.it` su Netlify + abilitare redirect www → apex in `netlify.toml`
 - **Immagini reali**: sostituire placeholder con foto editoriali definitive
-- **OG / Meta tags**: rendere dinamici per ogni pagina (titolo, description, immagine)
-- **Analytics**: GA4 o Plausible
-- **Cookie banner**: GDPR compliant
+- **Sanity integration**: sostituire `getXData(t)` con GROQ queries (le interfacce sono già definite)
+- **Email transazionale**: Resend per form Concierge (variabile `RESEND_API_KEY` già in `.env.example`)

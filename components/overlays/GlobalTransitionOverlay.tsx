@@ -11,9 +11,15 @@ export default function GlobalTransitionOverlay() {
     const pathname = usePathname();
     const { isTransitioning, transitionBgColor, transitionKeyword, endPageTransition } = useAppStore();
 
-    // Sipario si alza (reveal nuova pagina)
+    // Diventa true solo quando il sipario ha realmente coperto lo schermo.
+    // Impedisce lift spurii al primo mount e quando pathname cambia mentre
+    // isTransitioning è ancora true (router.push a 900ms).
+    const hasCovered = useRef(false);
+
+    // Sipario si alza (reveal nuova pagina) — solo se lo schermo era stato coperto
     useEffect(() => {
-        if (!isTransitioning && overlayRef.current) {
+        if (!isTransitioning && hasCovered.current && overlayRef.current) {
+            hasCovered.current = false;
             gsap.to(overlayRef.current, {
                 yPercent: -100,
                 duration: 1.2,
@@ -41,6 +47,10 @@ export default function GlobalTransitionOverlay() {
                     duration: 1.2,
                     ease: "power4.inOut",
                     backgroundColor: transitionBgColor,
+                    onComplete: () => {
+                        // Lo schermo è coperto: ora il lift è autorizzato
+                        hasCovered.current = true;
+                    },
                 }
             );
 
