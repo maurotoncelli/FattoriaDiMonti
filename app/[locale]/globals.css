@@ -1,0 +1,247 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* ================================================
+   FATTORIA DI MONTI — "ERE DELLA TERRA"
+   Design Tokens: Geologia Toscana
+   ================================================ */
+
+
+
+
+:root {
+  --tufo: #ECE8DF;
+  --mucco-pisano: #4A2E1B;
+  --argilla-ferrosa: #B05C46;
+  --sabbia-limonitica: #D4A361;
+  --olive: #6B7A65;
+  --terra-nera: #2B2420;
+  --grano: #B4B886;
+
+  /* Typography */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Inter', 'Helvetica Neue', sans-serif;
+
+  /* Spacing rhythm */
+  --section-pad-x: 10vw;
+  --section-pad-y: 15vh;
+}
+
+/* ===== RESET & BASE ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: auto;
+  /* Lenis handles smooth scroll */
+  cursor: none;
+  /* CursorEngine replaces native cursor */
+}
+
+body {
+  background-color: var(--tufo);
+  color: var(--mucco-pisano);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+/* ===== TYPOGRAPHY SCALE ===== */
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+h1,
+.h1 {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 12vw, 15rem);
+  line-height: 0.88;
+  letter-spacing: -0.02em;
+  color: var(--mucco-pisano);
+}
+
+h2,
+.h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 8rem);
+  line-height: 0.92;
+  color: var(--mucco-pisano);
+}
+
+h3,
+.h3 {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 4rem);
+  line-height: 1;
+}
+
+p,
+.body-text {
+  font-family: var(--font-body);
+  font-size: clamp(14px, 1.2vw, 18px);
+  line-height: 1.65;
+  color: var(--mucco-pisano);
+}
+
+.label {
+  font-family: var(--font-body);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--olive);
+}
+
+/* ===== ACCESSIBILITY ===== */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ===== LAYOUT UTILS ===== */
+.section-padding {
+  padding: var(--section-pad-y) var(--section-pad-x);
+}
+
+.hairline {
+  border: none;
+  border-top: 1px solid var(--olive);
+}
+
+/* ===== KINETIC TEXT MASK ===== */
+.text-reveal-wrap {
+  overflow: hidden;
+  display: block;
+}
+
+/* ===== MAGNETIC BUTTON ===== */
+.magnetic {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: none;
+  /* GSAP handles all movement */
+  will-change: transform;
+}
+
+/* ===== LENIS SCROLL ===== */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+/* ===== GLASS MORPHISM (for overlays) ===== */
+.glass {
+  background: rgba(43, 36, 32, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* ===== SCROLLBAR ===== */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  scrollbar-width: none;
+}
+
+/* ===== ELEGANT SCROLLBAR FOR HORIZONTAL GALLERIES ===== */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
+/* ===== EDITORIAL PHOTO TREATMENT ===== */
+.editorial-image {
+  filter: contrast(1.06) saturate(0.88) sepia(0.06) brightness(0.97);
+  transition: filter 0.6s ease;
+}
+
+/* ===== TOUCH DEVICES — ripristina cursore nativo ===== */
+@media (hover: none) and (pointer: coarse) {
+  html, body { cursor: auto; }
+  *, *::before, *::after { cursor: auto !important; }
+}
+
+/* ===== SAFE AREA (notch / Dynamic Island / home indicator) ===== */
+.pt-safe  { padding-top:    env(safe-area-inset-top,    0px); }
+.pb-safe  { padding-bottom: env(safe-area-inset-bottom, 0px); }
+.pl-safe  { padding-left:   env(safe-area-inset-left,   0px); }
+.pr-safe  { padding-right:  env(safe-area-inset-right,  0px); }
+
+/* ===== TOUCH TARGET MINIMUM SIZE ===== */
+.touch-target {
+  min-height: 44px;
+  min-width:  44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===== STEP LABELS: nasconde testo su schermi piccoli ===== */
+@media (max-width: 479px) {
+  .concierge-step-label { display: none; }
+}
+
+/* ===== MOBILE TYPOGRAPHY ===== */
+@media (max-width: 767px) {
+  p, .body-text {
+    font-size: 16px;
+    line-height: 1.7;
+  }
+  .label {
+    font-size: 10px;
+  }
+  h1, .h1 {
+    font-size: clamp(3.5rem, 16vw, 7rem);
+  }
+  h2, .h2 {
+    font-size: clamp(2.2rem, 10vw, 5rem);
+  }
+}
+
+/* ===== PREFERS REDUCED MOTION ===== */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

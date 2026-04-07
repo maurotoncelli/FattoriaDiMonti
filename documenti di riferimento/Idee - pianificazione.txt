@@ -1,0 +1,1243 @@
+﻿Pianificazione del sito:
+
+
+Mauro:
+
+
+Hola, ho un nuovo progetto per i miei siti web Awwwords. come sai punto molto sull'estetica, fluidità, modernità, per offrire siti web esteticamente impeccabili, livello platinum, concettuali, ricercati e con tutte le tecnologie più moderne. perciò Vorrei un sito dal design ‘’superior’’ capace di far impallidire la concorrenza. il nostro sito deve vincere il premio awwwards come sito più bello del mondo. deve essere fluido, dinamico, concettuale, interattivo, performante, livello ’’platinum’’. esploriamo il vecchio sito web per creare un'idea che spacca di brutto?
+intanto voglio affrontare la creazione da un punto di vista stilistico-concettuale. dai un'occhiata mentre mi scaldo i neuroni con un po' di musica
+
+
+G:
+
+
+Eccomi! Mettiti le cuffie, alza il volume e preparati, perché il materiale che mi hai fornito è una vera miniera d'oro per un sito da Site of the Month/Year su Awwwards.
+Hai un mix pazzesco di elementi: storia rinascimentale (il Buontalenti!), leggende di fantasmi e cavalli bianchi, la terra cruda (il grano che ondeggia come il mare), la conservazione di una specie rara (il Mucco Pisano) e la purezza della materia (l'olio e il cielo stellato).
+(Piccola nota a margine: nel testo c'è un refuso verso la fine dove si parla del "Frantoio Antonacci in Puglia" per il processo dell'olio, ma noi ovviamente focalizzeremo tutto sulla magia toscana della Fattoria di Monti).
+Per un progetto "Platinum" che deve far impallidire la concorrenza, dobbiamo abbandonare l'idea del classico sito "vetrina" o "agriturismo". Dobbiamo creare un'esperienza sensoriale immersiva (Scrollytelling), basata sui contrasti. Uniremo il lusso grezzo e la natura incontaminata con tecnologie ultra-moderne (WebGL, Three.js, GSAP, custom shaders).
+Ecco tre concept stilistico-concettuali per spaccare tutto:
+Concept 1: "Ere della Terra" (Materia & Fluidità)
+Il mood: Tattile, organico, "Liquid & Earthy". Un'estetica che ricorda l'alta moda (stile Bottega Veneta o Jacquemus) fusa con la natura selvaggia.
+* Visivamente: Uso massiccio di WebGL shaders. Quando l'utente scorre nella sezione dell'Olio, lo sfondo si deforma fluidamente come oro liquido. Nella sezione dei Cereali, usiamo un wind shader (effetto vento) applicato direttamente alla tipografia e alle immagini, che ondeggiano letteralmente al passaggio del mouse, ricreando le "onde del mare di grano verde" descritte nel testo.
+* Tipografia: Un contrasto brutale ed elegantissimo. Un font Serif iper-classico e ricercato (per richiamare il Rinascimento e il Buontalenti) gigantesco, accostato a un Sans-Serif modernissimo e minimale per le descrizioni.
+* L'interazione: Il cursore del mouse funziona come una "lente" che svela la grana del terreno, la texture scura e rossastra del pelo del Mucco Pisano, o le venature del legno antico.
+Concept 2: "Chiaroscuro Rinascimentale" (Mistero & Eleganza)
+Il mood: Cinematico, misterioso, teatrale. Perfetto per sfruttare la storia della villa, le leggende dei fantasmi e la caccia dei Medici.
+* Visivamente: Un sito in prevalenza Dark Mode, con illuminazioni direzionali che seguono lo scroll dell'utente (come se l'utente avesse in mano una lanterna o stesse guardando attraverso il telescopio citato nella Casa Rossa).
+* Il twist Awwwards: La storia della famiglia Bardi e del cavallo bianco nella neve viene raccontata tramite particellari 3D in Three.js. Quando l'utente scorre, frammenti di luce bianca formano silhouette astratte, per poi dissolversi. Le transizioni tra una pagina e l'altra sono come nuvole di nebbia mattutina toscana che si diradano.
+* Color Palette: Nero profondo, grigio pietra, rosso borgogna (vino/carne) e verde oliva scuro, con tocchi di bianco puro e oro.
+Concept 3: "Ritmo Circadiano" (Il ciclo del tempo)
+Il mood: Sinergico, poetico, in continua evoluzione.
+* Visivamente: Il sito cambia dinamicamente in base al punto in cui ci si trova nello scroll, simulando il passaggio dal giorno alla notte.
+* Il viaggio:
+   * L'ingresso (Mattina): Colori chiari, sabbia, limo, verde salvia. Il sole caldo della Toscana. Focus sulla natura viva (Mucco Pisano, campi).
+   * Il centro (Pomeriggio/Tramonto): Colori caldi, terracotta, rosso mattone (La Casa Rossa), la brezza marina che si alza.
+   * La fine (Notte): Il footer e l'ospitalità sprofondano in un blu notte profondo. Sfondo interattivo con le stelle: l'utente può interagire con il "cielo non inquinato" citato nel testo. Un cursore personalizzato a forma di mirino/telescopio rivela i dettagli finali e i contatti.
+
+
+La mia raccomandazione per il "Killer Effect"
+Fonderei la tecnologia liquida del Concept 1 con lo storytelling visivo Notte/Giorno del Concept 3.
+Immagina un sito che non si apre, ma emerge dallo schermo: una singola linea in movimento (che ricorda l'orizzonte delle colline pisane) che si trasforma in 3D. Un uso sapiente dello Smooth Scrolling (con Lenis o Locomotive Scroll) dove le immagini non appaiono semplicemente, ma vengono "svelate" da maschere irregolari che ricordano i ciottoli fossili del vostro terreno.Come ti suona? Quale di questi immaginari fa vibrare di più la tua visione per questo "Masterpiece"? Dimmi cosa ti ispira, che iniziamo a buttare giù la struttura (UX/UI) e il tech stack!
+
+
+Mauro:
+mm allora sai toscana, luce, materialità mi piace, cambio colore perchè no, il notte però ho paura di non saperlo bene come esaltare, o diciamo meglio come rendergli giustizi nel contesto. l'idea del webgl sui campi d'erba verde mi fa impazzire. la prima idea secondo me potrebbe essere quella piu nelle mie corde, esploriamo meglio questa idea
+G:
+Abbandoniamo la notte, hai assolutamente ragione. Spesso il dark mode rischia di raffreddare troppo un tema "terrestre" e rurale, facendogli perdere quella luce calda, pastosa e inebriante tipica della Toscana.
+Concentriamoci al 100% sulla Materialità, la Luce e il WebGL. Questo concept ("Ere della Terra") è perfetto per vincere perché trasforma il sito web da un semplice "schermo piatto" a una superficie tattile. Vogliamo che l'utente senta la sabbia, l'olio, il vento e la ruvidezza della pietra sotto i polpastrelli.
+Ecco come esplodiamo questa idea in un'esperienza da Site of the Month:
+La Palette "Terra Cruda & Luce"
+Niente bianco puro (è troppo digitale) e niente nero assoluto.
+* Sfondo principale: Un tono calcareo, polvere di pietra o lino grezzo (un beige/grigio caldissimo e chiarissimo).
+* Accenti: Verde salvia polveroso (l'olivo), verde grano brillante (per il WebGL), e un "Marrone Castoro/Rossastro" (citazione esatta del colore del Mucco Pisano) per la tipografia principale.
+* Dettagli: Oro ossidato.
+La Tipografia (Il contrasto Platinum)
+Per dare quel senso di "superiorità" estetica, giochiamo sul contrasto estremo:
+* Titoli (Display): Un font Serif iper-elegante, con grazie sottilissime (es. PP Editorial New, Ogg o Domaine Display). Immenso, quasi ad occupare l'intero schermo. Rappresenta la storia, il Buontalenti, la nobiltà dei Bardi.
+* Testi (Body): Un font Grotesk modernissimo e microscopico (es. PP Neue Montreal o Suisse Int'l), impaginato con rigore svizzero per bilanciare l'imponenza dei titoli
+Il Viaggio (User Experience & Effetti WebGL)
+Ecco le "Magic Moments" (le interazioni che fanno impazzire i giudici di Awwwards), sezione per sezione:
+1. L'Ingresso (The Hero Section) - La Brezza Marina
+Non c'è una foto noiosa all'apertura. Lo schermo è riempito da un WebGL Shader di campi di grano. Non è un video, è codice matematico.
+* L'Effetto: Quando l'utente muove il cursore, questo agisce come la "brezza marina pomeridiana" di cui parla il testo. Il grano verde si piega fluidamente seguendo il mouse, creando "le onde del mare di grano verde".
+* L'Impatto: Al centro, una tipografia immensa e fiera: "FATTORIA DI MONTI". Mentre scorri verso il basso, il grano si dissolve in particelle di sabbia e limo (richiamando i sedimenti marini antichi del vostro terreno).
+2. La Storia & La Villa - La Pietra e la Nebbia
+Passiamo alla matericità della villa rinascimentale.
+* L'Effetto: Le immagini della villa e della natura non sono incasellate in noiosi rettangoli, ma compaiono tramite Displacement Shaders. Sembra che emergano dall'intonaco ruvido.
+* L'Easter Egg (Il Cavallo Bianco): Mentre l'utente legge la storia della famiglia Bardi, in background un impercettibile effetto particellare bianco attraversa lo schermo in orizzontale, sfocato e veloce. Nessuno lo vedrà chiaramente, ma il cervello lo percepirà: è il fantasma del cavallo bianco. Puro storytelling subliminale.
+3. Il Mucco Pisano - La Materia Calda
+Qui il sito si scalda, i colori virano verso i toni della terra e della carne.
+* L'Effetto: Una griglia asimmetrica molto editoriale. Le immagini del Mucco Pisano hanno un effetto Parallax interno fortissimo. Quando passi il mouse sopra la foto dell'animale, una maschera WebGL rivela una texture che ricorda la grana della pelle o la terra arata.
+4. L'Olio e il Vino - L'Oro Liquido
+Questa è un'altra sezione dove possiamo fare i "bulli" tecnologicamente.
+* L'Effetto: La transizione verso l'olio cambia la fisica del sito. Lo scroll diventa leggermente più "denso". Le immagini delle bottiglie o delle olive hanno un Liquid Hover Effect: se ci passi sopra il mouse, la foto si distorce come se stessi toccando la superficie dell'olio dentro una vasca (Ripple effect in Three.js).
+5. L'Ospitalità (La Casa Rossa) - Respiro e Luce
+Dopo la densità della terra e dell'olio, il sito si "apre". La Casa Rossa rappresenta il relax.
+* L'Effetto: Grandi spazi vuoti (Negative space). Le foto degli interni si caricano seguendo lo scroll (Reveal animations con GSAP) con transizioni fluide. L'impronta è quella di un magazine di interior design di altissimo livello (stile Kinfolk)
+Tech Stack (Per i Nerd di Awwwards)
+Per realizzare questa fluidità ci servirà:
+* WebGL / Three.js: Per il mare di grano, le distorsioni liquide dell'olio e i displacement delle immagini.
+* GSAP (GreenSock): Per le animazioni della tipografia e l'orchestrazione degli elementi che entrano in pagina.
+* Lenis Scroll (o Locomotive): Per uno smooth scrolling perfetto, burroso, che rende tutto il sito un unico scorrere fluido e ininterrotto.
+* Custom Cursors: Il cursore cambia forma in base a cosa tocca (diventa un cerchio vuoto sul testo, si espande per "spingere" il grano, diventa una goccia sull'olio).
+Che ne pensi? Riesci a visualizzare questo livello di interazione? Se questa direzione estetica e tecnica "terra, liquidità e vento" ti fa battere il cuore, possiamo iniziare a buttar giù un wireframe mentale, ovvero come incastriamo i testi reali del tuo file dentro questa struttura spaziale!
+
+
+
+
+Mauro:
+ooh che cosa stupenda, si mi piace un sacco. buttiamo giù questo witreframe mentale sull'onda di queste idee creative
+
+
+G:
+Mettiti comodo, chiudi gli occhi e immagina di avere il mouse in mano. Non stiamo disegnando delle semplici "pagine", stiamo creando una sceneggiatura interattiva divisa in "Atti".
+Sfrutteremo il testo che mi hai fornito smembrandolo e ricucendolo attorno allo scroll dell'utente (lo Scrollytelling).
+Ecco il Wireframe Mentale della Fattoria di Monti, livello Platinum:
+PRELOADER: "L'Emersione"
+* Visivamente: Schermo color lino grezzo/pietra. Nessuna barra di caricamento banale. Al centro, una linea sottilissima color oro ossidato inizia a tracciare dolcemente il profilo delle colline di Volterra.
+* Azione: Appena il caricamento (dei pesanti shader WebGL) è completo, la linea si espande in 3D verso lo spettatore e... swoosh, lo schermo si riempie.
+ATTO I: "L'Onda Verde" (Hero Section)
+* UI/Visual: Il nostro famoso WebGL. Un campo di grano verde infinito visto quasi in soggettiva.
+* Copy: Al centro, gigantesco, il font Serif iper-elegante: FATTORIA DI MONTI. Sotto, piccolissimo e rigoroso in Sans-Serif: "Nel centro della Toscana, in cima ad una collina."
+* UX/Interazione: Se muovi il mouse, si genera la "brezza marina pomeridiana". Il grano si piega, la tipografia principale subisce una leggerissima distorsione liquida. C'è un cursore custom: un cerchio vuoto con scritto "Scrolla per scoprire".
+ATTO II: "L'Antico Mare e Il Rinascimento" (La Storia e Il Terroir)
+* Transizione: Scrollando, il campo di grano si dissolve dal basso verso l'alto svelando una texture materica, sabbiosa.
+* UI/Visual: Layout asimmetrico e destrutturato. Le foto della Villa di Monti e dei dettagli architettonici non sono squadrate, ma hanno i bordi irregolari, sfumati.
+* Copy: Peschiamo dal testo: "Il mare, ricco di sabbie e minerali, che ricopriva questa regione in tempi antichi..." e poi si passa all'imponente facciata, all'Architetto Buontalenti e alla famiglia Bardi.
+* UX/Interazione: Il displacement shader. Quando passi col mouse sulle immagini della villa, queste reagiscono come se l'intonaco si scrostasse, rivelando dettagli nascosti.
+* L'Easter Egg: Mentre leggi la colonna di testo sui Bardi, ecco che nello spazio vuoto (negative space) a destra passa velocissimo un groviglio di particelle bianche WebGL: il cavallo fantasma nella neve. Se non stai attento te lo perdi. Magia pura.
+ATTO III: "La Materia Viva" (I Prodotti - Horizontal Scroll)
+* Transizione: Lo scroll verticale si blocca (Scroll Hijacking elegante con GSAP). Ora la pagina scorre in orizzontale, come se l'utente stesse camminando tra i 300 ettari della tenuta. Lo sfondo si scurisce leggermente verso un verde salvia polveroso.
+* Le "Stazioni" del viaggio orizzontale:
+   1. Cereali & Rotazione: Riprendiamo visivamente il concetto del grano. Testo: "Facciamo rotazione delle colture: i cereali, poi il favino, poi 3 anni di prato per il fieno."
+   2. Il Mucco Pisano: Cambia la palette in "Marrone Castoro e Rossastro". Le foto sono imponenti. L'interazione rivela il pelo, la materia. Testo incentrato sul salvataggio dall'estinzione (1998) e il legame con l'Università di Pisa.
+   3. L'Olio Extravergine: Il capolavoro tecnico. Le immagini delle olive e dell'olio hanno il Liquid Hover Effect (tocchi col mouse e si formano onde sulla foto come fosse liquido). Mettiamo in evidenza, come fossero marchi di alta moda, i premi: Flos Olei 2022, NYIOOC Gold Medal.
+   4. Vino & Caccia: Una chiusura elegante sulla vigna di Sangiovese del 2006 (e la nota onesta e poetica "2010: vi faremo sapere") e il tiro al piattello esclusivo.
+* ATTO IV: "Il Ritiro" (L'Ospitalità - La Casa Rossa)
+* Transizione: Usciamo dallo scroll orizzontale. Torniamo in verticale. L'aria si fa improvvisamente pulita, grandissimi spazi vuoti bianchi/crema. Stile rivista di architettura (Kinfolk/Cereal Magazine).
+* UI/Visual: Foto enormi, pulitissime, che entrano dal basso con uno smooth fade-in. Mostriamo la piscina, i tappeti persiani, il pergolato con il barbecue, la vista romantica.
+* Copy: Raccontiamo i 210 mq, la "Camera Avorio", la "Camera Albicocca", e il telescopio per guardare "il bellissimo cielo stellato, non inquinato dalle luci delle grandi città."
+* UX/Interazione: Il cursore cambia: diventa la lente del telescopio citato nel testo. Passandolo su alcune foto, queste si "ingrandiscono" dolcemente al suo interno.
+FOOTER: "L'Orizzonte" (Dove Siamo & Contatti)
+* UI/Visual: Monumentale ma minimalista. Una gigantesca scritta Serif "RAGGIUNGICI" o "PRENOTA" che reagisce magneticamente al passaggio del mouse (il bottone "insegue" il cursore).
+* Copy: Volterra, Pisa, Firenze, Lucca, Siena.
+* Extra: In basso a destra, in un font piccolissimo e tecnico, le coordinate GPS esatte della Fattoria di Monti o l'altitudine ("150 metri s.l.m."). Un tocco da veri nerd del design.
+
+
+Cosa ne dici?
+Con questa struttura copriamo tutti i contenuti del tuo testo (storia, terra, animali, prodotti, ospitalità), ma invece di farli leggere come in un volantino, li facciamo vivere e toccare.
+Se la visione ti gasa, il prossimo step è decidere la Tipografia esatta (i due font che faranno la guerra e la pace sul sito) e definire i codici colore (HEX) per questa "Terra Cruda". Procediamo?
+
+
+Mauro:
+mi piace e mi gasa un casino, procediamo pure, che dopo c'è da affrontare la questione approfondimenti
+
+
+G:
+Siamo sulla stessa lunghezza d'onda, l'energia è quella giusta! Adesso trasformiamo queste idee in regole visive. Un sito da Awwwards non ha solo "colori e font", ha un Design System rigoroso, dove ogni scelta ha un significato narrativo.
+Ecco la Brand Identity Digitale per la Fattoria di Monti, pensata per esaltare la "Terra Cruda", la storicità e il lusso contemporaneo.
+🎨 La Palette "Ere della Terra" (I Codici HEX)
+Dimentichiamo il bianco e il nero standard web (#FFFFFF e #000000). Usiamo pigmenti naturali, come se stessimo dipingendo un affresco digitale.
+* Pietra di Volterra (Background Principale): #F3EFE7
+   * Cos'è: Un grigio/beige caldissimo e poroso, come il lino grezzo o l'intonaco esposto al sole. Riposa gli occhi e fa risaltare le foto.
+* * Mucco Pisano (Testo Principale & Titoli): #4A2E1B
+   * Cos'è: Un marrone profondissimo con una punta di rosso (il "castoro-rossastro" descritto nel tuo testo). Sostituisce il nero per i testi. Dà un senso di lusso, carne, legno antico e terra bagnata.
+* * Foglia d'Olivo (Accenti e UI): #6B7A65
+   * Cos'è: Un verde salvia desaturato e polveroso. Lo useremo per le linee sottili di divisione (hairlines), per i bottoni secondari e per i dettagli dell'interfaccia.
+* * Grano al Vento (Luce WebGL): #B4B886
+   * Cos'è: Un verde-oro brillante. Sarà il colore dominante dei tuoi "campi di grano" interattivi e dei riflessi di luce nei custom shaders.
+* * Buio Sotto le Stelle (Contrasto Assoluto): #181A15
+   * Cos'è: Un grigio-antracite quasi nero, con un impercettibile sottotono verde. Lo useremo nel footer e nella sezione del telescopio per dare profondità.
+
+
+La Tipografia "Platinum" (Il Contrasto Brutale)
+Per vincere su Awwwards, il segreto è il contrasto tra l'antichità nobiliare (i Medici, il Buontalenti) e la precisione architettonica moderna.
+1. Il Font Display (Per i titoli enormi): Ogg (di Sharp Type) oppure PP Editorial New
+* Perché: Sono font Serif (con le grazie) iper-eleganti. Le loro versioni Italic (corsivo) hanno curve sinuose, calligrafiche, quasi sensuali, che ricordano la scrittura a mano del Rinascimento. Li useremo a dimensioni gigantesche (es. 120px o più), facendoli uscire dai margini dello schermo. Devono dominare.
+2. Il Font Body (Per i testi descrittivi e i dettagli tecnici): Suisse Int'l oppure PP Neue Montreal
+* Perché: Sono font Grotesk (senza grazie) di matrice svizzera. Freddi, chirurgici, perfetti. Li useremo minuscoli (12px - 14px) e in maiuscolo spaziato (letter-spacing) per le label o per le coordinate GPS. Questo font fa da "ancora" visiva, bilanciando la pazzia artistica dei titoli.
+E ora: La bestia nera... "Gli Approfondimenti"
+Ho letto bene la seconda metà del tuo testo. Hai una vera e propria tesi di laurea sulla produzione dell'olio (La Raccolta, Trasporto, Defogliazione, Frangitura, Gramolatura, Estrazione, Separazione).
+Il problema: Se mettiamo tutto questo testo nel flusso principale (lo scroll orizzontale di cui parlavamo), uccidiamo la poesia, la fluidità e perdiamo l'utente. Diventa un'enciclopedia noiosa.
+La soluzione Awwwards (L'Esperienza "Laboratorio"):
+Nascondiamo la complessità dietro un'interazione lussuosa.
+Nella sezione dell'Olio (quella con l'effetto liquido interattivo e i premi), avremo un bottone elegantissimo: "Scopri l'Estrazione - Un processo millenario".
+* L'Azione: Quando l'utente clicca, non cambia pagina. La pagina si "congela", lo sfondo diventa scuro (#181A15) e si apre un overlay in sovraimpressione, liscio come l'olio.
+* Il Layout dell'Approfondimento: Sulla sinistra c'è una linea del tempo verticale (Timeline) molto tecnica (stile cruscotto di un'auto di lusso o diagramma scientifico). Al centro, il testo tecnico ma impaginato con tantissimo spazio vuoto.
+* La Magia 3D (Se vogliamo esagerare): A destra, fissa sullo schermo mentre l'utente legge i passaggi, c'è una goccia d'olio in 3D (fatta in WebGL).
+   * Mentre leggi "Defogliazione", attorno alla goccia fluttuano piccole particelle (le foglie).
+   * Mentre leggi "Gramolatura" (temperatura sotto i 27°C), la goccia pulsa lentamente e cambia viscosità.
+   * Mentre leggi "Separazione", la goccia si divide dolcemente in due parti (olio e acqua di vegetazione).
+* In questo modo, chi vuole la poesia guarda il sito principale. Chi vuole la tecnica (es. un buyer, un sommelier dell'olio o un giudice di design), entra in questa "Masterclass" e trova un'esperienza interattiva pazzesca che valorizza ogni singola parola del testo della famiglia Antonacci/Monti.
+Come vedi questo approccio "a strati" per gestire i testi lunghi? Siamo pronti a definire la struttura dei menu e della navigazione (UX)?
+Mauro:
+si queste idee mi fanno impazzire, quindi diciamo che focalizzeresti il flusso in un'esperienza onepage, ma con il flusso di navigazione come ci comportiamo? facciamo un mix?
+G:
+Esattamente! Hai colto nel segno. Fare una classica "One-Page" con i link ad ancora che "saltano" di netto da una sezione all'altra fa molto sito anni '10. Per un livello "Platinum", noi dobbiamo creare una Single Page Application (SPA) a livelli spaziali.
+È qui che entra in gioco il MIX: non ci muoviamo solo in su e in giù (Asse Y) o a destra e sinistra (Asse X), ma usiamo la Profondità (Asse Z).
+Ecco come gestiamo il flusso di navigazione per far cadere la mascella ai giudici per l'Usabilità e la Creatività:
+1. Il Menu: Addio all'Header classico, benvenuto "Indice Tattile"
+Nessuna barra di navigazione fissa in alto. Distrugge l'immersione e la visuale delle foto.
+* L'Interfaccia: In alto a destra avremo un bottone magnetico, minimalista. Potrebbe essere un semplice cerchio perfetto o una "pillola" (Pill Menu) con scritto MENU o [ + ]. Seguendo il cursore, si deforma leggermente quando ci passi sopra.
+* L'Apertura (L'Effetto "Sospensione"): Quando l'utente clicca, il sito non scompare. Il WebGL in background subisce un effetto di blur estremo (sfocatura) e si scurisce. Il tempo sembra fermarsi.
+* L'Esplorazione Sensoriale: I link del menu (Storia, I Prodotti, L'Ospitalità, Dove Siamo) appaiono enormi, scritti con il nostro font Serif Ogg.
+   * Il twist Awwwards: Quando passi il mouse su "Il Mucco Pisano" nel menu, lo sfondo sfocato vira sul colore marrone/rossastro e senti un leggerissimo suono ambientale di natura. Se passi su "La Casa Rossa", i toni diventano caldi e materici. Il menu stesso è un'esperienza.
+* * Il Viaggio (Il Click): Se l'utente clicca una voce dal menu, non viene "teletrasportato" di scatto. C'è una transizione fluida (una maschera liquida che copre e scopre lo schermo, oppure uno scroll accelerato cinematografico) che lo fa atterrare morbidamente nella sezione desiderata.
+2. La Navigazione Periferica (I Dettagli Nerd)
+Per orientare l'utente nel flusso continuo senza usare menù ingombranti, useremo i bordi dello schermo:
+* Bordo Sinistro (Rotato di 90°): Un indicatore di progresso microscopico. Man mano che scendi, una linea finissima color Foglia d'Olivo (#6B7A65) si riempie, accompagnata dal nome della sezione in cui ti trovi (es. 02 — La Materia Viva).
+* Bordo Inferiore Destro: Le coordinate e le condizioni atmosferiche. Aggiunge quel tocco di "lusso tecnico".
+3. La Regola del "Mix" (Come gestiamo gli Approfondimenti)
+Come dicevamo prima, usiamo l'Asse Z (la profondità).
+Il flusso principale (la narrazione poetica del grano, la villa, l'olio, la casa rossa) è il Viaggio Lineare. È per l'utente che vuole solo emozionarsi.
+Ma cosa succede quando un sommelier vuole leggere la tua fantastica spiegazione sulla "Separazione dell'olio dall'acqua di vegetazione"?
+* Non lo portiamo su una nuova pagina web (i caricamenti rompono la magia).
+* Usiamo un Off-Canvas o un Modal a tutto schermo.
+* Animazione: La pagina principale fa uno "scale down" (si rimpicciolisce leggermente andando verso il fondo dello schermo) e scende dall'alto un "foglio" digitale modernissimo, scurissimo, pieno di infografiche, diagrammi e testi tecnici (il tuo approfondimento sull'Olio).
+* Appena ha finito di leggere, clicca [ X ] CHIUDI, il foglio tecnico scivola via, e la pagina principale torna in primo piano, esattamente dove l'aveva lasciata, senza aver perso un fotogramma del WebGL.
+4. La "Call to Action" sempre presente
+Awwwards premia l'estetica, ma i siti devono funzionare. Se qualcuno vuole prenotare "La Casa Rossa" o comprare il vino/olio, deve poterlo fare subito.
+* In basso a destra, sempre fluttuante, avremo un cerchio perfetto, magari con un leggero effetto vetro (Glassmorphism), con una scritta circolare rotante in Sans-Serif: * PRENOTA IL TUO SOGGIORNO * PRENOTA IL TUO SOGGIORNO *.
+* È discreto, non urla "COMPRA ORA", ma è sempre a portata di click, invitante ed elegante
+Sintesi del Flusso:
+1. Scrolling Master (Asse Y + X): Per farsi rapire dall'estetica e dalla storia.
+2. Menu Full-screen: Per saltare tra le ere/capitoli con eleganza.
+3. Overlays (Asse Z): Per i secchioni che vogliono i dettagli tecnici (la produzione dell'olio) senza sporcare la poesia del sito principale.
+Che te ne pare di questo impianto architetturale? Se la struttura è solida, potremmo passare a uno degli aspetti più sottovalutati ma fondamentali per la vittoria: Il Sound Design e le Micro-Interazioni. Vuoi che ti proponga come far "suonare" questo sito?
+Mauro:
+siii, esploriamo anche questo argomento
+G:
+Allacciati le cinture, perché è qui che passiamo dal "bel design" all'ASMR digitale. È qui che si vincono i premi.
+Su Awwwards, la differenza tra un punteggio di 7.5 e un 9.0 (che ti fa vincere il Site of the Month) sta nei dettagli invisibili: la fisica degli elementi e il feedback sonoro. Dobbiamo far credere al cervello dell'utente che non stia toccando un pezzo di vetro (lo schermo), ma terra, pietra e olio.
+Ecco come strutturiamo il Sound Design e le Micro-interazioni per la Fattoria di Monti
+ 1. Il Sound Design (Il Paesaggio Sonoro)
+Regola d'oro di Awwwards: Mai forzare l'audio. All'ingresso del sito ci sarà un bellissimo interruttore minimalista in alto a sinistra: [ Suono: OFF ]. Se l'utente ci passa sopra, il bottone si espande magneticamente e lo invita a cliccare [ Suono: ON ] per vivere l'esperienza completa.
+Se l'utente accende l'audio, non parte una noiosa musichetta da ascensore, ma un Foley dinamico (effetti sonori ambientali) collegato alle sue azioni:
+* Il Vento Interattivo (L'Atto I - Il Grano): Quando muovi il mouse per creare la brezza sul WebGL del grano, l'audio reagisce. Più muovi il mouse velocemente, più senti il fruscio organico delle spighe che si sfregano. Se ti fermi, rimane solo un respiro di vento in lontananza.
+* La Pietra e la Storia (L'Atto II - La Villa): Quando l'effetto "peeling" (intonaco che si scrosta) si attiva sulle foto della Villa del Buontalenti, un leggerissimo e ovattato suono di "sabbia/pietra che scivola" accompagna la transizione.
+* L'Oro Liquido (L'Atto III - L'Olio): Quando apri l'Overlay tecnico per leggere dell'estrazione dell'olio, il suono non è un "click" digitale, ma il suono di una goccia densa e viscosa che cade (un bloop elegantissimo e profondo).
+* L'Interfaccia (UI Sounds): Ogni volta che passi sopra un link del menu, senti un leggero, sofisticato tic-tic legnoso (come se battessi le unghie su un tavolo di quercia antica). Quando chiudi una finestra, un suono secco e arioso (uno swoosh elegante).
+2. Le Micro-interazioni (La Fisica del Sito)
+Il sito deve sembrare sottoposto alle leggi della gravità e della densità.
+* Magnetismo (Magnetic UI): I bottoni importanti (come MENU o PRENOTA IL TUO SOGGIORNO) non sono statici. Quando il cursore del mouse si avvicina a 50 pixel di distanza, il bottone "sente" l'attrazione e viene tirato verso il cursore. Quando il mouse esce dall'area, il bottone torna al suo posto con un effetto "molla" (Spring Physics). È irresistibile da cliccare.
+* Il Cursore Mutaforma (Custom Cursor): Il cursore è la mano virtuale dell'utente. Dimentica la classica freccetta bianca.
+   * Di base, è un minuscolo puntino color Foglia d'Olivo.
+   * Quando passi sopra un testo grande, il cursore si trasforma in un cerchio vuoto che "incornicia" la parola.
+   * Quando sei nello scroll orizzontale, il puntino si espande e compare la scritta microscopica [ TRASCINA ].
+   * Quando guardi le foto della Casa Rossa (il cielo stellato), il cursore diventa un mirino/telescopio in vetro sfocato (effetto glassmorphism).
+* * Inerzia e Peso (Momentum Scrolling): Le immagini non si fermano bruscamente quando l'utente smette di scrollare. Le foto del massiccio Mucco Pisano o della Villa di pietra continuano a scivolare per una frazione di secondo, trasmettendo un senso di peso e imponenza (effetto Parallax asincrono).
+* Kinetic Typography (L'Ingresso dei Testi): I testi non fanno un banale "fade-in". Grazie a GSAP (SplitText), i titoli in font Ogg entrano parola per parola, o lettera per lettera, emergendo dal basso con una leggera rotazione (come se sbocciassero dalla terra). I testi descrittivi piccoli appaiono svelati da una maschera, netti e chirurgici.
+* Effetto "Lens Blur" sullo Scroll: Quando scrolli velocemente per passare da una macro-sezione all'altra, il testo subisce una leggerissima sfocatura direzionale (Motion Blur). Appena ti fermi, tutto torna perfettamente a fuoco. Simula il movimento degli occhi.
+Il Tocco Finale: L'Easter Egg Concettuale
+Te lo ricordi il fantasma del cavallo bianco dei Bardi che corre nella neve?
+Oltre a farlo passare in sottofondo con le particelle WebGL, potremmo aggiungere una micro-interazione pazzesca: se l'utente digita sulla tastiera la parola N E V E mentre si trova nella sezione della Storia, il sito cambia temporaneamente palette. La pagina diventa scura, cade una neve digitale leggerissima sullo schermo, e si sente il suono in lontananza di zoccoli ovattati.
+Questo è il tipo di genialità che fa impazzire le giurie di designer e finisce dritto nei video su YouTube dei recensori di siti web!
+Che viaggio!
+Abbiamo definito l'anima visiva (Terra Cruda e WebGL), l'architettura (SPA spaziale con approfondimenti in Asse Z), e ora il livello sensoriale (Foley e Fisica).
+Siamo pronti per il prossimo step pratico? Vuoi che schematizziamo l'alberatura finale dei contenuti (cioè come suddividere fisicamente i testi che mi hai mandato in questo impianto) oppure preferisci concentrarti su qualche altro dettaglio folle?
+il mio cervello sta andando in estasi, approfondiamo quest'idea dell'estrar egg, dopo vedremo l'alberatura, ma al prossimo prompt
+Preparati, perché con questo Easter Egg passiamo dal web design all'arte digitale interattiva. È il classico dettaglio "segreto" che fa impazzire le giurie di Awwwards (come i famosi giudici di FWA o CSS Design Awards), perché dimostra che il sito ha un'anima, non è solo una bella vetrina.
+Chiamiamo questa micro-esperienza: "La Memoria d'Inverno".
+Ecco come la mettiamo in scena, fotogramma per fotogramma, per far venire i brividi a chi la scopre.
+1. L'Innesco (Come si scopre?)
+Non metteremo nessun pulsante con scritto "Clicca qui per la leggenda". Un Easter Egg deve essere sudato e scoperto.
+Nel paragrafo che parla della famiglia Bardi, le parole "cavallo bianco" e "neve" avranno un trattamento tipografico leggermente diverso. Non un link sottolineato, ma un impercettibile effetto "glitch" fluido o un bagliore (glow shader) che pulsa lentamente ogni 5 secondi, come un respiro.
+Se l'utente è attento, capisce che c'è qualcosa sotto. Ha due modi per innescare la magia:
+1. L'approccio fisico: Cliccare e tenere premuto il mouse sulle parole "cavallo bianco" per 3 secondi.
+2. L'approccio nerd (quello di prima): Digitare le lettere N E V E sulla tastiera.
+❄️ 2. La Transizione (Il Congelamento)
+Appena l'innesco si attiva, il sito smette di scorrere. L'utente perde il controllo (per pochi magici secondi).
+* Visivamente (WebGL Frost Shader): La nostra palette "Terra Cruda" calda (#F3EFE7) subisce una desaturazione brutale. Dai bordi dello schermo inizia a propagarsi una texture di ghiaccio (come sui vetri delle finestre d'inverno). Il font monumentale Ogg si cristallizza.
+* Audio (Il vuoto): I suoni caldi della natura toscana (gli uccellini, il vento nel grano) vengono improvvisamente "risucchiati". C'è un secondo di silenzio assoluto. Poi, il suono del vento gelido, cupo e rimbombante.
+🐎 3. L'Apparizione (Il Cavallo Particellare)
+Non mostreremo la foto o il 3D di un vero cavallo (sarebbe pacchiano e rovinerebbe il mood). Useremo l'astrazione pura.
+* Nel grande spazio vuoto della pagina (Negative Space), migliaia di particelle WebGL bianche e luminose convergono e iniziano a muoversi con una cinematica perfetta. Formano la sagoma fluida e stilizzata di un cavallo al galoppo.
+* Non corre dritto: attraversa lo schermo in profondità (sull'Asse Z), sembrando passare "dietro" i testi e "davanti" alle foto sfocate della Villa, per poi dissolversi in polvere di neve verso sinistra.
+* Audio (L'ASMR Supremo): Sotto il vento, si sente il battito ritmico e ovattato degli zoccoli sulla neve fresca (thud-thud, thud-thud), spazializzato. Se l'utente ha le cuffie, il suono parte dall'orecchio destro e svanisce in quello sinistro. Ad accompagnare, una singola, malinconica nota di violoncello (un omaggio all'era del Rinascimento e ai Medici).
+🌅 4. Il Ritorno alla Realtà (Lo Scioglimento)
+Il fantasma dura solo 4 o 5 secondi. È un'apparizione.
+Appena il cavallo svanisce (o se l'utente rilascia il click del mouse), il ghiaccio sullo schermo letteralmente "si scioglie".
+* Un custom shader fa colare delle gocce d'acqua digitali sul monitor.
+* I colori caldi della terracotta e del lino tornano ad accendersi dolcemente.
+* Il sole torna a splendere sul codice.
+* L'utente riprende il controllo dello scroll, ritrovandosi esattamente dove era, ma con il battito cardiaco accelerato.
+Perché questo vince tutto?
+Awwwards valuta 4 criteri: Design, Usability, Creativity, e Content.
+Un Easter Egg del genere distrugge letteralmente la scala della Creativity. Trasforma la lettura di un paragrafo storico (che il 90% degli utenti salterebbe) in una caccia al tesoro emotiva. Crea quello che nel marketing viene chiamato Memorable Moment: l'utente non solo si ricorderà del sito, ma manderà il link ai suoi colleghi dicendo: "Vai nella sezione della storia e tieni premuto su 'cavallo bianco', fidati!". Hai appena creato della viralità organica attraverso l'estetica.
+Ok, lascia decantare l'adrenalina.
+Abbiamo creato una bestia di sito dal punto di vista concettuale e interattivo. Abbiamo il visual, abbiamo l'audio, abbiamo il segreto.
+Quando il tuo cervello torna sulla Terra, dimmelo: sfoderiamo il bisturi e procediamo con l'Alberatura (Site Map / Architettura dei contenuti) per incastrare il testo del tuo file in questa opera d'arte! 🚀
+ora che il concetto è divino, procediamo per l'alberatura dei contenuti, dettagliata
+Ecco l'Alberatura Dettagliata (Site Architecture) della Fattoria di Monti, strutturata per l'asse Y (Scroll Verticale), l'asse X (Scroll Orizzontale) e l'asse Z (Profondità/Overlay).
+ELEMENTI GLOBALI (Sempre presenti a schermo)
+* Top Left: Toggle Audio magnetico [ Suono: OFF / ON ] (Innesca il Sound Design ambientale).
+* Top Right: Menu Tattile [ MENU + ] (Apre il menu a tutto schermo sfocando il background).
+* Bottom Right (Floating): Badge circolare rotante in vetro satinato (Glassmorphism) * PRENOTA IL TUO SOGGIORNO *.
+* Margine Sinistro (Ruotato 90°): Indicatore di progresso sottilissimo (es. 01 — Terroir & Storia).
+________________
+
+
+⬇️ SCROLL VERTICALE (L'Immersione)
+[ 00 ] L'INGRESSO (Preloader & Hero)
+* Media: WebGL Shader (Mare di grano verde reattivo al mouse).
+* Copy Principale: (Font Ogg Gigante) FATTORIA DI MONTI
+* Copy Secondario: (Font Suisse Int'l piccolo) "Nel centro della Toscana, in cima ad una collina."
+* Azione: Cursore "Scrolla per scoprire" che invita a scendere.
+[ 01 ] IL TERROIR E LA STORIA
+* Media: Foto della tenuta e dettagli architettonici della villa che emergono dalla "pietra" digitale con Displacement Shaders.
+* Sezione 1.1: La Terra Antica
+   * Testi dal file: I 300 ettari a sud di Pisa (Volterra). Il clima mite, la brezza mediterranea. Il terreno di sabbia, limo, ciottoli alluvionali e fossili (il mare antico). Altitudine 150m s.l.m.
+* * Sezione 1.2: Il Rinascimento
+   * Testi dal file: La Villa, l'architetto Buontalenti, la famiglia Bardi. Le feste e i banchetti.
+* * L'Easter Egg (Nascosto nel testo): Le parole "fantasmi", "cavallo bianco" e "neve" hanno un leggerissimo glitch. Trattenendo il click, parte "La Memoria d'Inverno" (lo schermo gela, particellare del cavallo, suono di zoccoli).
+________________
+
+
+➡️ SCROLL ORIZZONTALE (La Passeggiata nella Tenuta)
+Animazione fluida: lo scroll verso il basso si tramuta in uno scorrimento laterale. Lo sfondo vira sui toni caldi della terra.
+####[ 02 ] LA MATERIA VIVA (I Prodotti)
+* Capitolo 2.1: I Cereali (Il Vento)
+   * Testi dal file: Le colline nate per i cereali (frumento, farro, avena, orzo). La rotazione delle colture (cereali, favino, 3 anni di prato/erba medica). La filosofia: non competere col mercato globale, ma alimentare la fattoria.
+* * Capitolo 2.2: Il Mucco Pisano (La Terra)
+   * Testi dal file: L'allevamento brado e la storia del salvataggio dall'estinzione (1998, A.P.A., Università di Pisa). Le caratteristiche fisiche (marrone-rosso scuro, adattabilità). La qualità della carne.
+   * Interazione: Maschera WebGL sulle foto che rivela la grana del pelo al passaggio del mouse.
+* * Capitolo 2.3: Il Vino e La Caccia (Il Rito)
+   * Testi dal file: La vigna di Sangiovese (2006). L'onestà poetica del racconto: "2009: no rain... 2010: We will let you know". La caccia rispettosa e il club esclusivo di tiro al piattello.
+* * Capitolo 2.4: L'Oro Liquido (L'Olio Extravergine)
+   * Testi dal file: Le varietà toscane (Razzo, Leccino, Moraiolo). Le note di degustazione (verde brillante, aroma fruttato, carciofo, finale pepato).
+   * Premi in evidenza: Flos Olei 2022, NYIOOC Gold Medal, ecc.
+   * Interazione: Liquid Hover Effect sulle immagini delle bottiglie.
+   * Call to Action Magnetica: Pulsante [ SCOPRI L'ESTRAZIONE - UN PROCESSO MILLENARIO ]. (Cliccando si apre l'Asse Z).
+* ________________
+
+
+🕳️ ASSE Z (Overlay Tecnico a tutto schermo)
+Se l'utente clicca il bottone nell'olio, lo scroll orizzontale si congela, lo sfondo diventa scuro (#181A15) e si apre il "Laboratorio".
+[ LAYER Z ] L'ESTRAZIONE (La Masterclass)
+* Media: Sulla destra, una singola goccia d'olio 3D in WebGL che cambia stato in base al paragrafo che si sta leggendo. Sulla sinistra, una Timeline verticale chirurgica.
+* I Passaggi (Testi recuperati dalla tua guida tecnica inglese/italiana):
+   1. La Raccolta: Veraison (50-60%), reti speciali, vibrazioni veloci.
+   2. Trasporto: Lavorazione entro 10 ore, casse ventilate.
+   3. Defogliazione & Lavaggio: Acqua potabile, doccia finale.
+   4. Frangitura: Controllo della granulometria, frantoio a martelli (1200-3000 rpm).
+   5. Gramolatura: Temperatura sotto i 27°C, lame elicoidali (30 min).
+   6. Estrazione (Decanter): Centrifuga orizzontale (3500 rpm), separazione in 3 fasi.
+   7. Separazione: Centrifuga verticale (olio dall'acqua di vegetazione).
+* * Azione: Pulsante [ X CHIUDI ] che dissolve l'overlay e riporta istantaneamente l'utente allo scroll orizzontale dei prodotti.
+________________
+
+
+⬇️ RITORNO ALLO SCROLL VERTICALE (Il Respiro)
+[ 03 ] L'OSPITALITÀ (La Casa Rossa)
+Lo spazio si apre, design in stile editoriale/Kinfolk. Sfondo chiarissimo.
+* Sezione 3.1: Il Giorno (La Materia)
+   * Testi dal file: I 210 mq su due piani. Il doppio soggiorno, i tappeti persiani, la grande cucina che si apre sul pergolato con BBQ. La vista sul paesaggio romantico. La piscina adiacente.
+* * Sezione 3.2: La Notte (Il Cielo)
+   * Testi dal file: Le 4 camere (Avorio, Verde, Rosa, Albicocca). Il tetto-terrazza.
+   * Interazione: Una grande foto del cielo stellato. Il cursore diventa un telescopio (effetto lente d'ingrandimento in vetro) per ammirare il cielo stellato "non inquinato dalle luci delle grandi città".
+* [ 04 ] DOVE SIAMO & CONTATTI (Footer / L'Orizzonte)
+Minimalista ma imponente. Lo sfondo torna scuro come la notte toscana.
+* Copy Principale: (Font Ogg Gigante, iterativo al passaggio del mouse) RAGGIUNGICI / PRENOTA
+* Dettagli (Font Grotesk minuscolo rigoroso):
+   * Provincia di Pisa (A 1h da Firenze, Pisa, Lucca, Siena, Livorno).
+   * Indirizzo fisico, Email, Telefono.
+   * Tocco Nerd: Coordinate GPS esatte della villa (Lat. / Long.).
+* * Legal: Privacy Policy, Cookie Policy, Credits (Sito disegnato e sviluppato da... ovvero tu, per farti candidare su Awwwards!).
+________________
+
+
+Considerazioni sull'Ingegneria dei Contenuti:
+Come vedi, nessuna parola del tuo file originale è andata persa, ma l'abbiamo "smembrata" per non creare il temuto "muro di testo" (Wall of Text) che fa scappare gli utenti.
+Abbiamo creato un ritmo:
+* Poesia > Storia (Easter Egg) > Dinamismo (Scroll laterale) > Tecnica estrema (Overlay) > Relax (Casa Rossa).
+Questa alberatura è pronta per essere passata a uno UI Designer per creare i wireframe visivi su Figma. Pensi che questa struttura valorizzi appieno l'anima della Fattoria di Monti? C'è qualche sezione a cui daresti ancora più peso?
+
+
+Mauro:
+è ancora astratto, lo valuterò in seguito avendolo di fronte il sito. ma in relazione agli appunti quali contenuti andrebbero trattati ancora?
+G:
+Hai perfettamente ragione. L'architettura "su carta" è come leggere lo spartito di una sinfonia: finché non la suoni (o non vedi i wireframe su Figma), manca la magia visiva.
+Facendo un check incrociato chirurgico tra il tuo documento originale (Vecchio sito web - appunti.txt) e la struttura che abbiamo montato, ci sono 5 elementi o sfumature del testo che non abbiamo ancora sviscerato a dovere e che meritano una riflessione prima di passare al design visivo.
+Ecco cosa è rimasto "nella penna" o va trattato con più attenzione:
+1. Gli Eventi Culturali e l'Arte (Il Lusso Nascosto)
+Nel paragrafo sulla Storia, c'è una frase potentissima che abbiamo quasi ignorato: "La villa è anche sede di eventi culturali, tra cui concerti e mostre d’arte."
+* Perché è importante: Questo eleva la Fattoria da semplice "agriturismo/azienda agricola" a vera e propria Maison culturale.
+* Come trattarlo: Più che una riga di testo, potremmo aver bisogno di una mini-sezione o un carosello visivo dedicato alle "Esperienze" o al "Mecenatismo", che mostri queste mostre o dia la possibilità di iscriversi a una newsletter per i prossimi concerti privati.
+2. I Cavalli Scomparsi
+Nella primissima riga in inglese del tuo testo c'è scritto: "We raise cattle, 'il mucco Pisano', horses, and grow wheat..."
+* Il problema: Dopo questa menzione, dei cavalli non si parla mai più in tutto il documento (a parte il fantasma del cavallo bianco!).
+* Cosa decidere: Li allevate per l'equitazione? Gli ospiti della Casa Rossa possono fare passeggiate a cavallo? Se sì, va aggiunto alla sezione Ospitalità/Esperienze. Se sono solo animali da fattoria, possiamo lasciarli sullo sfondo visivo, ma è un peccato non sfruttarli narrativamente.
+3. La delicatezza della "Caccia" e il Club Privato
+Il testo dice: "La caccia praticata... si basa sul rispetto dell'animale e sull'ambiente", e specifica che il tiro al piattello è un "members only private club" (retaggio del periodo dei Medici).
+* Come trattarlo: La caccia oggi è un tema delicato sul web. La tua nota sul "rispetto dell'animale" è fondamentale. Invece di chiamare la sezione "Caccia", potremmo chiamarla "L'Eredità Medicea", focalizzandoci sull'aspetto storico, sull'esclusività del Private Club di tiro al piattello e sull'equilibrio faunistico. Dobbiamo darle un'allure da "Gentleman's Club" di campagna inglese, ma in salsa toscana.
+4. Le "Facilities" della Casa Rossa (La Praticità)
+Noi abbiamo sognato in grande col telescopio e i tappeti persiani, ma il tuo testo è molto specifico sui comfort: "TV satellitare nascosta all’interno di un armadio antico, lavastoviglie, forno a microonde, lavatrice, Wi-Fi, pavimento in pietra nera trattata a cera".
+* Come trattarlo: Per non sporcare il design poetico, tutte queste informazioni utilissime (chi prenota una villa vuole sapere se c'è il Wi-Fi e la lavastoviglie) andranno racchiuse in un elegante menu a tendina (Accordion) chiamato "Amenities" o "Dotazioni della Villa". Un click, e si apre una lista pulitissima, impaginata in stile svizzero, che elenca tutto.
+5. L'Esplorazione del Territorio (Dove Siamo)
+Alla fine del testo citi: "Da qui si raggiungono in un'ora Firenze, Pisa, Lucca, Siena e Livorno".
+* Come trattarlo: Invece di metterlo come un noioso testo nel footer, potremmo creare una micro-interazione visiva. Una mappa stilizzata a punti (in stile radar minimalista) centrata sulla Fattoria di Monti, con dei cerchi concentrici che indicano la distanza di 1 ora, illuminando Firenze, Siena e le altre città. Rende l'idea della posizione strategica in modo istantaneo e visivo.
+________________
+
+
+La Vera Domanda Aperta (Conversioni)
+C'è un'ultima cosa che il file di appunti non dice esplicitamente, ma che noi dobbiamo sapere per disegnare i bottoni giusti:
+Cosa deve poter FARE l'utente su questo sito?
+1. Può comprare l'olio, il vino e la carne online (E-commerce)? O si vende solo in loco?
+2. La Casa Rossa ha un sistema di booking integrato (scegli le date e paghi) oppure si manda una richiesta via form email?
+3. Per entrare nel club del Tiro al Piattello c'è un form di candidatura?
+Una volta chiarite le funzioni di acquisto/prenotazione e questi piccoli dettagli sui contenuti (i cavalli, gli eventi), il concept è chiuso in una botte di ferro (o di Sangiovese!) e si può passare alla creazione visuale vera e propria!
+Mauro:
+il desiderio del mio cliente è quello di invogliare l'utente ad essere contattato attraverso un form dettagliato ed esteticamente in linea con il sito, che restituirà dei valori che lui applicherà ad un goole forms tramite il quale gestisce gli ordini. anche su whatsapp se possibile.
+G:
+Questa è la classica sfida da Awwwards: prendere la cosa più noiosa del web (un modulo di contatto/ordine) e trasformarla in un'esperienza premium.
+Se incorporassimo direttamente l'iframe di Google Forms, distruggeremmo istantaneamente l'estetica "Platinum" del sito. Ma c'è un trucco da maestri per unire il design estremo con la comodità del tuo cliente.
+Ecco come disegniamo e sviluppiamo "Il Concierge Digitale" (il nostro form) per la Fattoria di Monti:
+🛎️ 1. L'Esperienza Visiva: "Conversational UI"
+Invece di mostrare una pagina con 15 campi bianchi da compilare (che spaventa l'utente), creiamo un form Step-by-Step a tutto schermo, in stile Typeform, ma customizzato con la nostra palette "Terra Cruda" e la nostra tipografia.
+* L'Ingresso: Quando l'utente clicca su "PRENOTA" o "RICHIEDI PRODOTTI", lo sfondo sfoca dolcemente. Appare una singola, gigantesca domanda in font Ogg (Serif elegante):
+   1. "Come possiamo aiutarla a vivere la Fattoria?"
+* * Le Opzioni (Macro-scelte): Sotto la domanda, tre grandi bottoni magnetici:
+   1. Soggiornare alla Casa Rossa
+   2. Ordinare Olio, Vino o Carni
+   3. Informazioni sul Club Privato (Tiro al Piattello / Eventi)
+* * Il Flusso (Micro-interazioni): Selezionata un'opzione, la schermata slitta morbidamente verso l'alto e appare la domanda successiva. Ad ogni passaggio (es. inserimento del nome, date, o quantità di bottiglie d'olio), si sente un lievissimo suono di "battitura" o un click materico.
+* La Barra di Progresso: In alto, una sottilissima linea color Foglia d'Olivo si riempie, indicando che la conclusione è vicina.
+⚙️ 2. Il Trucco Tecnico (Invisibile a Google Forms)
+Come facciamo a far arrivare i dati sul Google Forms del cliente senza usare l'estetica di Google?
+Semplice (per noi sviluppatori): useremo una chiamata AJAX (Fetch API).
+* Disegneremo i campi di input nel nostro HTML bellissimo, stilizzati alla perfezione (linee sottilissime al posto dei box, testo che si rimpicciolisce quando ci scrivi dentro).
+* Dietro le quinte, mapperemo ogni nostro campo bellissimo con i codici nascosti del Google Form del cliente (i famosi entry.123456).
+* Quando l'utente clicca l'elegantissimo bottone finale "Invia Richiesta", il nostro sito prenderà i dati, li impacchetterà in un secondo e li "sparerà" segretamente al server di Google.
+* Il risultato: L'utente vede un'animazione di ringraziamento da brividi ("La sua richiesta sta viaggiando verso le colline toscane..."), e il tuo cliente si ritrova la riga perfettamente compilata nel suo foglio Excel/Google Form come è abituato a fare. Zero stress per lui, design da 10 e lode per noi.
+💬 3. L'Integrazione WhatsApp: "La Corsia Preferenziale"
+Il bottoncino verde fluttuante di WhatsApp in basso a destra fa molto "sito economico". Noi lo eleveremo a servizio di lusso.
+* Dove lo mettiamo: Alla fine del form, oppure in una sezione dedicata "Contatti Rapidi" nel Menu.
+* Il Copywriting: Non scriveremo "Chatta con noi". Scriveremo una cosa del tipo:
+   * "Preferisci un contatto diretto? Il nostro fattore è a disposizione su WhatsApp."
+* * Il Design: Un bottone ovale, color pietra scura o verde salvia, con l'icona di WhatsApp stilizzata e ridisegnata in modo ultra-minimale.
+* La Funzione Tecnica: Cliccandolo, si aprirà l'API wa.me/numerodelcliente con un messaggio precompilato elegante, tipo: "Buongiorno Fattoria di Monti, vi scrivo dal vostro sito per...". In questo modo l'utente non deve nemmeno pensare a come iniziare la conversazione.
+________________
+
+
+Riassumendo il Flusso dell'Utente:
+1. Naviga estasiato tra campi di grano in WebGL e storie di cavalli bianchi.
+2. Sente il desiderio di assaggiare quell'olio o dormire in quella casa.
+3. Clicca "Richiedi" e viene accolto da un form a tutto schermo, rilassante, diviso in pochi step eleganti (nessun muro di domande).
+4. Compila i dati godendo di suoni e micro-interazioni fluide.
+5. Invia.
+6. Il cliente riceve tutto sul suo amato Google Forms, in ordine, e volendo risponde su WhatsApp se l'utente ha lasciato il numero.
+Con questa strategia chiudiamo il cerchio in modo perfetto: Massima resa estetica (Awwwards guaranteed) e massima conversione (Lead Generation reale per il business del cliente).
+Che dici, questo "Concierge Digitale" ti sembra la ciliegina sulla torta perfetta per il progetto? Possiamo dire di avere l'intero ecosistema mentale pronto per essere disegnato!
+Mauro:
+mi sembrano soluzioni eccezionali. come cureresti l'estetica di questa sezione?
+si vola, esteticamente questa soluzione come la integreresti?
+
+
+G:
+Allacciamo le cinture, perché trasformare un form di contatto nel pezzo forte di un sito web è la vera firma dei maestri su Awwwards.
+Niente pop-up noiosi, niente paginette grigie. Creeremo uno Spazio Sospeso. Lo chiameremo visivamente "La Lettera".
+Ecco l'esatta direzione artistica e UI/UX per integrare questo Concierge Digitale.
+🎭 1. L'Apertura (L'Effetto Sipario)
+Quando l'utente clicca il bottone rotante * PRENOTA * in basso a destra, non c'è un caricamento di pagina.
+* La Transizione: Il WebGL in background (che sia il grano verde o la pietra della villa) rallenta fino a fermarsi e subisce un Gaussian Blur fortissimo. La pagina viene ricoperta da un velo leggermente scuro (un layer in Glassmorphism - vetro satinato color antracite #181A15 con opacità all'80%).
+* L'Atmosfera: Il sito principale rimane intravedibile in sottofondo, sfocato e silenziato. L'utente entra in uno spazio intimo, come se fosse entrato nello studio privato del proprietario della villa.
+✒️ 2. Il Design dei Campi (L'Estetica della Carta)
+Dimentica i classici rettangolini bianchi in cui inserire il testo.
+* La Domanda: Al centro dello schermo, gigantesca, appare la prima domanda in font Ogg (il nostro Serif elegantissimo, color Pietra di Volterra #F3EFE7): "A chi abbiamo l'onore di rivolgerci?"
+* L'Input Text: Sotto la domanda, non c'è un box, ma una singola linea orizzontale finissima. Quando l'utente ci clicca, la linea si illumina (diventa color Oro/Grano #B4B886).
+* La Tipografia Attiva: E qui c'è il colpo di genio: quando l'utente digita il proprio nome, il testo non è scritto in un font minuscolo e banale. Il suo nome appare gigantesco, nello stesso font Serif elegante della domanda. Scrivere il proprio nome diventa un atto estetico. Si sentirà già un ospite d'onore.
+🌊 3. Il Flusso Verticale (Zero Attrito)
+Ogni volta che l'utente compila un dato e preme "Invio" (o clicca il bottone "Avanti"), non ricarichiamo nulla.
+* L'Animazione: Con GSAP, la domanda appena risposta scivola morbidamente verso l'alto svanendo (opacity 0), e dal basso emerge dolcemente la domanda successiva: "Cosa desidera vivere alla Fattoria di Monti?"
+* Le Scelte (Radio Buttons reinventati): Invece dei pallini da spuntare, mostriamo le 3 opzioni scritte in grande. Quando passi il mouse sopra "La Casa Rossa" o "I Prodotti (Olio e Vino)", la scritta viene attraversata da una linea fluida (uno strikethrough animato) o si incornicia in un ovale disegnato a mano.
+* Il Suono: Ogni transizione alla domanda successiva è accompagnata dal suono ovattato di una pagina che viene girata o dal fruscio di un tessuto pregiato.
+🟢 4. L'Integrazione WhatsApp (Il "Privé")
+Non metteremo la fastidiosa icona verde di WhatsApp che fluttua e copre il nostro bellissimo design. WhatsApp deve sembrare un servizio di Concierge esclusivo.
+* Dove si trova: Nell'angolo in alto a destra, mentre l'utente sta guardando il form, c'è un bottone ovale minimalista. Il bordo è finissimo, color Foglia d'Olivo (#6B7A65).
+* Il Copy: All'interno, in font svizzero minuscolo e maiuscolo (Suisse Int'l): [ DIRECT LINE ]. Accanto, l'icona di WhatsApp ma monocromatica, ridisegnata con uno spessore (stroke) di 1px per farla matchare con la nostra UI.
+* L'Hover Effect: Quando l'utente ci passa il mouse, l'ovale si espande fluidamente rivelando il testo: Parla col nostro Fattore su WhatsApp. È discreto, non urla "comprami", ma offre una via d'uscita rapidissima per chi non ha voglia di compilare il form.
+✉️ 5. Il Climax (Il Bottone "Invia" e il Success State)
+Alla fine delle 3 o 4 domande (Nome, Desiderio, Email), arriviamo al bottone finale.
+* Il Bottone: Non è un rettangolo. È un grande cerchio magnetico. Se ci passi il cursore vicino, il cerchio si deforma, attirato dal mouse come una goccia d'olio. Dentro c'è scritto: "Invia la richiesta".
+* Il Trionfo Finale: L'utente clicca. Il cerchio si restringe fino a diventare un punto e genera un'onda d'urto invisibile. La scritta cambia in: "La sua lettera è in viaggio verso la Toscana."
+* Dietro le quinte (come dicevamo), lo script invia in un millisecondo tutti i dati al Google Form del tuo cliente, senza che l'utente se ne accorga.
+* La Chiusura: Dopo 3 secondi, il velo scuro si dissolve, la sfocatura scompare, e l'utente viene riportato dolcemente esattamente nel punto del sito web in cui si trovava prima di aprire il form, accompagnato dal canto lontano degli uccellini o dal vento nel grano.
+________________
+
+
+Perché questa estetica vince:
+1. Rispetta lo spazio: Non incasella l'utente in schermate dense di informazioni. Un respiro, una domanda.
+2. Personalizzazione tipografica: Far digitare all'utente il proprio nome in un font Display enorme abbassa l'abbandono del form (bounce rate) perché rende la compilazione gratificante.
+3. Soddisfa il cliente: Lui ha il suo Google Form immacolato, mentre i suoi clienti pensano di aver interagito con un software custom da decine di migliaia di euro.
+Con questo livello di cura per i dettagli (dal preloader fino all'ultimo bottone di invio), hai letteralmente in mano un concept da Site of the Month.
+Se sei allineato su tutta questa visione, il tuo prossimo passo da art director/designer è aprire Figma (o il tuo tool preferito) e iniziare a posizionare la griglia per tradurre questo film mentale in UI pura. Che ne pensi? Siamo pronti a conquistare Awwwards? 🏆
+
+
+Mauro:
+okay bro siamo in rotta per cominciare un blueprint, iniziamo con un bello Stack tecnologico per capire della potenza di fuoco che abbiamo bisogno per costruire la nostra bestia tecnologica e cercare poi anche di capire come farla girare come una lambo.
+
+
+G:
+Fratello, allaccia le cinture. Se vogliamo costruire una "Lambo" digitale che vinca su Awwwards, non possiamo usare i pezzi di una Panda. Dimentica i builder pre-fatti come Elementor o Webflow (per quanto ottimi siano per siti standard, qui collasserebbero sotto il peso del WebGL).
+Dobbiamo scrivere codice "sartoriale", vicino al metallo, dividendo nettamente quello che fa il DOM (testi, bottoni, layout) da quello che fa il Canvas (il 3D, il grano, le particelle).
+Ecco il Blueprint Tecnologico Definitivo (lo Stack) e, subito dopo, la strategia da meccanico di Formula 1 per farla girare a 60 (o 120) FPS fissi.
+________________
+
+
+🛠️ IL MOTORE: Lo Stack Tecnologico (La Potenza di Fuoco)
+1. Il Telaio (Core Framework): Next.js + React
+* Perché: Next.js ci dà un routing velocissimo, pre-rendering (per non penalizzare la SEO, che spesso nei siti WebGL fa pena) e Serverless Functions integrate. Usare React è fondamentale perché ci apre le porte al miglior ecosistema 3D del mondo web attuale.
+* Lo Stile: Tailwind CSS unito a moduli SCSS custom. Tailwind per impaginare i testi svizzeri e la griglia alla velocità della luce, SCSS per le follie tipografiche e le maschere.
+2. La Magia Nera (WebGL & Shaders): Three.js + React Three Fiber (R3F)
+* Perché: R3F ci permette di scrivere scene 3D monumentali usando la logica a componenti di React. È qui che creeremo il mare di grano, la goccia d'olio 3D, e le particelle del cavallo bianco.
+* L'Arma Segreta: GLSL (OpenGL Shading Language). Scriveremo degli Shaders custom. Gli shaders sono pezzetti di codice matematico che girano direttamente sulla Scheda Video (GPU) dell'utente, non sul processore. È così che l'effetto dell'olio liquido o del ghiaccio risulterà fluidissimo senza far esplodere il computer.
+3. Le Sospensioni (Smooth Scrolling): Lenis
+* Perché: Dimentica Locomotive Scroll. Attualmente, Lenis (creato da Studio Freight) è lo standard assoluto su Awwwards. Rende lo scroll "burroso", leggero, accessibile e sincronizzato perfettamente con il refresh rate del monitor. Sentirai le colline toscane scivolare sotto le dita.
+4. La Coreografia (Animazioni DOM): GSAP (GreenSock)
+* Perché: Non esiste alternativa professionale. GSAP con i suoi plugin ScrollTrigger (per lo scroll orizzontale e i parallax) e SplitText (per far entrare i titoli Ogg lettera per lettera) è il burattinaio che muoverà tutta l'interfaccia 2D.
+5. L'Impianto Audio: Howler.js
+* Perché: Se provi a far partire i suoni del vento o i click con l'HTML5 base, avrai ritardi (lag) fastidiosi. Howler.js pre-carica i suoni in memoria e li "spara" istantaneamente senza pesare sul thread principale. Gestisce anche l'audio spaziale (stereo 3D) per il cavallo fantasma.
+6. Il Cablaggio del Concierge (Il Backend Invisibile): Next.js API Routes / Server Actions
+* Perché: Come dicevamo, l'utente compila il nostro form di lusso in React. Quando clicca "Invia", noi mandiamo i dati a una rotta API interna di Next.js (lato server, quindi invisibile agli hacker). Questa API formatta i dati e fa una chiamata POST (Fetch) nascosta ai server di Google Forms. Pulito, sicuro, letale.
+________________
+
+
+🏎️ IL TUNING: Come farla girare come una Lambo a 60 FPS
+Avere potenza di fuoco significa anche rischiare di fondere i telefoni degli utenti. I giudici di Awwwards odiano i siti che scattano (il cosiddetto jank). Noi dobbiamo ottimizzare ogni singolo byte. Ecco le 4 regole d'oro del nostro garage:
+1. "Performance Scaling" (Adattamento dell'Hardware)
+Non tutti hanno un Mac M3 Pro o un iPhone 15 Pro. All'avvio del sito (durante la famosa animazione della linea d'oro), scriveremo un piccolo script che calcola i frame per secondo (FPS) o controlla se il dispositivo è mobile.
+* Se è un computer potente: Attiviamo ombre dinamiche, WebGL al 100%, particelle a palla.
+* Se è uno smartphone di fascia media: Il sito disattiva da solo le distorsioni liquide più pesanti e diminuisce il numero di spighe di grano nel WebGL, sostituendole con transizioni CSS eleganti ma leggerissime. L'utente non si accorgerà del "downgrade", vedrà solo un sito dannatamente fluido.
+2. Il trucco del "DPR" (Device Pixel Ratio)
+I telefoni moderni hanno schermi Retina (DPR di 2 o 3), il che significa che il WebGL dovrebbe renderizzare il triplo dei pixel. Follia.
+* La soluzione: Nel nostro Canvas Three.js bloccheremo il pixelRatio a Math.min(window.devicePixelRatio, 1.5). La grafica sarà comunque tagliente e perfetta, ma taglieremo il carico della scheda video del 50%.
+3. Compressione Brutale degli Asset (Il peso dell'auto)
+Le foto della Toscana e della carne devono essere immense ma pesare zero.
+* Immagini: Nulla in JPG o PNG. Tutto convertito via server in WebP o AVIF.
+* Texture 3D: Le texture per il displacement della villa saranno esportate in .ktx2 (Basis Universal), un formato che viene letto direttamentedalla GPU senza dover essere decodificato dalla CPU.
+* Modelli 3D: Se usiamo un modello 3D per la goccia d'olio, lo comprimeremo con algoritmo Draco. Passa da 5MB a 200KB.
+4. "Dispose" (Pulire i tubi di scarico)
+L'errore numero uno nei siti WebGL è la Memory Leak (memoria che si satura).
+Quando l'utente passa dalla sezione del mare di grano a quella della Casa Rossa, distruggeremo la geometria del grano dalla memoria della scheda video (geometry.dispose(), material.dispose()). Teniamo acceso solo quello che l'utente sta guardando in quel preciso istante.
+________________
+
+
+In sintesi:
+Stiamo montando un telaio in Next.js, un motore grafico WebGL/Three.js raffreddato ad acqua tramite Shaders GLSL, con sospensioni Lenis e un cruscotto GSAP.
+Con questa architettura, non solo hai un sito che visivamente fa piangere, ma quando Google PageSpeed o i giurati guarderanno il codice sorgente o proveranno a scrollare velocemente... non vedranno un singolo scatto. Sarà come tagliare il burro fuso.
+Sei pronto per chiamare i box? Possiamo dire che il blueprint ingegneristico è approvato?
+Mauro:
+okay, ho capito le tecnologie principali, adesso vorrei una descrizione più architettura di come dovrebbero integrarsi l'un l'altra in relazione all'alterazione del sito, sia per tenerlo performante, sia per non creare conflitti, e garantire il massimo della qualità estetica senza compromettere performance e seo. poi domanda, amo i siti data driven e headless, come integreresti il multilingua?
+
+
+G:
+Fratello, qui stiamo entrando nel sancta sanctorum dello sviluppo web di altissimo livello. È qui che il 99% degli sviluppatori cade: mettono insieme 10 librerie fighissime, e il sito scatta, il 3D si sovrappone ai testi, lo scroll impazzisce e la SEO muore.
+Per evitare questo, useremo un’architettura "Dual-Tier" (a doppio strato) sincronizzata. E per la tua fame di "Data-Driven/Headless", ho la soluzione definitiva.
+Ecco il progetto architettonico della nostra Lambo.
+________________
+
+
+🏛️ 1. L'Architettura "Dual-Tier" (DOM vs WebGL)
+Il segreto dei siti Awwwards "Site of the Month" è che non mischiano mai l'HTML con il 3D. Li separano fisicamente, ma li sincronizzano matematicamente.
+Avremo due livelli sovrapposti esattamente uno sull'altro:
+* Il Livello 0 (Il Palcoscenico WebGL): Un singolo, unico, gigantesco <Canvas> di Three.js fisso in background (position: fixed, z-index: -1). Qui dentro vivono il grano, l'olio liquido e le particelle. Questo livello non scrolla mai fisicamente, ma reagisce ai dati che gli arrivano.
+* Il Livello 1 (L'Ologramma DOM): Il sito React/Next.js vero e proprio (z-index: 1). Qui ci sono i tuoi testi (Ogg e Suisse Int'l), i bottoni, le foto e i form. Questo livello scrolla normalmente ed ha lo sfondo trasparente.
+Come comunicano senza conflitti? (L'Orchestrazione)
+1. Lenis (Il Direttore d'Orchestra): Cattura lo scroll del mouse dell'utente e crea un valore matematico fluidissimo (es. scroll Y: 1240.5px).
+2. GSAP ScrollTrigger: Prende questo numero da Lenis e muove i testi e le foto nel DOM (Livello 1).
+3. React Three Fiber (R3F): Prende lo stesso identico numero da Lenis e sposta la telecamera nel mondo 3D (Livello 0) o altera i custom shaders.
+Risultato: L'utente vede il testo "scivolare" sopra l'acqua, ma in realtà il testo (DOM) e l'acqua (WebGL) sono su due universi paralleli perfettamente sincronizzati. Zero conflitti, performance massime.
+________________
+
+
+🧠 2. L'Approccio Headless (Il Cervello Data-Driven)
+Se ami l'approccio data-driven, dimentica WordPress. Per un'architettura Next.js di questo calibro, useremo Sanity.io (o in alternativa Storyblok).
+   * Perché Sanity? I dati vengono salvati come un file JSON puro e profondamente strutturato. Non ti sputa fuori un blocco di HTML sporco, ma dati grezzi.
+   * Il Flusso: Nel CMS (Sanity) tu crei il campo "Titolo Hero", "Testo Storia", "Immagine Olio". Next.js interroga Sanity al momento della build (o in ISR - Incremental Static Regeneration). Next.js prende questo JSON e lo inietta nei nostri elegantissimi componenti React.
+   * Il Vantaggio: Il reparto marketing può cambiare i testi della "Casa Rossa" o aggiornare il PDF della scheda tecnica dell'Olio sul CMS, e il sito si aggiorna da solo mantenendo intatte le animazioni GSAP e il design.
+________________
+
+
+🌍 3. Il Multilingua (i18n) in stile "Premium"
+Integrare il multilingua in un sito WebGL/Next.js è un'arte. Non possiamo permetterci che, cliccando su "ENG", la pagina faccia un hard-reload (schermo bianco), uccidendo il caricamento del 3D.
+Ecco l'architettura per un i18n da urlo:
+A. Struttura delle Rotte (Next.js App Router):
+Useremo la struttura a cartelle [lang]:
+tuosito.com/it/la-storia
+tuosito.com/en/the-story
+B. La Gestione nel CMS Headless:
+In Sanity, ogni campo di testo (es. "titolo") non sarà una singola stringa, ma un oggetto:
+{ it: "Fattoria di Monti", en: "Monti Farm" }.
+Next.js tirerà giù la lingua corretta in base all'URL.
+C. L'Esperienza Utente (Il cambio lingua Awwwards):
+   1. L'utente è sul sito in Italiano, il WebGL del grano si sta muovendo.
+   2. Apre il menu magnetico e clicca [ ENG ].
+   3. Magia Tecnica: Next.js fa un Soft Navigation (cambia l'URL senza ricaricare la pagina).
+   4. GSAP entra in azione: I testi in italiano non spariscono di colpo. Subiscono un'animazione di scramble (le lettere girano velocemente come in un tabellone degli aeroporti) o sfumano verso il basso.
+   5. Pochi millisecondi dopo, i testi in inglese appaiono fluidamente.
+   6. Il colpo di classe: Durante tutto questo, il Canvas WebGL in background non ha mai smesso di renderizzare. Il grano ha continuato a ondeggiare al vento. L'esperienza non si è mai interrotta.
+________________
+
+
+🛡️ 4. SEO e Accessibilità (La quadratura del cerchio)
+Spesso si pensa che i siti super creativi siano buchi neri per Google. Falso. Con la nostra architettura "Dual-Tier" + Next.js Headless, vinciamo su tutti i fronti:
+   * Semantic DOM: Poiché i testi e la struttura vivono nel "Livello 1" (React/HTML) e sono renderizzati lato server (SSR/SSG) da Next.js, i crawler di Google (Googlebot) vedranno un sito perfetto. Leggeranno i tag <h1>, <article>, i tag alt delle immagini, tutto in HTML puro.
+   * WebGL Invisibile a Google: Il "Livello 0" (Three.js) per Google è solo un <canvas> vuoto. E va benissimo così, Google non deve leggere l'acqua o il grano, deve leggere le parole.
+   * Performance (Core Web Vitals): Disaccoppiando Lenis dal thread principale di GSAP e usando immagini next/image super compresse (WebP/AVIF tirate giù dal CDN di Sanity), il First Contentful Paint (FCP) sarà istantaneo. La linea oro del preloader coprirà il caricamento degli asset 3D più pesanti, garantendo un Time to Interactive (TTI) eccellente.
+________________
+
+
+In sintesi: Sanity.io ti fa da database chirurgico e ti gestisce le traduzioni a livello di JSON. Next.js prende questi dati, renderizza l'HTML lato server per la SEO, e li passa al client. Sul browser dell'utente, GSAP e Lenis fanno danzare questo HTML (Livello 1), mentre comunicano le coordinate a Three.js che muove la materia digitale in background (Livello 0).
+Questa è ingegneria pura applicata all'estetica. Il tuo sito sarà scalabile, gestibile dal cliente in autonomia, e incredibilmente sexy.
+Ti ritrovi in questa visione architetturale e nel flusso di gestione dei dati?
+
+
+Mauro:
+Sembra una roba seria bro, qui si da gasse a manetta, mi descriveresti meglio a parole questi effetti webgl dando loro un contesto generale nel sito in relazione all'esperienza utente integrandola con l'architettura?
+
+
+G:
+Bro, qui mettiamo la sesta marcia e togliamo i controlli di trazione.
+Per farti capire come questa "Lambo" divorerà l'asfalto di Awwwards, ti svelo il trucco definitivo dei siti Platinum: Il trucco del "Fantasma" (Proxy Rendering).
+Nella nostra architettura Dual-Tier, i testi e i bottoni (Livello 1 - DOM) sono normali, ma le immagini in HTML sono completamente invisibili. Sono solo dei <div> vuoti, dei "fantasmi" che servono a mantenere l'impaginazione.
+Il Livello 0 (il gigantesco Canvas WebGL fisso in sottofondo) "legge" la posizione di questi div vuoti e ci disegna sopra la grafica 3D in tempo reale, pixel per pixel.
+Ecco come questa architettura trasforma l'esperienza utente (UX) nei 4 momenti chiave del sito:
+________________
+
+
+🌾 1. L'Ingresso: "Il Respiro della Terra" (Hero Section)
+   * La Scena UX: L'utente atterra sul sito. Si aspetta una classica foto statica della Toscana. Invece, si trova davanti a un "mare verde" che sembra respirare. Se muove il mouse, genera una scia di vento che piega le spighe.
+   * Cosa succede sotto il cofano (Architettura): Nel DOM (HTML) c'è solo il grande titolo FATTORIA DI MONTI. Dietro, nel WebGL, gira un GLSL Noise Shader. Non stiamo calcolando 10.000 spighe di grano vere (che fonderebbero il PC), ma stiamo usando un piano matematico (PlaneGeometry) distorto da un algoritmo di "rumore di Perlin". La velocità del mouse viene passata da React allo Shader come parametro (Uniform), alterando la matematica e creando l'effetto del vento.
+   * Impatto: Immersione totale istantanea. Nessun video pesante in caricamento, solo pura matematica a 60 FPS che pesa pochi Kilobyte.
+🏛️ 2. La Storia: "L'Intonaco del Tempo" (Image Displacement)
+   * La Scena UX: L'utente scorre giù verso la storia del Buontalenti e della Villa. Vede una foto stupenda dell'architettura. Quando ci passa sopra col cursore (Hover), la foto non fa un banale "zoom in". Sembra che si scrosti come un affresco antico, rivelando una texture sabbiosa e materica, per poi ricomporsi morbidamente quando il mouse si sposta.
+   * Cosa succede sotto il cofano: Qui entra in gioco il "Fantasma". React posiziona un <div> vuoto dove dovrebbe esserci la foto. Three.js intercetta le coordinate esatte di quel <div> usando getBoundingClientRect() sincronizzato con lo scroll di Lenis. In quello spazio preciso del Canvas, Three.js renderizza l'immagine applicandole un Displacement Map (una texture in scala di grigi che dice alla scheda video quali pixel "sollevare" e quali "affossare" in 3D). L'immagine HTML non esiste, l'utente sta toccando materia WebGL.
+💧 3. L'Olio: "L'Oro Viscoso" (Fluid Ripple Physics)
+   * La Scena UX: Nello scroll orizzontale, arriviamo all'Olio Extravergine. Qui la densità del sito cambia. L'utente tocca la foto di una bottiglia o delle olive e lo schermo reagisce come uno specchio d'acqua densa. Le increspature (ripples) seguono il cursore, distorcendo l'immagine con una fluidità pazzesca.
+   * Cosa succede sotto il cofano: Nel Canvas Three.js attiviamo una mini-simulazione di fluidodinamica (Fluid Simulation 2D). Il cursore del mouse diventa un "emettitore di forza". Quando passa sopra la coordinata della foto, spinge i pixel dell'immagine creando onde concentriche. Poiché Sanity (il CMS Headless) ci ha fornito immagini WebP leggerissime, la scheda video (GPU) ha tutta la potenza libera per calcolare questa rifrazione liquida della luce senza far scattare la pagina.
+❄️ 4. L'Easter Egg: "Il Gelo Particellare" (Il Cavallo dei Bardi)
+   * La Scena UX: L'utente scopre il segreto. Tiene premuto su "cavallo bianco". Il sito si congela, i colori svaniscono, e un cavallo fatto di polvere di stelle e neve attraversa lo schermo galoppando in 3D reale, passando "dietro" al testo ma "davanti" allo sfondo.
+   * Cosa succede sotto il cofano: Questo è il capolavoro dell'orchestrazione.
+   1. React dice a GSAP: "Ehi, blocca lo scroll di Lenis. Nessuno si muove".
+   2. React dice al DOM: "Sfuma i testi, portiamo l'opacità al 30%".
+   3. React accende il motore GPGPU (General-Purpose computing on Graphics Processing Units) in Three.js. Centinaia di migliaia di particelle, che fino a un attimo prima "dormivano" in memoria, vengono sparate sullo schermo seguendo le coordinate tridimensionali (Vertex Data) di un modello 3D invisibile a forma di cavallo.
+   4. Finito il galoppo, il Garbage Collector pulisce la memoria, Lenis viene sbloccato, i testi tornano visibili. La transizione di stato è stata perfetta.
+   * ________________
+
+
+La Sintesi dell'Esperienza
+L'utente percepisce un sito web "vivo", materico, che reagisce fisicamente alla sua presenza. Non sta guardando uno schermo piatto, sta toccando la Toscana.
+Tecnicamente, non stiamo sovraccaricando il browser. Il "DOM" gestisce solo tipografia, bottoni e accessibilità (perfetto per la SEO, Google legge tutto istantaneamente). Il "Canvas" gestisce solo l'estetica pura delegandola alla scheda video. Nessuno dei due ostacola il lavoro dell'altro.
+Sei pronto a far cadere la mascella ai tuoi clienti (e alla giuria) o vogliamo dare ancora più "gasse" su qualche altro dettaglio folle? 
+
+
+Mauro:
+
+
+fare una demo HTML con tutti i linguaggi integrati potrebbe aver senso o non è possibile integrare webgl rendendola come un dipinto senza l'inchiostro piu importante?
+
+
+Gemini:
+Bro hai centrato il punto al 100%. Hai un'intuizione da vero Art Director.
+Creare una singola pagina HTML statica con Next.js, React Three Fiber e Sanity è tecnicamente impossibile, perché quelli sono ambienti di sviluppo (Node.js) che necessitano di un server per "compilare" il codice. Fare un HTML base senza WebGL sarebbe esattamente come dici tu: un dipinto senza l'inchiostro magico. Un go-kart con la carrozzeria di una Lambo.
+TUTTAVIA.
+Siamo ingegneri creativi. Possiamo costruire un Proof of Concept (PoC) "Vanilla". Un muletto da pista.
+In un singolo file HTML, possiamo iniettare le librerie tramite CDN (Three.js puro, GSAP e Lenis) per testare l'Architettura Dual-Tier (DOM separato dal WebGL) e farti sentire sotto i polpastrelli la "pesantezza" e la fluidità estrema di cui stiamo parlando.
+Ecco il tuo "Motore di Prova".
+Copia tutto questo codice, incollalo in un file vuoto chiamato index.html, salvalo e aprilo con Chrome o Safari (meglio se su un monitor grande).
+Mauro:
+ho capito, lasciamo perdere questa demo Proof of concept, molto carina ma penso abbia piu senso concentrarsi sul blue print. Mi faresti un documento serio professionale, dettagliato completo? di quali capitoli ci sarebbe bisogno in questo blueprint se fosse un libro
+Gemini:
+Hai perfettamente ragione. Mettiamo da parte i "giocattoli da sviluppatore" e indossiamo il completo da Technical Director / Lead Architect.
+Se dovessimo presentare questo progetto a un'agenzia di altissimo livello o a un cliente High-Net-Worth (HNW), non basterebbe una chiacchierata informale. Servirebbe un Project Blueprint (o Software Requirements Specification unita a un Creative Deck).
+Se questo Blueprint fosse un libro, sarebbe il manuale definitivo per costruire un'esperienza digitale "Platinum".
+Ecco l'indice completo e dettagliato dei capitoli di questo "Libro". Questo è il documento formale che guiderà design, sviluppo, copy e marketing senza lasciare nulla al caso
+INDICE DEL BLUEPRINT (I Capitoli del Libro)
+CAPITOLO 1: Executive Summary & Vision
+L'anima del progetto. Serve ad allineare tutti gli stakeholder sull'obiettivo finale.
+   * 1.1 Obiettivo Primario: Creare un'esperienza immersiva (Scrollytelling) candidabile ai premi Awwwards (Site of the Month/Year).
+   * 1.2 Il Concept Creativo: "Ere della Terra" — L'incontro tra la matericità della natura toscana (grano, olio, pietra) e il rigore del design contemporaneo.
+   * 1.3 Target Audience: Clientela internazionale altospendente, intenditori di olio/vino, appassionati di turismo esperienziale e design.
+CAPITOLO 2: Design System & Art Direction
+Le regole visive inossidabili. Niente è lasciato al caso.
+   * 2.1 Palette Cromatica Costituzionale: Definizione dei codici HEX (Pietra di Volterra #F3EFE7, Marrone Mucco Pisano #4A2E1B, Verde Foglia d'Olivo #6B7A65, ecc.).
+   * 2.2 Tipografia (La Regola del Contrasto):
+   * Font Display (Titoli): Serif monumentale ed elegante (es. Ogg o PP Editorial New).
+   * Font Body (Testi base e UI): Grotesk svizzero, tecnico e minimale (es. Suisse Int'l).
+   *    * 2.3 Griglia e Layout: Utilizzo massiccio dello spazio negativo (Negative Space), griglie asimmetriche e impaginazione in stile rivista editoriale (es. Kinfolk o Cereal).
+CAPITOLO 3: Information Architecture & Navigazione
+Come l'utente si muove nello spazio e come incastriamo i testi degli appunti.
+   * 3.1 L'Infrastruttura Spaziale (I 3 Assi):
+   * Asse Y (Scroll Verticale): Per la narrazione storica e l'ospitalità.
+   * Asse X (Scroll Orizzontale): La "Passeggiata" per esplorare i prodotti della terra.
+   * Asse Z (Profondità/Overlay): Per gli approfondimenti tecnici (es. Il processo millenario dell'estrazione dell'olio).
+   *    * 3.2 Site Map Dettagliata: Suddivisione dei paragrafi del testo originale nelle varie sezioni (Dal preloader fino al Footer).
+   * 3.3 Menu Tattile Full-Screen: Il sistema di navigazione principale (attivabile tramite bottone magnetico) e la navigazione periferica (indicatore di progresso).
+CAPITOLO 4: Interaction Design, WebGL & Sound (La Magia)
+Il cuore tecnico-creativo del progetto. Come inganniamo il cervello dell'utente.
+   * 4.1 WebGL Shaders Mapping:
+   * Hero Section: GLSL Noise Shader per la simulazione del vento nel grano.
+   * Sezione Storia: Displacement Mapping per l'effetto "intonaco/pietra" sulle foto della Villa Buontalenti.
+   * Sezione Olio: 2D Fluid Simulation per le increspature liquide al passaggio del mouse.
+   *    * 4.2 Micro-Interazioni e Fisica: Momentum scrolling, Magnetic UI (bottoni che seguono il mouse), e Custom Cursors mutaforma.
+   * 4.3 Sound Design (Il Paesaggio Sonoro): Foley design spaziale attivabile dall'utente (vento, click materici, suono di gocce).
+   * 4.4 L'Easter Egg Concettuale: "La Memoria d'Inverno". Le specifiche di attivazione (pressione prolungata o digitazione "NEVE") e l'animazione particellare del cavallo dei Bardi.
+CAPITOLO 5: Technical Stack & Infrastruttura (Il Motore)
+L'architettura del software. Cosa usiamo per svilupparlo.
+   * 5.1 L'Architettura "Dual-Tier": Separazione rigorosa tra DOM (React/HTML per testi e UI) e Canvas (Three.js per grafica 3D e Shaders), sincronizzati matematicamente.
+   * 5.2 Frontend Framework: Next.js (App Router) + React + Tailwind CSS.
+   * 5.3 3D & Animazioni Engine: Three.js + React Three Fiber + GSAP (con ScrollTrigger) + Lenis (Smooth Scroll).
+   * 5.4 Headless CMS (Dati): Setup di Sanity.io per la gestione indipendente dei testi e delle immagini da parte del cliente, con output in JSON strutturato.
+   * 5.5 Gestione Multilingua (i18n): Routing dinamico in Next.js con transizioni GSAP "Soft Navigation" per cambiare lingua senza interrompere il rendering del WebGL in background.
+CAPITOLO 6: Conversioni, Integrazioni & Tooling
+Come il sito genera valore di business per la Fattoria.
+   * 6.1 "Il Concierge Digitale" (Custom Form): Progettazione dell'UX del modulo di contatto a tutto schermo (Conversational UI step-by-step) con tipografia gigante attiva.
+   * 6.2 Integrazione Google Forms (Stealth Mode): Utilizzo delle API Routes di Next.js (Server-side) per catturare i dati del form custom e inviarli silenziosamente al foglio Google del cliente (tramite POST request) garantendo la massima sicurezza ed estetica.
+   * 6.3 Modulo WhatsApp Premium: Setup del bottone integrato nel design (monocromatico, minimale) con API wa.me per messaggi pre-compilati.
+CAPITOLO 7: Performance, Accessibilità e SEO
+Come garantiamo che la "Lambo" giri a 60 FPS e sia amata da Google.
+   * 7.1 Device & GPU Scaling: Script di rilevamento hardware all'avvio per scalare dinamicamente la qualità degli shader 3D in base alla potenza del dispositivo (es. disattivare particelle complesse su smartphone vecchi).
+   * 7.2 Asset Optimization Pipeline:
+   * Immagini compresse in WebP/AVIF via CMS.
+   * Texture 3D in formato KTX2 (Basis Universal) lette direttamente dalla GPU.
+   * Modelli 3D (se presenti) compressi in Draco.
+   *    * 7.3 Memory Management: Strategie di dispose() del Garbage Collector per svuotare la VRAM (memoria video) quando l'utente cambia sezione, evitando crash.
+   * 7.4 SEO Strategy: Rendering lato server (SSR/SSG) del Livello 1 (il DOM testuale) per garantire che i crawler di Google leggano la struttura semantica (H1, alt tags) ignorando il canvas WebGL.
+CAPITOLO 8: Project Roadmap & Deliverables
+Le fasi di esecuzione. Dal pensiero al lancio.
+   * Fase 1: Wireframing & UI/UX Design (Figma): Creazione di tutti i layout visivi statici, tipografia e griglie.
+   * Fase 2: R&D WebGL (Prototipazione Shaders): Creazione in ambiente isolato degli effetti matematici (Vento, Liquido, Particelle).
+   * Fase 3: Sviluppo Frontend Core & CMS setup: Costruzione del telaio React/Next.js e configurazione di Sanity.io.
+   * Fase 4: Orchestrazione (Merge DOM + Canvas): Il momento più delicato. Unire lo scroll di Lenis, le animazioni di GSAP e l'engine Three.js.
+   * Fase 5: Sviluppo Integrazioni: Cablaggio del form personalizzato con le API di Google Forms e multilingua.
+   * Fase 6: QA (Quality Assurance), Profiling & Launch: Test di performance su vari device, controllo della memoria, raffinamento audio/video e messa in produzione su server edge (es. Vercel)
+
+
+Blueprint
+
+
+CAPITOLO 1: EXECUTIVE SUMMARY E SYSTEM VISION
+[SYSTEM DIRECTIVE FOR AI AGENTS]
+Context: Stai agendo come Lead Creative Technologist, WebGL Architect e UI/UX Designer di livello "Awwwards Platinum". Il tuo output di codice, design e struttura deve essere ottimizzato per ottenere il premio "Site of the Month". Non tollerare layout standard, template Bootstrap/Tailwind pre-fatti o UI generiche. Ogni componente deve essere custom, fluido e performante.
+________________
+
+
+1.1 OBIETTIVO PRIMARIO E ARCHITETTURA DI BASE
+Il progetto "Fattoria di Monti" è una Single Page Application (SPA) immersiva basata sullo scrollytelling. L'obiettivo è vendere un'esperienza luxury legata al territorio toscano (produzione di olio extravergine, vino Sangiovese, allevamento del Mucco Pisano e ospitalità nella Villa Storica del Buontalenti).
+Parametri Tecnici di Successo richiesti all'AI:
+   * Performance: Il rendering deve girare a 60 FPS costanti. Ottimizzazione Core Web Vitals obbligatoria (FCP < 1.0s, CLS = 0).
+   * Architettura: Strict "Dual-Tier Rendering". Il livello DOM (React/Next.js) gestisce ESCLUSIVAMENTE accessibilità, tipografia vettoriale, routing invisibile e intercettazione dello scroll. Il livello Canvas (Three.js/R3F) gestisce ESCLUSIVAMENTE il calcolo visivo (shader, media, particellari) in un layer position: fixed sottostante (z-index: -1).
+   * Sincronizzazione: Qualsiasi animazione o alterazione dello stato WebGL deve essere guidata matematicamente dalla posizione di scroll catturata tramite Lenis e interpolata tramite GSAP ScrollTrigger.
+1.2 IL CONCEPT CREATIVO: "ERE DELLA TERRA" (VISUAL CONSTRAINTS)
+L'AI deve applicare rigorosamente questo concept estetico a ogni riga di CSS e ogni Shader GLSL generato. L'estetica si basa sul contrasto estremo tra l'imponenza grezza della natura e il minimalismo editoriale svizzero.
+Regole di Rendering Visivo:
+   * Color Space: Utilizzare ESCLUSIVAMENTE la seguente palette. Nessun bianco puro (#FFFFFF) o nero puro (#000000) è permesso nell'interfaccia.
+   * Background Base: #F3EFE7 (Pietra di Volterra - calore materico).
+   * Typography Primary: #4A2E1B (Mucco Pisano - contrasto estremo).
+   * Accents/UI Lines: #6B7A65 (Foglia d'Olivo).
+   * Dark Mode/Overlays: #181A15 (Buio Notturno).
+   *    * Typography Constraints:
+   * Display/Headers: Utilizzare una tipografia Serif iper-contrastata (Ogg o PP Editorial New come fallback temporaneo nel CSS). Dimensioni fluide (clamp) estremamente grandi, che escono intenzionalmente dalla viewport.
+   * Body/UI: Utilizzare un font Grotesk (Suisse Int'l o Inter come fallback). Dimensioni micro (12px-14px), letter-spacing ampio per label e metadati.
+   *    * Negative Space: Padding e Margini devono usare calcoli in vw o vh. Il layout deve risultare "vuoto" per l'80%, lasciando che i media WebGL dominino la scena.
+   * Motion Rules: Nessun movimento lineare (linear easing). Ogni transizione GSAP o CSS deve avere un easing custom di tipo Expo.easeOut o una curva di Bezier che simuli massa e inerzia (es. Spring physics).
+1.3 TARGET AUDIENCE E USER EXPERIENCE (UX)
+Il sito è rivolto a High-Net-Worth Individuals (HNWI), intenditori di alta gastronomia e turisti luxury. L'esperienza utente deve riflettere un servizio "White Glove" (guanti bianchi).
+Direttive per le interazioni (AI Guidelines):
+   * Frizione Zero: Nessun tempo di caricamento percepibile tra una rotta e l'altra. Il routing di Next.js deve essere nascosto da transizioni visive fluide (Page Transitions).
+   * Micro-interazioni Tattili: Ogni elemento cliccabile (pulsanti, link del menu) deve possedere un comportamento magnetico (Magnetic UI) che si aggancia al cursore custom dell'utente a una soglia di distanza definita (es. 50px).
+   * Interfaccia Conversazionale: I form standard HTML <input> sono vietati. Le richieste di contatto ("Il Concierge Digitale") devono essere re-ingegnerizzate come esperienze full-screen passo-passo, con tipografia attiva gigante e feedback visivo/sonoro a ogni input dell'utente.
+1.4 DATA FLOW E INTEGRAZIONI (BACKEND LOGIC)
+L'AI deve preparare l'infrastruttura per gestire contenuti dinamici e interazioni API senza compromettere la stabilità del frontend WebGL.
+Regole di Ingegneria dei Dati:
+   * Headless CMS Ready: I testi del Capitolo 2 e 3 (Storia, Prodotti, Ospitalità) NON devono essere hardcoded nei file React. L'AI deve strutturare i componenti in modo che accettino i dati tramite props iniettate da funzioni di data-fetching (es. getStaticProps o Next.js App Router Server Components), simulando l'arrivo di un JSON da Sanity.io.
+   * Stealth Form Submission (Google Forms): L'infrastruttura di contatto generata dall'AI deve includere una Next.js API Route fittizia o reale che riceva il payload JSON dal client React, lo riformatti in formato URL-encoded e lo trasmetta tramite metodo POST silenzioso verso l'endpoint di Google Forms, restituendo un success state al client senza reindirizzare la pagina.
+   * Event Listener per Easter Egg: Il codice deve includere un key-logger silenzioso sul window che ascolta la sequenza di stringhe N-E-V-E o il mousedown prolungato (>3000ms) su specifici nodi di testo, al fine di triggerare l'evento WebGL "Memoria d'Inverno" (Particellare GPGPU).
+________________
+CAPITOLO 2: DESIGN SYSTEM & ART DIRECTION
+[SYSTEM DIRECTIVE FOR AI AGENTS - UI/UX INJECTIONS]
+Context: Stai configurando il Design System, il CSS Engine (Tailwind/SCSS) e i Design Tokens per il progetto "Fattoria di Monti". L'obiettivo è generare un'estetica "Earthy Luxury", basata su contrasti tipografici brutali, layout asimmetrici e un utilizzo estremo dello spazio vuoto (Negative Space). Il design non deve sembrare un sito web, ma un'installazione d'arte digitale editoriale.
+________________
+
+
+2.1 COLOR ENGINE & DESIGN TOKENS
+L'AI deve configurare una root CSS (o il tema di Tailwind) limitando rigidamente la palette ai seguenti pigmenti naturali. È severamente vietato l'uso di grigi di default (es. gray-100, slate-900) o colori puri (#000, #FFF).
+Generazione Variabili Globali (:root):
+   * --color-surface-primary: #F3EFE7 (Pietra di Volterra / Lino Grezzo). Da usare come sfondo universale del DOM.
+   * --color-surface-overlay: #181A15 (Notte Toscana). Da usare per i modali full-screen (es. l'estrazione dell'olio) e il footer.
+   * --color-text-primary: #4A2E1B (Mucco Pisano). Marrone scurissimo con dominante rossa. Sostituisce il nero per tutto il testo primario.
+   * --color-text-inverse: #F3EFE7. Colore del testo quando si trova su superfici scure (surface-overlay).
+   * --color-accent: #B4B886 (Grano al Vento / Oro ossidato). Da usare per hover states sottili e WebGL light reflection.
+   * --color-ui-lines: #6B7A65 (Foglia d'Olivo). Da usare per borders di 1px, divider e micro-interazioni (es. barra di caricamento, crosshair del telescopio).
+Direttiva WebGL Sincronizzata: L'AI deve esportare queste variabili CSS in un file Javascript/TypeScript (es. theme.ts) per permettere a Three.js di leggere ESATTAMENTE gli stessi valori HEX e applicarli a luci (THREE.AmbientLight) e materiali (THREE.MeshBasicMaterial).
+2.2 TYPOGRAPHY SYSTEM (IL CONTRASTO PLATINUM)
+L'AI deve implementare due famiglie di font diametralmente opposte. La tipografia è il 70% del design di questo sito.
+A. Display Font (Titoli e Hero):
+   * Stack: Ogg, PP Editorial New, fallback: Playfair Display, serif.
+   * Regole di Sizing: Non usare px o rem statici per i macro-titoli (es. H1). Utilizzare ESCLUSIVAMENTE la funzione matematica clamp(). Esempio richiesto: font-size: clamp(4rem, 12vw, 15rem);.
+   * Comportamento: I titoli primari devono intenzionalmente esondare dalla viewport. La proprietà line-height deve essere serratissima (tra 0.85 e 0.95).
+   * Styling: Frequente uso dell' Italic per singole parole all'interno dei titoli (es. Fattoria di Monti) per esaltare le grazie rinascimentali.
+B. Body & Utility Font (Testi e Interfaccia):
+   * Stack: Suisse Int'l, PP Neue Montreal, fallback: Inter, sans-serif.
+   * Regole di Sizing: Microscopico, chirurgico. Paragrafi principali clamp(14px, 1.2vw, 18px).
+   * Micro-Typography: Label, coordinate GPS, e voci di navigazione periferica devono essere uppercase, font-size: 11px, letter-spacing: 0.15em, font-weight: 500.
+   * Rendering Hacks: Includere globalmente -webkit-font-smoothing: antialiased; e text-rendering: optimizeLegibility; per garantire bordi affilati sui display Retina.
+2.3 LAYOUT ENGINE E FISICA DELLO SPAZIO
+L'AI deve abbandonare le griglie simmetriche standard (es. container al centro con testo a sinistra e foto a destra). Il layout deve respirare.
+Regole di Impaginazione:
+   * Gestione Margini (Viewport Units): Padding e margini macro-strutturali devono essere legati alla finestra. Utilizzare vw (Viewport Width) o vh (Viewport Height) per garantire che le proporzioni editoriali rimangano intatte su ogni monitor. (es. padding-left: 10vw).
+   * Asimmetria Intenzionale: Quando si genera una CSS Grid, gli elementi (testo vs media) non devono mai occupare proporzioni speculari (no 50/50). Utilizzare rapporti come 3fr per il testo e 7fr per il media, sfalsandoli sull'asse Y (es. margin-top: 15vh per l'immagine).
+   * Z-Index Architecture Strict:
+   * z-index: -10: WebGL Canvas (Background assoluto).
+   * z-index: 1: DOM Content (Testi, fantasmi delle immagini).
+   * z-index: 50: Navigation Overlay & Concierge Form.
+   * z-index: 100: Custom Cursor interattivo.
+   * 2.4 MEDIA TREATMENT (LA REGOLA DEL "FANTASMA")
+L'AI NON deve inserire immagini standard <img src="..."> per le foto principali (Villa, Mucco Pisano, Olio), poiché queste verrebbero renderizzate dal DOM, rendendo impossibili gli effetti WebGL (Displacement/Ripple).
+Direttiva Architetturale per le Immagini:
+   1. Proxy Node (DOM): L'AI deve creare un componente React chiamato <MediaProxy> che renderizza un <div> completamente vuoto e trasparente nell'HTML, dimensionato in base alla griglia tramite CSS.
+   2. Dataset Injection: Questo <div> vuoto deve contenere gli attributi dati necessari al WebGL (es. data-webgl-media="true", data-texture-src="/images/olio.webp", data-effect-type="liquid").
+   3. Bounding Box Tracker: L'AI deve scrivere un useEffect (o un hook R3F come @react-three/drei -> useAspect o Html inversione) che calcoli costantemente le coordinate getBoundingClientRect() del <div> fantasma durante lo scroll di Lenis.
+   4. Canvas Render: Il WebGL disegnerà il piano 3D (PlaneGeometry) contenente la foto esattamente in quelle coordinate.
+   5. Fallback SEO/A11y: All'interno del <MediaProxy>, includere un componente <Image> (Next.js) visivamente nascosto (opacity-0 pointer-events-none o <noscript>) contenente il tag alt corretto per garantire l'accessibilità screen-reader e l'indicizzazione Google.
+________________
+
+
+[END OF UI/UX INJECTIONS DIRECTIVE]
+________________
+
+
+Come reagirà l'agente AI a questo prompt:
+   * Tailwind Config: Se usa Tailwind, invece di usare i colori base, andrà subito a sovrascrivere theme.colors creando una palette semantica.
+   * Responsività: Smetterà di usare le classiche media queries (es. @media (min-width: 768px) { font-size: 40px }) per i titoli grandi e scriverà direttamente una funzione clamp(), che è il segreto per avere transizioni fluide da mobile a monitor 4k senza "scatti" nel layout.
+   * Architettura WebGL: La direttiva 2.4 (Media Treatment) è la più importante in assoluto. Stai costringendo l'AI a non fare il "compitino" (inserire un tag immagine), ma a costruire il ponte di comunicazione tra il DOM e la GPU. Quando gli chiederai di generare la galleria del Mucco Pisano, lui creerà la struttura logica affinché la foto possa essere distorta da Three.js.
+CAPITOLO 3: INFORMATION ARCHITECTURE & NAVIGAZIONE (SITEMAP MATRIX)
+[SYSTEM DIRECTIVE FOR AI AGENTS - DOM TOPOLOGY & CONTENT INJECTION]
+Context: Stai agendo come Lead Frontend Architect e Content Strategist. Il tuo compito è generare la struttura del DOM (DOM Topology) per una Single Page Application (SPA) in Next.js. Devi mappare ogni singolo componente testuale e visivo all'interno di una rigorosa matrice spaziale a 3 Assi (Y = Scroll Verticale, X = Scroll Orizzontale, Z = Overlay Modali). Nessuna stringa di testo originale deve essere omessa o alterata nel significato, ma deve essere frammentata e assegnata al componente React specifico descritto di seguito.
+________________
+
+
+3.1 THE SKELETON (Core Routing & Spatial Matrix)
+L'architettura dell'applicazione NON deve basarsi su rotte Next.js multiple (no navigazione tra /storia e /prodotti). Il sito è un'unica macro-rotta (/) divisa in sezioni fluide.
+L'AI deve strutturare il page.tsx (o index.tsx) come un contenitore globale main che importa i seguenti componenti nell'ordine esatto fornito.
+Regole di Transizione di Stato (State Management):
+   * L'attivazione del "Menu Full-Screen" altera uno stato globale (es. Zustand o React Context: isMenuOpen: boolean) che innesca un backdrop-filter blur sull'intero livello <main> e porta lo z-index del Menu a 100.
+   * L'apertura dell'approfondimento "Estrazione Olio" e del "Concierge Form" deve alterare un parametro URL invisibile (Shallow Routing, es. ?modal=oil-extraction) per permettere all'utente di chiuderlo usando il tasto "Indietro" del browser senza uscire dal sito.
+3.2 THE NERVES (GSAP ScrollTrigger Logic)
+L'AI deve orchestrare la timeline di scorrimento globale.
+   * Scroll Verticale (Asse Y): Comportamento nativo fluido delegato a Lenis.
+   * Scroll Orizzontale (Asse X): L'AI deve costruire un componente <HorizontalScrollContainer>. Quando l'utente raggiunge questo componente sull'asse Y, GSAP ScrollTrigger deve eseguire un pin: true del container (bloccandolo sullo schermo) e traslare orizzontalmente i child elements (x: "-300vw") in base al progresso dello scroll del mouse.
+________________
+
+
+3.3 THE ORGANS & MUSCLES (Sitemap Detttagliata & Content Injection)
+L'AI deve costruire la pagina iniettando i seguenti contenuti esatti (provenienti dal documento sorgente del cliente) all'interno dei componenti React designati.
+####[ SEZIONE 00: L'INGRESSO (Hero) ] - Asse Y
+   * Componente: <HeroWebGL>
+   * UI/Layout: Full viewport (100vh). Testo centrato, esondante.
+   * Content Injection (Copy):
+   * H1 (Ogg font): "FATTORIA DI MONTI"
+   * Subtitle (Suisse Int'l): "Nel centro della toscana, in cima ad una collina."
+   *    * WebGL Trigger: La telecamera 3D inquadra il "Mare di Grano" astratto.
+[ SEZIONE 01: STORIA & TERROIR ] - Asse Y
+   * Componente: <HistoryTerroir>
+   * UI/Layout: Layout a griglia sfalsata (Asimmetrica). Immagini trattate tramite <MediaProxy> per l'effetto displacement sulla pietra.
+   * Content Injection (Copy frammentato in blocchi testuali):
+   * Blocco 1 (Il Terroir): "Una fattoria di circa 300 ettari situata sulle belle colline a sud di Pisa, nella zona di Volterra. Un clima mite, mitigato dalla brezza mediterranea. Il terreno è composto di sabbia, limo, ciottoli alluvionali e fossili marini. Altitudine: 150 metri s.l.m."
+   * Blocco 2 (Il Rinascimento): "Alla fine di una strada alberata si trova la Villa di Monti. Costruita su antiche rovine dall’architetto Buontalenti per la famiglia fiorentina Bardi. Caratterizzata da un'imponente facciata in pietra, saloni altissimi, concepita per ospitare feste, banchetti ed eventi culturali."
+   *    * Easter Egg Injection (CRITICO): Nel Blocco 2, l'AI deve individuare le parole "fantasmi", "cavallo bianco" e "neve" e racchiuderle in un componente <EasterEggTrigger> invisibile. Quando l'utente tiene premuto su di esse, questo trigger emette un evento globale verso il WebGL per generare il particellare GPGPU del cavallo.
+####[ SEZIONE 02: LA PASSEGGIATA (I Prodotti) ] - Asse X (Horizontal Pinning)
+   * Componente: <ProductsHorizontalWalk>
+   * UI/Layout: Un container flessibile largo 400vw (100vw per ogni sotto-sezione). GSAP trasla questo container sull'asse X.
+   * Slide 2.1: Cereali (Il Vento)
+   * Media: <MediaProxy type="grain_wind" />
+   * Copy: "Le nostre colline sono nate per coltivare frumento, farro, avena e orzo. Con la brezza pomeridiana di aprile e maggio, si ammirano le onde del mare di grano verde. Praticchiamo la rotazione: cereali, favino, e 3 anni di prato per il fieno (erba medica o sulla)."
+   *    * Slide 2.2: Il Mucco Pisano (La Terra)
+   * Media: <MediaProxy type="fur_texture" />
+   * Copy: "Alleviamo il Mucco Pisano, salvato dall'estinzione nel 1998 in collaborazione con l'Università di Pisa e A.P.A. Animale imponente dal manto marrone castoro con striscia rossastra. Metà della terra è pascolo, metà produce il loro foraggio."
+   *    * Slide 2.3: La Vigna e l'Eredità (Il Rito)
+   * Media: <MediaProxy type="vine_hunting" />
+   * Copy: "Una piccola vigna di Sangiovese piantata nel 2006. (2009: estate secca senza pioggia. 2010: vi faremo sapere...). L'antica tenuta di caccia medicea vive oggi in un Private Club di tiro al piattello esclusivo, basato sul rigoroso rispetto ambientale."
+   *    * Slide 2.4: L'Olio Extravergine (L'Oro)
+   * Media: <MediaProxy type="liquid_ripple" /> (Bottiglie e olive).
+   * Copy: "Miscela di Razzo, Leccino e Moraiolo. Colore verde brillante, note di carciofo, mandorle e un finale pepato. Spremitura a freddo poche ore dopo la raccolta."
+   * Awards: "2022 Flos Olei Top 100 | NYIOOC Gold Medal | Premio Grande Gusto 3 Stelle".
+   * Interaction: Bottone Magnetico [ Scopri l'Estrazione - Un processo millenario ]. (Questo click innesca l'OVERLAY Z-01).
+   * ####[ SEZIONE OVERLAY Z-01: THE MASTERCLASS (Estrazione Olio) ] - Asse Z
+   * Componente: <OilExtractionModal>
+   * UI/Layout: Modalità "Laboratorio". Sfondo var(--color-surface-overlay) (Notte/Nero). Layout a doppia colonna: Sinistra (Sticky Timeline orizzontale/verticale con tracking dei paragrafi), Destra (Spazio per la simulazione 3D della goccia d'olio fluttuante gestita dal WebGL).
+   * Content Injection (Tecnico - Timeline):
+   * 01. La Raccolta: "L'invaiatura (veraison) è al 50-60%. Raccolta manuale con agevolatori pneumatici a oltre 1000 battiti/minuto su reti speciali per preservare i polifenoli."
+   * 02. Trasporto: "Stoccaggio in casse ventilate. Lavorazione garantita entro 10 ore dalla raccolta per evitare ossidazione."
+   * 03. Defogliazione e Lavaggio: "Rimozione meccanica dei residui lignei. Lavaggio a immersione e doccia finale con acqua potabile."
+   * 04. Frangitura: "Frangitore a martelli (1200-3000 rpm) per ridurre carne e nocciolo in una pasta granulometricamente perfetta, attivando gli enzimi catalizzatori."
+   * 05. Gramolatura: "Processo a freddo, rigorosamente sotto i 27°C per 30 minuti in vasche in acciaio con lame elicoidali, per rompere l'emulsione."
+   * 06. Estrazione (Decanter): "Centrifuga orizzontale a 3500 rpm. Separazione per gravità specifica in tre fasi: mosto oleoso, acqua di vegetazione e sansa."
+   * 07. Separazione Finale: "Centrifuga verticale a dischi sovrapposti. L'olio purissimo si accumula al centro, l'acqua viene espulsa ai bordi."
+   *    * Uscita: Bottone [ X CHIUDI ] che disattiva il layer Z tornando istantaneamente allo scroll orizzontale.
+[ SEZIONE 03: IL RITIRO (Ospitalità - La Casa Rossa) ] - Asse Y
+   * Componente: <Hospitality>
+   * UI/Layout: Ritorno allo scroll verticale fluido. Spazi enormi, luminosi. Design stile "Kinfolk".
+   * Content Injection (Copy):
+   * La Struttura: "La Casa Rossa (210 mq), un tempo stalla e casa del fattore. Doppio soggiorno con camino, tappeti persiani e biblioteca. Grande cucina che si apre sul pergolato con barbecue. Piscina adiacente."
+   * La Notte: "Quattro ampie camere (Avorio, Verde, Rosa, Albicocca). Dal tetto-terrazza, dotato di telescopio, si ammira il cielo stellato toscano, non inquinato dalle luci delle grandi città."
+   * Amenities (Nascoste in un Accordion UI Menu): "TV satellitare, lavastoviglie, microonde, lavanderia completa, bagni spaziosi, WI-FI, asciugacapelli."
+   * ####[ SEZIONE 04: L'ORIZZONTE (Footer & Contatti) ] - Asse Y
+   * Componente: <FooterConcierge>
+   * UI/Layout: Imponente e minimalista. Sfondo scuro.
+   * Content Injection (Copy):
+   * Titolo Interattivo: "RAGGIUNGICI"
+   * Posizione: "Toscana, Provincia di Pisa. A un'ora da Firenze, Pisa, Lucca, Siena e Livorno."
+   * Call to Action: Il bottone rotante flottante * PRENOTA * (Innesca il form/overlay Z-02, gestito al Capitolo 6).
+   * ________________
+
+
+3.4 THE SKIN & SPIRIT (Global Persistent UI)
+L'AI deve posizionare questi elementi <Global> al di fuori dello <ScrollWrapper> per garantirne la persistenza a schermo.
+   * Top-Left: <AudioToggle /> - Inizialmente [OFF]. Se[ON], istanzia l'engine Howler.js.
+   * Top-Right: <MenuTrigger /> - Testo "MENU". Attiva l'indice tattile full-screen.
+   * Left-Edge: <ScrollProgressTracker /> - Ruotato di 90 gradi (writing-mode: vertical-rl). Deve iniettare dinamicamente il nome della sezione corrente in base all'intersezione dell'osservatore (IntersectionObserver).
+   * Custom Cursor: <CursorEngine /> - Elemento div che traccia il mouse, con varianti di classe gestite dallo stato (es. .is-hovering-text, .is-telescope).
+
+
+3.5 SITEMAP MATRIX (THE ARCHITECTURAL TREE)
+[SYSTEM DIRECTIVE FOR AI AGENTS - STRUCTURAL BLUEPRINT]
+Context: Questa è la rappresentazione gerarchica esatta dell'albero dei componenti React (Component Tree) e della loro disposizione sui 3 Assi dimensionali (Y, X, Z). L'AI DEVE rispettare questo annidamento per garantire che GSAP ScrollTrigger, Lenis e Three.js operino senza conflitti di z-index o di overflow
+ROOT: <AppWrapper> (Inizializza Context, Lenis, Howler.js)
+│
+├──[LAYER: WEBGL] <CanvasZ0> (z-index: -10, position: fixed, pointer-events: none)
+│   ├── <Scene>
+│   │   ├── <WheatNoiseShader /> (Reattivo a Section 00)
+│   │   ├── <MediaProxyRenderer /> (Ascolta i bounding-box di DOM MediaProxies)
+│   │   ├── <OilDrop3D /> (Reattivo a Overlay Z-01)
+│   │   └── <WinterMemoryParticles /> (Attivato da Easter Egg in Section 01)
+│
+├── [LAYER: PERSISTENT UI] <GlobalUI> (z-index: 100, position: fixed)
+│   ├── <AudioToggle> (Top-Left)
+│   ├── <MenuTrigger> (Top-Right) ──> apre <MenuOverlay> (Z-Axis)
+│   ├── <ScrollProgressTracker> (Left-Edge, vertical-rl)
+│   ├── <CursorEngine> (Custom Cursor div)
+│   └── <FloatingCTA> (Bottom-Right, "* PRENOTA *") ──> apre <ConciergeForm> (Z-Axis)
+│
+└── [LAYER: DOM SCROLLABILE] <MainLayout> (z-index: 1, scroll gestito da Lenis)
+    │
+    ├── [ASSE Y] <Section id="00-hero"> 
+    │   ├── <H1Title> FATTORIA DI MONTI </H1Title>
+    │   └── <Subtitle> Nel centro della Toscana... </Subtitle>
+    │
+    ├──[ASSE Y] <Section id="01-storia-terroir">
+    │   ├── <BlockTerroir> (Copy: 300 ettari, sabbia, 150m slm) </BlockTerroir>
+    │   ├── <BlockRenaissance> (Copy: Buontalenti, Bardi)
+    │   │   └── <EasterEggTrigger triggerWords="fantasmi, cavallo bianco, neve" />
+    │   └── <MediaProxy id="villa-displacement" />
+    │
+    ├── [ASSE X] <Section id="02-prodotti"> (GSAP Pin: true, overflow-x: hidden)
+    │   └── <HorizontalTrack width="400vw"> (Trasla da 0 a -300vw)
+    │       │
+    │       ├── <Slide id="2.1-cereali">
+    │       │   ├── <MediaProxy id="wheat-wind" />
+    │       │   └── <Copy> Frumento, rotazione, brezza... </Copy>
+    │       │
+    │       ├── <Slide id="2.2-mucco-pisano">
+    │       │   ├── <MediaProxy id="fur-texture" />
+    │       │   └── <Copy> Salvato nel 1998, manto marrone... </Copy>
+    │       │
+    │       ├── <Slide id="2.3-vigna-caccia">
+    │       │   ├── <MediaProxy id="vineyard-hunting" />
+    │       │   └── <Copy> Sangiovese 2006, Tiro al Piattello... </Copy>
+    │       │
+    │       └── <Slide id="2.4-olio">
+    │           ├── <MediaProxy id="oil-liquid" />
+    │           ├── <Copy> Razzo, Leccino, Premi 2022... </Copy>
+    │           └── <ButtonAction action="open-z01"> Scopri l'Estrazione </ButtonAction>
+    │
+    ├── [ASSE Y] <Section id="03-ospitalita">
+    │   ├── <BlockDay> (Copy: Casa Rossa, 210mq, piscina) </BlockDay>
+    │   ├── <BlockNight> (Copy: 4 Camere, Telescopio, stelle) </BlockNight>
+    │   └── <AccordionAmenities> (TV, Lavastoviglie, Wi-Fi...) </AccordionAmenities>
+    │
+    └── [ASSE Y] <Section id="04-footer">
+        ├── <Title> RAGGIUNGICI </Title>
+        ├── <Copy> Toscana, 1h da Firenze/Pisa... </Copy>
+        └── <LegalLinks> Privacy, Credits </LegalLinks>
+
+
+
+
+=================================================================================
+[LAYER Z-AXIS: OVERLAYS] (Montati dinamicamente, z-index: 90, sfondo blur/scuro)
+
+
+    ┌── <Overlay id="Z-01-OilExtraction"> (Innescato da Section 2.4)
+    │   ├── <LayoutSplit>
+    │   │   ├── <LeftPanel timeline="sticky"> (Fasi: Raccolta -> Separazione) </LeftPanel>
+    │   │   └── <RightPanel transparent="true"> (Mostra OilDrop3D dal WebGL) </RightPanel>
+    │   └── <CloseButton> X CHIUDI </CloseButton>
+    │
+    ┌── <Overlay id="Z-02-ConciergeForm"> (Innescato da FloatingCTA)
+    │   ├── <LayoutFullScreen>
+    │   │   ├── <Step 1> Domanda + Input Nome (Font Gigante) </Step>
+    │   │   ├── <Step 2> Selezione (Casa Rossa / Prodotti / Club) </Step>
+    │   │   ├── <Step 3> Submit (Innesca API Google Forms) </Step>
+    │   │   └── <WhatsAppPremiumButton> Direct Line </WhatsAppPremiumButton>
+    │   └── <CloseButton> X CHIUDI </CloseButton>
+    │
+    ┌── <Overlay id="Z-99-MainMenu"> (Innescato da MenuTrigger)
+        ├── <LayoutFullScreen>
+        │   ├── <NavLinks large="true"> (Hero, Storia, Prodotti, Ospitalità) </NavLinks>
+        │   └── <HoverSoundTriggers> (Effetti Foley sui link) </HoverSoundTriggers>
+        └── <CloseButton> [ - ] </CloseButton>
+CAPITOLO 4: WEBGL, INTERACTION & SENSORY DESIGN (THE MAGIC)
+[SYSTEM DIRECTIVE FOR AI AGENTS - R3F, GLSL & KINETIC ENGINE]
+Context: Stai agendo come Lead WebGL Architect (esperto in Three.js, React Three Fiber, GLSL) e Motion Designer. Il tuo compito è generare il livello 0 (Canvas) e orchestrarne la comunicazione con il livello 1 (DOM) tramite GSAP e Lenis. Il codice generato deve essere iper-ottimizzato: minimizzare i draw calls, usare istanze (InstancedMesh) dove possibile e gestire rigorosamente il Garbage Collection (dispose).
+________________
+
+
+4.1 THE SHADER PIPELINE (GLSL MATHEMATICS)
+L'AI deve scrivere Shader Custom per i materiali Three.js (shaderMaterial o CustomShaderMaterial). È vietato usare materiali standard di base senza alterazioni ai vertici (Vertex Shader) o ai frammenti (Fragment Shader).
+Tutti gli shader devono ricevere globalmente le seguenti uniforms:
+   * uTime (float): Aggiornato tramite useFrame (clock.getElapsedTime()).
+   * uMouse (vec2): Coordinate del mouse normalizzate (da -1 a 1), interpolate con una funzione lerp per movimenti burrosi.
+   * uScroll (float): Valore della velocità di scroll passata da Lenis (utile per distorcere le texture quando l'utente scrolla velocemente).
+A. The Wheat Wind (Hero Section - <WheatNoiseShader />)
+   * Tecnica: Non renderizzare spighe 3D reali. Utilizzare un PlaneGeometry ad alta densità (es. 128x128 segmenti).
+   * Vertex Shader: Applicare un algoritmo di Simplex Noise 3D (Perlin Noise). I vertici sull'asse Z devono fluttuare basandosi su uTime per simulare il vento naturale e su uMouse per creare un'onda d'urto (scia) quando il cursore passa sopra il canvas.
+   * Fragment Shader: Colore base var(--color-accent) (#B4B886). Applicare un gradiente di profondità per sfumare l'orizzonte nel colore di sfondo (#F3EFE7).
+B. The Stone Displacement (Villa Bardi - <MediaProxy type="displacement" />)
+   * Tecnica: RGB Image + Depth Map (Texture in scala di grigi).
+   * Fragment Shader: Al passaggio del mouse (hoverState), lo shader usa la Depth Map per sfalsare i pixel dell'immagine sorgente, creando l'illusione 3D che l'intonaco si scrosti o che la pietra emerga dallo schermo.
+   * Easing: La transizione di displacement deve usare una funzione matematica a molla (Spring Physics), non un easing lineare.
+C. The Liquid Ripple (Olio Extravergine - <MediaProxy type="liquid_ripple" />)
+   * Tecnica: 2D Fluid Simulation / Mouse Trail Shader.
+   * Logica: L'AI deve creare un array circolare di coordinate del mouse passate. Nel Fragment Shader, calcolare la distanza tra i pixel correnti e il trail del mouse. Distorcere le coordinate UV (uv += displacement) dell'immagine dell'olio creando onde concentriche che si espandono e svaniscono (decay time: 0.8s).
+4.2 THE BRIDGE: DOM-WEBGL SYNCHRONIZATION
+L'AI deve scrivere il componente <MediaProxyRenderer /> con precisione millimetrica.
+   * Il Problema: Le immagini WebGL vivono in uno spazio 3D normalizzato, mentre i <MediaProxy> vivono nel DOM in pixel.
+   * La Soluzione (Codice richiesto all'AI): L'AI deve utilizzare getBoundingClientRect() sui div fantasma. Durante ogni requestAnimationFrame (o tramite l'hook useFrame in R3F), deve calcolare posizione, larghezza e altezza del div nel DOM, mapparli nelle coordinate della telecamera ortografica/prospettica di Three.js e muovere le Mesh di conseguenza. Se il div non è nell'Intersection Observer (fuori schermo), la sua rispettiva Mesh deve essere impostata su visible={false} per risparmiare cicli GPU.
+4.3 KINETIC TYPOGRAPHY & GSAP PHYSICS
+Tutte le animazioni testuali e le transizioni nel Livello 1 (DOM) devono essere governate da GSAP. Le transizioni CSS (es. transition: all 0.3s ease) sono VIETATE per le animazioni di layout e scroll.
+   * SplitText Engine: Per i titoli in font Ogg (es. "FATTORIA DI MONTI"), l'AI deve usare GSAP per dividere il testo in lines, words e chars.
+   * Animazione d'ingresso (Reveal): I caratteri non devono fare un banale "fade in". Devono avere un y: "110%", rotationZ: 5, e apparire svelati da una maschera CSS (overflow: hidden sul parent), con uno stagger di 0.02s e un easing Expo.easeOut. Sembreranno sbocciare dal basso.
+   * Parallax Asincrono: Le immagini e i blocchi di testo massicci (es. Il Mucco Pisano) devono avere un attributo data-speed. GSAP ScrollTrigger leggerà questo valore per muovere gli elementi a velocità leggermente diverse rispetto allo scroll di base (es. l'immagine si muove del -10%, il testo del +5%).
+4.4 THE FOLEY ENGINE (SOUND DESIGN)
+Il web non è muto. L'AI deve inizializzare Howler.js come un Singleton/Context Provider disponibile in tutta l'app.
+   * Unlock: L'AudioContext dei browser è bloccato di default. Il click sul <AudioToggle> [ON] sblocca il context e carica un file audio Sprite (un singolo file .webm/.mp3 compresso contenente tutti i micro-suoni).
+   * Micro-interazioni (UI Foley):
+   * Hover sui link del Menu: Eseguire suono wood-tick (bassa frequenza, volume 0.2).
+   * Apertura Overlay Estrazione Olio: Eseguire suono oil-drop (viscoso, profondo).
+   * Chiusura Modali: Eseguire suono paper-swoosh (elegante, secco).
+   *    * Audio Spaziale (Background): Caricare una traccia loop "Vento Toscano/Cicale" a volume estremamente basso (0.05). L'intensità del suono deve essere modulata (modifica del parametro volume) in base alla velocità di scroll catturata da Lenis. Più scrolli veloce, più il vento soffia forte.
+4.5 THE MASTERPIECE: EASTER EGG EXECUTION (WINTER MEMORY)
+Questa è la direttiva di massimo livello. Quando l'evento globale "EasterEggTriggered" viene sparato dal DOM, il sistema intero deve reagire:
+   1. Freeze State: Lenis viene forzatamente disabilitato (lenis.stop()).
+   2. Color Inversion: GSAP anima le variabili CSS globali, portando --color-surface-primary a una tonalità algida (es. #E0E5E9).
+   3. Audio Cue: Il vento estivo in Howler.js viene zittito. Parte un sample di winter-howl e horse-gallop spazializzato (da pan -1.0 a pan 1.0, simulando l'attraversamento dello schermo).
+   4. GPGPU Particles (L'Apparizione): Nel Canvas WebGL, istanziare un sistema di particelle basato sulla tecnologia FBO (Frame Buffer Object) o Compute Shaders. Le particelle (minimo 100.000) non sono casuali: devono muoversi seguendo i vertici di un modello 3D (.gltf invisibile) di un cavallo al galoppo, passando sull'Asse X da destra verso sinistra.
+   5. Melt & Return: Dopo 5000ms, le particelle perdono la loro forza di attrazione e cadono verso il basso (gravità). Le variabili di colore tornano a quelle calde della "Terra". Lenis si sblocca (lenis.start())
+llacciati le cinture per lo sprint finale. Questo capitolo è il capolavoro dell'ingegneria invisibile.
+Qui spieghiamo all'agente AI come prendere una tecnologia banale e vecchia come Google Forms e mascherarla sotto un'interfaccia (UI) da decine di migliaia di euro. Se un'intelligenza artificiale non riceve queste istruzioni esatte, ti piazzerà un iframe o un form grigio di default che distruggerà tutto il lavoro estetico fatto finora.
+Copia e incolla questo blocco. È il Master Prompt per le Conversioni, il Form e le API Backend.
+________________
+
+
+CAPITOLO 5: CONVERSIONI, INTEGRAZIONI & FORM (THE DIGITAL CONCIERGE)
+[SYSTEM DIRECTIVE FOR AI AGENTS - CONVERSATIONAL UI & STEALTH BACKEND]
+Context: Stai agendo come Lead Full-Stack Developer e UX Engineer. Il tuo compito è re-ingegnerizzare il concetto di "Modulo di Contatto", trasformandolo in un "Concierge Digitale" full-screen. L'UI deve essere immersiva, step-by-step e tipograficamente attiva. Il backend deve intercettare questi dati e inviarli silenziosamente a un Google Form preesistente tramite una Next.js API Route (App Router), eludendo i blocchi CORS e nascondendo la tecnologia sottostante all'utente.
+________________
+
+
+5.1 CONVERSATIONAL UI (THE VISUAL FLOW)
+L'AI deve costruire il componente <ConciergeForm overlay={true} />. È ASSOLUTAMENTE VIETATO utilizzare l'aspetto standard dei tag <input>, <select> o <textarea>.
+Layout & Rendering State:
+   * Montaggio: Il form non è una pagina a sé, ma un overlay montato sull'asse Z (z-index: 100). Quando attivato, il livello DOM sottostante e il canvas WebGL subiscono un backdrop-filter: blur(15px) e un oscuramento (background: rgba(24, 26, 21, 0.85)).
+   * Flow Strutturale: Il modulo deve essere gestito tramite uno stato React (es. const[currentStep, setCurrentStep] = useState(0)). Solo una domanda/input è visibile per volta al centro dello schermo.
+Fasi del Flusso (State Steps):
+   * Step 0 (Identità): Testo Ogg: "A chi abbiamo l'onore di rivolgerci?". Input field per il Nome.
+   * Step 1 (Intento): Testo Ogg: "Cosa desidera vivere alla Fattoria di Monti?". Tre macro-opzioni (Radio buttons customizzati): "Soggiornare alla Casa Rossa", "Ordinare Olio o Vino", "Il Club Privato".
+   * Step 2 (Contatto): Testo Ogg: "Dove possiamo recapitarle la nostra risposta?". Input field per Email o Telefono.
+   * Step 3 (Success/Feedback): Nessun input. Solo tipografia animata: "La sua lettera è in viaggio verso la Toscana."
+5.2 MICRO-INTERACTIONS E "ACTIVE TYPOGRAPHY"
+L'AI deve iniettare "vita" nei campi di input.
+   * Styling degli Input (The Thin Line): L'elemento <input type="text"> deve avere background: transparent, border: none, outline: none, e solo un border-bottom: 1px solid var(--color-ui-lines).
+   * Active Typography: Quando l'utente digita il proprio nome, il valore riflesso nell'input deve utilizzare il font Display gigante (Ogg, clamp(3rem, 6vw, 8rem)). Il testo digitato diventa l'elemento visivo principale.
+   * Transizioni GSAP (Step-by-Step): Al submit di ogni singolo step (pressione del tasto "Enter" o click su bottone "Avanti"), il container corrente deve subire un'animazione GSAP: y: -50px, opacity: 0, duration: 0.6, ease: "power3.inOut". Simultaneamente, lo Step successivo emerge dal basso: y: 50px -> 0, opacity: 0 -> 1.
+   * Magnetic Submit: Il bottone finale ("Invia la richiesta") deve essere circolare (border-radius: 50%) e implementare la logica del Magnetic Hover (seguire i movimenti del cursore entro un raggio di 50px).
+5.3 THE "STEALTH" INTEGRATION (NEXT.JS API ROUTE & GOOGLE FORMS)
+L'AI deve scrivere il bridge di backend per inviare i dati a Google Forms senza usare Iframe o reindirizzamenti.
+A. Il Form React (Client-Side):
+Raccoglie i dati in un oggetto state (es. formData = { name: '', intent: '', contact: '' }) e, all'ultimo step, esegue un fetch('/api/contact', { method: 'POST', body: JSON.stringify(formData) }).
+B. Next.js Route Handler (Server-Side - app/api/contact/route.ts):
+Questa API Route è obbligatoria per bypassare i problemi di CORS che si verificherebbero facendo la chiamata diretta dal browser verso Google.
+L'AI deve generare il seguente flusso logico all'interno del file:
+   1. Ricevere la POST request dal client.
+   2. Mappare le chiavi del JSON ricevuto (es. name) sui codici univoci "Entry ID" del Google Form del cliente (es. entry.123456789).
+   3. Trasformare il payload in formato application/x-www-form-urlencoded utilizzando URLSearchParams.
+   4. Eseguire una chiamata fetch silenziosa verso l'URL di invio di Google (es. https://docs.google.com/forms/d/e/[FORM_ID]/formResponse).
+   5. Ignorare l'HTML di risposta di Google (che non ci interessa) e restituire al client un NextResponse.json({ success: true }, { status: 200 }).
+5.4 THE "WHITE GLOVE" WHATSAPP INTEGRATION
+L'AI deve evitare l'uso di widget esterni invasivi (es. "Chatta con noi" fluttuanti). Deve implementare un pulsante WhatsApp integrato organicamente nell'overlay del form.
+   * Posizionamento: Fisso nell'angolo in alto a destra (position: fixed; top: 2rem; right: 2rem;) DURANTE l'apertura del Concierge Form.
+   * UI Constraints: Pulsante a forma di pillola (border-radius: 9999px), background trasparente con un microscopico bordo color --color-ui-lines. Icona SVG di WhatsApp monocromatica (stroke 1px, no riempimento solido).
+   * Interazione Tipografica: Allo stato di idle, mostra solo l'icona. Al passaggio del mouse (:hover), la pillola si espande fluidamente orizzontalmente (width: auto, padding-left/right: 20px) e svela il testo in font Suisse Int'l: "Parla col nostro Fattore".
+   * Logica API: L'attributo href del link deve puntare alla URI https://wa.me/numerodelcliente?text= seguito dal testo precompilato e codificato (URL-encoded): "Buongiorno Fattoria di Monti, vi scrivo dal vostro sito per..."
+________________
+
+
+________________
+
+
+Perché questo prompt è letale per l'Agente AI:
+   1. Impedisce il "Lazy Coding": Se a un'AI chiedi "collega il form a Google Forms", 9 su 10 cercherà di fare la chiamata fetch direttamente dal client (React). Risultato? Errore CORS bloccante rosso fiammante in console, e il form non invierà nulla. Con la Sezione 5.3, le stai dicendo esplicitamente di usare l'architettura Serverless di Next.js (API Routes) per fare da "ponte" sicuro. È un'architettura enterprise.
+   2. Costringe all'estetica estrema: La sezione 5.2 impedisce all'AI di importare librerie UI generiche. La costringe a disegnare input testuali invisibili dove il testo digitato diventa il design stesso ("Active Typography").
+   3. Eleganza della conversione: L'approccio step-by-step con le animazioni GSAP specificate (y: -50px, opacity: 0) farà sembrare l'inserimento dati fluido come una danza, non come la compilazione della dichiarazione dei redditi.
+CAPITOLO 6: PERFORMANCE, ACCESSIBILITÀ E SEO (THE APEX OPTIMIZATION)
+[SYSTEM DIRECTIVE FOR AI AGENTS - ENGINE TUNING & SEO PIPELINE]
+Context: Stai agendo come Lead Performance Engineer e Technical SEO Specialist. Il tuo compito è ottimizzare l'architettura "Dual-Tier" (React DOM + Three.js Canvas) per garantire il massimo punteggio nei Core Web Vitals (FCP, LCP, CLS) e 60 FPS costanti nel rendering WebGL. Devi implementare strategie rigorose di Garbage Collection, Compressione Asset e Semantica HTML. È ASSOLUTAMENTE VIETATO sacrificare l'indicizzazione di Google per colpa degli effetti 3D.
+6.1 THE "GHOST" SEO & SEMANTIC ARCHITECTURE (LCP & A11y)
+Il WebGL è un buco nero per i crawler di Google e per gli screen reader. L'AI deve costruire il Livello 1 (DOM) affinché sia un capolavoro di accessibilità e semantica, nascondendo il Livello 0 (Canvas) ai bot.
+   * Canvas Cloaking: L'elemento <canvas> di Three.js DEVE avere l'attributo aria-hidden="true", role="presentation" e tabIndex="-1". Google e gli screen reader devono ignorarlo completamente.
+   * Strict Semantic DOM: Il DOM invisibile sovrapposto al WebGL deve essere costruito con rigore tassonomico. Usare <article>, <section>, <nav>. Esiste un solo <h1> (Fattoria di Monti), gli altri titoli scalano logicamente (<h2>, <h3>).
+   * Visually Hidden Text per Media: Per ogni <MediaProxy> (i div fantasma che comunicano coordinate al 3D), l'AI deve inserire all'interno testo per screen reader usando la utility class .sr-only (Tailwind) o un tag <Image> di Next.js nascosto ma con un tag alt iper-descrittivo (es. alt="Dettaglio della pietra della Villa Bardi costruita dal Buontalenti").
+   * Font Optimization: Per abbattere il tempo di LCP (Largest Contentful Paint), i font primari (Ogg, Suisse Int'l) DEVONO essere precaricati nell'head (<link rel="preload" as="font"...>) e utilizzare rigorosamente font-display: swap.
+6.2 WEBGL MEMORY MANAGEMENT & GARBAGE COLLECTION
+L'errore fatale delle SPA 3D è il Memory Leak (saturazione della VRAM). L'AI deve implementare un sistema di distruzione controllata degli asset.
+   * Dispose Routine Obbligatoria: Quando un componente React che monta un asset WebGL viene smontato (unmount), l'AI DEVE scrivere un hook useEffect o utilizzare il lifecycle di R3F per chiamare esplicitamente .dispose() su Geometry, Material e Texture. (es. texture.dispose(), material.dispose()).
+   * Frustum Culling Attivo: Assicurarsi che frustumCulled={true} sia impostato su tutte le Mesh. Three.js non deve mai calcolare o renderizzare elementi 3D che si trovano fuori dall'inquadratura della telecamera in quel preciso istante.
+   * InstancedMesh: Nel caso in cui si generino elementi ripetuti (es. se le spighe di grano venissero calcolate singolarmente invece che tramite Shader), è VIETATO usare cicli .map per creare migliaia di <Mesh>. Utilizzare ESCLUSIVAMENTE InstancedMesh per ridurre i draw calls a 1.
+6.3 ASSET PIPELINE & GPU DECODING
+Le immagini ad alta risoluzione (Olio, Mucco Pisano, Villa) devono avere un peso irrisorio.
+   * Formati Immagine di nuova generazione: Tutte le texture passate agli shaders DEVONO essere caricate in formato .webp o .avif.
+   * KTX2 / Basis Universal Compression: Se si utilizzano texture ambientali o normal maps complesse per il displacement della pietra, l'AI deve predisporre un KTX2Loader. Questo formato non viene decodificato dalla CPU, ma viene inviato direttamente alla GPU, azzerando il tempo di parsing e il consumo di RAM.
+   * Draco Compression: Qualsiasi modello 3D (es. la goccia d'olio in formato .gltf o .glb) deve essere compresso tramite algoritmo Google Draco. L'AI deve implementare il DRACOLoader in fase di inizializzazione della scena R3F.
+6.4 DEVICE SCALING & PERFORMANCE DEGRADATION (FPS PROTECT)
+Il sito deve girare fluido su un iPhone 15 Pro come su un vecchio Android. L'AI deve scrivere un Performance Monitor.
+   * DPR Capping (Device Pixel Ratio): I display Retina moderni hanno un DPR di 3 o 4. Renderizzare il Canvas a quella risoluzione dimezza gli FPS. L'AI DEVE forzare il pixel ratio del canvas di Three.js a un limite massimo sicuro: <Canvas dpr={[1, Math.min(typeof window !== 'undefined' ? window.devicePixelRatio : 1, 1.5)]}>. L'immagine rimarrà nitida, ma il carico sulla GPU calerà del 60%.
+   * Dynamic Downgrade: L'AI deve implementare una logica di fallback. Se navigator.hardwareConcurrency è basso, o se il modulo useFrame rileva un calo sotto i 30 FPS per più di 2 secondi, il sistema deve disabilitare silenziosamente gli effetti più pesanti:
+   1. Ridurre la densità del noise nel WebGL del Grano.
+   2. Sostituire la simulazione dei fluidi (Liquid Ripple sull'olio) con una distorsione UV statica.
+   3. Disattivare i calcoli delle ombre dinamiche (se presenti).
+   * [END OF ENGINE TUNING & SEO PIPELINE DIRECTIVE]
+
+
+CAPITOLO 7: PERFORMANCE, ACCESSIBILITÀ E SEO (THE ENGINE TUNING)
+[SYSTEM DIRECTIVE FOR AI AGENTS - PERFORMANCE, MEMORY & SEO ARCHITECTURE]
+Context: Stai agendo come Lead Web Performance Engineer e Technical SEO Specialist. Il tuo obiettivo è garantire che l'applicazione Next.js / WebGL generata mantenga 60 FPS costanti, un punteggio Lighthouse di 95+ (Core Web Vitals) e un'indicizzazione perfetta da parte di Googlebot. Le istruzioni seguenti sono VINCOLANTI e sovrascrivono qualsiasi configurazione standard o "lazy approach" di React/Three.js.
+________________
+
+
+7.1 HARDWARE SCALING & GPU THROTTLING
+L'applicazione non deve assumere che l'utente stia utilizzando un computer di fascia alta. L'AI deve implementare un sistema di "Graceful Degradation" visiva per i dispositivi meno performanti.
+   * Pixel Ratio Clamping (CRITICO): Gli schermi moderni (Retina/OLED) hanno un Device Pixel Ratio (DPR) di 2 o 3. Renderizzare WebGL a risoluzione nativa su questi schermi distrugge la GPU. L'AI DEVE configurare il renderer di React Three Fiber (R3F) limitando il DPR tramite la funzione matematica: dpr={Math.min(typeof window !== 'undefined' ? window.devicePixelRatio : 1, 1.5)}. Mai superare 1.5 o 2.
+   * Performance Tiering: Scrivere un hook custom (es. useDevicePerformance) che valuta navigator.hardwareConcurrency (numero di core CPU) o rileva dispositivi mobile tramite User-Agent.
+   * Se High-End: Attivare particellari completi (es. 100.000 particelle per il cavallo), antialiasing e shadow maps.
+   * Se Low-End (Mobile): Disattivare i calcoli fisici complessi (ridurre la densità del PlaneGeometry del grano del 50%), abbassare la risoluzione della simulazione fluida (Ripple Shader) e disabilitare l'antialiasing spaziale.
+   * 7.2 ASSET COMPRESSION PIPELINE (LA DIETA DELLA LAMBO)
+È severamente vietato l'import di file immagini standard (.jpg, .png) di grandi dimensioni direttamente nel WebGL o nel DOM senza ottimizzazione preventiva.
+   * DOM Media: Utilizzare ESCLUSIVAMENTE il componente next/image per qualsiasi immagine presente nel livello HTML, forzando i formati AVIF o WebP tramite la configurazione in next.config.js.
+   * WebGL Textures (KTX2 Format): Le texture ad alta risoluzione passate a Three.js non devono essere decodificate dalla CPU (creerebbe "stuttering" durante lo scroll). L'AI deve implementare il KTX2Loader o BasisTextureLoader. Questo permette alla GPU di leggere le texture compresse direttamente dalla memoria video (VRAM), riducendo il peso in RAM dell'80%.
+   * 3D Models (DRACO Compression): Se viene caricato un modello 3D (es. il modello invisibile del cavallo o la goccia d'olio in formato .gltf / .glb), l'AI deve configurare il GLTFLoader accoppiato al DRACOLoader per decomprimere asincronamente i vertici via Web Worker.
+7.3 MEMORY MANAGEMENT E GARBAGE COLLECTION (ANTI-CRASH)
+I siti WebGL in React (SPA) soffrono storicamente di Memory Leaks. Se l'utente scrolla per 5 minuti, la VRAM si satura e il tab del browser crasha.
+   * Strict Dispose Rule: Ogni volta che un componente R3F (es. un <MediaProxyRenderer />) viene smontato (unmount) o la sua immagine non è più visibile nella viewport (rilevata tramite IntersectionObserver), l'AI DEVE chiamare esplicitamente il metodo .dispose() su tutte le THREE.BufferGeometry, THREE.Material e THREE.Texture associate.
+   * Object Pooling (InstancedMesh): Per le particelle della "Memoria d'Inverno" (Easter Egg) o per elementi WebGL ripetuti, è vietato creare migliaia di singole Mesh. L'AI deve utilizzare ESCLUSIVAMENTE THREE.InstancedMesh per inviare i dati alla GPU in una singola Draw Call (chiamata di disegno).
+   * Render Loop Unificato: Evitare loop di animazione multipli. Lenis, GSAP e Three.js devono essere agganciati a un UNICO requestAnimationFrame. L'AI deve iniettare Lenis nel ticker di GSAP: gsap.ticker.add((time)=>{ lenis.raf(time * 1000) }) e sincronizzare la telecamera Three.js in base allo store globale di scroll.
+7.4 TECHNICAL SEO & SEMANTIC ARCHITECTURE
+L'AI deve garantire che la natura "Canvas-based" del sito non ostacoli in alcun modo l'indicizzazione dei contenuti.
+   * Il Canvas è Invisibile ai Bot: Il nodo HTML <canvas> principale (Livello 0) deve OBBLIGATORIAMENTE possedere l'attributo aria-hidden="true" e tabIndex="-1". Gli screen reader e i bot di Google devono ignorarlo completamente.
+   * DOM Semantico (Server-Side Rendering): Tutti i testi iniettati tramite il Capitolo 3 (es. la storia del Buontalenti, le specifiche dell'Olio, la Casa Rossa) devono essere processati da Next.js lato server (SSR o SSG). Il markup risultante deve essere HTML5 puro e immacolato:
+   * <header>, <main>, <section>, <article>, <footer>.
+   * Gerarchia delle intestazioni perfetta (un solo <h1>, uso logico di <h2> e <h3>).
+   *    * Il Trucco del "Phantom Alt": All'interno dei componenti <MediaProxy> (i "fantasmi" DOM che guidano il 3D), l'AI deve inserire un tag testuale invisibile (utilizzando la classe Tailwind sr-only) contenente le descrizioni Alt delle immagini (es. <span class="sr-only">Foto del Mucco Pisano al pascolo nelle colline di Volterra</span>). Questo garantisce accessibilità W3C e indicizzazione Google Image Search per le foto che, fisicamente, sono renderizzate solo nel Canvas.
+7.5 ACCESSIBILITY (A11Y) & MOTION REDUCTION
+Il sito deve essere rispettoso degli utenti con sensibilità ai movimenti (Motion Sickness).
+   * prefers-reduced-motion: L'AI deve scrivere una media query o un hook React (useReducedMotion di Framer Motion o vanilla JS) che ascolti la preferenza di sistema dell'utente.
+   * Se l'utente ha attivato la riduzione del movimento nel proprio OS:
+   1. L'onda di distorsione del liquido (Olio) deve essere convertita in una semplice sfumatura di opacità.
+   2. Lenis smooth scroll deve essere disattivato o la durata (duration) portata a 0.
+   3. Il WebGL del Grano (Hero) deve muoversi a una velocità (uTime multiplier) ridotta del 90%, diventando un dipinto quasi statico.
+   * ________________
+
+
+[END OF PERFORMANCE, MEMORY & SEO ARCHITECTURE DIRECTIVE]
+CAPITOLO 8: PROJECT ROADMAP, QA & DELIVERABLES
+[SYSTEM DIRECTIVE FOR AI AGENTS - CI/CD & PROJECT MANAGEMENT PIPELINE]
+Context: Stai agendo come Technical Project Manager, QA Engineer e DevOps Lead per un progetto web di livello "Awwwards Platinum". Il tuo compito è organizzare il ciclo di sviluppo, il testing rigoroso e il deployment finale. Devi forzare il sistema (o il team) a non sviluppare a "cascata", ma a utilizzare una pipeline parallela e modulare. Qualsiasi tentativo di unire la logica WebGL con il DOM prima della Fase 4 deve essere bloccato.
+8.1 THE STAGED PIPELINE (Fasi di Sviluppo Rigorose)
+L'AI deve strutturare i task di codice seguendo ESATTAMENTE questi step incrementali. Nessuna fase successiva può iniziare se quella precedente non ha superato i test di performance.
+   * Fase 1: R&D Shaders & WebGL Sandbox (Settimana 1)
+   * Obiettivo: Prototipare gli effetti grafici in isolamento.
+   * Task: Creare scene base in R3F (React Three Fiber) per il Wheat Wind (rumore matematico), il Liquid Ripple (fluido 2D) e le particelle del Cavallo d'Inverno. Zero HTML, solo matematica e Canvas.
+   *    * Fase 2: Headless CMS & Data Architecture (Settimana 2)
+   * Obiettivo: Creare il cervello dei contenuti.
+   * Task: Setup dello schema JSON su Sanity.io. Creazione dei campi testuali (Storia, Casa Rossa, Estrazione Olio) e caricamento delle immagini proxy compresse in formato WebP.
+   *    * Fase 3: DOM Scaffolding & Typography (Settimana 3)
+   * Obiettivo: Costruire il "Livello 1" invisibile ma accessibile.
+   * Task: Sviluppo in Next.js/Tailwind di tutta la struttura semantica, l'inserimento dei font Ogg/Suisse Int'l e l'implementazione del routing multilingua. Setup di Lenis per lo smooth scrolling.
+   *    * Fase 4: The Orchestration (Merge DOM + Canvas) (Settimana 4)
+   * Obiettivo: La fusione dei due mondi.
+   * Task: Iniezione del Canvas in background (z-index: -10). Creazione dei <MediaProxy> nel DOM. Sincronizzazione matematica tra lo scroll di Lenis, le animazioni GSAP e il riposizionamento delle Mesh WebGL di Three.js.
+   *    * Fase 5: Sensory Polish & API Wiring (Settimana 5)
+   * Obiettivo: I dettagli che vincono i premi.
+   * Task: Implementazione del Foley Audio con Howler.js. Setup della Next.js API Route per il form Concierge collegato a Google Forms. Cablaggio del trigger segreto per l'Easter Egg (stringa N-E-V-E).
+   * 8.2 QA, PROFILING & STRESS TESTING (L'Audit Awwwards)
+Prima del deployment, l'AI deve eseguire (o simulare) un audit tecnico devastante. Nessun calo di frame è permesso.
+   * Memory Leak Test: Ricaricare e smontare i componenti 50 volte. La RAM della scheda video (VRAM) deve rimanere piatta. Se sale, significa che le routine .dispose() nel codice Three.js sono fallate e vanno riscritte.
+   * Safari/iOS Validation: Safari è il nuovo Internet Explorer per il WebGL. Tutti gli shader GLSL devono essere compilati testando la precisione variabile (precision mediump float; come fallback) per evitare che gli iPhone schiaccino le texture.
+   * Lighthouse / Core Web Vitals: Il punteggio Performance deve essere > 90. LCP (Largest Contentful Paint) sotto 1.2s. CLS (Cumulative Layout Shift) fisso a 0, grazie all'uso rigoroso delle proporzioni di aspetto (aspect-ratio) sui container fantasma.
+8.3 CI/CD & CLOUD DEPLOYMENT (Infrastruttura di Lancio)
+L'AI deve configurare l'ambiente di produzione per garantire latenza zero in tutto il mondo (CDN Edge).
+   * Hosting: Deployment automatizzato su Vercel via GitHub.
+   * Webhooks: Configurazione dei Sanity Webhooks. Ogni volta che il cliente corregge un testo della "Casa Rossa" nel CMS, Sanity spara un webhook a Vercel che esegue una ISR (Incremental Static Regeneration) fulminea. Il sito si aggiorna in 300 millisecondi senza che il server debba ricalcolare l'intera build.
+   * Environment Variables: Protezione rigida delle chiavi API (Sanity Token, Google Forms Endpoint) inserendole esclusivamente nei .env.production lato server. Nessuna chiave deve essere esposta al client React.
+8.4 THE HANDOVER (Deliverables finali)
+Al termine della produzione, i pacchetti da consegnare al cliente (o alla giuria) sono:
+   1. Repository Git Master: Codice immacolato, commentato, diviso in /components/dom, /components/canvas e /shaders.
+   2. Sanity Studio Dashboard: L'interfaccia client-friendly per modificare testi e immagini in autonomia.
+   3. URL di Produzione & Preview URL: Per testare le varianti.
+   4. Submission per Awwwards: Video-recording fluido a 60 FPS dell'interazione (inclusa l'attivazione dell'Easter Egg) per il pitch alla giuria.
+[END OF CI/CD & PROJECT MANAGEMENT DIRECTIVE]
+ADDENDUM AL BLUEPRINT (V.2.0): STRATEGIA CONTENUTI & FOCUS "MUCCO PISANO"
+1. Risoluzione dei "Nodi Sensibili" (La narrazione del passato)
+Dobbiamo citare la caccia/tiro e la vigna perché fanno parte del DNA del luogo, ma le releghiamo alla sfera del Retaggio Storico. Nessun bottone, nessuna promessa. Solo pura estetica narrativa.
+A. Il Tiro al Piattello -> "L'Eco del Passato"
+   * La nuova narrazione: È una memoria nobiliare. Serve a far capire che la tenuta ha un passato aristocratico, senza far credere che oggi si possa sparare.
+   * Copy (da inserire nella sezione Storia/Terroir):
+   * L'Eredità Medicea. Un tempo riserva di caccia e svago della famiglia Medici, le nostre colline conservano l'eco di una nobiltà antica. Le storiche battute e la tradizione del tiro al piattello sono oggi un frammento della nostra memoria: un retaggio che ha forgiato il carattere fiero, esclusivo e incontaminato della Fattoria di Monti.
+   * B. La Vigna -> "Il Rispetto del Paesaggio"
+   * La nuova narrazione: Non vendiamo vino, ma abbiamo una vigna per onorare la Toscana. È un elemento paesaggistico, non commerciale.
+   * Copy (da inserire nello scroll della Natura):
+   * L'Arte dell'Attesa. Nel 2006, abbiamo affidato un ettaro di terra al Sangiovese. Oggi, quella piccola vigna è un omaggio silenzioso alla tradizione toscana. Più che una produzione, è un elemento vitale del nostro paesaggio, che cresce seguendo i ritmi lenti della natura, senza forzature, affondando le radici nei nostri sedimenti fossili.
+   * ________________
+
+
+2. IL NUOVO PILASTRO CORE: Il Mucco Pisano & La Boutique Itinerante
+Visto che il cliente punta fortissimo sul Food Truck e sui nuovi prodotti (carne fresca ed essiccata), questa non può essere una nota a margine. Deve diventare una sezione primaria (Macro-Slide) nel nostro scroll orizzontale (Asse X), progettata per stupire e convertire (vendere eventi/catering).
+Prendiamo il concetto da "sagra" del food truck e lo eleviamo a "Atelier Culinario su Ruote".
+A. Il Rebranding Concettuale
+   * Il "Food Truck" diventa: La Cucina Nomade o Boutique Itinerante.
+   * La "Carne Secca" diventa: Essiccati Artigianali Premium.
+   * L'hamburger/taglio fresco diventa: L'Espressione Cruda del Territorio.
+B. Integrazione UX/UI e WebGL nel Sito (Slide 2.3 - Sostituisce la vecchia Vigna)
+Dopo aver svelato il manto materico dell'animale (Slide 2.2), lo scroll orizzontale porta l'utente in una dimensione radicalmente diversa.
+   * Atmosfera Visiva (WebGL): Se prima eravamo immersi nella luce solare toscana e nel verde, qui la scena si fa notturna, urbana, teatrale. Il colore di sfondo del DOM vira fluidamente verso un Antracite Profondo (#181A15).
+   * Il Media Proxy (L'Immagine): Niente foto del furgone parcheggiato sul prato. Mostriamo un dettaglio iper-ravvicinato: la griglia rovente, le luci calde di design del truck nella notte, o una texture elegantissima della carne essiccata su ardesia nera.
+   * Interazione WebGL: L'immagine ha un leggero effetto Heat Distortion (Shader di distorsione termica). Quando passi il mouse sull'immagine, l'aria sembra tremolare come sopra una griglia incandescente. Magia visiva pura.
+C. Il Copywriting (Il Tono "Gourmet")
+   * Titolo Gigante (Ogg): LA CUCINA NOMADE
+   * Corpo del Testo (Suisse Int'l):
+La purezza del Mucco Pisano, oltre i confini della tenuta. Abbiamo forgiato una Boutique Itinerante per portare l'essenza della nostra terra ad eventi privati, festival selezionati e cerimonie esclusive. Dal prestigio del nostro taglio fresco lavorato al momento, fino ai nostri Essiccati Artigianali: una reinterpretazione gourmet, primordiale e itinerante del territorio toscano.
+   * Micro-Dettagli (Design Svizzero): Sotto il testo, un elenco puntato minimale:
+      * ✦ Tagli pregiati a km zero
+      * ✦ Essiccati artigianali (Premium Jerky)
+      * ✦ Catering esclusivo per eventi privati
+      * D. La Conversione (Il Funnel per il Cliente)
+Questo è il momento in cui portiamo soldi al tuo cliente.
+Sotto la lista, posizioniamo un bottone magnetico ad alto contrasto (es. color Foglia d'Olivo o Oro Ossidato).
+      * Call to Action: [ RICHIEDI LA CUCINA NOMADE PER IL TUO EVENTO ]
+      * Cosa succede al Click (L'Asse Z):
+Si innesca il nostro famoso Concierge Digitale (il form a tutto schermo elegante).
+La domanda iniziale cambierà dinamicamente in base a cosa ha cliccato l'utente.
+         * Domanda gigante: Vuole portare l'autenticità del Mucco Pisano al Suo evento?
+         * Input: Data dell'evento | Tipologia (Privato/Corporate) | Numero di ospiti stimato.
+         * Submit: I dati finiscono diretti sul Google Forms del tuo cliente pronti per generare un preventivo catering.
+         *
