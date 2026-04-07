@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { usePathname } from '@/i18n/routing';
 import gsap from 'gsap';
 import { useAppStore } from '@/store/useAppStore';
@@ -11,62 +11,62 @@ export default function GlobalTransitionOverlay() {
     const pathname = usePathname();
     const { isTransitioning, transitionBgColor, transitionKeyword, endPageTransition } = useAppStore();
 
-    // Diventa true solo quando il sipario ha realmente coperto lo schermo.
-    // Impedisce lift spurii al primo mount e quando pathname cambia mentre
-    // isTransitioning è ancora true (router.push a 900ms).
-    const hasCovered = useRef(false);
+    // Diventa true SOLO nell'onComplete del timeline di chiusura.
+    // Usare useState (non useRef) garantisce che React ri-esegua il lift effect
+    // nello stesso batch del setReadyToLift, senza ambiguità di timing con GSAP.
+    const [readyToLift, setReadyToLift] = useState(false);
 
-    // Sipario si alza (reveal nuova pagina) — solo se lo schermo era stato coperto
+    // Sipario si alza (reveal nuova pagina)
     useEffect(() => {
-        if (!isTransitioning && hasCovered.current && overlayRef.current) {
-            hasCovered.current = false;
-            gsap.to(overlayRef.current, {
-                yPercent: -100,
-                duration: 1.2,
-                ease: "power4.inOut",
-                onComplete: () => {
-                    gsap.set(overlayRef.current, { yPercent: 100 });
-                }
-            });
-        }
-    }, [pathname, isTransitioning]);
+        if (!readyToLift || !overlayRef.current) return;
+        setReadyToLift(false);
+        gsap.to(overlayRef.current, {
+            yPercent: -100,
+            duration: 1.2,
+            ease: "power4.inOut",
+            onComplete: () => {
+                gsap.set(overlayRef.current, { yPercent: 100 });
+            }
+        });
+    }, [readyToLift]);
 
     // Sipario si abbassa (copre pagina corrente)
     useEffect(() => {
-        if (isTransitioning && overlayRef.current) {
-            const tl = gsap.timeline({
-                onComplete: () => {
-                    endPageTransition();
-                },
-            });
+        if (!isTransitioning || !overlayRef.current) return;
 
-            tl.fromTo(overlayRef.current, 
-                { yPercent: 100 },
-                {
-                    yPercent: 0,
-                    duration: 1.2,
-                    ease: "power4.inOut",
-                    backgroundColor: transitionBgColor,
-                    onComplete: () => {
-                        // Lo schermo è coperto: ora il lift è autorizzato
-                        hasCovered.current = true;
-                    },
-                }
-            );
+        const tl = gsap.timeline({
+            onComplete: () => {
+                // endPageTransition e setReadyToLift vanno insieme:
+                // React li batcha in un unico render → lift parte subito dopo
+                endPageTransition();
+                setReadyToLift(true);
+            },
+        });
 
-            // Keyword reveal
-            if (transitionKeyword && keywordRef.current) {
-                tl.fromTo(keywordRef.current,
-                    { opacity: 0, y: 20 },
-                    { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' },
-                    '-=0.5'
-                );
-                tl.to(keywordRef.current,
-                    { opacity: 0, y: -15, duration: 0.4, ease: 'power2.in' },
-                    '+=0.3'
-                );
+        tl.fromTo(overlayRef.current, 
+            { yPercent: 100 },
+            {
+                yPercent: 0,
+                duration: 1.2,
+                ease: "power4.inOut",
+                backgroundColor: transitionBgColor,
             }
+        );
+
+        // Keyword reveal
+        if (transitionKeyword && keywordRef.current) {
+            tl.fromTo(keywordRef.current,
+                { opacity: 0, y: 20 },
+                { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' },
+                '-=0.5'
+            );
+            tl.to(keywordRef.current,
+                { opacity: 0, y: -15, duration: 0.4, ease: 'power2.in' },
+                '+=0.3'
+            );
         }
+
+        return () => { tl.kill(); };
     }, [isTransitioning, transitionBgColor, transitionKeyword, endPageTransition]);
 
     return (
