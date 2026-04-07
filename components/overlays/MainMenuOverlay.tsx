@@ -5,6 +5,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import { usePathname, useRouter } from '@/i18n/routing';
 import { useState, useMemo } from 'react';
 import AudioToggle from '../ui/AudioToggle';
+import CanvasToggle from '../ui/CanvasToggle';
 import { getMainMenuLinks, NavLink } from '@/lib/data/menu';
 import { useIsMobile } from '@/lib/hooks/useIsMobile';
 
@@ -286,7 +287,10 @@ export default function MainMenuOverlay() {
                                 </button>
                             ))}
                         </div>
-                        <AudioToggle />
+                        <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                            <CanvasToggle touchMode />
+                            <AudioToggle />
+                        </div>
                     </div>
                 </>
             ) : (
@@ -425,6 +429,7 @@ export default function MainMenuOverlay() {
                         alignItems: 'center',
                         animation: 'fadeInUp 0.5s ease 0.6s both',
                     }}>
+                        <CanvasToggle />
                         <AudioToggle />
                         <span style={{ color: 'rgba(236,232,223,0.15)' }}>|</span>
                         <div style={{ display: 'flex', gap: '1rem' }}>

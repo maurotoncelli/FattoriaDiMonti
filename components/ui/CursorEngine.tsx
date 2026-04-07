@@ -1,15 +1,21 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useAppStore } from '@/store/useAppStore';
 
 export default function CursorEngine() {
     const cursorRef = useRef<HTMLDivElement>(null);
     const cursorDotRef = useRef<HTMLDivElement>(null);
-    const posRef = useRef({ x: 0, y: 0 });
     const currentSection = useAppStore((s) => s.currentSection);
 
+    // Non mostrare il cursore custom su touch device (mobile/tablet)
+    const [isTouch, setIsTouch] = useState(true); // default true = nascosto finché non verifica
     useEffect(() => {
+        setIsTouch(window.matchMedia('(hover: none) and (pointer: coarse)').matches);
+    }, []);
+
+    useEffect(() => {
+        if (isTouch) return; // Touch device: nessun cursore custom
         const cursor = cursorRef.current;
         const dot = cursorDotRef.current;
         if (!cursor || !dot) return;
@@ -52,9 +58,12 @@ export default function CursorEngine() {
             document.removeEventListener('mousemove', moveCursor);
             cancelAnimationFrame(rafId);
         };
-    }, []);
+    }, [isTouch]);
 
     const isTelescope = currentSection === '03-ospitalita';
+
+    // Touch device: non renderizzare nulla
+    if (isTouch) return null;
 
     return (
         <>

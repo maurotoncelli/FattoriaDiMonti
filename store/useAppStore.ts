@@ -20,6 +20,8 @@ interface AppState {
     easterEggTriggered: boolean;
     // Audio
     audioEnabled: boolean;
+    // Canvas WebGL
+    canvasEnabled: boolean;
     // Actions
     setMenuOpen: (open: boolean) => void;
     setOilModalOpen: (open: boolean) => void;
@@ -31,6 +33,7 @@ interface AppState {
     triggerEasterEgg: () => void;
     resetEasterEgg: () => void;
     setAudioEnabled: (enabled: boolean) => void;
+    setCanvasEnabled: (enabled: boolean) => void;
 }
 
 export const useAppStore = create<AppState>((set) => ({
@@ -47,6 +50,10 @@ export const useAppStore = create<AppState>((set) => ({
     isPreloaderComplete: false,
     easterEggTriggered: false,
     audioEnabled: false,
+    // Legge preferenza salvata; default true (canvas attivo)
+    canvasEnabled: typeof window !== 'undefined'
+        ? localStorage.getItem('fdm_canvas_enabled') !== 'false'
+        : true,
 
     setMenuOpen: (open) => set({ isMenuOpen: open }),
     setOilModalOpen: (open) => set({ isOilModalOpen: open }),
@@ -64,4 +71,10 @@ export const useAppStore = create<AppState>((set) => ({
     triggerEasterEgg: () => set({ easterEggTriggered: true }),
     resetEasterEgg: () => set({ easterEggTriggered: false }),
     setAudioEnabled: (enabled) => set({ audioEnabled: enabled }),
+    setCanvasEnabled: (enabled) => {
+        if (typeof window !== 'undefined') {
+            localStorage.setItem('fdm_canvas_enabled', String(enabled));
+        }
+        set({ canvasEnabled: enabled });
+    },
 }));

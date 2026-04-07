@@ -10,11 +10,28 @@ import { usePathname } from '@/i18n/routing';
 
 export default function CanvasZ0() {
     const easterEggTriggered = useAppStore((s) => s.easterEggTriggered);
+    const canvasEnabled = useAppStore((s) => s.canvasEnabled);
     const pathname = usePathname();
 
-    // Se non siamo in Home Page, applichiamo un blur al canvas per dare un "effetto vetro" (Glassmorphism) 
-    // su cui l'utente leggerà gli approfondimenti testuali.
     const showSky = pathname === '/' || pathname === '/olio' || pathname === '/la-filiera';
+
+    // Canvas disattivato: sfondo CSS statico come fallback leggero
+    if (!canvasEnabled) {
+        return (
+            <div
+                aria-hidden="true"
+                style={{
+                    position: 'fixed',
+                    inset: 0,
+                    zIndex: -10,
+                    pointerEvents: 'none',
+                    background: showSky
+                        ? 'linear-gradient(180deg, #FFF4DB 0%, #B6CBE1 35%, #E69A7A 70%, #0F1722 100%)'
+                        : '#ECE8DF',
+                }}
+            />
+        );
+    }
 
     return (
         <div
@@ -23,8 +40,6 @@ export default function CanvasZ0() {
                 inset: 0,
                 zIndex: -10,
                 pointerEvents: 'none',
-                opacity: 1, // Fixed: don't hide the canvas on inner pages so WebGLImageEngine can work
-                transition: 'opacity 1.2s cubic-bezier(0.76, 0, 0.24, 1)' // power4.inOut equivalent
             }}
             aria-hidden="true"
         >
