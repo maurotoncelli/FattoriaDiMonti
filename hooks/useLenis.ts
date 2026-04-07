@@ -2,19 +2,19 @@
 
 import { useEffect, useRef } from 'react';
 import { useAppStore } from '@/store/useAppStore';
+import { scrollStore } from '@/lib/scrollStore';
 
 export function useLenis() {
     const lenisRef = useRef<any>(null);
-    const setScrollY = useAppStore((s) => s.setScrollY);
-    
-    // Track global overlay states
+
     const isMenuOpen = useAppStore((s) => s.isMenuOpen);
     const isOilModalOpen = useAppStore((s) => s.isOilModalOpen);
     const isConciergeOpen = useAppStore((s) => s.isConciergeOpen);
     const isPreloaderComplete = useAppStore((s) => s.isPreloaderComplete);
 
     useEffect(() => {
-        // Dynamically import Lenis to avoid SSR issues
+        let rafId: number;
+
         import('lenis').then(({ default: Lenis }) => {
             const lenis = new Lenis({
                 duration: 1.4,
@@ -24,39 +24,37 @@ export function useLenis() {
             });
 
             lenisRef.current = lenis;
+            (window as any).__lenis = lenis;
 
-            // Sync with GSAP ticker (if GSAP is loaded)
+            // Scrivi su scrollStore (oggetto plain) — ZERO re-render React
             function raf(time: number) {
                 lenis.raf(time);
-                setScrollY(lenis.scroll, lenis.velocity);
-                requestAnimationFrame(raf);
+                scrollStore.y = lenis.scroll;
+                scrollStore.velocity = lenis.velocity;
+                rafId = requestAnimationFrame(raf);
             }
-            requestAnimationFrame(raf);
-
-            // Expose globally for Easter Egg stop/start
-            (window as any).__lenis = lenis;
+            rafId = requestAnimationFrame(raf);
         });
 
         return () => {
+            cancelAnimationFrame(rafId);
             if (lenisRef.current) {
                 lenisRef.current.destroy();
+                lenisRef.current = null;
             }
         };
-    }, [setScrollY]);
+    }, []);
 
-    // Handle scroll locking when overlays are open
+    // Blocca / sblocca lo scroll quando overlay sono aperti
     useEffect(() => {
-        const isAnyOverlayOpen = isMenuOpen || isOilModalOpen || isConciergeOpen;
-        const shouldLock = isAnyOverlayOpen || !isPreloaderComplete;
-        
-        if (lenisRef.current) {
-            if (shouldLock) {
-                lenisRef.current.stop();
-                document.body.style.overflow = 'hidden';
-            } else {
-                lenisRef.current.start();
-                document.body.style.overflow = '';
-            }
+        const shouldLock = isMenuOpen || isOilModalOpen || isConciergeOpen || !isPreloaderComplete;
+        if (!lenisRef.current) return;
+        if (shouldLock) {
+            lenisRef.current.stop();
+            document.body.style.overflow = 'hidden';
+        } else {
+            lenisRef.current.start();
+            document.body.style.overflow = '';
         }
     }, [isMenuOpen, isOilModalOpen, isConciergeOpen, isPreloaderComplete]);
 

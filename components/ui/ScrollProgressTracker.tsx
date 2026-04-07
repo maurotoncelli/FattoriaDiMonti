@@ -1,17 +1,47 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { useAppStore } from '@/store/useAppStore';
 import { usePathname } from '@/i18n/routing';
 
 export default function ScrollProgressTracker() {
     const lineRef = useRef<HTMLDivElement>(null);
-    const labelRef = useRef<HTMLSpanElement>(null);
-    const { scrollY } = useAppStore();
     const pathname = usePathname();
     const [currentLabel, setCurrentLabel] = useState('');
 
-    // Observe sections with data-section-label attribute
+    // Aggiorna la barra di progresso in modo IMPERATIVO via Lenis event —
+    // nessun setState, nessun re-render React ad ogni frame di scroll.
+    useEffect(() => {
+        const updateProgress = ({ scroll }: { scroll: number }) => {
+            const maxScroll = document.body.scrollHeight - window.innerHeight;
+            const progress = maxScroll > 0 ? Math.min(scroll / maxScroll, 1) : 0;
+            if (lineRef.current) {
+                lineRef.current.style.height = `${progress * 100}%`;
+            }
+        };
+
+        const attachLenis = () => {
+            const lenis = (window as any).__lenis;
+            if (lenis) {
+                lenis.on('scroll', updateProgress);
+                return () => lenis.off('scroll', updateProgress);
+            }
+            return undefined;
+        };
+
+        // Lenis potrebbe non essere ancora montato (dynamic import): riprova ogni 100ms
+        let cleanup: (() => void) | undefined;
+        const interval = setInterval(() => {
+            cleanup = attachLenis();
+            if (cleanup) clearInterval(interval);
+        }, 100);
+
+        return () => {
+            clearInterval(interval);
+            cleanup?.();
+        };
+    }, []);
+
+    // Osserva le sezioni con IntersectionObserver — solo per il label, non per lo scroll progress
     useEffect(() => {
         const sections = document.querySelectorAll('[data-section-label]');
         if (sections.length === 0) return;
@@ -32,15 +62,6 @@ export default function ScrollProgressTracker() {
         return () => observer.disconnect();
     }, [pathname]);
 
-    // Update progress line
-    useEffect(() => {
-        const maxScroll = document.body.scrollHeight - window.innerHeight;
-        const progress = maxScroll > 0 ? Math.min(scrollY / maxScroll, 1) : 0;
-        if (lineRef.current) {
-            lineRef.current.style.height = `${progress * 100}%`;
-        }
-    }, [scrollY]);
-
     return (
         <div
             aria-hidden="true"
@@ -56,7 +77,6 @@ export default function ScrollProgressTracker() {
                 gap: '0.75rem',
             }}
         >
-            {/* Progress line */}
             <div
                 style={{
                     width: 1,
@@ -73,14 +93,12 @@ export default function ScrollProgressTracker() {
                         width: '100%',
                         height: '0%',
                         background: 'var(--olive)',
-                        transition: 'height 0.2s ease',
+                        // Niente CSS transition: l'aggiornamento è già fluido via Lenis RAF
                     }}
                 />
             </div>
 
-            {/* Section label (rotated) */}
             <span
-                ref={labelRef}
                 className="label"
                 style={{
                     writingMode: 'vertical-rl',
@@ -98,4 +116,3 @@ export default function ScrollProgressTracker() {
         </div>
     );
 }
-

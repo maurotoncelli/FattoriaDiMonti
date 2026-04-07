@@ -9,6 +9,7 @@ import { useAppStore } from '@/store/useAppStore';
 import { usePathname } from '@/i18n/routing';
 import GlobalUI from '@/components/ui/GlobalUI';
 import InnerFooter from '@/components/dom/InnerFooter';
+import { scrollStore } from '@/lib/scrollStore';
 
 // Lazy-load the WebGL Canvas to avoid SSR issues
 const CanvasZ0 = dynamic(() => import('@/components/canvas/CanvasZ0'), {
@@ -45,39 +46,41 @@ export default function AppWrapper({ children }: { children: React.ReactNode }) 
     useHashScroll();
     useEasterEgg();
 
-    // Sincronizza una variabile CSS globale per il colore dei testi esposti al cielo
+    // Sincronizza --sky-text-color tramite Lenis event (non window scroll)
     useEffect(() => {
-        const calculateSkyTextColor = () => {
+        const updateSkyTextColor = ({ scroll }: { scroll: number }) => {
             const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-            const progress = maxScroll > 0 ? Math.max(0, Math.min(1, window.scrollY / maxScroll)) : 0;
+            const progress = maxScroll > 0 ? Math.max(0, Math.min(1, scroll / maxScroll)) : 0;
 
-            // Interpoliamo tra due colori hex (Alba/Mattina -> Notte)
-            // Usiamo colori che contrastano bene con i relativi colori del cielo in WheatNoiseShader
-            // 0.00: Cielo Giallino Chiaro -> Testo Scuro (es. Mucco Pisano) #4A2E1B
-            // 0.33: Cielo Azzurro -> Testo Scuro #4A2E1B
-            // 0.66: Cielo Arancio pallido -> Testo Scuro #4A2E1B
-            // 1.00: Cielo Blu Notte Scuro -> Testo Chiaro (es. Tufo/Olive) #ECE8DF o simile
-            
-            // Per semplicità, sfumiamo da #4A2E1B (Mucco Pisano) a #ECE8DF (Tufo) verso la fine
             let r, g, b;
             if (progress < 0.6) {
-                // Fino al tramonto, tieni il testo scuro
-                r = 74; g = 46; b = 27; // #4A2E1B
+                r = 74; g = 46; b = 27;
             } else {
-                // Dal tramonto (0.6) alla notte (1.0), sfuma verso il chiaro
-                const factor = (progress - 0.6) / 0.4; // 0 to 1
+                const factor = (progress - 0.6) / 0.4;
                 r = Math.round(74 + (236 - 74) * factor);
                 g = Math.round(46 + (232 - 46) * factor);
                 b = Math.round(27 + (223 - 27) * factor);
             }
-            
             document.documentElement.style.setProperty('--sky-text-color', `rgb(${r}, ${g}, ${b})`);
         };
 
-        window.addEventListener('scroll', calculateSkyTextColor, { passive: true });
-        calculateSkyTextColor(); // Initial call
+        // Attendi che Lenis sia disponibile (dynamic import)
+        let cleanup: (() => void) | undefined;
+        const interval = setInterval(() => {
+            const lenis = (window as any).__lenis;
+            if (lenis) {
+                // Inizializza con il valore corrente di scrollStore
+                updateSkyTextColor({ scroll: scrollStore.y });
+                lenis.on('scroll', updateSkyTextColor);
+                cleanup = () => lenis.off('scroll', updateSkyTextColor);
+                clearInterval(interval);
+            }
+        }, 100);
 
-        return () => window.removeEventListener('scroll', calculateSkyTextColor);
+        return () => {
+            clearInterval(interval);
+            cleanup?.();
+        };
     }, []);
 
     const isOilModalOpen = useAppStore((s) => s.isOilModalOpen);

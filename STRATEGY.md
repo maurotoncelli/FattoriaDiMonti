@@ -73,7 +73,55 @@ Si aggiorna SOLO la funzione `getXData` in `lib/data/` — le interfacce in `lib
 
 ---
 
-## 3. Navigazione — Transizioni di Pagina
+## 3. Performance — Regole Architetturali
+
+### Principio: separare stato React da stato ad alta frequenza
+
+**Regola d'oro**: qualsiasi valore che cambia > 10 volte al secondo NON va in Zustand/React state.
+
+#### `scrollStore` — `lib/scrollStore.ts`
+Oggetto plain (non React) aggiornato da Lenis ogni frame (~60fps):
+```ts
+export const scrollStore = { y: 0, velocity: 0 };
+```
+- **Aggiornato da**: `hooks/useLenis.ts` nel RAF loop, senza `setState`
+- **Letto da**: `SkyNoiseShader` (in `useFrame`), `ScrollProgressTracker` (via Lenis event), `AppWrapper` (via Lenis event)
+- **MAI** leggere `scrollStore` in un `useEffect` con deps — usarlo solo in loop imperativi (RAF, useFrame, event callbacks)
+
+#### Zustand `useAppStore` — solo stato booleano/modale
+Contiene esclusivamente stati che cambiano raramente (click, transizioni):
+```
+isMenuOpen | isOilModalOpen | isConciergeOpen | isLightboxOpen
+isTransitioning | nextRoute | transitionBgColor | transitionKeyword
+isPreloaderComplete | easterEggTriggered | audioEnabled | currentSection
+```
+**NO** `scrollY`, `scrollVelocity` — rimossi, causavano 60 re-render/secondo.
+
+#### Regola sui selettori Zustand
+Ogni componente che legge dallo store deve usare selettori granulari:
+```tsx
+// ✅ Corretto — re-render solo quando cambia isMenuOpen
+const isMenuOpen = useAppStore((s) => s.isMenuOpen);
+
+// ❌ Sbagliato — re-render ad ogni cambio di qualsiasi stato
+const { isMenuOpen } = useAppStore();
+```
+
+#### Lenis — best practices
+- Un'istanza globale, inizializzata in `useLenis()` da `AppWrapper`
+- Esposta su `window.__lenis` per accesso imperativo
+- Loop RAF con `cancelAnimationFrame` nel cleanup per evitare leak
+- Per ascoltare lo scroll: `lenis.on('scroll', cb)` + `lenis.off('scroll', cb)` nel cleanup
+- Per aggiornare DOM senza re-render: usare `ref.current.style.xxx = ...` nel callback
+
+#### SkyNoiseShader — Three.js performance
+- Legge `scrollStore.y` e `scrollStore.velocity` direttamente in `useFrame` (nessun React)
+- Le dimensioni del documento (`scrollHeight`, `innerHeight`) sono cached in un ref aggiornato da `ResizeObserver`, non lette ogni frame
+- Il shader stesso gira sulla GPU — il costo è minimo; il bottleneck era il bridge React, ora eliminato
+
+---
+
+## 4. Navigazione — Transizioni di Pagina
 
 ### Architettura
 1. **`TransitionLink`** (`components/ui/TransitionLink.tsx`): intercetta click, chiama `startPageTransition()`, naviga a **900ms** (quando il sipario copre il 97% dello schermo con `power4.inOut`)
@@ -95,7 +143,7 @@ Ogni `TransitionLink` accetta `transitionKeyword` opzionale (es. "OLIO", "STORIA
 
 ---
 
-## 4. SEO & Metadati
+## 5. SEO & Metadati
 
 ### Metadata per pagina
 - **Root layout** (`app/[locale]/layout.tsx`): `generateMetadata` con `metadataBase`, template title, `alternates` (canonical + hreflang `it`/`en`/`x-default`), Open Graph, Twitter card
@@ -117,7 +165,7 @@ Ogni `TransitionLink` accetta `transitionKeyword` opzionale (es. "OLIO", "STORIA
 
 ---
 
-## 5. Analytics — Google Analytics 4 (GDPR-aware)
+## 6. Analytics — Google Analytics 4 (GDPR-aware)
 
 ### Componente
 `components/analytics/GoogleAnalytics.tsx` — client component con doppia guardia:
@@ -141,7 +189,7 @@ NEXT_PUBLIC_GA_FORCE_DEV=true                 # Solo per test locali — non com
 
 ---
 
-## 6. Canvas WebGL — La Finestra sul Cielo
+## 7. Canvas WebGL — La Finestra sul Cielo
 
 Il `SkyNoiseShader` (via React Three Fiber) vive nel layout globale — non viene mai distrutto tra navigazioni.
 
@@ -159,7 +207,7 @@ Il `SkyNoiseShader` (via React Three Fiber) vive nel layout globale — non vien
 
 ---
 
-## 7. Sezioni Homepage
+## 8. Sezioni Homepage
 
 | ID | Section | Componente | Dati |
 |---|---|---|---|
@@ -171,7 +219,7 @@ Il `SkyNoiseShader` (via React Three Fiber) vive nel layout globale — non vien
 
 ---
 
-## 8. Pagine Inner
+## 9. Pagine Inner
 
 | Rotta | Pagina | Dati | Stato |
 |---|---|---|---|
@@ -186,7 +234,7 @@ Il `SkyNoiseShader` (via React Three Fiber) vive nel layout globale — non vien
 
 ---
 
-## 9. Cucina Nomade — Menu con Accordion
+## 10. Cucina Nomade — Menu con Accordion
 
 ### Struttura dati (`lib/data/cucinaNomade.tsx`)
 Ogni item del `menuGallery` ha un campo opzionale `details?: string[]` con ingredienti/approfondimenti.
@@ -199,7 +247,7 @@ Ogni item del `menuGallery` ha un campo opzionale `details?: string[]` con ingre
 
 ---
 
-## 10. Overlays & Form
+## 11. Overlays & Form
 
 | Componente | Stato | Gestione |
 |---|---|---|
@@ -297,7 +345,8 @@ NEXT_PUBLIC_SITE_URL=https://fattoriadimonti.it
 - **Mobile restyling**: menu overlay, products, ospitalità gallery, footer, hospitality, filiera
 - **Safe area insets**: notch/home indicator su tutti i controlli fissi
 - **Accordion ingredienti** Cucina Nomade: expand/collapse GSAP per ogni panino
-- **Transizioni pagina corrette**: fix race condition (navigate a 900ms) + `hasCovered` ref anti-spurious-lift
+- **Transizioni pagina corrette**: overlay naviga da solo in GSAP `onComplete` (zero race condition), z-index alzato a 500, `MainMenuOverlay` usa `startPageTransition`
+- **Performance scroll**: rimossi `scrollY`/`scrollVelocity` da Zustand → `lib/scrollStore.ts` (plain ref, zero re-render); `useLenis` scrive su ref + `cancelAnimationFrame` nel cleanup; `ScrollProgressTracker` aggiornamento DOM imperativo via Lenis event; `SkyNoiseShader` legge `scrollStore` direttamente in `useFrame` + cache dimensioni DOM via `ResizeObserver`; tutti i componenti critici usano selettori granulari Zustand
 - **Netlify deployment**: `netlify.toml`, plugin nextjs, security headers, fix redirect loop
 - **GitHub**: repo inizializzato, push, CI/CD automatico via Netlify
 

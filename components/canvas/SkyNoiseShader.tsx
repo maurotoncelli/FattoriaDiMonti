@@ -1,9 +1,9 @@
 'use client';
 
-import { useRef, useMemo } from 'react';
+import { useRef, useMemo, useEffect } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
-import { useAppStore } from '@/store/useAppStore';
+import { scrollStore } from '@/lib/scrollStore';
 
 const vertexShader = `
   uniform float uTime;
@@ -84,7 +84,9 @@ const fragmentShader = `
 export default function SkyNoiseShader() {
     const meshRef = useRef<THREE.Mesh>(null);
     const mousePos = useRef(new THREE.Vector2(0, 0));
-    const scrollVelocity = useAppStore((s) => s.scrollVelocity);
+    // Dimensioni del documento — aggiornate solo al resize, non ogni frame
+    const docHeightRef = useRef(0);
+    const winHeightRef = useRef(0);
 
     const uniforms = useMemo(
         () => ({
@@ -98,6 +100,18 @@ export default function SkyNoiseShader() {
         []
     );
 
+    // Cache dimensioni documento — ResizeObserver invece di lettura DOM ogni frame
+    useEffect(() => {
+        const update = () => {
+            docHeightRef.current = document.documentElement.scrollHeight;
+            winHeightRef.current = window.innerHeight;
+        };
+        update();
+        const ro = new ResizeObserver(update);
+        ro.observe(document.documentElement);
+        return () => ro.disconnect();
+    }, []);
+
     const colorStops = useMemo(() => [
         { progress: 0.00, sky: new THREE.Color('#FFF4DB'), cloud: new THREE.Color('#FFFFFF') }, // Dawn (Giallino Fresco Mattutino - Alba)
         { progress: 0.33, sky: new THREE.Color('#B6CBE1'), cloud: new THREE.Color('#F7F9FB') }, // Afternoon (Azzurro Pomeridiano)
@@ -107,18 +121,18 @@ export default function SkyNoiseShader() {
 
     useFrame((state) => {
         uniforms.uTime.value = state.clock.getElapsedTime();
-        // Mouse damping
-        uniforms.uMouse.value.lerp(mousePos.current, 0.05);
-        uniforms.uScroll.value += (scrollVelocity - uniforms.uScroll.value) * 0.1;
 
-        // Mouse normalizzato (-1 a 1)
+        // Mouse damping
         const pointer = state.pointer;
         mousePos.current.set(pointer.x, pointer.y);
+        uniforms.uMouse.value.lerp(mousePos.current, 0.05);
 
-        // --- Transizione Colore Cielo / Nuvole Basata Sulla Percentuale di Scroll ---
-        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-        // Clamp progress between 0.0 and 1.0
-        const progress = maxScroll > 0 ? Math.max(0, Math.min(1, window.scrollY / maxScroll)) : 0;
+        // Velocity da scrollStore (ref plain, zero React re-render)
+        uniforms.uScroll.value += (scrollStore.velocity - uniforms.uScroll.value) * 0.1;
+
+        // Dimensioni del documento: lette da cache (aggiornata da ResizeObserver, non ogni frame)
+        const maxScroll = docHeightRef.current - winHeightRef.current;
+        const progress = maxScroll > 0 ? Math.max(0, Math.min(1, scrollStore.y / maxScroll)) : 0;
         
         let startIndex = 0;
         let endIndex = 1;

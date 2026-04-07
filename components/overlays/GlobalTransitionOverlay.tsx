@@ -10,13 +10,11 @@ export default function GlobalTransitionOverlay() {
     const keywordRef = useRef<HTMLSpanElement>(null);
     const router = useRouter();
 
-    const {
-        isTransitioning,
-        transitionBgColor,
-        transitionKeyword,
-        nextRoute,
-        endPageTransition,
-    } = useAppStore();
+    const isTransitioning = useAppStore((s) => s.isTransitioning);
+    const transitionBgColor = useAppStore((s) => s.transitionBgColor);
+    const transitionKeyword = useAppStore((s) => s.transitionKeyword);
+    const nextRoute = useAppStore((s) => s.nextRoute);
+    const endPageTransition = useAppStore((s) => s.endPageTransition);
 
     // True solo dopo che il sipario ha completato la CHIUSURA (overlay copre 100% schermo).
     // Usare useState garantisce che React ri-esegua il lift effect nello stesso render batch.
