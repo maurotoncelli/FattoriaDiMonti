@@ -41,18 +41,10 @@
   [headers.values]
     Cache-Control = "public, max-age=86400"
 
-# ── Redirect www → apex ───────────────────────────────────────
-[[redirects]]
-  from   = "https://www.fattoriadimonti.it/*"
-  to     = "https://fattoriadimonti.it/:splat"
-  status = 301
-  force  = true
-
-# ── Redirect locale di default (it → root) ────────────────────
-# next-intl con localePrefix: 'as-needed' gestisce già questo,
-# ma aggiungiamo un safety net Netlify-side
-[[redirects]]
-  from   = "/it/*"
-  to     = "/:splat"
-  status = 301
-  force  = false
+# NOTA: il redirect www → apex si aggiunge SOLO dopo aver configurato
+# il dominio custom su Netlify. Non abilitare prima o causa redirect loop.
+# [[redirects]]
+#   from   = "https://www.fattoriadimonti.it/*"
+#   to     = "https://fattoriadimonti.it/:splat"
+#   status = 301
+#   force  = true
