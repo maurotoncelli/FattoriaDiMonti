@@ -111,7 +111,7 @@ export default function HeroSection() {
                 ref={heroImageRef}
                 data-webgl-media="true"
                 data-effect-type="displacement"
-                data-texture-src="/images/hero-drone.png"
+                data-texture-src="/images/hero-new.jpg"
                 id="media-hero-background"
                 style={{
                     position: 'absolute',

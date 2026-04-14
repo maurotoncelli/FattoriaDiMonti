@@ -29,7 +29,7 @@ export const getStoriaData = (t: any): StoriaContent => ({
     },
     legendSuffix: t('Storia.legendSuffix'),
     images: {
-        primary: { src: '/images/villa-buontalenti.png', alt: t('Storia.images.primary.alt') },
-        secondary: { src: '/images/villa-buontalenti.png', alt: t('Storia.images.secondary.alt') },
+        primary: { src: '/images/storia-antica.jpg', alt: t('Storia.images.primary.alt') },
+        secondary: { src: '/images/storia-antica.jpg', alt: t('Storia.images.secondary.alt') },
     },
 });

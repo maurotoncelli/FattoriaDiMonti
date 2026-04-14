@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useState, useEffect } from 'react';
+import Image from 'next/image';
 import TransitionLink from '@/components/ui/TransitionLink';
 import { useAppStore } from '@/store/useAppStore';
 import gsap from 'gsap';
@@ -70,6 +71,18 @@ export default function HistoryTerroir() {
                     }
                 );
             });
+
+            // Parallax immagine villa (visibile solo su mobile tramite DOM image)
+            gsap.fromTo('.parallax-img-villa',
+                { yPercent: -10 },
+                {
+                    yPercent: 10, ease: 'none',
+                    scrollTrigger: {
+                        trigger: '#media-villa-mobile',
+                        start: 'top bottom', end: 'bottom top', scrub: true,
+                    }
+                }
+            );
         }, sectionRef);
         return () => ctx.revert();
     }, []);
@@ -116,13 +129,15 @@ export default function HistoryTerroir() {
                 </p>
             </article>
 
-            {/* Villa image placeholder (MediaProxy for WebGL) */}
+            {/* Villa image — Desktop: WebGL displacement / Mobile: DOM native con parallax */}
+
+            {/* Desktop: WebGL placeholder (CanvasZ0 renderizza l'immagine sopra) */}
             <div
                 data-webgl-media="true"
                 data-effect-type="displacement"
                 data-texture-src="/images/villa-buontalenti.png"
                 id="media-villa-displacement"
-                className="order-3 lg:order-none"
+                className="order-3 lg:order-none hidden lg:block"
                 style={{
                     gridColumn: 2,
                     gridRow: '1 / 3',
@@ -137,34 +152,36 @@ export default function HistoryTerroir() {
                 <div style={{ position: 'absolute', top: '-100vh', bottom: '-100vh', right: '100%', width: '100vw', background: 'var(--tufo)', zIndex: -1 }} />
                 {/* Top Fill: covers above the photo (hero bleeds through otherwise) */}
                 <div style={{ position: 'absolute', bottom: '100%', left: '-100vw', right: '-100vw', height: '100vh', background: 'var(--tufo)', zIndex: -1 }} />
+                <span className="sr-only">{t('Home.terroir.villaMedia.alt')}</span>
+                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(145deg, #D4A361 0%, #B05C46 40%, #4A2E1B 100%)', opacity: 0.15 }} />
+            </div>
 
-                <span className="sr-only">
-                    {t('Home.terroir.villaMedia.alt')}
-                </span>
-                {/* Visible placeholder texture */}
+            {/* Mobile: immagine DOM reale con parallax */}
+            <div
+                id="media-villa-mobile"
+                className="order-3 lg:hidden"
+                style={{
+                    width: '100%',
+                    aspectRatio: '4/5',
+                    position: 'relative',
+                    overflow: 'hidden',
+                    marginTop: '3vh',
+                    marginBottom: '3vh',
+                }}
+            >
+                <Image
+                    src="/images/villa-buontalenti.png"
+                    alt={t('Home.terroir.villaMedia.alt')}
+                    fill
+                    className="parallax-img-villa"
+                    style={{ objectFit: 'cover', scale: '1.2', transformOrigin: 'center center' }}
+                    sizes="100vw"
+                />
                 <div style={{
-                    position: 'absolute',
-                    inset: 0,
-                    background: 'linear-gradient(145deg, #D4A361 0%, #B05C46 40%, #4A2E1B 100%)',
-                    opacity: 0.15,
+                    position: 'absolute', inset: 0,
+                    background: 'linear-gradient(to bottom, rgba(74,46,27,0.1) 0%, transparent 40%, rgba(74,46,27,0.2) 100%)',
+                    pointerEvents: 'none',
                 }} />
-                <div style={{
-                    position: 'absolute',
-                    inset: 0,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    flexDirection: 'column',
-                    gap: '0.5rem',
-                    opacity: 0.4,
-                }}>
-                    <span style={{ fontFamily: 'var(--font-playfair)', fontSize: '0.7rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--mucco-pisano)' }}>
-                        {t('Home.terroir.villaMedia.proxyLabel')}
-                    </span>
-                    <span style={{ fontSize: '0.55rem', letterSpacing: '0.2em', fontFamily: 'var(--font-inter)', textTransform: 'uppercase', color: 'var(--olive)' }}>
-                        {t('Home.terroir.villaMedia.proxyTags')}
-                    </span>
-                </div>
             </div>
 
             {/* Renaissance Block — left */}

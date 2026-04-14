@@ -1,8 +1,14 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useAppStore } from '@/store/useAppStore';
 import { scrollStore } from '@/lib/scrollStore';
+
+if (typeof window !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+}
 
 export function useLenis() {
     const lenisRef = useRef<any>(null);
@@ -13,7 +19,7 @@ export function useLenis() {
     const isPreloaderComplete = useAppStore((s) => s.isPreloaderComplete);
 
     useEffect(() => {
-        let rafId: number;
+        let tickerFn: ((time: number) => void) | null = null;
 
         import('lenis').then(({ default: Lenis }) => {
             const lenis = new Lenis({
@@ -26,19 +32,23 @@ export function useLenis() {
             lenisRef.current = lenis;
             (window as any).__lenis = lenis;
 
-            // Scrivi su scrollStore (oggetto plain) — ZERO re-render React
-            function raf(time: number) {
-                lenis.raf(time);
+            // Sincronizza ScrollTrigger ad ogni evento scroll Lenis
+            lenis.on('scroll', ScrollTrigger.update);
+
+            // Guida Lenis tramite gsap.ticker per avere Lenis e GSAP sullo stesso frame
+            tickerFn = (time: number) => {
+                lenis.raf(time * 1000);
                 scrollStore.y = lenis.scroll;
                 scrollStore.velocity = lenis.velocity;
-                rafId = requestAnimationFrame(raf);
-            }
-            rafId = requestAnimationFrame(raf);
+            };
+            gsap.ticker.add(tickerFn);
+            gsap.ticker.lagSmoothing(0);
         });
 
         return () => {
-            cancelAnimationFrame(rafId);
+            if (tickerFn) gsap.ticker.remove(tickerFn);
             if (lenisRef.current) {
+                lenisRef.current.off?.('scroll', ScrollTrigger.update);
                 lenisRef.current.destroy();
                 lenisRef.current = null;
             }

@@ -165,38 +165,48 @@ function ProductSlide({
 }
 
 function ProductCardMobile({
-    id, label, title, titleItalic, body, extra, ctaLabel, ctaAction, ctaHref, bgColor, theme,
+    id, label, title, titleItalic, body, extra, ctaLabel, ctaAction, ctaHref, bgColor, theme, imageSrc,
 }: {
     id: string; label: string; title: string; titleItalic?: string;
     body: React.ReactNode; extra?: React.ReactNode;
     ctaLabel?: string; ctaAction?: () => void; ctaHref?: string;
-    bgColor?: string; theme?: 'light' | 'dark';
+    bgColor?: string; theme?: 'light' | 'dark'; imageSrc: string;
 }) {
     const isDark = theme === 'dark';
     return (
         <div style={{ background: bgColor || 'var(--tufo)', padding: '0 0 3rem' }}>
-            {/* Media placeholder */}
+            {/* Media — DOM native image con parallax (stesso pattern di Casa Rossa) */}
             <div
-                data-webgl-media="true"
-                data-effect-type="displacement"
+                id={`mob-media-${id}`}
                 style={{
                     width: '100%',
                     aspectRatio: '16/9',
                     position: 'relative',
                     overflow: 'hidden',
-                    background: isDark
-                        ? 'linear-gradient(135deg,rgba(176,92,70,0.2),rgba(43,36,32,0.8))'
-                        : 'linear-gradient(135deg,rgba(212,163,97,0.15),rgba(74,46,27,0.1))',
                 }}
             >
-                <span className="sr-only">{label}</span>
+                <Image
+                    src={imageSrc}
+                    alt={label}
+                    fill
+                    className={`mob-parallax-img-${id}`}
+                    style={{ objectFit: 'cover', scale: '1.2', transformOrigin: 'center center' }}
+                    sizes="100vw"
+                />
+                <div style={{
+                    position: 'absolute', inset: 0,
+                    background: isDark
+                        ? 'linear-gradient(to bottom, rgba(43,36,32,0.3) 0%, transparent 40%, rgba(43,36,32,0.5) 100%)'
+                        : 'linear-gradient(to bottom, rgba(74,46,27,0.15) 0%, transparent 40%, rgba(74,46,27,0.25) 100%)',
+                    pointerEvents: 'none',
+                }} />
             </div>
             {/* Text */}
             <div style={{ padding: '2rem 8vw 0' }}>
-                <span className="label" style={{ display: 'block', marginBottom: '1rem', color: 'var(--olive)' }}>
+                <span className="label mob-fade" style={{ display: 'block', marginBottom: '1rem', color: 'var(--olive)' }}>
                     {label}
                 </span>
-                <h2 style={{
+                <h2 className="mob-fade" style={{
                     fontFamily: 'var(--font-playfair), serif',
                     fontSize: 'clamp(2.2rem, 9vw, 3.5rem)',
                     lineHeight: 0.95,
@@ -205,12 +215,12 @@ function ProductCardMobile({
                 }}>
                     {title}{titleItalic && <><br /><em>{titleItalic}</em></>}
                 </h2>
-                <div style={{ fontSize: '16px', lineHeight: 1.75, color: isDark ? 'rgba(236,232,223,0.8)' : 'var(--mucco-pisano)', opacity: 0.88 }}>
+                <div className="mob-fade" style={{ fontSize: '16px', lineHeight: 1.75, color: isDark ? 'rgba(236,232,223,0.8)' : 'var(--mucco-pisano)', opacity: 0.88 }}>
                     {body}
                 </div>
-                {extra && <div style={{ marginTop: '1rem' }}>{extra}</div>}
+                {extra && <div className="mob-fade" style={{ marginTop: '1rem' }}>{extra}</div>}
                 {ctaLabel && (ctaAction || ctaHref) && (
-                    <div style={{ marginTop: '2.5rem' }}>
+                    <div className="mob-fade" style={{ marginTop: '2.5rem' }}>
                         {ctaHref ? (
                             <TransitionLink
                                 href={ctaHref}
@@ -260,52 +270,90 @@ export default function ProductsHorizontalWalk() {
     useEffect(() => {
         const container = containerRef.current;
         const track = trackRef.current;
-        if (!container || !track) return;
 
-        // Only pin on desktop
         const mm = gsap.matchMedia();
-        mm.add('(min-width: 1024px)', () => {
-            const trackWidth = track.scrollWidth;
-            const totalScroll = trackWidth - window.innerWidth;
 
-            const tween = gsap.to(track, {
-                x: -totalScroll,
-                ease: 'none',
-                scrollTrigger: {
-                    trigger: container,
-                    start: 'top top',
-                    end: `+=${totalScroll}`,
-                    pin: true,
-                    scrub: 1,
-                }
+        // ── DESKTOP: horizontal scroll pinned ──────────────────────────
+        if (container && track) {
+            mm.add('(min-width: 1024px)', () => {
+                const trackWidth = track.scrollWidth;
+                const totalScroll = trackWidth - window.innerWidth;
+
+                const tween = gsap.to(track, {
+                    x: -totalScroll,
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: container,
+                        start: 'top top',
+                        end: `+=${totalScroll}`,
+                        pin: true,
+                        scrub: 1,
+                    }
+                });
+
+                gsap.utils.toArray('.anim-text-h').forEach((el: any) => {
+                    gsap.fromTo(el,
+                        { opacity: 0, x: 60 },
+                        {
+                            opacity: 1, x: 0,
+                            duration: 1,
+                            ease: 'power3.out',
+                            scrollTrigger: {
+                                trigger: el,
+                                containerAnimation: tween,
+                                start: 'left 85%',
+                                toggleActions: 'play none none reverse'
+                            }
+                        }
+                    );
+                });
+
+                return () => {
+                    tween.kill();
+                    ScrollTrigger.getAll().forEach(t => t.kill());
+                };
             });
+        }
 
-            // Anima i testi orizzontalmente non appena la loro slide entra nello schermo (containerAnimation)
-            gsap.utils.toArray('.anim-text-h').forEach((el: any) => {
+        // ── MOBILE: fade-up testi + parallax immagini ──────────────────
+        mm.add('(max-width: 1023px)', () => {
+            // Fade-up su tutti i testi delle card mobile
+            gsap.utils.toArray('.mob-fade').forEach((el: any) => {
                 gsap.fromTo(el,
-                    { opacity: 0, x: 60 },
+                    { opacity: 0, y: 36 },
                     {
-                        opacity: 1, x: 0,
-                        duration: 1,
+                        opacity: 1, y: 0,
+                        duration: 0.9,
                         ease: 'power3.out',
                         scrollTrigger: {
                             trigger: el,
-                            containerAnimation: tween,
-                            start: 'left 85%',
-                            toggleActions: 'play none none reverse'
+                            start: 'top 88%',
+                            toggleActions: 'play none none reverse',
                         }
                     }
                 );
             });
 
-            return () => {
-                tween.kill();
-                ScrollTrigger.getAll().forEach(t => t.kill());
-            };
+            // Parallax sulle immagini delle card mobile (stesso pattern Casa Rossa)
+            slides.forEach((slide) => {
+                const imgEl = document.querySelector(`.mob-parallax-img-${slide.id}`);
+                const triggerEl = document.getElementById(`mob-media-${slide.id}`);
+                if (!imgEl || !triggerEl) return;
+                gsap.fromTo(imgEl,
+                    { yPercent: -10 },
+                    {
+                        yPercent: 10, ease: 'none',
+                        scrollTrigger: {
+                            trigger: triggerEl,
+                            start: 'top bottom', end: 'bottom top', scrub: true,
+                        }
+                    }
+                );
+            });
         });
 
         return () => mm.revert();
-    }, []);
+    }, [slides]);
 
     if (isMobile) {
         return (
@@ -326,6 +374,7 @@ export default function ProductsHorizontalWalk() {
                         theme={slide.theme}
                         body={slide.body}
                         extra={slide.extra}
+                        imageSrc={slide.media.textureSrc}
                         ctaLabel={slide.cta?.label}
                         ctaHref={slide.cta?.href}
                         ctaAction={

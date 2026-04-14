@@ -23,7 +23,7 @@ const SLIDES_CONFIG = [
         id: 'slide-cucina-nomade',
         bgColor: '#1B1F2E',
         theme: 'dark' as const,
-        media: { webgl: true, effectType: 'displacement', textureSrc: '/images/cucina-nomade-16-9.png' },
+        media: { webgl: true, effectType: 'displacement', textureSrc: '/images/cucina-nomade-hero.jpg' },
         cta: { action: 'concierge', actionTarget: 'cucina-nomade' },
     },
     {

@@ -28,7 +28,7 @@ export const getMainMenuLinks = (t?: any): NavLink[] => {
 
     return [
         {
-            id: 'nav-home', index: '00', label: s('home.label', 'Home'), href: '/', image: '/images/hero-drone.png',
+            id: 'nav-home', index: '00', label: s('home.label', 'Home'), href: '/', image: '/images/hero-new.jpg',
             panelData: {
                 type: 'STATS',
                 title: s('home.panelTitle', 'Fattoria di Monti'),
@@ -41,7 +41,7 @@ export const getMainMenuLinks = (t?: any): NavLink[] => {
             },
         },
         {
-            id: 'nav-storia', index: '01', label: s('storia.label', 'Storia'), href: '/storia', image: '/images/villa-buontalenti.png',
+            id: 'nav-storia', index: '01', label: s('storia.label', 'Storia'), href: '/storia', image: '/images/storia-antica.jpg',
             panelData: {
                 type: 'STORY',
                 title: s('storia.panelTitle', '1839'),
@@ -76,7 +76,7 @@ export const getMainMenuLinks = (t?: any): NavLink[] => {
             },
         },
         {
-            id: 'nav-boutique', index: '04', label: s('boutique.label', 'Boutique Itinerante'), href: '/cucina-nomade', image: '/images/cucina-nomade-16-9.png',
+            id: 'nav-boutique', index: '04', label: s('boutique.label', 'Boutique Itinerante'), href: '/cucina-nomade', image: '/images/cucina-nomade-hero.jpg',
             panelData: {
                 type: 'CONTACT',
                 title: s('boutique.panelTitle', 'Cucina Nomade'),

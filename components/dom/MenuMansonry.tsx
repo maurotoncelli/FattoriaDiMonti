@@ -74,7 +74,7 @@ function MasonryItem({ item }: { item: MenuItem }) {
     return (
         <div className="masonry-item flex flex-col w-full mb-16 md:mb-24 px-4 md:px-0">
             {item.type === 'image' && (
-                <div className="w-full aspect-[4/5] bg-[var(--muccoPisano)]/5 overflow-hidden filter grayscale brightness-90 hover:grayscale-0 hover:brightness-100 transition-all duration-700">
+                <div className="w-full aspect-[4/5] bg-[var(--muccoPisano)]/5 overflow-hidden filter brightness-90 hover:brightness-100 transition-all duration-700">
                     <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
                 </div>
             )}
@@ -93,7 +93,7 @@ function MasonryItem({ item }: { item: MenuItem }) {
 
             {item.type === 'mixed' && (
                 <div className="flex flex-col gap-6">
-                    <div className="w-full aspect-[4/3] bg-[var(--muccoPisano)]/5 overflow-hidden filter grayscale brightness-90 hover:grayscale-0 hover:brightness-100 transition-all duration-700">
+                    <div className="w-full aspect-[4/3] bg-[var(--muccoPisano)]/5 overflow-hidden filter brightness-90 hover:brightness-100 transition-all duration-700">
                         <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
                     </div>
                     <div className="flex flex-col gap-2">

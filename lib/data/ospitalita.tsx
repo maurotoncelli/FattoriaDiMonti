@@ -48,7 +48,7 @@ export const getOspitalitaData = (t: any): OspitalitaContent => ({
                 { src: '/images/cucina-nomade.png', alt: t('Ospitalita.sections.galleria.items.1.alt'), overlayText: t('Ospitalita.sections.galleria.items.1.overlayText'), aspect: '2/3' },
                 { src: '/images/casa-rossa-panoramic.png', alt: t('Ospitalita.sections.galleria.items.2.alt'), overlayText: t('Ospitalita.sections.galleria.items.2.overlayText'), aspect: '3/2' },
                 { src: '/images/villa-buontalenti.png', alt: t('Ospitalita.sections.galleria.items.3.alt'), overlayText: t('Ospitalita.sections.galleria.items.3.overlayText'), aspect: '2/3' },
-                { src: '/images/cucina-nomade-16-9.png', alt: t('Ospitalita.sections.galleria.items.4.alt'), overlayText: t('Ospitalita.sections.galleria.items.4.overlayText'), aspect: '3/2' },
+                { src: '/images/cucina-nomade-hero.jpg', alt: t('Ospitalita.sections.galleria.items.4.alt'), overlayText: t('Ospitalita.sections.galleria.items.4.overlayText'), aspect: '3/2' },
             ],
             indicator: {
                 exploreText: t('Ospitalita.sections.galleria.indicator.exploreText'),

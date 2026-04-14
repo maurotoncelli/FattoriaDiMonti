@@ -69,7 +69,7 @@ export const cucinaNomadeData: CucinaNomadeData = {
         titleSmall: "Il Rito del Fuoco Nomade.",
         videoEnabled: true,
         videoSrc: "https://www.w3schools.com/html/mov_bbb.mp4", // Placeholder SICURO (Sostituire)
-        fallbackImage: "/images/cucina-nomade-16-9.png", // Immagine esistente come fallback
+        fallbackImage: "/images/cucina-nomade-hero.jpg", // Immagine esistente come fallback
         scrollText: "SCOPRI IL VIAGGIO"
     },
     manifesto: {
@@ -93,7 +93,7 @@ export const cucinaNomadeData: CucinaNomadeData = {
                 id: 'm1',
                 name: 'IL MUCCO',
                 description: 'Hamburger 200g 100% Mucco Pisano, maionese al pepe nero, insalata dell\'orto, pane agricolo a lievitazione naturale.',
-                image: '/images/cucina-nomade-16-9.png',
+                image: '/images/panino-m1-mucco.jpg',
                 type: 'mixed',
                 details: [
                     'Hamburger 200g · razza Mucco Pisano allevato allo stato brado',
@@ -107,7 +107,7 @@ export const cucinaNomadeData: CucinaNomadeData = {
                 id: 'm2',
                 name: 'LA CINTA',
                 description: 'Cinta Senese croccante, crema di pecorino locale stagionato in grotta, cipolla rossa di Toscana fondente.',
-                image: '/images/casa-rossa-interni.webp',
+                image: '/images/panino-m2-cinta.jpg',
                 type: 'mixed',
                 details: [
                     'Costoletta di Cinta Senese · fritta in olio di semi di girasole',
@@ -121,7 +121,7 @@ export const cucinaNomadeData: CucinaNomadeData = {
                 id: 'm3',
                 name: 'IL TARTUFATO',
                 description: 'Battuta di Mucco tagliata al coltello, scaglie di tartufo nero di San Miniato, uovo fritto biologico.',
-                image: '/images/hero-drone.png',
+                image: '/images/panino-m3-tartufato.jpg',
                 type: 'mixed',
                 details: [
                     'Battuta di Mucco Pisano · taglio al coltello, non macinata',
@@ -135,7 +135,7 @@ export const cucinaNomadeData: CucinaNomadeData = {
                 id: 'm4',
                 name: 'IL SILVANO',
                 description: 'Doppio hamburger di Mucco, emulsione all\'Olio Extravergine della fattoria, lardo di colonnata DOP.',
-                image: '/images/cucina-nomade-16-9.png',
+                image: '/images/panino-m4-silvano.jpg',
                 type: 'mixed',
                 details: [
                     'Doppio hamburger 2×150g · Mucco Pisano',
@@ -149,7 +149,7 @@ export const cucinaNomadeData: CucinaNomadeData = {
                 id: 'm5',
                 name: 'LO SBADATO',
                 description: 'Pollo ruspante fritto, cavolo viola marinato, maionese senapata rustica artigianale.',
-                image: '/images/mucco-pisano.webp',
+                image: '/images/panino-m5-sbadato.jpg',
                 type: 'mixed',
                 details: [
                     'Petto di pollo ruspante · marinato 12h in latticello e spezie',
@@ -170,21 +170,21 @@ export const cucinaNomadeData: CucinaNomadeData = {
                 id: "chef-1",
                 name: "Lorenzo",
                 role: "Maestro della Brace",
-                image: "/images/crew-1.png", // Immagine placeholder da rigenerare
+                image: "/images/crew-lorenzo.jpg", // Immagine placeholder da rigenerare
                 quote: "Il segreto non è solo la carne, è il rispetto per il fuoco."
             },
             {
                 id: "chef-2",
                 name: "Martina",
                 role: "Assemblaggio & Ritmo",
-                image: "/images/crew-2.png", // Immagine placeholder da rigenerare
+                image: "/images/crew-martina.jpg", // Immagine placeholder da rigenerare
                 quote: "Un panino perfetto richiede ingegneria dei sapori."
             },
             {
                 id: "chef-3",
                 name: "Gabriele",
                 role: "Accoglienza Nomade",
-                image: "/images/crew-3.png", // Immagine placeholder da rigenerare
+                image: "/images/crew-gabriele.jpg", // Immagine placeholder da rigenerare
                 quote: "Non serviamo semplicemente cibo, raccontiamo la nostra fattoria."
             }
         ]
