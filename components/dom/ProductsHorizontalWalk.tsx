@@ -278,6 +278,7 @@ export default function ProductsHorizontalWalk() {
             mm.add('(min-width: 1024px)', () => {
                 const trackWidth = track.scrollWidth;
                 const totalScroll = trackWidth - window.innerWidth;
+                const scrollDistance = Math.max(totalScroll * 0.75, window.innerWidth);
 
                 const tween = gsap.to(track, {
                     x: -totalScroll,
@@ -285,23 +286,23 @@ export default function ProductsHorizontalWalk() {
                     scrollTrigger: {
                         trigger: container,
                         start: 'top top',
-                        end: `+=${totalScroll}`,
+                        end: `+=${scrollDistance}`,
                         pin: true,
-                        scrub: 1,
+                        scrub: 0.45,
                     }
                 });
 
-                gsap.utils.toArray('.anim-text-h').forEach((el: any) => {
-                    gsap.fromTo(el,
+                const textTweens = gsap.utils.toArray('.anim-text-h').map((el: any) => {
+                    return gsap.fromTo(el,
                         { opacity: 0, x: 60 },
                         {
                             opacity: 1, x: 0,
-                            duration: 1,
+                            duration: 0.65,
                             ease: 'power3.out',
                             scrollTrigger: {
                                 trigger: el,
                                 containerAnimation: tween,
-                                start: 'left 85%',
+                                start: 'left 92%',
                                 toggleActions: 'play none none reverse'
                             }
                         }
@@ -310,7 +311,11 @@ export default function ProductsHorizontalWalk() {
 
                 return () => {
                     tween.kill();
-                    ScrollTrigger.getAll().forEach(t => t.kill());
+                    tween.scrollTrigger?.kill();
+                    textTweens.forEach((textTween) => {
+                        textTween.scrollTrigger?.kill();
+                        textTween.kill();
+                    });
                 };
             });
         }
@@ -323,11 +328,11 @@ export default function ProductsHorizontalWalk() {
                     { opacity: 0, y: 36 },
                     {
                         opacity: 1, y: 0,
-                        duration: 0.9,
+                        duration: 0.6,
                         ease: 'power3.out',
                         scrollTrigger: {
                             trigger: el,
-                            start: 'top 88%',
+                            start: 'top 92%',
                             toggleActions: 'play none none reverse',
                         }
                     }

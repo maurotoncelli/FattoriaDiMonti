@@ -6,10 +6,10 @@ import { useTranslations } from 'next-intl';
 
 export default function MenuTrigger() {
     const t = useTranslations('UI.menuTrigger');
-    const { setMenuOpen, isMenuOpen, isOilModalOpen, isConciergeOpen, isLightboxOpen } = useAppStore();
+    const { setMenuOpen, isMenuOpen, isOilModalOpen, isConciergeOpen, isLightboxOpen, isJerkySheetOpen, isOilSheetOpen, isRoomSheetOpen } = useAppStore();
     const [hovered, setHovered] = useState(false);
 
-    const isAnyOverlayOpen = isMenuOpen || isOilModalOpen || isConciergeOpen || isLightboxOpen;
+    const isAnyOverlayOpen = isMenuOpen || isOilModalOpen || isConciergeOpen || isLightboxOpen || isJerkySheetOpen || isOilSheetOpen || isRoomSheetOpen;
 
     return (
         <button

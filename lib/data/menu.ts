@@ -49,20 +49,7 @@ export const getMainMenuLinks = (t?: any): NavLink[] => {
             },
         },
         {
-            id: 'nav-filiera', index: '02', label: s('filiera.label', 'La filiera'), href: '/la-filiera', image: '/images/campi-grano-16-9.png',
-            panelData: {
-                type: 'PROCESS',
-                title: s('filiera.panelTitle', 'Ciclo Naturale'),
-                stats: raw('filiera.stats', [
-                    { label: '01. Radici', value: 'Sementi Antiche Locali' },
-                    { label: '02. Ritmo', value: 'Crescita Naturale Lenta' },
-                    { label: '03. Manodopera', value: 'Raccolto 100% Manuale' },
-                    { label: '04. Origine', value: 'Trasformazione in Loco' },
-                ]),
-            },
-        },
-        {
-            id: 'nav-mucco', index: '03', label: s('mucco.label', 'Carne di Mucco Pisano'), href: '/mucco-pisano', image: '/images/mucco-pisano.png',
+            id: 'nav-mucco', index: '02', label: s('mucco.label', 'Carne di Mucco Pisano'), href: '/mucco-pisano', image: '/images/mucco-pisano.png',
             panelData: {
                 type: 'STATS',
                 title: s('mucco.panelTitle', 'Mucco Pisano'),
@@ -76,7 +63,7 @@ export const getMainMenuLinks = (t?: any): NavLink[] => {
             },
         },
         {
-            id: 'nav-boutique', index: '04', label: s('boutique.label', 'Boutique Itinerante'), href: '/cucina-nomade', image: '/images/cucina-nomade-hero.jpg',
+            id: 'nav-boutique', index: '03', label: s('boutique.label', 'Boutique Itinerante'), href: '/cucina-nomade', image: '/images/cucina-nomade-hero.jpg',
             panelData: {
                 type: 'CONTACT',
                 title: s('boutique.panelTitle', 'Cucina Nomade'),
@@ -90,7 +77,7 @@ export const getMainMenuLinks = (t?: any): NavLink[] => {
         },
         // nav-vino temporaneamente nascosto
         {
-            id: 'nav-olio', index: '06', label: s('olio.label', 'Olio Extravergine'), href: '/olio', image: '/images/olio-extravergine.png',
+            id: 'nav-olio', index: '04', label: s('olio.label', 'Olio Extravergine'), href: '/olio', image: '/images/olio-extravergine.png',
             panelData: {
                 type: 'STATS',
                 title: s('olio.panelTitle', 'Olio EVO Biologico'),
@@ -103,7 +90,7 @@ export const getMainMenuLinks = (t?: any): NavLink[] => {
             },
         },
         {
-            id: 'nav-accoglienza', index: '07', label: s('accoglienza.label', 'Accoglienza'), href: '/ospitalita', image: '/images/casa-rossa-interni.png',
+            id: 'nav-accoglienza', index: '05', label: s('accoglienza.label', 'Accoglienza'), href: '/ospitalita', image: '/images/casa-rossa-interni.png',
             panelData: {
                 type: 'STORY',
                 title: s('accoglienza.panelTitle', 'La Casa Rossa'),
@@ -111,7 +98,7 @@ export const getMainMenuLinks = (t?: any): NavLink[] => {
             },
         },
         {
-            id: 'nav-contatti', index: '08', label: s('contatti.label', 'Contatti'), href: '/#04-footer', image: '/images/hero-drone.png',
+            id: 'nav-contatti', index: '06', label: s('contatti.label', 'Contatti'), href: '/#04-footer', image: '/images/hero-drone.png',
             panelData: {
                 type: 'CONTACT',
                 title: s('contatti.panelTitle', 'Coordinate'),

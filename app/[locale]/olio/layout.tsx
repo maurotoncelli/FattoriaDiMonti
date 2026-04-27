@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
-import { BASE_URL } from '@/app/[locale]/layout';
+import { BASE_URL } from '@/lib/site';
 
 export async function generateMetadata(
     props: { params: Promise<{ locale: string }> }

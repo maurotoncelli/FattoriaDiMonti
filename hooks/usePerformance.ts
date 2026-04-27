@@ -1,27 +1,30 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useState } from 'react';
 
 export function useDevicePerformance() {
-    const tierRef = useRef<'high' | 'low'>('high');
+    const [tier, setTier] = useState<'high' | 'low'>('low');
 
     useEffect(() => {
         const cores = navigator.hardwareConcurrency || 4;
         const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-        tierRef.current = cores < 4 || isMobile ? 'low' : 'high';
+        const hasLowMemory = 'deviceMemory' in navigator && (navigator as Navigator & { deviceMemory?: number }).deviceMemory! <= 4;
+        setTier(cores < 4 || isMobile || hasLowMemory ? 'low' : 'high');
     }, []);
 
-    return tierRef;
+    return tier;
 }
 
 export function useReducedMotion() {
-    const prefersRef = useRef(false);
+    const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
     useEffect(() => {
         const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-        prefersRef.current = mq.matches;
-        const handler = (e: MediaQueryListEvent) => { prefersRef.current = e.matches; };
+        setPrefersReducedMotion(mq.matches);
+        const handler = (e: MediaQueryListEvent) => { setPrefersReducedMotion(e.matches); };
         mq.addEventListener('change', handler);
         return () => mq.removeEventListener('change', handler);
     }, []);
-    return prefersRef;
+
+    return prefersReducedMotion;
 }

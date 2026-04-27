@@ -1,12 +1,13 @@
 'use client';
 
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useLayoutEffect } from 'react';
 import Image from 'next/image';
 import TransitionLink from '@/components/ui/TransitionLink';
 import { useAppStore } from '@/store/useAppStore';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useTranslations } from 'next-intl';
+import { useReducedMotion } from '@/hooks/usePerformance';
 
 if (typeof window !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
@@ -53,19 +54,28 @@ export function EasterEggTrigger({ children }: { children: React.ReactNode }) {
 export default function HistoryTerroir() {
     const sectionRef = useRef<HTMLElement>(null);
     const t = useTranslations();
+    const prefersReducedMotion = useReducedMotion();
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         const ctx = gsap.context(() => {
+            const animatedText = gsap.utils.toArray('.anim-text-v');
+
+            if (prefersReducedMotion) {
+                return;
+            }
+
+            gsap.set(animatedText, { opacity: 0, y: 24 });
+
             gsap.utils.toArray('.anim-text-v').forEach((el: any) => {
                 gsap.fromTo(el,
-                    { opacity: 0, y: 40 },
+                    { opacity: 0, y: 24 },
                     {
                         opacity: 1, y: 0,
-                        duration: 1,
+                        duration: 0.65,
                         ease: 'power3.out',
                         scrollTrigger: {
                             trigger: el,
-                            start: 'top 85%',
+                            start: 'top 92%',
                             toggleActions: 'play none none reverse'
                         }
                     }
@@ -85,7 +95,7 @@ export default function HistoryTerroir() {
             );
         }, sectionRef);
         return () => ctx.revert();
-    }, []);
+    }, [prefersReducedMotion]);
 
     return (
         <section
@@ -150,6 +160,8 @@ export default function HistoryTerroir() {
             >
                 {/* Left Fill: merges text column with canvas */}
                 <div style={{ position: 'absolute', top: '-100vh', bottom: '-100vh', right: '100%', width: '100vw', background: 'var(--tufo)', zIndex: -1 }} />
+                {/* Right Fill: closes the sky window so previous sections cannot bleed through */}
+                <div style={{ position: 'absolute', top: '-100vh', bottom: '-100vh', left: '100%', width: '100vw', background: 'var(--tufo)', zIndex: -1 }} />
                 {/* Top Fill: covers above the photo (hero bleeds through otherwise) */}
                 <div style={{ position: 'absolute', bottom: '100%', left: '-100vw', right: '-100vw', height: '100vh', background: 'var(--tufo)', zIndex: -1 }} />
                 <span className="sr-only">{t('Home.terroir.villaMedia.alt')}</span>

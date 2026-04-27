@@ -206,7 +206,7 @@ function WebGLImage({ el, texture, effect }: WebGLImageProps) {
         let vis = Math.min(visX, visY);
         
         // Applichiamo interpolazione lineare (lerp) per rendere il movimento fluido
-        uniforms.uVisibility.value += (vis - uniforms.uVisibility.value) * 0.05;
+        uniforms.uVisibility.value += (vis - uniforms.uVisibility.value) * 0.12;
         uniforms.uParallaxX.value += (parallaxTargetX - uniforms.uParallaxX.value) * 0.08;
         uniforms.uParallaxY.value += (parallaxTargetY - uniforms.uParallaxY.value) * 0.08;
 
@@ -237,6 +237,8 @@ export default function WebGLImageEngine() {
     const pathname = usePathname();
 
     useEffect(() => {
+        let scanFrame: number | null = null;
+
         // Funzione per raccogliere le immagini
         const scanForImages = () => {
             const elements = Array.from(document.querySelectorAll('[data-webgl-media="true"]')) as HTMLElement[];
@@ -251,6 +253,14 @@ export default function WebGLImageEngine() {
                     return current; // No changes, prevent re-render
                 }
                 return validImages;
+            });
+        };
+
+        const scheduleScan = () => {
+            if (scanFrame !== null) return;
+            scanFrame = window.requestAnimationFrame(() => {
+                scanFrame = null;
+                scanForImages();
             });
         };
 
@@ -271,12 +281,13 @@ export default function WebGLImageEngine() {
                     break;
                 }
             }
-            if (shouldScan) scanForImages();
+            if (shouldScan) scheduleScan();
         });
 
         observer.observe(document.body, { childList: true, subtree: true });
 
         return () => {
+            if (scanFrame !== null) window.cancelAnimationFrame(scanFrame);
             clearTimeout(timeout1);
             clearTimeout(timeout2);
             clearTimeout(timeout3);

@@ -16,8 +16,10 @@ if (typeof window !== 'undefined') {
 export default function MuccoPisanoPage() {
     const containerRef = useRef<HTMLDivElement>(null);
     const setConciergeOpen = useAppStore((state) => state.setConciergeOpen);
+    const setJerkySheetOpen = useAppStore((state) => state.setJerkySheetOpen);
     const t = useTranslations();
     const muccoPisanoData = getMuccoPisanoData(t);
+    const tOverlay = useTranslations('Overlays.jerkySheet');
 
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -134,6 +136,78 @@ export default function MuccoPisanoPage() {
                         {muccoPisanoData.caratteristiche.quoteHtml}
                     </h2>
 
+                    {/* Carne Secca Products embedded in Caratteristiche */}
+                    <div className="mt-8 mb-24 sm:mt-12 sm:mb-32 w-full">
+                        <div className="mx-auto grid max-w-[1200px] grid-cols-1 gap-16 md:grid-cols-2 lg:gap-24 relative z-10 w-full">
+                            {muccoPisanoData.essiccata.products?.map((product) => (
+                                <button 
+                                    key={product.id}
+                                    onClick={() => setJerkySheetOpen(true, product.id)}
+                                    className="group relative flex flex-col items-center text-center outline-none transition-all duration-500 hover:-translate-y-3 focus-visible:-translate-y-3 fade-up-text"
+                                >
+                                    {/* Image Container with drop shadow and hover scaling */}
+                                    <div className="relative mb-6 flex h-[350px] sm:h-[400px] w-full items-end justify-center">
+                                        <div className="absolute bottom-[-15px] h-6 w-56 rounded-full bg-[#3D332A]/20 blur-xl transition-all duration-500 group-hover:w-72 group-hover:bg-[#3D332A]/30" />
+                                        <div className="relative h-full w-[280px] sm:w-[320px] origin-bottom transition-transform duration-500 group-hover:scale-[1.03]">
+                                            {product.image?.src ? (
+                                                <Image 
+                                                    src={product.image.src} 
+                                                    alt={product.image.alt} 
+                                                    fill 
+                                                    style={{ objectPosition: 'bottom' }}
+                                                    className="object-contain drop-shadow-[0_15px_25px_rgba(40,30,20,0.25)] transition-all duration-500 group-hover:drop-shadow-[0_25px_35px_rgba(40,30,20,0.35)]" 
+                                                />
+                                            ) : (
+                                                <div className="absolute inset-x-0 bottom-0 h-4/5 rounded-xl shadow-2xl" style={{ background: product.labelColor }} />
+                                            )}
+                                        </div>
+                                    </div>
+                    
+                                    {/* Product Text & Tags */}
+                                    <span className="mb-3 font-inter text-[10px] uppercase tracking-[0.24em] text-[var(--olive)]/80 transition-colors duration-500 group-hover:text-[var(--olive)] block w-full text-center">
+                                        {product.subtitle}
+                                    </span>
+                                    <h3 className="font-playfair text-4xl italic leading-none text-[var(--mucco-pisano)] transition-all duration-500 group-hover:scale-105 block w-full text-center">
+                                        {product.name}
+                                    </h3>
+                                    <p className="mt-5 min-h-[80px] max-w-sm text-sm md:text-base leading-[1.8] text-[var(--mucco-pisano)]/75 transition-colors duration-500 group-hover:text-[var(--mucco-pisano)] mx-auto text-center">
+                                        {product.description}
+                                    </p>
+                                    <div className="mt-6 flex flex-wrap justify-center gap-2 max-w-[80%] mx-auto">
+                                        {product.tags?.map((tag: string) => (
+                                            <span
+                                                key={tag}
+                                                className="rounded-full border border-[var(--mucco-pisano)]/15 bg-transparent px-3 py-1 font-inter text-[9px] uppercase tracking-[0.16em] text-[var(--mucco-pisano)]/70 transition-colors duration-500 group-hover:border-[var(--olive)]/40 group-hover:text-[var(--olive)]"
+                                            >
+                                                {tag}
+                                            </span>
+                                        ))}
+                                    </div>
+                                    <div className="mt-8">
+                                        <span
+                                            className="font-inter text-[10px] uppercase tracking-[0.24em] text-[var(--olive)] border-b border-[var(--olive)]/30 pb-1.5 transition-all inline-block group-hover:text-[var(--mucco-pisano)] group-hover:border-[var(--mucco-pisano)]"
+                                        >
+                                            {tOverlay('viewDetails')}
+                                        </span>
+                                    </div>
+                                </button>
+                            ))}
+                        </div>
+
+                        {/* Pulsante d'acquisto sotto i prodotti */}
+                        <div className="mt-20 flex justify-center w-full fade-up-text">
+                            <button
+                                onClick={() => setConciergeOpen(true, 'default')}
+                                className="group relative inline-flex items-center justify-center overflow-hidden rounded-full border border-[var(--mucco-pisano)]/20 bg-transparent px-10 py-5 transition-transform hover:scale-[1.03]"
+                            >
+                                <span className="absolute inset-0 translate-y-[101%] bg-[var(--mucco-pisano)] transition-transform duration-500 ease-in-out group-hover:translate-y-0" />
+                                <span className="relative z-10 font-inter text-xs font-semibold uppercase tracking-[0.2em] text-[var(--mucco-pisano)] transition-colors duration-500 group-hover:text-[#F3EFE7]">
+                                    {muccoPisanoData.tagli.ctaLabel}
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-left">
                         {muccoPisanoData.caratteristiche.items.map((item, index) => (
                             <div key={index} className="fade-up-text">
@@ -171,18 +245,9 @@ export default function MuccoPisanoPage() {
                         <h2 className="font-playfair text-5xl md:text-7xl leading-[0.9] text-white mb-10 fade-up-text">
                             {muccoPisanoData.tagli.titleHtml}
                         </h2>
-                        <p className="font-inter text-sm md:text-base leading-[1.9] text-white/70 mb-12 max-w-lg fade-up-text">
+                        <p className="font-inter text-sm md:text-base leading-[1.9] text-white/70 max-w-lg fade-up-text">
                             {muccoPisanoData.tagli.bodyText}
                         </p>
-
-                        <div className="fade-up-text">
-                            <button
-                                onClick={() => setConciergeOpen(true, 'default')}
-                                className="font-inter text-xs tracking-[0.2em] text-white uppercase border-b border-[var(--olive)] pb-2 hover:text-[var(--olive)] transition-colors inline-block"
-                            >
-                                {muccoPisanoData.tagli.ctaLabel}
-                            </button>
-                        </div>
                     </div>
                 </div>
             </section>

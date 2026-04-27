@@ -6,13 +6,6 @@ export type { ProductSlideContent as ProductSlideData };
 /** Static media & layout config — text comes from translations */
 const SLIDES_CONFIG = [
     {
-        id: 'slide-cereali',
-        bgColor: 'var(--olive)',
-        theme: 'light' as const,
-        media: { webgl: true, effectType: 'displacement', textureSrc: '/images/campi-grano-16-9.png' },
-        cta: { href: '/la-filiera' },
-    },
-    {
         id: 'slide-mucco-pisano',
         bgColor: 'var(--terra-nera)',
         theme: 'dark' as const,

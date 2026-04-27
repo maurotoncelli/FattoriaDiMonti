@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
-import { BASE_URL } from '@/app/[locale]/layout';
+import { BASE_URL } from '@/lib/site';
 import Script from 'next/script';
 import HeroSection from '@/components/dom/HeroSection';
 import HistoryTerroir from '@/components/dom/HistoryTerroir';

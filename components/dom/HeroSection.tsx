@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useTranslations } from 'next-intl';
-import { useAppStore } from '@/store/useAppStore';
+import { useReducedMotion } from '@/hooks/usePerformance';
 
 if (typeof window !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
@@ -19,48 +19,49 @@ export default function HeroSection() {
     const titleWords = t.raw('Home.hero.titleWords') as string[];
 
     const heroImageRef = useRef<HTMLDivElement>(null);
-    const isPreloaderComplete = useAppStore((s) => s.isPreloaderComplete);
+    const prefersReducedMotion = useReducedMotion();
 
     useEffect(() => {
-        if (!isPreloaderComplete) return;
-
         const ctx = gsap.context(() => {
-            const tl = gsap.timeline({ delay: 0.2 });
+            const tl = gsap.timeline({ delay: 0.05 });
 
             if (titleRef.current) {
                 const words = titleRef.current.querySelectorAll('.word');
-                tl.fromTo(
-                    words,
-                    { y: '110%', rotationZ: 3, opacity: 0 },
-                    {
-                        y: '0%',
-                        rotationZ: 0,
-                        opacity: 1,
-                        duration: 1.2,
-                        stagger: 0.08,
-                        ease: 'expo.out',
-                    }
-                );
+                if (prefersReducedMotion) {
+                    gsap.set(words, { y: '0%', rotationZ: 0, opacity: 1 });
+                } else {
+                    tl.fromTo(
+                        words,
+                        { y: '110%', rotationZ: 3, opacity: 0 },
+                        {
+                            y: '0%',
+                            rotationZ: 0,
+                            opacity: 1,
+                            duration: 0.9,
+                            stagger: 0.06,
+                            ease: 'expo.out',
+                        }
+                    );
+                }
             }
             if (subtitleRef.current) {
                 tl.fromTo(
                     subtitleRef.current,
                     { opacity: 0, y: 20 },
-                    { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' },
-                    '-=0.6'
+                    { opacity: 1, y: 0, duration: prefersReducedMotion ? 0.01 : 0.55, ease: 'power3.out' },
+                    prefersReducedMotion ? 0 : '-=0.45'
                 );
             }
             if (scrollHintRef.current) {
                 tl.fromTo(
                     scrollHintRef.current,
                     { opacity: 0 },
-                    { opacity: 1, duration: 0.6 },
+                    { opacity: 1, duration: prefersReducedMotion ? 0.01 : 0.35 },
                     '-=0.2'
                 );
             }
 
-            // Ken Burns — slow zoom loop
-            if (heroImageRef.current) {
+            if (heroImageRef.current && !prefersReducedMotion) {
                 gsap.fromTo(heroImageRef.current,
                     { scale: 1 },
                     {
@@ -87,7 +88,7 @@ export default function HeroSection() {
         });
 
         return () => ctx.revert();
-    }, [isPreloaderComplete]);
+    }, [prefersReducedMotion]);
 
     return (
         <section
@@ -131,7 +132,7 @@ export default function HeroSection() {
                     fontSize: 'clamp(2.8rem, 9vw, 9rem)',
                     lineHeight: 0.88,
                     letterSpacing: '-0.02em',
-                    color: 'var(--mucco-pisano)',
+                    color: '#F3EFE7',
                     textAlign: 'center',
                     overflow: 'hidden',
                     willChange: 'transform',
@@ -158,7 +159,7 @@ export default function HeroSection() {
                     fontSize: '11px',
                     letterSpacing: '0.22em',
                     textTransform: 'uppercase',
-                    color: 'var(--olive)',
+                    color: '#F3EFE7',
                     marginTop: '3rem',
                     opacity: 0,
                 }}
@@ -181,7 +182,7 @@ export default function HeroSection() {
                     opacity: 0,
                 }}
             >
-                <span className="label" style={{ color: 'var(--olive)' }}>
+                <span className="label" style={{ color: '#F3EFE7' }}>
                     {t('Home.hero.scrollHint')}
                 </span>
                 {/* Animated scroll line */}
@@ -189,7 +190,7 @@ export default function HeroSection() {
                     style={{
                         width: 1,
                         height: 40,
-                        background: 'var(--olive)',
+                        background: '#F3EFE7',
                         animation: 'scrollPulse 2s ease-in-out infinite',
                     }}
                 />

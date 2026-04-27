@@ -61,52 +61,45 @@ export const getOspitalitaData = (t: any): OspitalitaContent => ({
                 emClass: (chunks: React.ReactNode) => <em>{chunks}</em>,
             }),
             introText: t('Ospitalita.sections.stanze.introText'),
-            rooms: [
-                {
-                    id: 'avorio',
-                    name: t('Ospitalita.sections.stanze.rooms.0.name'),
-                    bgColor: '#F5F2EB',
-                    description: t('Ospitalita.sections.stanze.rooms.0.description'),
-                    photos: [
-                        { src: '/images/casa-rossa-interni.png', alt: `${t('Ospitalita.sections.stanze.rooms.0.name')} — Letto` },
-                        { src: '/images/casa-rossa-panoramic.png', alt: `${t('Ospitalita.sections.stanze.rooms.0.name')} — Vista` },
-                        { src: '/images/villa-buontalenti.png', alt: `${t('Ospitalita.sections.stanze.rooms.0.name')} — Dettaglio` },
+            rooms: (t.raw('Ospitalita.sections.stanze.rooms') as any[]).map((r: any, idx: number) => {
+                const baseColors = ['#F5F2EB', '#DDE2DB', '#EAD7D6', '#F3E2CF'];
+                const photoSets = [
+                    [
+                        { src: '/images/casa-rossa-interni.png', alt: `${r.name} — Letto` },
+                        { src: '/images/casa-rossa-panoramic.png', alt: `${r.name} — Vista` },
+                        { src: '/images/villa-buontalenti.png', alt: `${r.name} — Dettaglio` }
                     ],
-                },
-                {
-                    id: 'verde',
-                    name: t('Ospitalita.sections.stanze.rooms.1.name'),
-                    bgColor: '#DDE2DB',
-                    description: t('Ospitalita.sections.stanze.rooms.1.description'),
-                    photos: [
-                        { src: '/images/campi-grano.png', alt: `${t('Ospitalita.sections.stanze.rooms.1.name')} — Vista Colline` },
-                        { src: '/images/casa-rossa-panoramic.png', alt: `${t('Ospitalita.sections.stanze.rooms.1.name')} — Panorama` },
-                        { src: '/images/villa-buontalenti.png', alt: `${t('Ospitalita.sections.stanze.rooms.1.name')} — Esterno` },
+                    [
+                        { src: '/images/campi-grano.png', alt: `${r.name} — Vista Colline` },
+                        { src: '/images/casa-rossa-panoramic.png', alt: `${r.name} — Panorama` },
+                        { src: '/images/villa-buontalenti.png', alt: `${r.name} — Esterno` }
                     ],
-                },
-                {
-                    id: 'rosa',
-                    name: t('Ospitalita.sections.stanze.rooms.2.name'),
-                    bgColor: '#EAD7D6',
-                    description: t('Ospitalita.sections.stanze.rooms.2.description'),
-                    photos: [
-                        { src: '/images/casa-rossa-interni.png', alt: `${t('Ospitalita.sections.stanze.rooms.2.name')} — Interni` },
-                        { src: '/images/cucina-nomade.png', alt: `${t('Ospitalita.sections.stanze.rooms.2.name')} — Angolo` },
-                        { src: '/images/olio-extravergine.png', alt: `${t('Ospitalita.sections.stanze.rooms.2.name')} — Dettaglio` },
+                    [
+                        { src: '/images/casa-rossa-interni.png', alt: `${r.name} — Interni` },
+                        { src: '/images/cucina-nomade.png', alt: `${r.name} — Angolo` },
+                        { src: '/images/olio-extravergine.png', alt: `${r.name} — Dettaglio` }
                     ],
-                },
-                {
-                    id: 'albicocca',
-                    name: t('Ospitalita.sections.stanze.rooms.3.name'),
-                    bgColor: '#F3E2CF',
-                    description: t('Ospitalita.sections.stanze.rooms.3.description'),
-                    photos: [
-                        { src: '/images/hero-drone.png', alt: `${t('Ospitalita.sections.stanze.rooms.3.name')} — Vista Drone` },
-                        { src: '/images/casa-rossa-panoramic.png', alt: `${t('Ospitalita.sections.stanze.rooms.3.name')} — Panorama` },
-                        { src: '/images/campi-grano.png', alt: `${t('Ospitalita.sections.stanze.rooms.3.name')} — Paesaggio` },
-                    ],
-                },
-            ],
+                    [
+                        { src: '/images/hero-drone.png', alt: `${r.name} — Vista Drone` },
+                        { src: '/images/casa-rossa-panoramic.png', alt: `${r.name} — Panorama` },
+                        { src: '/images/campi-grano.png', alt: `${r.name} — Paesaggio` }
+                    ]
+                ];
+                return {
+                    id: ['avorio', 'verde', 'rosa', 'albicocca'][idx],
+                    name: r.name,
+                    bgColor: baseColors[idx],
+                    description: r.description,
+                    longDescription: r.longDescription,
+                    bedType: r.bedType,
+                    surface: r.surface,
+                    floor: r.floor,
+                    view: r.view,
+                    highlights: r.highlights,
+                    amenities: r.amenities,
+                    photos: photoSets[idx],
+                };
+            }),
         },
         osservatorio: {
             label: t('Ospitalita.sections.osservatorio.label'),

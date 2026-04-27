@@ -6,6 +6,14 @@ export type { OlioContent as OlioData };
 export const getOlioData = (t: any): OlioContent => ({
     closeUrl: '/#02-prodotti',
     closeLabel: t('UI.closeLabel'),
+    bottles: (t.raw('Olio.bottles') as any[]).map((bottle) => ({
+        ...bottle,
+        image: {
+            src: bottle.image?.src || '',
+            alt: bottle.image?.alt || bottle.name,
+        },
+    })),
+    order: t.raw('Olio.order'),
     acts: {
         act1: {
             label: t('Olio.acts.act1.label'),
@@ -43,13 +51,16 @@ export const getOlioData = (t: any): OlioContent => ({
         act4: {
             label: t('Olio.acts.act4.label'),
             quoteHtml: t.rich('Olio.acts.act4.quoteHtml', {
-                br: () => <br />,
-                brResp: () => <br className="hidden md:block" />,
-                emClass1: (chunks: React.ReactNode) => <em className="text-[var(--argilla-ferrosa)]">{chunks}</em>,
-                emClass2: (chunks: React.ReactNode) => <em className="text-[var(--sabbia-limonitica, #C8B47A)]">{chunks}</em>,
+                br: () => <br className="hidden md:block" />,
+                emClass1: (chunks: React.ReactNode) => <em className="text-[#4A2E1B]">{chunks}</em>,
+                emClass2: (chunks: React.ReactNode) => <em className="text-[#6B7A65]">{chunks}</em>,
             }),
+            description: t('Olio.acts.act4.description'),
+            formatsTitle: t('Olio.acts.act4.formatsTitle'),
+            formats: t.raw('Olio.acts.act4.formats') as { name: string; size: string; idealFor: string }[],
             images: {
-                primary: { src: '/images/olio-extravergine-16-9.png', alt: t('Olio.acts.act4.images.primary.alt') },
+                primary: { src: '/images/olio-extravergine.png', alt: t('Olio.acts.act4.images.primary.alt') },
+                gallery: t.raw('Olio.acts.act4.images.gallery') as { src: string; alt: string }[],
             },
         },
         act5: {

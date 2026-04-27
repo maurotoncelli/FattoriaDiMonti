@@ -7,16 +7,20 @@ import WinterMemoryParticles from './WinterMemoryParticles';
 import WebGLImageEngine from './WebGLImageEngine';
 import { useAppStore } from '@/store/useAppStore';
 import { usePathname } from '@/i18n/routing';
+import { useDevicePerformance, useReducedMotion } from '@/hooks/usePerformance';
 
 export default function CanvasZ0() {
     const easterEggTriggered = useAppStore((s) => s.easterEggTriggered);
     const canvasEnabled = useAppStore((s) => s.canvasEnabled);
     const pathname = usePathname();
+    const performanceTier = useDevicePerformance();
+    const prefersReducedMotion = useReducedMotion();
 
-    const showSky = pathname === '/' || pathname === '/olio' || pathname === '/la-filiera';
+    const showSky = pathname === '/' || pathname === '/storia';
+    const shouldUseCanvas = canvasEnabled && performanceTier === 'high' && !prefersReducedMotion;
 
     // Canvas disattivato: sfondo CSS statico come fallback leggero
-    if (!canvasEnabled) {
+    if (!shouldUseCanvas) {
         return (
             <div
                 aria-hidden="true"

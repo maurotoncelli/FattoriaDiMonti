@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -17,8 +17,11 @@ if (typeof window !== 'undefined') {
 export default function OlioPage() {
     const containerRef = useRef<HTMLElement>(null);
     const setOilModalOpen = useAppStore((state) => state.setOilModalOpen);
+    const setConciergeOpen = useAppStore((state) => state.setConciergeOpen);
+    const setOilSheetOpen = useAppStore((state) => state.setOilSheetOpen);
     const t = useTranslations();
     const olioData = getOlioData(t);
+    const [selectedFormatSize, setSelectedFormatSize] = useState(olioData.acts.act4.formats[0]?.size || '500 ml');
 
     useEffect(() => {
         let ctx = gsap.context(() => {
@@ -90,6 +93,24 @@ export default function OlioPage() {
                 }
             );
 
+            // Act 4: Masonry Reveal
+            gsap.utils.toArray('.act-4-masonry-item').forEach((el: any) => {
+                gsap.fromTo(el,
+                    { opacity: 0, y: 60, scale: 0.95 },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        scale: 1,
+                        duration: 1.2,
+                        ease: "power3.out",
+                        scrollTrigger: {
+                            trigger: el,
+                            start: "top 85%",
+                        }
+                    }
+                );
+            });
+
             // Act 5: Finale Reveal
             gsap.fromTo(".act-5-reveal",
                 { y: 50, opacity: 0 },
@@ -143,7 +164,7 @@ export default function OlioPage() {
             </div>
 
             {/* ACT 1: L'ATTESA (Dark & Tension) */}
-            <section id="act-1-attesa" className="relative h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-[var(--terra-nera)] text-[#ECE8DF]">
+            <section id="act-1-attesa" className="relative min-h-[135vh] w-full flex flex-col justify-center items-center overflow-hidden bg-[var(--terra-nera)] text-[#ECE8DF] py-[14vh]">
                 {/* Standard GSAP Parallax Image */}
                 <div className="absolute inset-0 z-0 opacity-40 mix-blend-overlay overflow-hidden">
                     <Image 
@@ -162,38 +183,98 @@ export default function OlioPage() {
                     <h1 className="font-playfair text-6xl md:text-8xl lg:text-[9rem] leading-[0.85] act-1-text mb-8">
                         {olioData.acts.act1.titleHtml}
                     </h1>
-                    <p className="font-inter text-xl lg:text-3xl leading-[1.6] act-1-text opacity-90 font-light max-w-3xl mx-auto">
+                    <p className="font-inter text-xl lg:text-3xl leading-[1.6] act-1-text font-light max-w-3xl mx-auto text-white drop-shadow-[0_2px_24px_rgba(0,0,0,0.75)]">
                         {olioData.acts.act1.introText}
                     </p>
+                </div>
+
+                <div className="relative z-10 mt-16 w-full px-[5vw]">
+                    <div className="mx-auto grid max-w-[1500px] grid-cols-1 gap-10 md:grid-cols-3 lg:gap-14">
+                        {olioData.bottles.map((bottle) => (
+                                <button
+                                    key={bottle.id}
+                                    type="button"
+                                    onClick={() => setOilSheetOpen(true, bottle.id)}
+                                    className="group relative flex min-h-[620px] flex-col items-center justify-end px-2 pb-6 pt-4 text-center outline-none transition-all duration-500 hover:-translate-y-3 focus-visible:-translate-y-3"
+                                >
+                                    <div
+                                        className="absolute left-1/2 top-16 h-96 w-96 -translate-x-1/2 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100 group-focus-visible:opacity-100"
+                                        style={{ background: bottle.glowColor }}
+                                    />
+
+                                    <div className="relative mb-8 flex h-[430px] w-full items-end justify-center lg:h-[480px]">
+                                        <div className="absolute bottom-0 h-6 w-56 rounded-full bg-black/55 blur-xl transition-all duration-500 group-hover:w-72 group-hover:bg-black/80" />
+                                        <div className="relative h-[410px] w-[156px] origin-bottom transition-transform duration-500 group-hover:scale-110 group-focus-visible:scale-110 lg:h-[460px] lg:w-[176px]">
+                                            <div className="absolute left-1/2 top-0 h-20 w-12 -translate-x-1/2 rounded-t-[1rem] bg-[#15130f] ring-1 ring-white/10 lg:h-24 lg:w-14" />
+                                            <div className="absolute left-1/2 top-16 h-11 w-20 -translate-x-1/2 rounded-t-full bg-[#1d1a13] ring-1 ring-white/10 lg:top-20 lg:h-12 lg:w-24" />
+                                            <div className="absolute inset-x-0 bottom-0 h-[334px] rounded-[3rem_3rem_1.3rem_1.3rem] bg-gradient-to-br from-[#16130d] via-[#2b2618] to-[#090806] shadow-2xl ring-1 ring-white/10 lg:h-[372px]" />
+                                            <div className="absolute left-7 top-[8.5rem] h-56 w-5 rounded-full bg-white/20 blur-[2px] lg:top-40 lg:h-64" />
+                                            <div
+                                                className="absolute left-1/2 top-44 flex h-36 w-36 -translate-x-1/2 flex-col items-center justify-center rounded-[1.35rem] border border-white/20 px-4 text-center shadow-lg transition-all duration-500 group-hover:shadow-[0_0_45px_rgba(246,211,101,0.45)] lg:top-52 lg:h-40 lg:w-40 backdrop-blur-sm"
+                                                style={{ background: bottle.labelColor }}
+                                            >
+                                                <span className="font-playfair text-3xl italic leading-none text-[#F3EFE7] lg:text-4xl">Monti</span>
+                                                <span className="mt-3 font-inter text-[8px] uppercase tracking-[0.24em] text-[#F3EFE7]/90">
+                                                    {bottle.subtitle}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <span className="mb-3 font-inter text-[10px] uppercase tracking-[0.24em] text-white/40 transition-colors duration-500 group-hover:text-[#F6D365]/80">
+                                        {bottle.subtitle}
+                                    </span>
+                                    <h2 className="font-playfair text-5xl italic leading-none text-white transition-all duration-500 group-hover:scale-105 group-hover:text-[#F6D365] group-focus-visible:text-[#F6D365] lg:text-6xl">
+                                        {bottle.name}
+                                    </h2>
+                                    <p className="mt-5 min-h-[84px] max-w-md text-base leading-7 text-white/78 transition-all duration-500 group-hover:text-white group-focus-visible:text-white">
+                                        {bottle.description}
+                                    </p>
+                                    <div className="mt-5 flex flex-wrap justify-center gap-2">
+                                        {bottle.tastingNotes.map((note) => (
+                                            <span
+                                                key={note}
+                                                className="rounded-full border border-white/12 px-3 py-1 font-inter text-[9px] uppercase tracking-[0.16em] text-white/48 transition-colors duration-500 group-hover:border-[#F6D365]/35 group-hover:text-[#F6D365]"
+                                            >
+                                                {note}
+                                            </span>
+                                        ))}
+                                    </div>
+                                    <span className="mt-7 font-inter text-[10px] uppercase tracking-[0.24em] text-white/58 transition-colors duration-500 group-hover:text-[#F6D365]">
+                                        {olioData.order.openSheetLabel}
+                                    </span>
+                                </button>
+                            ))}
+                    </div>
                 </div>
             </section>
 
             {/* ACT 2: IL CULTO (Organic Green, Terroir) */}
-            <section id="act-2-culto" className="relative min-h-screen px-[8vw] py-[20vh] bg-[var(--olive)] text-[#ECE8DF] flex flex-col md:flex-row items-center gap-16">
-                <div className="w-full md:w-1/2 act-2-reveal order-2 md:order-1">
-                    <div className="w-full aspect-[3/4] rounded-sm relative overflow-hidden">
+            <section id="act-2-culto" className="relative px-[6vw] py-[12vh] bg-[var(--olive)] text-[#ECE8DF] flex flex-col md:flex-row items-center gap-12 lg:gap-20">
+                <div className="w-full md:w-5/12 act-2-reveal order-2 md:order-1 relative">
+                    <div className="w-full aspect-[4/5] relative overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
                         <Image 
                             src={olioData.acts.act2.images.primary.src}
                             alt={olioData.acts.act2.images.primary.alt}
                             fill 
-                            className="object-cover opacity-80 parallax-img scale-[1.3]"
-                            sizes="50vw"
+                            className="object-cover opacity-90 parallax-img scale-[1.3]"
+                            sizes="(max-width: 768px) 100vw, 40vw"
                         />
-                        <div className="absolute inset-0 bg-black/10 z-10 pointer-events-none" />
-                        <div className="absolute inset-0 flex items-center justify-center font-playfair italic text-[#ECE8DF]/40 text-2xl z-20 pointer-events-none">
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent z-10 pointer-events-none" />
+                        <div className="absolute inset-0 flex items-end justify-center pb-8 font-playfair italic text-[#ECE8DF]/80 text-xl md:text-2xl z-20 pointer-events-none">
                             {olioData.acts.act2.images.primary.overlayText}
                         </div>
                     </div>
                 </div>
 
-                <div className="w-full md:w-1/2 flex flex-col justify-center order-1 md:order-2">
-                    <span className="font-inter text-xs tracking-[0.3em] uppercase mb-8 block act-2-reveal opacity-70">
+                <div className="w-full md:w-7/12 flex flex-col justify-center order-1 md:order-2 max-w-2xl">
+                    <span className="font-inter text-[10px] tracking-[0.3em] uppercase mb-6 block act-2-reveal opacity-70 text-[#B4B886]">
                         {olioData.acts.act2.label}
                     </span>
-                    <h2 className="font-playfair text-5xl md:text-7xl leading-[1.1] mb-12 act-2-reveal">
+                    <h2 className="font-playfair text-4xl md:text-5xl lg:text-6xl leading-[1.1] mb-8 act-2-reveal">
                         {olioData.acts.act2.titleHtml}
                     </h2>
-                    <div className="font-inter text-lg leading-[1.9] space-y-6 opacity-90 act-2-reveal font-light">
+                    <div className="font-inter text-base lg:text-lg leading-[1.8] space-y-5 opacity-80 act-2-reveal font-light">
                         {olioData.acts.act2.paragraphs.map((p, i) => (
                             <p key={i}>{p}</p>
                         ))}
@@ -201,54 +282,89 @@ export default function OlioPage() {
                 </div>
             </section>
 
-            {/* ACT 3: L'ALCHIMIA FREDDA (Layout a colonna centrale semplificata) */}
-            <section id="act-3-alchimia" className="relative px-[8vw] py-[25vh] bg-transparent text-[#ECE8DF] overflow-hidden">
-                
-                <div className="max-w-4xl mx-auto text-center relative z-20 mb-[15vh]">
-                    <span className="font-inter text-xs tracking-[0.3em] uppercase mb-8 block opacity-60 fade-up-text">
-                        {olioData.acts.act3.label}
-                    </span>
-                    <h2 className="font-playfair text-5xl md:text-6xl lg:text-7xl leading-[1.1] fade-up-text">
-                        {olioData.acts.act3.titleHtml}
-                    </h2>
-                </div>
-
-                <div className="flex flex-col gap-y-[12vh] max-w-3xl mx-auto relative z-20 pb-[10vh]">
-                    {olioData.acts.act3.timelineSteps.map((step, index) => (
-                        <div key={index} className="flex flex-col items-center text-center fade-up-text">
-                            <div className="font-inter text-[10px] tracking-[0.25em] text-[#D4A361] uppercase mb-6 opacity-80">
-                                {t('UI.stepPrefix')} 0{index + 1}
-                            </div>
-                            <h3 className="font-playfair text-3xl md:text-5xl mb-6 italic text-white">
-                                {step.title}
-                            </h3>
-                            <p className="font-inter text-base md:text-lg leading-[1.9] opacity-70 font-light max-w-2xl">
-                                {step.text}
-                            </p>
+            {/* ACT 3: L'ALCHIMIA FREDDA (Compact Grid) */}
+            <section id="act-3-alchimia" className="relative px-[6vw] py-[12vh] md:py-[15vh] bg-[#ECE8DF] text-[#15130f]">
+                <div className="mx-auto flex flex-col max-w-[1400px]">
+                    
+                    <div className="mb-16 md:mb-20 flex flex-col lg:flex-row items-baseline justify-between gap-8 border-b border-[#15130f]/10 pb-8 fade-up-text">
+                        <div className="max-w-3xl">
+                            <span className="font-inter text-[10px] tracking-[0.3em] uppercase mb-4 block opacity-50 font-semibold">
+                                {olioData.acts.act3.label}
+                            </span>
+                            <h2 className="font-playfair text-4xl md:text-5xl lg:text-6xl leading-[1.1]">
+                                {olioData.acts.act3.titleHtml}
+                            </h2>
                         </div>
-                    ))}
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-12 fade-up-text">
+                        {olioData.acts.act3.timelineSteps.map((step, index) => (
+                            <div key={index} className="group flex flex-col relative h-full">
+                                <div className="font-inter text-[9px] tracking-[0.25em] text-[#B4B886] font-semibold mb-4 border-b border-[#15130f]/5 pb-4 flex justify-between items-end">
+                                    <span>{t('UI.stepPrefix')}</span>
+                                    <span className="text-xl font-playfair italic text-[#15130f]/20 group-hover:text-[#B4B886] transition-colors">0{index + 1}</span>
+                                </div>
+                                <h3 className="font-playfair text-2xl mb-3 text-[#15130f]">
+                                    {step.title.replace(/^\d+\.\s*/, '')}
+                                </h3>
+                                <p className="font-inter text-sm leading-[1.7] text-[#15130f]/70 font-light mt-auto pt-2">
+                                    {step.text}
+                                </p>
+                            </div>
+                        ))}
+                    </div>
+
                 </div>
             </section>
 
-            {/* ACT 4: LA RIVELAZIONE (Bright & Tasting) */}
-            <section id="act-4-rivelazione" className="relative min-h-[100vh] px-[8vw] py-[25vh] bg-[#F3EFE7] text-[var(--mucco-pisano)] flex flex-col justify-center items-center text-center">
-                <span className="font-inter text-xs tracking-[0.3em] uppercase mb-12 block act-4-sensory text-[var(--olive)]">
-                    {olioData.acts.act4.label}
-                </span>
-                
-                <p className="act-4-sensory font-playfair text-4xl md:text-5xl lg:text-7xl leading-[1.3] max-w-6xl mx-auto text-[var(--mucco-pisano)] mb-[10vh]">
-                    {olioData.acts.act4.quoteHtml}
-                </p>
+            {/* ACT 4: LA RIVELAZIONE E I FORMATI */}
+            <section id="act-4-rivelazione" className="relative bg-[#F3EFE7] text-[#4A2E1B] px-[8vw] py-[20vh] min-h-screen">
+                <div className="max-w-7xl mx-auto flex flex-col gap-16 lg:gap-24">
+                    
+                    {/* Top Section: Text and Primary Banner */}
+                    <div className="w-full flex flex-col lg:flex-row gap-16 lg:gap-24">
+                        {/* Left Sticky Column: The sensory quote */}
+                        <div className="lg:w-5/12 lg:sticky lg:top-[20vh] h-fit flex flex-col items-start text-left z-10">
+                            <span className="font-inter text-[10px] tracking-[0.3em] uppercase mb-10 block text-[#6B7A65] font-semibold">
+                                {olioData.acts.act4.label}
+                            </span>
+                            <p className="font-playfair text-4xl md:text-5xl xl:text-[4rem] leading-[1.1] mb-10 text-[#4A2E1B]">
+                                {olioData.acts.act4.quoteHtml}
+                            </p>
+                            <p className="font-inter text-base md:text-lg leading-[1.8] text-[#4A2E1B]/70 font-light max-w-md">
+                                {olioData.acts.act4.description}
+                            </p>
+                        </div>
 
-                 {/* Single Elegant Panoramic Image */}
-                <div className="act-4-sensory w-[90vw] md:w-[70vw] lg:w-[60vw] aspect-[16/9] rounded-sm overflow-hidden relative shadow-2xl mx-auto mt-12 md:mt-24 mb-16">
-                    <Image 
-                        src={olioData.acts.act4.images.primary.src}
-                        alt={olioData.acts.act4.images.primary.alt}
-                        fill 
-                        className="object-cover parallax-img scale-[1.3]"
-                        sizes="(max-width: 768px) 90vw, (max-width: 1024px) 70vw, 60vw"
-                    />
+                        {/* Right Scrollable Column: Primary Image */}
+                        <div className="lg:w-7/12 flex flex-col pt-[5vh] lg:pt-0">
+                            <div className="act-4-masonry-item opacity-0 relative w-full aspect-[4/5] md:aspect-[3/4] overflow-hidden shadow-[0_30px_60px_rgba(74,46,27,0.15)]">
+                                <Image 
+                                    src={olioData.acts.act4.images.primary.src}
+                                    alt={olioData.acts.act4.images.primary.alt}
+                                    fill 
+                                    className="object-cover parallax-img scale-[1.3]"
+                                    sizes="(max-width: 1024px) 90vw, 50vw"
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Bottom Section: Full-width Masonry Gallery */}
+                    <div className="w-full grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 mt-10 md:mt-2 lg:-mt-24 pb-10 md:pb-20 relative z-20">
+                        <div className="act-4-masonry-item opacity-0 relative w-full aspect-[3/4] overflow-hidden shadow-[0_20px_40px_rgba(74,46,27,0.1)] lg:mt-32">
+                            <Image src={olioData.acts.act4.images.gallery[0].src} alt={olioData.acts.act4.images.gallery[0].alt} fill className="object-cover parallax-img scale-[1.2]" sizes="(max-width: 1024px) 45vw, 25vw" />
+                        </div>
+                        <div className="act-4-masonry-item opacity-0 relative w-full aspect-[4/5] overflow-hidden shadow-[0_20px_40px_rgba(74,46,27,0.1)] mt-8 md:mt-16">
+                            <Image src={olioData.acts.act4.images.gallery[1].src} alt={olioData.acts.act4.images.gallery[1].alt} fill className="object-cover parallax-img scale-[1.2]" sizes="(max-width: 1024px) 45vw, 25vw" />
+                        </div>
+                        <div className="act-4-masonry-item opacity-0 relative w-full aspect-[3/4] overflow-hidden shadow-[0_20px_40px_rgba(74,46,27,0.1)] mt-12 md:mt-24 lg:mt-32">
+                            <Image src={olioData.acts.act4.images.gallery[2].src} alt={olioData.acts.act4.images.gallery[2].alt} fill className="object-cover parallax-img scale-[1.2]" sizes="(max-width: 1024px) 45vw, 25vw" />
+                        </div>
+                        <div className="act-4-masonry-item opacity-0 relative w-full aspect-[4/5] overflow-hidden shadow-[0_20px_40px_rgba(74,46,27,0.1)] mt-4 md:mt-8">
+                            <Image src={olioData.acts.act4.images.gallery[3].src} alt={olioData.acts.act4.images.gallery[3].alt} fill className="object-cover parallax-img scale-[1.2]" sizes="(max-width: 1024px) 45vw, 25vw" />
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -292,7 +408,7 @@ export default function OlioPage() {
                             {olioData.acts.act5.cta.titleHtml}
                         </h2>
                         <button 
-                            onClick={() => setOilModalOpen(true)}
+                            onClick={() => setConciergeOpen(true)}
                             className="group relative inline-flex items-center justify-center overflow-hidden rounded-full border border-white/30 bg-white/10 backdrop-blur-md px-12 py-6 transition-transform hover:scale-[1.03]"
                         >
                             <span className="absolute inset-0 bg-white translate-y-[101%] transition-transform duration-500 ease-in-out group-hover:translate-y-0" />

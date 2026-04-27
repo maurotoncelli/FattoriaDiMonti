@@ -4,61 +4,66 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { useAppStore } from '@/store/useAppStore';
 import { useTranslations } from 'next-intl';
+import { useReducedMotion } from '@/hooks/usePerformance';
 
 export default function Preloader() {
     const overlayRef = useRef<HTMLDivElement>(null);
-    const nameRef = useRef<HTMLHeadingElement>(null);
+    const nameRef = useRef<HTMLParagraphElement>(null);
     const coordRef = useRef<HTMLSpanElement>(null);
     const lineRef = useRef<HTMLDivElement>(null);
     const locationRef = useRef<HTMLSpanElement>(null);
     const setPreloaderComplete = useAppStore((s) => s.setPreloaderComplete);
     const t = useTranslations('UI.preloader');
+    const prefersReducedMotion = useReducedMotion();
 
     useEffect(() => {
         document.body.style.overflow = 'hidden';
 
+        if (prefersReducedMotion) {
+            gsap.set(overlayRef.current, { autoAlpha: 0 });
+            document.body.style.overflow = '';
+            setPreloaderComplete(true);
+            return;
+        }
+
         const tl = gsap.timeline();
 
-        // 1. Fade-in del contenuto centrale con delicatezza
         tl.fromTo(nameRef.current,
             { opacity: 0, y: 15 },
-            { opacity: 1, y: 0, duration: 1.2, ease: 'power2.out', delay: 0.3 }
+            { opacity: 1, y: 0, duration: 0.55, ease: 'power2.out', delay: 0.1 }
         );
 
         tl.fromTo(lineRef.current,
             { scaleX: 0 },
-            { scaleX: 1, duration: 0.8, ease: 'power2.inOut' },
-            '-=0.5'
+            { scaleX: 1, duration: 0.35, ease: 'power2.inOut' },
+            '-=0.25'
         );
 
         tl.fromTo(coordRef.current,
             { opacity: 0 },
-            { opacity: 0.4, duration: 0.8, ease: 'power2.out' },
-            '-=0.4'
+            { opacity: 0.4, duration: 0.3, ease: 'power2.out' },
+            '-=0.2'
         );
 
         tl.fromTo(locationRef.current,
             { opacity: 0 },
-            { opacity: 0.35, duration: 0.6, ease: 'power2.out' },
-            '-=0.3'
+            { opacity: 0.35, duration: 0.25, ease: 'power2.out' },
+            '-=0.15'
         );
 
-        // 2. Pausa per lasciar respirare il messaggio
-        tl.to({}, { duration: 1.2 });
+        tl.to({}, { duration: 0.25 });
 
-        // 3. Fade-out del contenuto
         tl.to([nameRef.current, lineRef.current, coordRef.current, locationRef.current], {
             opacity: 0,
             y: -10,
-            duration: 0.5,
+            duration: 0.25,
             stagger: 0.06,
             ease: 'power2.in',
         });
 
-        // 4. Sipario si alza
         tl.to(overlayRef.current, {
             yPercent: -100,
-            duration: 1.2,
+            duration: 0.65,
             ease: 'power4.inOut',
             onComplete: () => {
                 document.body.style.overflow = '';
@@ -66,7 +71,11 @@ export default function Preloader() {
             },
         }, '-=0.1');
 
-    }, [setPreloaderComplete]);
+        return () => {
+            tl.kill();
+            document.body.style.overflow = '';
+        };
+    }, [prefersReducedMotion, setPreloaderComplete]);
 
     return (
         <div

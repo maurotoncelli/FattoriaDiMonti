@@ -299,6 +299,7 @@ export default function OspitalitaPage() {
     const galleryTrackRef = useRef<HTMLDivElement>(null);
     const setConciergeOpen = useAppStore((state) => state.setConciergeOpen);
     const setLightboxOpen = useAppStore((state) => state.setLightboxOpen);
+    const setRoomSheetOpen = useAppStore((state) => state.setRoomSheetOpen);
     const t = useTranslations();
     const ospitalitaData = getOspitalitaData(t);
     const galleryItems = ospitalitaData.sections.galleria.items;
@@ -648,10 +649,10 @@ export default function OspitalitaPage() {
                         <div key={room.id} className="flex flex-col group fade-up-card opacity-0">
                             {/* Clickable cover image */}
                             <button
-                                className="relative rounded-sm overflow-hidden w-full mb-6 text-left"
-                                style={{ aspectRatio: '4/3', cursor: 'none', border: 'none', padding: 0, background: room.bgColor }}
-                                onClick={() => openRoomLightbox(roomIndex)}
-                                aria-label={`Apri galleria ${room.name}`}
+                                className="relative rounded-sm overflow-hidden w-full mb-6 text-left cursor-pointer"
+                                style={{ aspectRatio: '4/3', border: 'none', padding: 0, background: room.bgColor }}
+                                onClick={() => setRoomSheetOpen(true, room.id)}
+                                aria-label={`Apri dettagli ${room.name}`}
                             >
                                 <Image
                                     src={room.photos[0].src}

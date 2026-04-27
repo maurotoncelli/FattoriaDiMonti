@@ -26,6 +26,21 @@ const ConciergeForm = dynamic(
     { ssr: false }
 );
 
+const JerkyProductSheet = dynamic(
+    () => import('@/components/overlays/JerkyProductSheet'),
+    { ssr: false }
+);
+
+const OilBottleSheet = dynamic(
+    () => import('@/components/overlays/OilBottleSheet'),
+    { ssr: false }
+);
+
+const RoomSheet = dynamic(
+    () => import('@/components/overlays/RoomSheet'),
+    { ssr: false }
+);
+
 const MainMenuOverlay = dynamic(
     () => import('@/components/overlays/MainMenuOverlay'),
     { ssr: false }
@@ -38,7 +53,20 @@ const GlobalTransitionOverlay = dynamic(
 
 const Preloader = dynamic(
     () => import('@/components/ui/Preloader'),
-    { ssr: false }
+    {
+        ssr: false,
+        loading: () => (
+            <div
+                aria-hidden="true"
+                style={{
+                    position: 'fixed',
+                    inset: 0,
+                    zIndex: 70,
+                    backgroundColor: '#1A1714',
+                }}
+            />
+        ),
+    }
 );
 
 export default function AppWrapper({ children }: { children: React.ReactNode }) {
@@ -64,21 +92,37 @@ export default function AppWrapper({ children }: { children: React.ReactNode }) 
             document.documentElement.style.setProperty('--sky-text-color', `rgb(${r}, ${g}, ${b})`);
         };
 
-        // Attendi che Lenis sia disponibile (dynamic import)
         let cleanup: (() => void) | undefined;
-        const interval = setInterval(() => {
+
+        const attachLenis = (lenis: any) => {
+            cleanup?.();
+            updateSkyTextColor({ scroll: scrollStore.y });
+            lenis.on('scroll', updateSkyTextColor);
+            cleanup = () => lenis.off('scroll', updateSkyTextColor);
+        };
+
+        const existingLenis = (window as any).__lenis;
+        if (existingLenis) {
+            attachLenis(existingLenis);
+        }
+
+        const handleLenisReady = (event: Event) => {
+            const lenis = (event as CustomEvent).detail || (window as any).__lenis;
+            if (lenis) attachLenis(lenis);
+        };
+
+        window.addEventListener('fdm:lenis-ready', handleLenisReady);
+
+        const timeout = window.setTimeout(() => {
             const lenis = (window as any).__lenis;
             if (lenis) {
-                // Inizializza con il valore corrente di scrollStore
-                updateSkyTextColor({ scroll: scrollStore.y });
-                lenis.on('scroll', updateSkyTextColor);
-                cleanup = () => lenis.off('scroll', updateSkyTextColor);
-                clearInterval(interval);
+                attachLenis(lenis);
             }
-        }, 100);
+        }, 250);
 
         return () => {
-            clearInterval(interval);
+            window.removeEventListener('fdm:lenis-ready', handleLenisReady);
+            clearTimeout(timeout);
             cleanup?.();
         };
     }, []);
@@ -86,6 +130,9 @@ export default function AppWrapper({ children }: { children: React.ReactNode }) 
     const isOilModalOpen = useAppStore((s) => s.isOilModalOpen);
     const isConciergeOpen = useAppStore((s) => s.isConciergeOpen);
     const isMenuOpen = useAppStore((s) => s.isMenuOpen);
+    const isJerkySheetOpen = useAppStore((s) => s.isJerkySheetOpen);
+    const isOilSheetOpen = useAppStore((s) => s.isOilSheetOpen);
+    const isRoomSheetOpen = useAppStore((s) => s.isRoomSheetOpen);
 
     const isPreloaderComplete = useAppStore((s) => s.isPreloaderComplete);
     const setPreloaderComplete = useAppStore((s) => s.setPreloaderComplete);
@@ -116,6 +163,9 @@ export default function AppWrapper({ children }: { children: React.ReactNode }) 
 
             {/* Z-Axis Overlays */}
             {isOilModalOpen && <OilExtractionModal />}
+            {isJerkySheetOpen && <JerkyProductSheet />}
+            {isOilSheetOpen && <OilBottleSheet />}
+            {isRoomSheetOpen && <RoomSheet />}
             {isConciergeOpen && <ConciergeForm />}
             {isMenuOpen && <MainMenuOverlay />}
             

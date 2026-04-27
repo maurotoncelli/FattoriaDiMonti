@@ -14,7 +14,7 @@
       },
       "olio": {
         "title": "Olio Extravergine di Oliva Biologico",
-        "description": "Il nostro olio extravergine biologico prodotto sulle colline di Volterra. Varietà Razzo, Leccino e Moraiolo, raccolte a mano e frante a freddo entro 24h."
+        "description": "Il nostro olio extravergine biologico prodotto sulle colline di Volterra. Varietà Frantoio, Leccino e Moraiolo, raccolte a mano e frante a freddo entro 24h."
       },
       "storia": {
         "title": "La Storia della Fattoria",
@@ -68,7 +68,7 @@
     },
     "sectionLabels": {
       "hero": "00 — L'Ingresso",
-      "terroir": "01 — Storia & Terroir",
+      "terroir": "01 — Il Terroir",
       "products": "02 — La Materia Viva",
       "hospitality": "03 — L'Ospitalità",
       "footer": "04 — L'Orizzonte"
@@ -85,7 +85,11 @@
   },
   "Home": {
     "hero": {
-      "titleWords": ["FATTORIA", "DI", "MONTI"],
+      "titleWords": [
+        "FATTORIA",
+        "DI",
+        "MONTI"
+      ],
       "subtitle": "Nel centro della Toscana, in cima ad una collina.",
       "scrollHint": "Scopri"
     },
@@ -112,30 +116,51 @@
           "title": "Le Onde",
           "titleItalic": "del Grano",
           "body": "Le nostre colline sono nate per coltivare frumento, farro, avena e orzo. Con la brezza pomeridiana di aprile e maggio si ammirano le onde del mare di grano verde.<br></br><br></br>Pratichiamo la rotazione: cereali il primo anno, poi il favino da foraggio, poi tre anni di prato per il fieno («erba medica» o «sulla»).",
-          "cta": { "label": "Scopri la Filiera", "href": "/la-filiera" }
+          "cta": {
+            "label": "Scopri la Filiera",
+            "href": "/la-filiera"
+          }
         },
         "slide-mucco-pisano": {
-          "label": "02.2 — Il Mucco Pisano",
+          "label": "02.1 — Il Mucco Pisano",
           "title": "Forza",
           "titleItalic": "allo Stato Brado",
           "body": "Alleviamo il Mucco Pisano all'aperto, rispettando i ritmi lenti della natura. Un animale imponente dal manto color castoro che rappresenta l'espressione più autentica del nostro territorio.<br></br><br></br>Metà della tenuta è pascolo, l'altra metà produce i cereali e il favino per la loro alimentazione naturale, garantendo carni di assoluta eccellenza, tenere e dal sapore primordiale.",
-          "cta": { "label": "Scopri il Mucco Pisano", "href": "/mucco-pisano" }
+          "cta": {
+            "label": "Scopri il Mucco Pisano",
+            "href": "/mucco-pisano"
+          }
         },
         "slide-cucina-nomade": {
-          "label": "02.3 — La Cucina Nomade",
+          "label": "02.2 — La Cucina Nomade",
           "title": "Boutique",
           "titleItalic": "Itinerante",
           "body": "La purezza del Mucco Pisano, oltre i confini della tenuta. Una Cucina Nomade per portare l'essenza della nostra terra ad eventi privati, festival selezionati e cerimonie esclusive.<br></br><br></br>Dal taglio fresco lavorato al momento ai nostri <emClass>Essiccati Artigianali Premium</emClass>: una reinterpretazione gourmet del territorio toscano.",
-          "extra": ["Tagli pregiati a km zero", "Essiccati artigianali (Premium Jerky)", "Catering esclusivo per eventi privati"],
-          "cta": { "label": "Richiedi la Cucina Nomade", "action": "concierge", "actionTarget": "cucina-nomade" }
+          "extra": [
+            "Tagli pregiati a km zero",
+            "Essiccati artigianali (Premium Jerky)",
+            "Catering esclusivo per eventi privati"
+          ],
+          "cta": {
+            "label": "Richiedi la Cucina Nomade",
+            "action": "concierge",
+            "actionTarget": "cucina-nomade"
+          }
         },
         "slide-olio": {
-          "label": "02.5 — L'Oro Liquido",
+          "label": "02.3 — L'Oro Liquido",
           "title": "Olio",
           "titleItalic": "Extravergine",
-          "body": "Miscela di Razzo, Leccino e Moraiolo — varietà toscane autoctone. Colore verde brillante, aroma fruttato, note di carciofo e mandorle, finale pepato. Spremitura a freddo entro poche ore dalla raccolta.",
-          "extra": ["2022 Flos Olei · Top 100 Migliori Oli al Mondo", "2022 NYIOOC · Medaglia d'Oro", "2022 Premio Grande Gusto · 3 Stelle"],
-          "cta": { "label": "Approfondisci Oltre l'Etichetta", "href": "/olio" }
+          "body": "Miscela di Frantoio, Leccino e Moraiolo — varietà toscane autoctone. Colore verde brillante, aroma fruttato, note di carciofo e mandorle, finale pepato. Spremitura a freddo entro poche ore dalla raccolta.",
+          "extra": [
+            "2022 Flos Olei · Top 100 Migliori Oli al Mondo",
+            "2022 NYIOOC · Medaglia d'Oro",
+            "2022 Premio Grande Gusto · 3 Stelle"
+          ],
+          "cta": {
+            "label": "Approfondisci Oltre l'Etichetta",
+            "href": "/olio"
+          }
         }
       }
     },
@@ -144,13 +169,40 @@
       "heroLabel": "La Casa ",
       "heroItalic": "Rossa",
       "stats": [
-        { "value": "210", "unit": "mq", "label": "Superficie" },
-        { "value": "4", "unit": "camere", "label": "Stanze" },
-        { "value": "8", "unit": "ospiti", "label": "Capacità max" },
-        { "value": "1", "unit": "piscina", "label": "Uso esclusivo" }
+        {
+          "value": "210",
+          "unit": "mq",
+          "label": "Superficie"
+        },
+        {
+          "value": "4",
+          "unit": "camere",
+          "label": "Stanze"
+        },
+        {
+          "value": "8",
+          "unit": "ospiti",
+          "label": "Capacità max"
+        },
+        {
+          "value": "1",
+          "unit": "piscina",
+          "label": "Uso esclusivo"
+        }
       ],
       "quote": "Un tempo stalla e casa del fattore.\nOggi, il rifugio perfetto dall'urgenza cittadina.",
-      "amenitiesPills": ["Camino", "Piscina privata", "Barbecue", "Telescopio", "Biblioteca", "Cucina attrezzata", "Wi-Fi", "Parquet listoni", "Tappeti persiani", "TV nascosta"],
+      "amenitiesPills": [
+        "Camino",
+        "Piscina privata",
+        "Barbecue",
+        "Telescopio",
+        "Biblioteca",
+        "Cucina attrezzata",
+        "Wi-Fi",
+        "Parquet listoni",
+        "Tappeti persiani",
+        "TV nascosta"
+      ],
       "video": {
         "src": "https://www.youtube-nocookie.com/embed/nBdCRpGLdiA?autoplay=1&mute=1&controls=0&loop=1&playlist=nBdCRpGLdiA&disablekb=1&modestbranding=1&playsinline=1&start=10",
         "alt": "Vista degli interni della Casa Rossa, design elegante e materico",
@@ -189,7 +241,9 @@
         "label": "Esplora la Casa Rossa",
         "href": "/ospitalita"
       },
-      "cta2": { "label": "Verifica Disponibilità" }
+      "cta2": {
+        "label": "Verifica Disponibilità"
+      }
     }
   },
   "Storia": {
@@ -208,8 +262,12 @@
     },
     "legendSuffix": " che appare correndo nella notte, specialmente nel rigido silenzio della neve.",
     "images": {
-      "primary": { "alt": "Villa Buontalenti Facciata" },
-      "secondary": { "alt": "Dettaglio Architettonico" }
+      "primary": {
+        "alt": "Villa Buontalenti Facciata"
+      },
+      "secondary": {
+        "alt": "Dettaglio Architettonico"
+      }
     }
   },
   "MuccoPisano": {
@@ -246,7 +304,37 @@
       "label": "Affinamento Estremo",
       "titleHtml": "L'Eccellenza <emClass>Essiccata</emClass>",
       "bodyText": "Un concentrato estremo di sapore toscano, ripensato in chiave contemporanea. Tagli pregiati lavorati artigianalmente e confezionati in packaging materici di design. Il compagno perfetto per i veri intenditori, facile da spedire, impossibile da dimenticare.",
-      "imagePlaceholder": "Immagine Box Kraft"
+      "imagePlaceholder": "Immagine Box Kraft",
+      "products": [
+        {
+          "id": "pepe-e-sale",
+          "name": "Pepe e Sale",
+          "subtitle": "Jerky Classico",
+          "description": "L'essenza pura del Mucco Pisano. Lavorazione artigianale con solo sale marino integrale e pepe nero in grani macinato al momento, per un'esperienza carnivora autentica senza distrazioni.",
+          "tags": ["Sale Marino", "Pepe Nero", "Classico"],
+          "labelColor": "#211D1A",
+          "glowColor": "rgba(40, 35, 30, 0.4)",
+          "ctaLabel": "Richiedi Pepe e Sale",
+          "image": {
+            "src": "/images/bustina-pepe-sale.png",
+            "alt": "Bustina Carne Secca Pepe e Sale"
+          }
+        },
+        {
+          "id": "rosmarino-aglio",
+          "name": "Rosmarino e Aglio",
+          "subtitle": "Profumi Toscani",
+          "description": "La memoria olfattiva della fattoria racchiusa in una busta. Rosmarino fresco dei nostri campi e un delicato accenno di aglio donano un'esplosione mediterranea della Toscana ad ogni morso.",
+          "tags": ["Rosmarino Locale", "Aglio Dolce", "Aromatico"],
+          "labelColor": "#4B5341",
+          "glowColor": "rgba(75, 83, 65, 0.4)",
+          "ctaLabel": "Richiedi Rosmarino e Aglio",
+          "image": {
+            "src": "/images/bustina-rosmarino-aglio.png",
+            "alt": "Bustina Carne Secca Rosmarino e Aglio"
+          }
+        }
+      ]
     },
     "cucina": {
       "titleHtml": "Esperienza sul <em>Campo</em>",
@@ -279,12 +367,141 @@
     }
   },
   "Olio": {
+    "bottles": [
+      {
+        "id": "classico",
+        "name": "Monti Classico",
+        "subtitle": "Etichetta Verde",
+        "description": "Il profilo più fedele della fattoria: verde brillante, fruttato netto, carciofo e mandorla fresca. Versatile, elegante, quotidiano solo nel gesto.",
+        "tastingNotes": [
+          "Carciofo",
+          "Mandorla",
+          "Finale pepato"
+        ],
+        "specs": [
+          {
+            "label": "Formato",
+            "value": "500 ml"
+          },
+          {
+            "label": "Cultivar",
+            "value": "Razzo, Leccino, Moraiolo"
+          },
+          {
+            "label": "Raccolta",
+            "value": "Ottobre · invaiatura"
+          },
+          {
+            "label": "Uso ideale",
+            "value": "Crudo, verdure, pane caldo"
+          }
+        ],
+        "labelColor": "#6B7A65",
+        "glowColor": "rgba(180, 184, 134, 0.45)",
+        "ctaLabel": "Ordina Classico",
+        "image": {
+          "src": "",
+          "alt": "Bottiglia Monti Classico con etichetta verde"
+        }
+      },
+      {
+        "id": "riserva",
+        "name": "Monti Riserva",
+        "subtitle": "Etichetta Oro",
+        "description": "La selezione più intensa: raccolta scelta, amaro fine, trama minerale e persistenza lunga. Pensata per chi cerca un extravergine da degustazione.",
+        "tastingNotes": [
+          "Polifenoli",
+          "Erbe amare",
+          "Persistenza"
+        ],
+        "specs": [
+          {
+            "label": "Formato",
+            "value": "500 ml"
+          },
+          {
+            "label": "Profilo",
+            "value": "Intenso · degustazione"
+          },
+          {
+            "label": "Estrazione",
+            "value": "A freddo entro poche ore"
+          },
+          {
+            "label": "Uso ideale",
+            "value": "Carni, legumi, formaggi"
+          }
+        ],
+        "labelColor": "#D4A361",
+        "glowColor": "rgba(246, 211, 101, 0.5)",
+        "ctaLabel": "Ordina Riserva",
+        "image": {
+          "src": "",
+          "alt": "Bottiglia Monti Riserva con etichetta oro"
+        }
+      },
+      {
+        "id": "selezione",
+        "name": "Monti Selezione",
+        "subtitle": "Etichetta Rame",
+        "description": "Un taglio più materico e gastronomico, ideale su carni, zuppe di legumi e pane caldo. La Toscana più profonda, in una bottiglia da condividere.",
+        "tastingNotes": [
+          "Oliva verde",
+          "Nocciola",
+          "Spezie dolci"
+        ],
+        "specs": [
+          {
+            "label": "Formato",
+            "value": "500 ml"
+          },
+          {
+            "label": "Profilo",
+            "value": "Gastronomico · rotondo"
+          },
+          {
+            "label": "Finale",
+            "value": "Pepato e persistente"
+          },
+          {
+            "label": "Uso ideale",
+            "value": "Zuppe, griglia, bruschette"
+          }
+        ],
+        "labelColor": "#B05C46",
+        "glowColor": "rgba(176, 92, 70, 0.48)",
+        "ctaLabel": "Ordina Selezione",
+        "image": {
+          "src": "",
+          "alt": "Bottiglia Monti Selezione con etichetta rame"
+        }
+      }
+    ],
+    "order": {
+      "productSheetLabel": "Scheda prodotto",
+      "openSheetLabel": "Apri scheda prodotto",
+      "eyebrow": "Ordine privato",
+      "title": "Prenota la tua selezione",
+      "availabilityNote": "Disponibilità limitata, selezionata in base all'annata. Richiedi quantità, spedizione e confezione regalo.",
+      "selectedPrefix": "Bottiglia scelta",
+      "quantityLabel": "Quantità",
+      "nameLabel": "Nome",
+      "namePlaceholder": "Il tuo nome",
+      "contactLabel": "Contatto",
+      "contactPlaceholder": "Email o telefono",
+      "submitLabel": "Invia richiesta ordine",
+      "successMessage": "Richiesta ricevuta. Ti ricontatteremo per disponibilità, annata e spedizione."
+    },
     "acts": {
       "act1": {
         "label": "Atto I — L'Attesa",
         "titleHtml": "Un <emClass>Anno</emClass><br></br>Intero.",
         "introText": "Riassunto in 24 decisionali ore di Ottobre. L'istante esatto dell'invaiatura.",
-        "images": { "background": { "alt": "Olio Texture" } }
+        "images": {
+          "background": {
+            "alt": "Olio Texture"
+          }
+        }
       },
       "act2": {
         "label": "Atto II — Il Culto",
@@ -293,32 +510,100 @@
           "Non semplici cultivar, ma eredità radicate nella roccia calcarea delle nostre pendenze. Lasciamo che il vento asciughi i rami e la terra ceda il suo minerale ai frutti.",
           "Raccogliamo a mano, pettinando le chiome con agevolatori pneumatici. Proteggiamo l'integrità della pianta e della drupa. È un rispetto devoto, quasi religioso."
         ],
-        "images": { "primary": { "alt": "Ulivi Secolari", "overlayText": "Ulivi Secolari" } }
+        "images": {
+          "primary": {
+            "alt": "Ulivi Secolari",
+            "overlayText": "Ulivi Secolari"
+          }
+        }
       },
       "act3": {
         "label": "Atto III — L'Alchimia Fredda",
         "titleHtml": "Il Metodo<br></br>di Estrazione.",
         "timelineSteps": [
-          { "title": "1. La Raccolta", "text": "La scelta del periodo di raccolta è decisiva. Sulle nostre colline raccogliamo tra ottobre e dicembre, quando l'invaiatura (il passaggio dal verde al viola scuro) è al 50-60%. La raccolta è manuale con agevolatori pneumatici, per proteggere l'integrità della pianta." },
-          { "title": "2. Trasporto e Stoccaggio", "text": "Come ogni frutto, l'oliva 'respira' e consuma lentamente i suoi polifenoli benefici. Per minimizzare questo processo vitale, la frangitura inizia rigorosamente entro 10 ore dalla raccolta." },
-          { "title": "3. Defogliazione", "text": "Il primo passo nel frantoio rimuove rametti e foglie che altererebbero il sapore con note di legno. Segue un vigoroso lavaggio in acqua potabile vibrante per garantire l'igiene prima dell'estrazione." },
-          { "title": "4. La Frangitura", "text": "La polpa e il nocciolo vengono macinati in una pasta omogenea. Qui si attivano gli enzimi che donano all'extravergine le sue caratteristiche organolettiche di piccante e amaro, grazie a un mulino ad alta velocità." },
-          { "title": "5. La Gramolatura", "text": "La pasta ruota dolcemente per permettendo alle goccioline d'olio di aggregarsi. Operiamo rigorosamente a freddo, sotto i 27°C per circa 30 minuti, per esaltare le note olfattive fresche." },
-          { "title": "6. L'Estrazione", "text": "La pasta è spinta in una centrifuga orizzontale a 3500 giri al minuto. Sfruttando i diversi pesi specifici, separiamo magistralmente l'olio dal mosto d'acqua e dalla sansa solida." },
-          { "title": "7. La Separazione Finale", "text": "Il mosto oleoso viene passato in un separatore centrifugo verticale. Tra dischi sovrapposti, una forza enorme divide definitivamente l'acqua pesante spingendo l'oro liquido italiano e puro al centro." }
+          {
+            "title": "1. La Raccolta",
+            "text": "La scelta del periodo di raccolta è decisiva. Sulle nostre colline raccogliamo tra ottobre e dicembre, quando l'invaiatura (il passaggio dal verde al viola scuro) è al 50-60%. La raccolta è manuale con agevolatori pneumatici, per proteggere l'integrità della pianta."
+          },
+          {
+            "title": "2. Trasporto e Stoccaggio",
+            "text": "Come ogni frutto, l'oliva 'respira' e consuma lentamente i suoi polifenoli benefici. Per minimizzare questo processo vitale, la frangitura inizia rigorosamente entro 10 ore dalla raccolta."
+          },
+          {
+            "title": "3. Defogliazione",
+            "text": "Il primo passo nel frantoio rimuove rametti e foglie che altererebbero il sapore con note di legno. Segue un vigoroso lavaggio in acqua potabile vibrante per garantire l'igiene prima dell'estrazione."
+          },
+          {
+            "title": "4. La Frangitura",
+            "text": "La polpa e il nocciolo vengono macinati in una pasta omogenea. Qui si attivano gli enzimi che donano all'extravergine le sue caratteristiche organolettiche di piccante e amaro, grazie a un mulino ad alta velocità."
+          },
+          {
+            "title": "5. La Gramolatura",
+            "text": "La pasta ruota dolcemente per permettendo alle goccioline d'olio di aggregarsi. Operiamo rigorosamente a freddo, sotto i 27°C per circa 30 minuti, per esaltare le note olfattive fresche."
+          },
+          {
+            "title": "6. L'Estrazione",
+            "text": "La pasta è spinta in una centrifuga orizzontale a 3500 giri al minuto. Sfruttando i diversi pesi specifici, separiamo magistralmente l'olio dal mosto d'acqua e dalla sansa solida."
+          },
+          {
+            "title": "7. La Separazione Finale",
+            "text": "Il mosto oleoso viene passato in un separatore centrifugo verticale. Tra dischi sovrapposti, una forza enorme divide definitivamente l'acqua pesante spingendo l'oro liquido italiano e puro al centro."
+          }
         ]
       },
       "act4": {
         "label": "Atto IV — La Rivelazione",
-        "quoteHtml": "\"Verde smeraldo Brillante. <brResp></br>Un aroma fruttato intenso invoca il <emClass1>Carciofo</emClass1> e la <emClass2>Mandorla Fresca</emClass2>. <brResp></br>Il finale è magicamente pepato.\"",
-        "images": { "primary": { "alt": "L'Oro Liquido" } }
+        "quoteHtml": "\"Verde smeraldo Brillante. <br></br>Un aroma fruttato intenso invoca il <emClass1>Carciofo</emClass1> e la <emClass2>Mandorla Fresca</emClass2>. <br></br>Il finale è magicamente pepato.\"",
+        "images": {
+          "primary": {
+            "alt": "L'Oro Liquido"
+          },
+          "gallery": [
+            { "src": "/images/villa-buontalenti.png", "alt": "Villa Buontalenti" },
+            { "src": "/images/casa-rossa-interni.png", "alt": "Interni Casa Rossa" },
+            { "src": "/images/olio-extravergine.png", "alt": "Dettagli Olio Extravergine" },
+            { "src": "/images/campi-grano.png", "alt": "Terroir della tenuta" }
+          ]
+        },
+        "description": "Equilibrato e versatile, il nostro Extravergine raggiunge la sua massima espressione gustato in purezza, oppure utilizzato per esaltare i piatti della tradizione toscana, dalle zuppe calde ai crudi.",
+        "formatsTitle": "I Formati",
+        "formats": [
+          {
+            "name": "Bottiglia di Vetro",
+            "size": "500 ml",
+            "idealFor": "Degustazione in tavola"
+          },
+          {
+            "name": "Lattina Tradizionale",
+            "size": "3 Litri",
+            "idealFor": "La dispensa di casa"
+          },
+          {
+            "name": "Lattina Tradizionale",
+            "size": "5 Litri",
+            "idealFor": "Famiglie e ristorazione"
+          }
+        ]
       },
       "act5": {
-        "images": { "background": { "alt": "Fattoria di Monti Estate" } },
+        "images": {
+          "background": {
+            "alt": "Fattoria di Monti Estate"
+          }
+        },
         "awards": [
-          { "year": "2022", "name": "Flos Olei Top 100" },
-          { "year": "Gold", "name": "NYIOOC" },
-          { "year": "3 Stelle", "name": "Grande Gusto" }
+          {
+            "year": "2022",
+            "name": "Flos Olei Top 100"
+          },
+          {
+            "year": "Gold",
+            "name": "NYIOOC"
+          },
+          {
+            "year": "3 Stelle",
+            "name": "Grande Gusto"
+          }
         ],
         "cta": {
           "titleHtml": "Porta <emClass>l'Anima</emClass> di<br></br> Monti sulla tua tavola.",
@@ -365,11 +650,26 @@
         "titleHtml": "Frammenti <brResp></br><emClass>di Pace</emClass>",
         "scrollHint": "Scorri per esplorare",
         "items": [
-          { "alt": "Luce Finestra", "overlayText": "Luce Finestra (3/2)" },
-          { "alt": "Dettaglio Coperte", "overlayText": "Dettaglio Coperte (2/3)" },
-          { "alt": "Angolo Lettura", "overlayText": "Angolo Lettura (3/2)" },
-          { "alt": "Libreria", "overlayText": "Libreria (2/3)" },
-          { "alt": "Bagno & Asciugamani", "overlayText": "Bagno & Asciugamani (3/2)" }
+          {
+            "alt": "Luce Finestra",
+            "overlayText": "Luce Finestra (3/2)"
+          },
+          {
+            "alt": "Dettaglio Coperte",
+            "overlayText": "Dettaglio Coperte (2/3)"
+          },
+          {
+            "alt": "Angolo Lettura",
+            "overlayText": "Angolo Lettura (3/2)"
+          },
+          {
+            "alt": "Libreria",
+            "overlayText": "Libreria (2/3)"
+          },
+          {
+            "alt": "Bagno & Asciugamani",
+            "overlayText": "Bagno & Asciugamani (3/2)"
+          }
         ],
         "indicator": {
           "exploreText": "Esplora",
@@ -381,17 +681,91 @@
         "titleHtml": "Quattro <emClass>Identità</emClass>",
         "introText": "Al piano superiore, la luce dorata filtra da ampie finestre affacciate sui colli in quattro stanze dalle identità cromatiche ben definite, preparate con biancheria impeccabile e profumi essenziali.",
         "rooms": [
-          { "name": "Avorio", "description": "Letto matrimoniale e bagno privato spazioso. La pura luce toscana incontra lini candidi e trame delicate.", "photoPlaceholderText": "Foto Stanza Avorio" },
-          { "name": "Verde", "description": "Letto matrimoniale divisibile. Tonalità salvia e menta creano il rifugio perfetto contro lo stress urbano.", "photoPlaceholderText": "Foto Stanza Verde" },
-          { "name": "Rosa", "description": "Letto alla francese romantico. Finiture calde e morbide vibrazioni per un'immersione nel comfort più totale.", "photoPlaceholderText": "Foto Stanza Rosa" },
-          { "name": "Albicocca", "description": "Letto matrimoniale panoramico. Svegliati con la vista del tramonto sui dolci paesaggi pisani dalle grandi finestre.", "photoPlaceholderText": "Foto Stanza Albicocca" }
+          {
+            "name": "Avorio",
+            "description": "Letto matrimoniale e bagno privato spazioso. La pura luce toscana incontra lini candidi e trame delicate.",
+            "longDescription": "La stanza più luminosa della Casa Rossa. Orientata a sud-est, cattura i primi raggi dell'alba toscana che filtrano attraverso le persiane di legno antico. I toni avorio e crema dei tessuti in lino lavato creano un'atmosfera di calma assoluta, dove ogni risveglio è un rituale di luce naturale.",
+            "bedType": "Matrimoniale King",
+            "surface": "26 mq",
+            "floor": "Piano superiore",
+            "view": "Colline e uliveto",
+            "highlights": ["Bagno privato con doccia", "Esposizione sud-est", "Lini in fibra naturale", "Vista panoramica"],
+            "amenities": [
+              { "icon": "bed", "label": "Letto King Size" },
+              { "icon": "bath", "label": "Bagno privato" },
+              { "icon": "wind", "label": "Ventilazione naturale" },
+              { "icon": "sun", "label": "Luce naturale mattutina" },
+              { "icon": "towel", "label": "Set asciugamani premium" },
+              { "icon": "hairdryer", "label": "Asciugacapelli" }
+            ],
+            "photoPlaceholderText": "Foto Stanza Avorio"
+          },
+          {
+            "name": "Verde",
+            "description": "Letto matrimoniale divisibile. Tonalità salvia e menta creano il rifugio perfetto contro lo stress urbano.",
+            "longDescription": "Un rifugio dalle tonalità botaniche, dove il verde salvia delle pareti dialoga con il paesaggio esterno in un gioco di continuità cromatica. Il letto divisibile permette configurazioni flessibili, ideale per coppie che cercano spazio o amici in viaggio insieme. Un angolo lettura accanto alla finestra completa l'esperienza.",
+            "bedType": "Matrimoniale divisibile",
+            "surface": "22 mq",
+            "floor": "Piano superiore",
+            "view": "Giardino e vigneto",
+            "highlights": ["Letto divisibile in due singoli", "Angolo lettura", "Tonalità salvia e menta", "Vista giardino"],
+            "amenities": [
+              { "icon": "bed", "label": "Letto divisibile" },
+              { "icon": "book", "label": "Angolo lettura" },
+              { "icon": "wind", "label": "Ventilazione naturale" },
+              { "icon": "leaf", "label": "Vista giardino" },
+              { "icon": "towel", "label": "Set asciugamani premium" },
+              { "icon": "hairdryer", "label": "Asciugacapelli" }
+            ],
+            "photoPlaceholderText": "Foto Stanza Verde"
+          },
+          {
+            "name": "Rosa",
+            "description": "Letto alla francese romantico. Finiture calde e morbide vibrazioni per un'immersione nel comfort più totale.",
+            "longDescription": "La stanza più intima della Casa Rossa. Il rosa antico delle pareti e i tessuti in velluto creano un nido avvolgente, perfetto per una fuga romantica. Il letto alla francese, più compatto ma supremamente confortevole, invita al riposo più profondo. Le finiture in ottone antico aggiungono un tocco di eleganza senza tempo.",
+            "bedType": "Alla francese (140cm)",
+            "surface": "18 mq",
+            "floor": "Piano superiore",
+            "view": "Cortile interno",
+            "highlights": ["Atmosfera romantica", "Tessuti in velluto", "Finiture in ottone", "Silenzio assoluto"],
+            "amenities": [
+              { "icon": "bed", "label": "Letto alla francese" },
+              { "icon": "heart", "label": "Suite romantica" },
+              { "icon": "moon", "label": "Silenzio assoluto" },
+              { "icon": "sparkle", "label": "Finiture in ottone" },
+              { "icon": "towel", "label": "Set asciugamani premium" },
+              { "icon": "hairdryer", "label": "Asciugacapelli" }
+            ],
+            "photoPlaceholderText": "Foto Stanza Rosa"
+          },
+          {
+            "name": "Albicocca",
+            "description": "Letto matrimoniale panoramico. Svegliati con la vista del tramonto sui dolci paesaggi pisani dalle grandi finestre.",
+            "longDescription": "La stanza del tramonto. Orientata a ovest, le sue grandi finestre incorniciano ogni sera uno spettacolo diverso di colori sulle colline pisane. Le tonalità calde dell'albicocca e del terracotta avvolgono lo spazio in un abbraccio materico. La stanza più grande del piano superiore, con spazio generoso per vivere il soggiorno con calma.",
+            "bedType": "Matrimoniale King",
+            "surface": "28 mq",
+            "floor": "Piano superiore",
+            "view": "Tramonto sulle colline",
+            "highlights": ["Stanza più grande", "Vista tramonto", "Grandi finestre", "Tonalità calde terracotta"],
+            "amenities": [
+              { "icon": "bed", "label": "Letto King Size" },
+              { "icon": "sunset", "label": "Vista tramonto" },
+              { "icon": "expand", "label": "Stanza più spaziosa" },
+              { "icon": "wind", "label": "Ventilazione naturale" },
+              { "icon": "towel", "label": "Set asciugamani premium" },
+              { "icon": "hairdryer", "label": "Asciugacapelli" }
+            ],
+            "photoPlaceholderText": "Foto Stanza Albicocca"
+          }
         ]
       },
       "osservatorio": {
         "label": "Terrazza sul Tetto",
         "titleHtml": "Migliaia di <emClass>Stelle</emClass>",
         "introText": "Sotto un cielo totalmente privo di inquinamento luminoso, l'infinita distesa della via lattea diventa il perfetto sipario di fine giornata. Usa il telescopio professionale per chiudere in bellezza.",
-        "cta": { "buttonLabel": "Prenota il tuo Ritiro" }
+        "cta": {
+          "buttonLabel": "Prenota il tuo Ritiro"
+        }
       }
     }
   },
@@ -403,25 +777,55 @@
         "address": "Loc. Monti — 56048 Volterra (PI)\nToscana, Provincia di Pisa",
         "coordinates": "43.3667°N — 10.8833°E",
         "distancesLabel": "Distanze",
-        "distances": ["Firenze 1h", "Pisa 40min", "Livorno 45min", "Siena 1h", "Lucca 50min"]
+        "distances": [
+          "Firenze 1h",
+          "Pisa 40min",
+          "Livorno 45min",
+          "Siena 1h",
+          "Lucca 50min"
+        ]
       },
       "vieni": {
         "label": "Vieni a Trovarci",
-        "primaryCta": { "label": "Prenota il Soggiorno", "action": "concierge" },
+        "primaryCta": {
+          "label": "Prenota il Soggiorno",
+          "action": "concierge"
+        },
         "secondaryCtas": [
-          { "label": "Cucina Itinerante", "action": "concierge-cucina-nomade" },
-          { "label": "Scrivici su WhatsApp", "href": "https://wa.me/390000000000" },
-          { "label": "Inviaci un'Email", "href": "mailto:info@fattoriadimonti.it" }
+          {
+            "label": "Cucina Itinerante",
+            "action": "concierge-cucina-nomade"
+          },
+          {
+            "label": "Scrivici su WhatsApp",
+            "href": "https://wa.me/390000000000"
+          },
+          {
+            "label": "Inviaci un'Email",
+            "href": "mailto:info@fattoriadimonti.it"
+          }
         ],
-        "mapsLink": { "label": "Apri in Google Maps →", "href": "https://maps.google.com/?q=43.3667,10.8833" }
+        "mapsLink": {
+          "label": "Apri in Google Maps →",
+          "href": "https://maps.google.com/?q=43.3667,10.8833"
+        }
       },
       "bottomBar": {
         "copyrightPrefix": "©",
         "copyrightSuffix": "Fattoria di Monti — Ere della Terra",
         "links": [
-          { "label": "Privacy Policy", "href": "#" },
-          { "label": "Cookie Policy", "href": "#" },
-          { "label": "Credits", "href": "#" }
+          {
+            "label": "Privacy Policy",
+            "href": "#"
+          },
+          {
+            "label": "Cookie Policy",
+            "href": "#"
+          },
+          {
+            "label": "Credits",
+            "href": "#"
+          }
         ]
       }
     },
@@ -434,17 +838,37 @@
       },
       "contacts": {
         "email": "info@fattoriadimonti.it",
-        "phone": { "label": "+39 300 0000000" }
+        "phone": {
+          "label": "+39 300 0000000"
+        }
       },
       "quickLinks": [
-        { "label": "Prenota Soggiorno", "action": "concierge-default" },
-        { "label": "Olio Extravergine", "href": "/olio" },
-        { "label": "Mucco Pisano", "href": "/mucco-pisano" },
-        { "label": "Ospitalità", "href": "/ospitalita" }
+        {
+          "label": "Prenota Soggiorno",
+          "action": "concierge-default"
+        },
+        {
+          "label": "Olio Extravergine",
+          "href": "/olio"
+        },
+        {
+          "label": "Mucco Pisano",
+          "href": "/mucco-pisano"
+        },
+        {
+          "label": "Ospitalità",
+          "href": "/ospitalita"
+        }
       ],
       "legalLinks": [
-        { "label": "Privacy Policy", "href": "/privacy" },
-        { "label": "Cookie Policy", "href": "/cookie" }
+        {
+          "label": "Privacy Policy",
+          "href": "/privacy"
+        },
+        {
+          "label": "Cookie Policy",
+          "href": "/cookie"
+        }
       ],
       "credits": {
         "copyrightPrefix": "©",
@@ -457,11 +881,21 @@
       "closeAria": "Chiudi menu",
       "closeLabel": "× CHIUDI",
       "links": [
-        { "label": "L'Ingresso" },
-        { "label": "Storia & Terroir" },
-        { "label": "La Materia Viva" },
-        { "label": "L'Ospitalità" },
-        { "label": "Dove Siamo" }
+        {
+          "label": "L'Ingresso"
+        },
+        {
+          "label": "Storia & Terroir"
+        },
+        {
+          "label": "La Materia Viva"
+        },
+        {
+          "label": "L'Ospitalità"
+        },
+        {
+          "label": "Dove Siamo"
+        }
       ],
       "ctaLabel": "PRENOTA IL TUO SOGGIORNO"
     },
@@ -473,19 +907,49 @@
       "closeLabel": "× CHIUDI",
       "successMessageHtml": "La sua lettera è in viaggio<br></br>verso la Toscana.",
       "defaultSteps": [
-        { "question": "A chi abbiamo l'onore di rivolgerci?", "placeholder": "Il suo nome", "label": "Nome" },
-        { "question": "Cosa desidera vivere alla Fattoria di Monti?", "label": "Interesse" },
-        { "question": "Dove possiamo recapitarle la nostra risposta?", "placeholder": "Email o numero di telefono", "label": "Contatto", "optional": true }
+        {
+          "question": "A chi abbiamo l'onore di rivolgerci?",
+          "placeholder": "Il suo nome",
+          "label": "Nome"
+        },
+        {
+          "question": "Cosa desidera vivere alla Fattoria di Monti?",
+          "label": "Interesse"
+        },
+        {
+          "question": "Dove possiamo recapitarle la nostra risposta?",
+          "placeholder": "Email o numero di telefono",
+          "label": "Contatto",
+          "optional": true
+        }
       ],
       "cucinaSteps": [
-        { "question": "In che data immagina il suo evento?", "placeholder": "Es. Luglio 2025 o data precisa", "label": "Data evento", "optional": true },
-        { "question": "Quanti ospiti prevede?", "placeholder": "Es. 30 persone", "label": "Ospiti", "optional": true },
-        { "question": "Come possiamo contattarla?", "placeholder": "Email o numero di telefono", "label": "Contatto" }
+        {
+          "question": "In che data immagina il suo evento?",
+          "placeholder": "Es. Luglio 2025 o data precisa",
+          "label": "Data evento",
+          "optional": true
+        },
+        {
+          "question": "Quanti ospiti prevede?",
+          "placeholder": "Es. 30 persone",
+          "label": "Ospiti",
+          "optional": true
+        },
+        {
+          "question": "Come possiamo contattarla?",
+          "placeholder": "Email o numero di telefono",
+          "label": "Contatto"
+        }
       ],
       "skipLabel": "Salta",
       "submitLabel": "Invia",
       "optionalHint": "facoltativa",
-      "choices": ["Soggiornare alla Casa Rossa", "Ordinare Olio Extravergine", "Il Club Privato"]
+      "choices": [
+        "Soggiornare alla Casa Rossa",
+        "Ordinare Olio Extravergine",
+        "Il Club Privato"
+      ]
     },
     "oilExtraction": {
       "ariaLabel": "L'Estrazione dell'Olio — Processo millenario",
@@ -495,13 +959,82 @@
       "btnPrev": "← Precedente",
       "btnNext": "Successivo →",
       "steps": [
-        { "num": "01", "title": "La Raccolta", "body": "L'invaiatura (veraison) è al 50-60%. Raccolta manuale con agevolatori pneumatici a oltre 1000 battiti/minuto su reti speciali, per preservare i polifenoli." },
-        { "num": "02", "title": "Trasporto", "body": "Stoccaggio in casse ventilate. Lavorazione garantita entro 10 ore dalla raccolta per evitare ossidazione e perdita delle qualità organolettiche." },
-        { "num": "03", "title": "Defogliazione e Lavaggio", "body": "Rimozione meccanica dei residui lignei. Lavaggio a immersione costante, con doccia finale di acqua potabile per rimuovere ogni impurità." },
-        { "num": "04", "title": "Frangitura", "body": "Frangitore a martelli (1200–3000 rpm) per ridurre oliva e nocciolo in una pasta granulometricamente controllata, attivando gli enzimi catalizzatori." },
-        { "num": "05", "title": "Gramolatura", "body": "Processo a freddo, rigorosamente sotto i 27°C per 30 minuti, in vasche in acciaio con lame elicoidali. Rompe l'emulsione olio-acqua per facilitare la separazione." },
-        { "num": "06", "title": "Estrazione (Decanter)", "body": "Centrifuga orizzontale a 3500 rpm. Separazione per gravità specifica in tre fasi: mosto oleoso, acqua di vegetazione e sansa (fase solida)." },
-        { "num": "07", "title": "Separazione Finale", "body": "Centrifuga verticale a dischi sovrapposti. L'olio purissimo si accumula al centro mentre l'acqua di vegetazione viene espulsa ai bordi." }
+        {
+          "num": "01",
+          "title": "La Raccolta",
+          "body": "L'invaiatura (veraison) è al 50-60%. Raccolta manuale con agevolatori pneumatici a oltre 1000 battiti/minuto su reti speciali, per preservare i polifenoli."
+        },
+        {
+          "num": "02",
+          "title": "Trasporto",
+          "body": "Stoccaggio in casse ventilate. Lavorazione garantita entro 10 ore dalla raccolta per evitare ossidazione e perdita delle qualità organolettiche."
+        },
+        {
+          "num": "03",
+          "title": "Defogliazione e Lavaggio",
+          "body": "Rimozione meccanica dei residui lignei. Lavaggio a immersione costante, con doccia finale di acqua potabile per rimuovere ogni impurità."
+        },
+        {
+          "num": "04",
+          "title": "Frangitura",
+          "body": "Frangitore a martelli (1200–3000 rpm) per ridurre oliva e nocciolo in una pasta granulometricamente controllata, attivando gli enzimi catalizzatori."
+        },
+        {
+          "num": "05",
+          "title": "Gramolatura",
+          "body": "Processo a freddo, rigorosamente sotto i 27°C per 30 minuti, in vasche in acciaio con lame elicoidali. Rompe l'emulsione olio-acqua per facilitare la separazione."
+        },
+        {
+          "num": "06",
+          "title": "Estrazione (Decanter)",
+          "body": "Centrifuga orizzontale a 3500 rpm. Separazione per gravità specifica in tre fasi: mosto oleoso, acqua di vegetazione e sansa (fase solida)."
+        },
+        {
+          "num": "07",
+          "title": "Separazione Finale",
+          "body": "Centrifuga verticale a dischi sovrapposti. L'olio purissimo si accumula al centro mentre l'acqua di vegetazione viene espulsa ai bordi."
+        }
+      ]
+    },
+    "jerkySheet": {
+      "ariaLabel": "Scheda Prodotto — Carne Secca di Mucco Pisano",
+      "closeAria": "Chiudi scheda prodotto",
+      "closeLabel": "× CHIUDI",
+      "eyebrow": "Dettaglio Prodotto",
+      "ctaOrder": "Richiedi Informazioni",
+      "viewDetails": "Vedi Dettagli"
+    },
+    "oilBottleSheet": {
+      "ariaLabel": "Scheda Bottiglia — Olio Extravergine di Oliva",
+      "closeAria": "Chiudi scheda bottiglia",
+      "closeLabel": "× CHIUDI",
+      "eyebrow": "Dettaglio Bottiglia",
+      "ctaOrder": "Acquista l'Olio Nuovo"
+    },
+    "roomSheet": {
+      "ariaLabel": "Scheda Stanza — Casa Rossa",
+      "closeAria": "Chiudi scheda stanza",
+      "closeLabel": "× CHIUDI",
+      "eyebrow": "La Casa Rossa",
+      "sectionAmenities": "Comfort & Servizi",
+      "sectionGallery": "Galleria Fotografica",
+      "sectionHighlights": "Punti di Forza",
+      "specBed": "Letto",
+      "specSurface": "Superficie",
+      "specFloor": "Piano",
+      "specView": "Vista",
+      "ctaBook": "Prenota questa Stanza",
+      "scrollHint": "Scorri per i dettagli",
+      "sharedAmenities": "Servizi Condivisi della Casa",
+      "sharedAmenitiesList": [
+        "Piscina privata adiacente",
+        "Cucina completamente attrezzata",
+        "Doppio soggiorno con camino",
+        "Wi-Fi su tutta la proprietà",
+        "Barbecue & pergolato esterno",
+        "Terrazza con telescopio",
+        "DVD Player & biblioteca",
+        "Lavanderia completa"
       ]
     }
   },
@@ -510,9 +1043,18 @@
       "label": "Home",
       "panelTitle": "Fattoria di Monti",
       "stats": [
-        { "label": "Coordinate", "value": "43° 24' N  10° 51' E" },
-        { "label": "Altitudine", "value": "450m s.l.m." },
-        { "label": "Estensione", "value": "10 Ettari" }
+        {
+          "label": "Coordinate",
+          "value": "43° 24' N  10° 51' E"
+        },
+        {
+          "label": "Altitudine",
+          "value": "150m s.l.m."
+        },
+        {
+          "label": "Estensione",
+          "value": "circa 300 Ettari"
+        }
       ],
       "text": "Riconnettiti con l'essenza della terra in un luogo dove il tempo è dettato dalla ritmica della natura."
     },
@@ -525,20 +1067,44 @@
       "label": "La filiera",
       "panelTitle": "Ciclo Naturale",
       "stats": [
-        { "label": "01. Radici", "value": "Sementi Antiche Locali" },
-        { "label": "02. Ritmo", "value": "Crescita Naturale Lenta" },
-        { "label": "03. Manodopera", "value": "Raccolto 100% Manuale" },
-        { "label": "04. Origine", "value": "Trasformazione in Loco" }
+        {
+          "label": "01. Radici",
+          "value": "Sementi Antiche Locali"
+        },
+        {
+          "label": "02. Ritmo",
+          "value": "Crescita Naturale Lenta"
+        },
+        {
+          "label": "03. Manodopera",
+          "value": "Raccolto 100% Manuale"
+        },
+        {
+          "label": "04. Origine",
+          "value": "Trasformazione in Loco"
+        }
       ]
     },
     "mucco": {
       "label": "Carne di Mucco Pisano",
       "panelTitle": "Mucco Pisano",
       "stats": [
-        { "label": "Specie", "value": "Razza Antica Autoctona" },
-        { "label": "Allevamento", "value": "Stato Brado (Pascolo)" },
-        { "label": "Alimentazione", "value": "Cereali Naturali Propri" },
-        { "label": "Frollatura", "value": "Lenta (Mese+)" }
+        {
+          "label": "Specie",
+          "value": "Razza Antica Autoctona"
+        },
+        {
+          "label": "Allevamento",
+          "value": "Stato Brado (Pascolo)"
+        },
+        {
+          "label": "Alimentazione",
+          "value": "Cereali Naturali Propri"
+        },
+        {
+          "label": "Frollatura",
+          "value": "Lenta (Mese+)"
+        }
       ],
       "text": "Una proteina pura, scolpita dal pascolo all'aperto nelle valli dell'Era."
     },
@@ -546,9 +1112,18 @@
       "label": "Boutique Itinerante",
       "panelTitle": "Cucina Nomade",
       "stats": [
-        { "label": "Disponibilità", "value": "Stagione Estiva" },
-        { "label": "Location", "value": "Ovunque" },
-        { "label": "Coperti", "value": "Private Dining (Max 30)" }
+        {
+          "label": "Disponibilità",
+          "value": "Stagione Estiva"
+        },
+        {
+          "label": "Location",
+          "value": "Ovunque"
+        },
+        {
+          "label": "Coperti",
+          "value": "Private Dining (Max 30)"
+        }
       ],
       "text": "Eventi esclusivi e degustazioni private orchestrate direttamente nel cuore della fattoria viscerale o dove desideri."
     },
@@ -556,10 +1131,22 @@
       "label": "Olio Extravergine",
       "panelTitle": "Olio EVO Biologico",
       "stats": [
-        { "label": "Cultivar", "value": "Frantoio, Moraiolo, Leccino" },
-        { "label": "Estrazione", "value": "Meccanica Fredda (<27°C)" },
-        { "label": "Acidità", "value": "0.15% (Purissimo)" },
-        { "label": "Filtraggio", "value": "Grezzo Naturale" }
+        {
+          "label": "Cultivar",
+          "value": "Frantoio, Moraiolo, Leccino"
+        },
+        {
+          "label": "Estrazione",
+          "value": "Meccanica Fredda (<27°C)"
+        },
+        {
+          "label": "Acidità",
+          "value": "0.15% (Purissimo)"
+        },
+        {
+          "label": "Filtraggio",
+          "value": "Grezzo Naturale"
+        }
       ]
     },
     "accoglienza": {
@@ -571,9 +1158,18 @@
       "label": "Contatti",
       "panelTitle": "Coordinate",
       "stats": [
-        { "label": "Sede", "value": "Piazza Martiri, Volterra" },
-        { "label": "Email", "value": "info@fattoriadimonti.it" },
-        { "label": "Tel", "value": "+39 0588 86099" }
+        {
+          "label": "Sede",
+          "value": "Piazza Martiri, Volterra"
+        },
+        {
+          "label": "Email",
+          "value": "info@fattoriadimonti.it"
+        },
+        {
+          "label": "Tel",
+          "value": "+39 0588 86099"
+        }
       ],
       "text": "Riceviamo esclusivamente su prenotazione."
     }
@@ -589,9 +1185,18 @@
         "label": "Atto II — La Rotazione delle Colture",
         "titleHtml": "Il Respiro <emClass>della Terra</emClass>",
         "timelineSteps": [
-          { "title": "1. I Cereali", "text": "Le nostre colline sono nate per coltivare frumento, farro, avena e orzo. Durante i mesi di aprile e maggio la brezza marina pomeridiana accarezza le spighe creando onde dorate." },
-          { "title": "2. Il Favino da Foraggio", "text": "Dopo la raccolta dei cereali, piantiamo il favino. Questa fase è cruciale per la rigenerazione naturale del suolo, in quanto restituisce azoto prezioso alla terra e fornisce nutrimento ricco." },
-          { "title": "3. Il Riposo Attivo", "text": "Il ciclo si chiude con tre anni consecutivi di prato per il fieno (erba medica o sulla). È il riposo della terra, che accumula energie e nutre in modo sano e naturale i nostri animali al pascolo." }
+          {
+            "title": "1. I Cereali",
+            "text": "Le nostre colline sono nate per coltivare frumento, farro, avena e orzo. Durante i mesi di aprile e maggio la brezza marina pomeridiana accarezza le spighe creando onde dorate."
+          },
+          {
+            "title": "2. Il Favino da Foraggio",
+            "text": "Dopo la raccolta dei cereali, piantiamo il favino. Questa fase è cruciale per la rigenerazione naturale del suolo, in quanto restituisce azoto prezioso alla terra e fornisce nutrimento ricco."
+          },
+          {
+            "title": "3. Il Riposo Attivo",
+            "text": "Il ciclo si chiude con tre anni consecutivi di prato per il fieno (erba medica o sulla). È il riposo della terra, che accumula energie e nutre in modo sano e naturale i nostri animali al pascolo."
+          }
         ]
       },
       "act3": {
@@ -602,9 +1207,21 @@
           "Parte dei cereali e il fieno prodotto dal riposo della terra vengono utilizzati per l'alimentazione del Mucco Pisano. Questa dieta sana, combinata con l'adattabilità della razza ai pascoli impervi, garantisce carni di assoluta eccellenza e chiude il ciclo naturale del nutrimento, permettendoci di essere completamente autonomi ed ecologici."
         ],
         "gallery": [
-          { "src": "/images/mucco-pisano-hero-16-9.png", "alt": "Il Mucco Pisano immerso nel paesaggio", "caption": "Forza Rustica" },
-          { "src": "/images/prati-fieno-16-9.png", "alt": "Distese di fieno per foraggio", "caption": "Il nutrimento naturale" },
-          { "src": "/images/mucco-pisano-16-9.png", "alt": "Mucco Pisano al pascolo brado", "caption": "Pascolo Brado e Lentezza" }
+          {
+            "src": "/images/mucco-pisano-hero-16-9.png",
+            "alt": "Il Mucco Pisano immerso nel paesaggio",
+            "caption": "Forza Rustica"
+          },
+          {
+            "src": "/images/prati-fieno-16-9.png",
+            "alt": "Distese di fieno per foraggio",
+            "caption": "Il nutrimento naturale"
+          },
+          {
+            "src": "/images/mucco-pisano-16-9.png",
+            "alt": "Mucco Pisano al pascolo brado",
+            "caption": "Pascolo Brado e Lentezza"
+          }
         ]
       },
       "act4": {

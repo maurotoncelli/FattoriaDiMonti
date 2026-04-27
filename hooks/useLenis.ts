@@ -16,12 +16,20 @@ export function useLenis() {
     const isMenuOpen = useAppStore((s) => s.isMenuOpen);
     const isOilModalOpen = useAppStore((s) => s.isOilModalOpen);
     const isConciergeOpen = useAppStore((s) => s.isConciergeOpen);
-    const isPreloaderComplete = useAppStore((s) => s.isPreloaderComplete);
 
     useEffect(() => {
         let tickerFn: ((time: number) => void) | null = null;
+        let cancelled = false;
+        let refreshTimeout: number | undefined;
+        let fontRefreshCancelled = false;
+
+        const refreshScrollTrigger = () => {
+            ScrollTrigger.refresh();
+        };
 
         import('lenis').then(({ default: Lenis }) => {
+            if (cancelled) return;
+
             const lenis = new Lenis({
                 duration: 1.4,
                 easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -43,21 +51,33 @@ export function useLenis() {
             };
             gsap.ticker.add(tickerFn);
             gsap.ticker.lagSmoothing(0);
+
+            window.dispatchEvent(new CustomEvent('fdm:lenis-ready', { detail: lenis }));
+            refreshTimeout = window.setTimeout(refreshScrollTrigger, 250);
+            window.addEventListener('load', refreshScrollTrigger, { once: true });
+            document.fonts?.ready.then(() => {
+                if (!fontRefreshCancelled) refreshScrollTrigger();
+            });
         });
 
         return () => {
+            cancelled = true;
+            fontRefreshCancelled = true;
+            if (refreshTimeout) window.clearTimeout(refreshTimeout);
+            window.removeEventListener('load', refreshScrollTrigger);
             if (tickerFn) gsap.ticker.remove(tickerFn);
             if (lenisRef.current) {
                 lenisRef.current.off?.('scroll', ScrollTrigger.update);
                 lenisRef.current.destroy();
                 lenisRef.current = null;
             }
+            delete (window as any).__lenis;
         };
     }, []);
 
     // Blocca / sblocca lo scroll quando overlay sono aperti
     useEffect(() => {
-        const shouldLock = isMenuOpen || isOilModalOpen || isConciergeOpen || !isPreloaderComplete;
+        const shouldLock = isMenuOpen || isOilModalOpen || isConciergeOpen;
         if (!lenisRef.current) return;
         if (shouldLock) {
             lenisRef.current.stop();
@@ -66,7 +86,7 @@ export function useLenis() {
             lenisRef.current.start();
             document.body.style.overflow = '';
         }
-    }, [isMenuOpen, isOilModalOpen, isConciergeOpen, isPreloaderComplete]);
+    }, [isMenuOpen, isOilModalOpen, isConciergeOpen]);
 
     return lenisRef;
 }

@@ -16,7 +16,7 @@ export default function GlobalUI() {
         if (isPreloaderComplete && wrapRef.current) {
             gsap.fromTo(wrapRef.current,
                 { opacity: 0 },
-                { opacity: 1, duration: 1, ease: 'power2.out', delay: 0.3 }
+                { opacity: 1, duration: 0.35, ease: 'power2.out' }
             );
         }
     }, [isPreloaderComplete]);

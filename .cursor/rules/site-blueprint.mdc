@@ -1,0 +1,22 @@
+---
+description: Core project architecture and anti-patch rules for Fattoria di Monti
+alwaysApply: true
+---
+
+# Fattoria di Monti Project Rules
+
+Before making non-trivial changes, read `SITE_BLUEPRINT.md`. It is the current source of truth for architecture, routing, i18n, animation, performance, and product strategy.
+
+Hard rules:
+
+- Do not hardcode visible copy in components. Use `messages/it.json`, `messages/en.json`, `lib/data/*`, and `lib/content/types.ts`.
+- Update both Italian and English message files for every user-facing string.
+- Do not add routes or menu items for subtopics that should live inside existing pages. `Storia` absorbs filiera/cereals content; do not re-promote standalone `Cereali` or `La Filiera`.
+- Do not put scroll position, velocity, mouse trails, or other frame-level values in React/Zustand state.
+- Do not kill all GSAP ScrollTriggers from a single component cleanup; only clean up the triggers created by that component.
+- Do not make text visibility depend on long preloaders or slow animation gates.
+- Respect reduced motion and low-performance fallbacks, especially around WebGL.
+- Keep `BASE_URL` and similar constants in `lib/*`, never as arbitrary exports from Next layouts.
+- After route, i18n, data-contract, or shared animation changes, run `npm run build` when possible.
+
+Other AIs should treat aesthetic edits as subordinate to these functional rules. If a fast visual patch violates the blueprint, the patch is wrong.

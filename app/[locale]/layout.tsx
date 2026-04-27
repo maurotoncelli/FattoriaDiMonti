@@ -7,8 +7,7 @@ import { getMessages, getTranslations } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
 import GoogleAnalytics from '@/components/analytics/GoogleAnalytics';
-
-export const BASE_URL = 'https://www.fattoriadimonti.it';
+import { BASE_URL } from '@/lib/site';
 
 const playfair = Playfair_Display({
     subsets: ['latin'],

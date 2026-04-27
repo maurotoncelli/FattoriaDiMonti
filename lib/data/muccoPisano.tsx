@@ -44,6 +44,20 @@ export const getMuccoPisanoData = (t: any): MuccoPisanoContent => ({
         images: {
             primary: { src: '/images/mucco-pisano.png', alt: t('MuccoPisano.essiccata.label') },
         },
+        products: (t.raw('MuccoPisano.essiccata.products') as any[]).map((p: any) => ({
+            id: p.id,
+            name: p.name,
+            subtitle: p.subtitle,
+            description: p.description,
+            tags: p.tags,
+            labelColor: p.labelColor,
+            glowColor: p.glowColor,
+            ctaLabel: p.ctaLabel,
+            image: {
+                src: p.image.src,
+                alt: p.image.alt,
+            },
+        })),
     },
     cucina: {
         titleHtml: t.rich('MuccoPisano.cucina.titleHtml', {

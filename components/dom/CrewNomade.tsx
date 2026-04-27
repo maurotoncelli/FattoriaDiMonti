@@ -67,7 +67,7 @@ export default function CrewNomade({ data }: { data: CucinaNomadeData['crew'] })
                             <div className="font-inter text-[10px] tracking-[0.15em] text-[var(--olive)] uppercase mb-4 pb-4 border-b border-[var(--ecru)]/10 fade-up-text opacity-0">
                                 {member.role}
                             </div>
-                            <p className="font-inter text-sm text-[var(--ecru)]/50 italic leading-relaxed fade-up-text opacity-0">
+                            <p className="font-inter text-sm text-white/80 italic leading-relaxed fade-up-text opacity-0">
                                 "{member.quote}"
                             </p>
                         </div>

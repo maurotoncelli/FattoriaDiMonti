@@ -1,12 +1,13 @@
 'use client';
 
-import { useRef, useEffect } from 'react';
+import { useRef, useLayoutEffect } from 'react';
 import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import TransitionLink from '@/components/ui/TransitionLink';
 import { useAppStore } from '@/store/useAppStore';
 import { useTranslations } from 'next-intl';
+import { useReducedMotion } from '@/hooks/usePerformance';
 
 if (typeof window !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
@@ -15,36 +16,46 @@ if (typeof window !== 'undefined') {
 export default function Hospitality() {
     const sectionRef = useRef<HTMLElement>(null);
     const t = useTranslations();
-    const { setConciergeOpen } = useAppStore();
+    const setConciergeOpen = useAppStore((s) => s.setConciergeOpen);
+    const prefersReducedMotion = useReducedMotion();
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         const ctx = gsap.context(() => {
+            const fadeItems = gsap.utils.toArray('.hosp-fade');
+
+            if (prefersReducedMotion) {
+                gsap.set(['.hosp-stat', '.hosp-quote', '.hosp-pill'], { clearProps: 'transform' });
+                return;
+            }
+
+            gsap.set(fadeItems, { opacity: 0, y: 24 });
+
             // Universal fade-up
-            gsap.utils.toArray('.hosp-fade').forEach((el: any) => {
+            fadeItems.forEach((el: any) => {
                 gsap.fromTo(el,
-                    { opacity: 0, y: 36 },
+                    { opacity: 0, y: 24 },
                     {
-                        opacity: 1, y: 0, duration: 1, ease: 'power3.out',
-                        scrollTrigger: { trigger: el, start: 'top 87%', toggleActions: 'play none none reverse' }
+                        opacity: 1, y: 0, duration: 0.6, ease: 'power3.out',
+                        scrollTrigger: { trigger: el, start: 'top 92%', toggleActions: 'play none none reverse' }
                     }
                 );
             });
 
             // Stats counter stagger
             gsap.fromTo('.hosp-stat',
-                { opacity: 0, y: 24 },
+                { opacity: 0, y: 18 },
                 {
-                    opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', stagger: 0.1,
-                    scrollTrigger: { trigger: '.hosp-stats-row', start: 'top 88%' }
+                    opacity: 1, y: 0, duration: 0.5, ease: 'power3.out', stagger: 0.06,
+                    scrollTrigger: { trigger: '.hosp-stats-row', start: 'top 92%' }
                 }
             );
 
             // Pull quote — slower reveal
             gsap.fromTo('.hosp-quote',
-                { opacity: 0, y: 50 },
+                { opacity: 0, y: 28 },
                 {
-                    opacity: 1, y: 0, duration: 1.4, ease: 'power3.out',
-                    scrollTrigger: { trigger: '.hosp-quote', start: 'top 85%' }
+                    opacity: 1, y: 0, duration: 0.75, ease: 'power3.out',
+                    scrollTrigger: { trigger: '.hosp-quote', start: 'top 92%' }
                 }
             );
 
@@ -52,8 +63,8 @@ export default function Hospitality() {
             gsap.fromTo('.hosp-pill',
                 { opacity: 0, scale: 0.88 },
                 {
-                    opacity: 1, scale: 1, duration: 0.5, ease: 'back.out(1.4)', stagger: 0.05,
-                    scrollTrigger: { trigger: '.hosp-pills-row', start: 'top 88%' }
+                    opacity: 1, scale: 1, duration: 0.35, ease: 'back.out(1.4)', stagger: 0.04,
+                    scrollTrigger: { trigger: '.hosp-pills-row', start: 'top 92%' }
                 }
             );
 
@@ -94,7 +105,7 @@ export default function Hospitality() {
             );
         }, sectionRef);
         return () => ctx.revert();
-    }, []);
+    }, [prefersReducedMotion]);
 
     const stats = t.raw('Home.hospitality.stats') as { value: string; unit: string; label: string }[];
     const amenitiesPills = t.raw('Home.hospitality.amenitiesPills') as string[];

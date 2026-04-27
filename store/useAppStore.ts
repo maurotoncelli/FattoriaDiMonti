@@ -9,6 +9,12 @@ interface AppState {
     isConciergeOpen: boolean;
     conciergeContext: 'default' | 'cucina-nomade' | null;
     isLightboxOpen: boolean;
+    isJerkySheetOpen: boolean;
+    selectedJerkyId: string | null;
+    isOilSheetOpen: boolean;
+    selectedBottleId: string | null;
+    isRoomSheetOpen: boolean;
+    selectedRoomId: string | null;
     // Routing Transitions
     isTransitioning: boolean;
     nextRoute: string | null;
@@ -27,6 +33,9 @@ interface AppState {
     setOilModalOpen: (open: boolean) => void;
     setConciergeOpen: (open: boolean, context?: 'default' | 'cucina-nomade') => void;
     setLightboxOpen: (open: boolean) => void;
+    setJerkySheetOpen: (open: boolean, productId?: string) => void;
+    setOilSheetOpen: (open: boolean, bottleId?: string) => void;
+    setRoomSheetOpen: (open: boolean, roomId?: string) => void;
     startPageTransition: (route: string, bgColor?: string, keyword?: string) => void;
     endPageTransition: () => void;
     setPreloaderComplete: (v: boolean) => void;
@@ -43,6 +52,12 @@ export const useAppStore = create<AppState>((set) => ({
     isConciergeOpen: false,
     conciergeContext: null,
     isLightboxOpen: false,
+    isJerkySheetOpen: false,
+    selectedJerkyId: null,
+    isOilSheetOpen: false,
+    selectedBottleId: null,
+    isRoomSheetOpen: false,
+    selectedRoomId: null,
     isTransitioning: false,
     nextRoute: null,
     transitionBgColor: '#F3EFE7',
@@ -60,6 +75,12 @@ export const useAppStore = create<AppState>((set) => ({
     setConciergeOpen: (open, context = 'default') =>
         set({ isConciergeOpen: open, conciergeContext: open ? context : null }),
     setLightboxOpen: (open) => set({ isLightboxOpen: open }),
+    setJerkySheetOpen: (open, productId) =>
+        set({ isJerkySheetOpen: open, selectedJerkyId: open ? (productId || null) : null }),
+    setOilSheetOpen: (open, bottleId) =>
+        set({ isOilSheetOpen: open, selectedBottleId: open ? (bottleId || null) : null }),
+    setRoomSheetOpen: (open, roomId) =>
+        set({ isRoomSheetOpen: open, selectedRoomId: open ? (roomId || null) : null }),
     startPageTransition: (route, bgColor = '#F3EFE7', keyword) => set({
         isTransitioning: true,
         nextRoute: route,

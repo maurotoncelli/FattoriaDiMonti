@@ -57,13 +57,26 @@ function DetailsAccordion({ details }: { details: string[] }) {
                 ref={contentRef}
                 style={{ height: 0, overflow: 'hidden' }}
             >
-                <ul className="flex flex-col gap-2 pt-4 pb-1">
-                    {details.map((line, i) => (
-                        <li key={i} className="flex items-start gap-2">
-                            <span className="text-[var(--argilla-ferrosa)]/30 text-[10px] mt-[3px] flex-shrink-0">—</span>
-                            <span className="font-inter text-xs text-[var(--muccoPisano)]/55 leading-relaxed">{line}</span>
-                        </li>
-                    ))}
+                <ul className="flex flex-col w-full pt-4 pb-2">
+                    {details.map((line, i) => {
+                        // Split string by '·' if present, to separate ingredient from preparation
+                        const parts = line.split('·');
+                        const mainIngredient = parts[0].trim();
+                        const preparation = parts.length > 1 ? parts.slice(1).join('·').trim() : null;
+
+                        return (
+                            <li key={i} className="flex flex-col py-3 border-b border-[var(--muccoPisano)]/5 last:border-b-0 pl-1">
+                                <span className="font-playfair italic text-[var(--argilla-ferrosa)] text-[15px] md:text-[16px] tracking-wide leading-snug">
+                                    {mainIngredient}
+                                </span>
+                                {preparation && (
+                                    <span className="font-inter text-[13px] md:text-[14px] text-[var(--muccoPisano)]/70 mt-1 leading-relaxed">
+                                        {preparation}
+                                    </span>
+                                )}
+                            </li>
+                        );
+                    })}
                 </ul>
             </div>
         </div>

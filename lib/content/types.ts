@@ -123,7 +123,23 @@ export interface MuccoPisanoContent {
     items: { title: string; body: string }[];
   };
   tagli: { label: string; titleHtml: React.ReactNode; bodyText: string; ctaLabel: string; images: { primary: MediaItem } };
-  essiccata: { label: string; titleHtml: React.ReactNode; bodyText: string; images: { primary: MediaItem } };
+  essiccata: { 
+    label: string; 
+    titleHtml: React.ReactNode; 
+    bodyText: string; 
+    images: { primary: MediaItem };
+    products: {
+      id: string;
+      name: string;
+      subtitle: string;
+      description: string;
+      tags: string[];
+      labelColor: string;
+      glowColor: string;
+      ctaLabel: string;
+      image: MediaItem;
+    }[];
+  };
   cucina: { titleHtml: React.ReactNode; bodyText: string; ctaLabel: string; images: { primary: MediaItem } };
 }
 
@@ -132,11 +148,45 @@ export interface MuccoPisanoContent {
 export interface OlioContent {
   closeUrl: string;
   closeLabel: string;
+  bottles: {
+    id: string;
+    name: string;
+    subtitle: string;
+    description: string;
+    tastingNotes: string[];
+    specs: { label: string; value: string }[];
+    labelColor: string;
+    glowColor: string;
+    ctaLabel: string;
+    image: MediaItem;
+  }[];
+  order: {
+    productSheetLabel: string;
+    openSheetLabel: string;
+    eyebrow: string;
+    title: string;
+    availabilityNote: string;
+    selectedPrefix: string;
+    quantityLabel: string;
+    nameLabel: string;
+    namePlaceholder: string;
+    contactLabel: string;
+    contactPlaceholder: string;
+    submitLabel: string;
+    successMessage: string;
+  };
   acts: {
     act1: { label: string; titleHtml: React.ReactNode; introText: string; images: { background: MediaItem } };
     act2: { label: string; titleHtml: React.ReactNode; paragraphs: string[]; images: { primary: MediaWithOverlay } };
     act3: { label: string; titleHtml: React.ReactNode; timelineSteps: TimelineStep[] };
-    act4: { label: string; quoteHtml: React.ReactNode; images: { primary: MediaItem } };
+    act4: { 
+      label: string; 
+      quoteHtml: React.ReactNode; 
+      description: string;
+      formatsTitle: string;
+      formats: { name: string; size: string; idealFor: string }[];
+      images: { primary: MediaItem; gallery: MediaItem[] } 
+    };
     act5: { images: { background: MediaItem }; awards: Award[]; cta: { titleHtml: React.ReactNode; buttonLabel: string } };
   };
 }
@@ -173,6 +223,13 @@ export interface RoomContent {
   name: string;
   bgColor: string;
   description: string;
+  longDescription?: string;
+  bedType?: string;
+  surface?: string;
+  floor?: string;
+  view?: string;
+  highlights?: string[];
+  amenities?: { icon: string; label: string }[];
   photos: MediaItem[];
 }
 

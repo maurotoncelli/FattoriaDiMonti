@@ -19,24 +19,29 @@ export default function ScrollProgressTracker() {
             }
         };
 
-        const attachLenis = () => {
-            const lenis = (window as any).__lenis;
-            if (lenis) {
-                lenis.on('scroll', updateProgress);
-                return () => lenis.off('scroll', updateProgress);
-            }
-            return undefined;
+        let cleanup: (() => void) | undefined;
+
+        const attachLenis = (lenis: any) => {
+            cleanup?.();
+            updateProgress({ scroll: lenis.scroll || 0 });
+            lenis.on('scroll', updateProgress);
+            cleanup = () => lenis.off('scroll', updateProgress);
         };
 
-        // Lenis potrebbe non essere ancora montato (dynamic import): riprova ogni 100ms
-        let cleanup: (() => void) | undefined;
-        const interval = setInterval(() => {
-            cleanup = attachLenis();
-            if (cleanup) clearInterval(interval);
-        }, 100);
+        const existingLenis = (window as any).__lenis;
+        if (existingLenis) {
+            attachLenis(existingLenis);
+        }
+
+        const handleLenisReady = (event: Event) => {
+            const lenis = (event as CustomEvent).detail || (window as any).__lenis;
+            if (lenis) attachLenis(lenis);
+        };
+
+        window.addEventListener('fdm:lenis-ready', handleLenisReady);
 
         return () => {
-            clearInterval(interval);
+            window.removeEventListener('fdm:lenis-ready', handleLenisReady);
             cleanup?.();
         };
     }, []);
