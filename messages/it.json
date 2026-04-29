@@ -647,7 +647,7 @@
         ]
       },
       "galleria": {
-        "titleHtml": "Frammenti <brResp></br><emClass>di Pace</emClass>",
+        "titleHtml": "Frammenti <brResp></brResp><emClass>di Pace</emClass>",
         "scrollHint": "Scorri per esplorare",
         "items": [
           {
@@ -1012,6 +1012,9 @@
       "ctaOrder": "Acquista l'Olio Nuovo"
     },
     "roomSheet": {
+      "labelSpace": "Lo spazio",
+      "labelAmenities": "Amenities",
+      "backLabel": "← INDIETRO",
       "ariaLabel": "Scheda Stanza — Casa Rossa",
       "closeAria": "Chiudi scheda stanza",
       "closeLabel": "× CHIUDI",

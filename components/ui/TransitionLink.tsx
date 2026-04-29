@@ -8,6 +8,7 @@ interface TransitionLinkProps {
     href: string;
     children: ReactNode;
     className?: string;
+    style?: React.CSSProperties;
     bgColor?: string;
     transitionKeyword?: string;
 }
@@ -16,6 +17,7 @@ export default function TransitionLink({
     href, 
     children, 
     className,
+    style,
     bgColor = '#181A15',
     transitionKeyword,
 }: TransitionLinkProps) {
@@ -29,7 +31,7 @@ export default function TransitionLink({
     };
 
     return (
-        <Link href={href as any} onClick={handleClick} className={className}>
+        <Link href={href as any} onClick={handleClick} className={className} style={style}>
             {children}
         </Link>
     );

@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { gsap } from 'gsap';
 import { useAppStore } from '@/store/useAppStore';
 import { getOspitalitaData } from '@/lib/data/ospitalita';
+import RoomFloorPlan from '@/components/ui/RoomFloorPlan';
 
 // SVG Icon Helper
 const getIcon = (name: string) => {
@@ -112,14 +113,28 @@ export default function RoomSheet() {
                 <div className="w-full h-full" style={{ backgroundColor: activeRoom.bgColor }}></div>
             </div>
 
-            {/* Close Button */}
+            {/* Navigation Buttons */}
             <button
                 onClick={() => setRoomSheetOpen(false)}
-                className="absolute top-5 right-5 md:top-8 md:right-8 z-50 text-[10px] sm:text-[11px] tracking-[0.2em] uppercase opacity-70 hover:opacity-100 transition-opacity"
-                aria-label={t('Overlays.roomSheet.closeAria')}
-                style={{ color: '#111' }}
+                className="fixed z-50 flex items-center gap-3 px-6 py-2.5 rounded-full transition-all duration-300 group"
+                style={{
+                    top: 'calc(1.5rem + env(safe-area-inset-top, 0px))',
+                    left: '1.5rem',
+                    background: 'rgba(236, 232, 223, 0.82)',
+                    backdropFilter: 'blur(12px)',
+                    WebkitBackdropFilter: 'blur(12px)',
+                    border: '1px solid rgba(107,122,101,0.5)',
+                    color: 'var(--mucco-pisano)',
+                    fontFamily: 'var(--font-body)',
+                    fontSize: '10px',
+                    letterSpacing: '0.2em',
+                    textTransform: 'uppercase',
+                    boxShadow: '0 2px 12px rgba(0,0,0,0.06)',
+                    cursor: 'pointer',
+                    minHeight: '40px',
+                }}
             >
-                {t('Overlays.roomSheet.closeLabel')}
+                {t('Overlays.roomSheet.backLabel')}
             </button>
 
             {/* Scrollable Content */}
@@ -132,7 +147,7 @@ export default function RoomSheet() {
                 <div className="w-full min-h-[85vh] md:min-h-[100vh] flex flex-col md:flex-row border-b border-black/10">
                     
                     {/* Left: Info */}
-                    <div className="w-full md:w-1/3 p-8 md:p-16 flex flex-col justify-center">
+                    <div className="w-full md:w-1/3 p-8 md:p-16 pt-24 md:pt-40 flex flex-col">
                         <div className="text-[10px] tracking-[0.2em] uppercase opacity-50 mb-6 font-medium">
                             {t('Overlays.roomSheet.eyebrow')}
                         </div>
@@ -141,9 +156,33 @@ export default function RoomSheet() {
                             {activeRoom.name}
                         </h2>
                         
-                        <p className="text-lg leading-relaxed opacity-80 mb-12 max-w-sm">
+                        <p className="text-lg leading-relaxed opacity-80 mb-8 max-w-sm">
                             {activeRoom.description}
                         </p>
+
+                        {/* Architectural Floor Plan */}
+                        <RoomFloorPlan roomId={activeRoom.id} className="mb-12" />
+
+                        {/* Quick Amenities Section */}
+                        <div className="mb-12 border-t border-black/5 pt-8">
+                            <h4 className="text-[10px] tracking-[0.2em] uppercase opacity-40 mb-6 font-semibold">
+                                {t('Overlays.roomSheet.labelAmenities')}
+                            </h4>
+                            <div className="grid grid-cols-2 gap-y-4 gap-x-2">
+                                {activeRoom.amenities?.slice(0, 6).map((amenity, i) => (
+                                    <div key={i} className="flex items-center gap-3">
+                                        <span className="text-[var(--argilla-ferrosa)] w-5 h-5 flex items-center justify-center">
+                                            <div className="scale-75 origin-center">
+                                                {getIcon(amenity.icon)}
+                                            </div>
+                                        </span>
+                                        <span className="text-[9px] uppercase tracking-[0.1em] opacity-50 font-semibold leading-tight">
+                                            {amenity.label}
+                                        </span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
 
                         <div className="flex flex-col gap-5 border-t border-black/10 pt-8 mt-auto">
                             <div className="flex justify-between items-center text-sm">

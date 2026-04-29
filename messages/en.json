@@ -641,39 +641,39 @@
         ]
       },
       "galleria": {
-        "titleHtml": "Frammenti <brResp></br><emClass>di Pace</emClass>",
-        "scrollHint": "Scorri per esplorare",
+        "titleHtml": "Fragments <brResp></brResp><emClass>of Peace</emClass>",
+        "scrollHint": "Scroll to explore",
         "items": [
           {
-            "alt": "Luce Finestra",
-            "overlayText": "Luce Finestra (3/2)"
+            "alt": "Window Light",
+            "overlayText": "Window Light (3/2)"
           },
           {
-            "alt": "Dettaglio Coperte",
-            "overlayText": "Dettaglio Coperte (2/3)"
+            "alt": "Blanket Detail",
+            "overlayText": "Blanket Detail (2/3)"
           },
           {
-            "alt": "Angolo Lettura",
-            "overlayText": "Angolo Lettura (3/2)"
+            "alt": "Reading Corner",
+            "overlayText": "Reading Corner (3/2)"
           },
           {
-            "alt": "Libreria",
-            "overlayText": "Libreria (2/3)"
+            "alt": "Library",
+            "overlayText": "Library (2/3)"
           },
           {
-            "alt": "Bagno & Asciugamani",
-            "overlayText": "Bagno & Asciugamani (3/2)"
+            "alt": "Bath & Towels",
+            "overlayText": "Bath & Towels (3/2)"
           }
         ],
         "indicator": {
-          "exploreText": "Esplora",
-          "scrollText": "Scorri"
+          "exploreText": "Explore",
+          "scrollText": "Scroll"
         }
       },
       "stanze": {
-        "label": "Il Riposo Notturno",
-        "titleHtml": "Quattro <emClass>Identità</emClass>",
-        "introText": "Al piano superiore, la luce dorata filtra da ampie finestre affacciate sui colli in quattro stanze dalle identità cromatiche ben definite, preparate con biancheria impeccabile e profumi essenziali.",
+        "label": "Nightly Rest",
+        "titleHtml": "Four <emClass>Identities</emClass>",
+        "introText": "On the upper floor, golden light filters through large windows overlooking the hills into four rooms with well-defined chromatic identities, prepared with impeccable linens and essential scents.",
         "rooms": [
           {
             "name": "Avorio",
@@ -754,11 +754,11 @@
         ]
       },
       "osservatorio": {
-        "label": "Terrazza sul Tetto",
-        "titleHtml": "Migliaia di <emClass>Stelle</emClass>",
-        "introText": "Sotto un cielo totalmente privo di inquinamento luminoso, l'infinita distesa della via lattea diventa il perfetto sipario di fine giornata. Usa il telescopio professionale per chiudere in bellezza.",
+        "label": "Telescope",
+        "titleHtml": "Thousands of <emClass>Stars</emClass>",
+        "introText": "The upper terrace of the Casa Rossa is a window into the cosmos. Here, away from the city lights, the sky regains its ancestral depth.",
         "cta": {
-          "buttonLabel": "Prenota il tuo Ritiro"
+          "buttonLabel": "Check Availability"
         }
       }
     }
@@ -1006,6 +1006,9 @@
       "ctaOrder": "Order New Oil"
     },
     "roomSheet": {
+      "labelSpace": "The Space",
+      "labelAmenities": "Amenities",
+      "backLabel": "← BACK",
       "ariaLabel": "Room Sheet — Casa Rossa",
       "closeAria": "Close room sheet",
       "closeLabel": "× CLOSE",

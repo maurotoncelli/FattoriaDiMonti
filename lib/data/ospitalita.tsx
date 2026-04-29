@@ -43,13 +43,20 @@ export const getOspitalitaData = (t: any): OspitalitaContent => ({
                 emClass: (chunks: React.ReactNode) => <em className="text-[var(--olive)]">{chunks}</em>,
             }),
             scrollHint: t('Ospitalita.sections.galleria.scrollHint'),
-            items: [
-                { src: '/images/casa-rossa-interni.png', alt: t('Ospitalita.sections.galleria.items.0.alt'), overlayText: t('Ospitalita.sections.galleria.items.0.overlayText'), aspect: '3/2' },
-                { src: '/images/cucina-nomade.png', alt: t('Ospitalita.sections.galleria.items.1.alt'), overlayText: t('Ospitalita.sections.galleria.items.1.overlayText'), aspect: '2/3' },
-                { src: '/images/casa-rossa-panoramic.png', alt: t('Ospitalita.sections.galleria.items.2.alt'), overlayText: t('Ospitalita.sections.galleria.items.2.overlayText'), aspect: '3/2' },
-                { src: '/images/villa-buontalenti.png', alt: t('Ospitalita.sections.galleria.items.3.alt'), overlayText: t('Ospitalita.sections.galleria.items.3.overlayText'), aspect: '2/3' },
-                { src: '/images/cucina-nomade-hero.jpg', alt: t('Ospitalita.sections.galleria.items.4.alt'), overlayText: t('Ospitalita.sections.galleria.items.4.overlayText'), aspect: '3/2' },
-            ],
+            items: (t.raw('Ospitalita.sections.galleria.items') as { alt: string; overlayText: string }[]).map(
+                (item, i) => ({
+                    src: [
+                        '/images/casa-rossa-interni.png',
+                        '/images/cucina-nomade.png',
+                        '/images/casa-rossa-panoramic.png',
+                        '/images/villa-buontalenti.png',
+                        '/images/cucina-nomade-hero.jpg',
+                    ][i],
+                    alt: item.alt,
+                    overlayText: item.overlayText,
+                    aspect: ['3/2', '2/3', '3/2', '2/3', '3/2'][i],
+                })
+            ),
             indicator: {
                 exploreText: t('Ospitalita.sections.galleria.indicator.exploreText'),
                 scrollText: t('Ospitalita.sections.galleria.indicator.scrollText'),

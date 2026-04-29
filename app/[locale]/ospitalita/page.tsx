@@ -489,7 +489,76 @@ export default function OspitalitaPage() {
                 </div>
             </section>
 
-            {/* SECTION 2.5: Galleria */}
+            {/* SECTION 3: Le Stanze Cromatiche (Le 4 Identità) */}
+            <section className="relative min-h-screen px-[8vw] py-[20vh] text-center">
+                <div className="max-w-4xl mx-auto mb-20">
+                    <span className="font-inter text-xs tracking-[0.2em] text-[var(--olive)] uppercase mb-6 block fade-up-text opacity-0">
+                        {ospitalitaData.sections.stanze.label}
+                    </span>
+                    <h2 className="font-playfair text-5xl md:text-7xl leading-[1.1] mb-8 fade-up-text opacity-0">
+                        {ospitalitaData.sections.stanze.titleHtml}
+                    </h2>
+                    <p className="font-inter text-base leading-[1.9] opacity-80 max-w-2xl mx-auto fade-up-text opacity-0">
+                        {ospitalitaData.sections.stanze.introText}
+                    </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 max-w-[1400px] mx-auto text-left mt-16 px-4 md:px-0">
+                    {ospitalitaData.sections.stanze.rooms.map((room, roomIndex) => (
+                        <div key={room.id} className="flex flex-col group fade-up-card opacity-0">
+                            {/* Clickable cover image */}
+                            <button
+                                className="relative rounded-sm overflow-hidden w-full mb-6 text-left cursor-pointer"
+                                style={{ aspectRatio: '4/3', border: 'none', padding: 0, background: room.bgColor }}
+                                onClick={() => setRoomSheetOpen(true, room.id)}
+                                aria-label={`Apri dettagli ${room.name}`}
+                            >
+                                <Image
+                                    src={room.photos[0].src}
+                                    alt={room.photos[0].alt}
+                                    fill
+                                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                    sizes="(max-width: 768px) 90vw, 45vw"
+                                />
+                                {/* Color tint overlay to hint the room identity */}
+                                <div
+                                    className="absolute inset-0 opacity-20 mix-blend-multiply pointer-events-none"
+                                    style={{ backgroundColor: room.bgColor }}
+                                />
+                                {/* Hover overlay */}
+                                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/25 transition-colors duration-500 z-10 pointer-events-none" />
+                                <div className="absolute inset-0 flex flex-col items-center justify-center z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none gap-3">
+                                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" className="text-[var(--tufo)] drop-shadow-lg">
+                                        <path d="M4 4h7M4 4v7M24 4h-7M24 4v7M4 24h7M4 24v-7M24 24h-7M24 24v-7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                                    </svg>
+                                    <span className="font-inter text-[10px] tracking-[0.2em] uppercase text-[var(--tufo)] drop-shadow-lg">
+                                        {t('UI.photoOf', { count: room.photos.length })}
+                                    </span>
+                                </div>
+                                {/* Photo count badge */}
+                                <div className="absolute bottom-4 right-4 z-10 bg-black/40 backdrop-blur-sm rounded-full px-3 py-1 pointer-events-none">
+                                    <span className="font-inter text-[10px] tracking-[0.15em] text-[var(--tufo)] uppercase">
+                                        1 / {room.photos.length}
+                                    </span>
+                                </div>
+                            </button>
+
+                            <div className="flex flex-col">
+                                <div className="flex items-center gap-3 mb-3">
+                                    <div className="w-5 h-5 rounded-full shadow-sm border border-[var(--olive)]/20" style={{ backgroundColor: room.bgColor }} />
+                                    <span className="font-inter text-xs tracking-[0.2em] uppercase opacity-70 text-[var(--olive)]">{t('UI.gallery.identita')}</span>
+                                </div>
+                                <h3 className="font-playfair text-3xl lg:text-4xl mb-3 text-[var(--mucco-pisano)] group-hover:text-[var(--olive)] transition-colors">{room.name}</h3>
+                                <p className="font-inter text-sm md:text-base leading-[1.8] opacity-80 text-[var(--mucco-pisano)] max-w-sm">
+                                    {room.description}
+                                </p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </section>
+
+            {/* SECTION 2.5: Galleria (Frammenti di Pace) */}
             {isMobile ? (
                 /* MOBILE: griglia verticale 2 colonne */
                 <section className="px-[6vw] py-[10vh]">
@@ -629,75 +698,6 @@ export default function OspitalitaPage() {
                     </div>
                 </div>
             )}
-
-            {/* SECTION 3: Le Stanze Cromatiche */}
-            <section className="relative min-h-screen px-[8vw] py-[20vh] text-center">
-                <div className="max-w-4xl mx-auto mb-20">
-                    <span className="font-inter text-xs tracking-[0.2em] text-[var(--olive)] uppercase mb-6 block fade-up-text opacity-0">
-                        {ospitalitaData.sections.stanze.label}
-                    </span>
-                    <h2 className="font-playfair text-5xl md:text-7xl leading-[1.1] mb-8 fade-up-text opacity-0">
-                        {ospitalitaData.sections.stanze.titleHtml}
-                    </h2>
-                    <p className="font-inter text-base leading-[1.9] opacity-80 max-w-2xl mx-auto fade-up-text opacity-0">
-                        {ospitalitaData.sections.stanze.introText}
-                    </p>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 max-w-[1400px] mx-auto text-left mt-16 px-4 md:px-0">
-                    {ospitalitaData.sections.stanze.rooms.map((room, roomIndex) => (
-                        <div key={room.id} className="flex flex-col group fade-up-card opacity-0">
-                            {/* Clickable cover image */}
-                            <button
-                                className="relative rounded-sm overflow-hidden w-full mb-6 text-left cursor-pointer"
-                                style={{ aspectRatio: '4/3', border: 'none', padding: 0, background: room.bgColor }}
-                                onClick={() => setRoomSheetOpen(true, room.id)}
-                                aria-label={`Apri dettagli ${room.name}`}
-                            >
-                                <Image
-                                    src={room.photos[0].src}
-                                    alt={room.photos[0].alt}
-                                    fill
-                                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                                    sizes="(max-width: 768px) 90vw, 45vw"
-                                />
-                                {/* Color tint overlay to hint the room identity */}
-                                <div
-                                    className="absolute inset-0 opacity-20 mix-blend-multiply pointer-events-none"
-                                    style={{ backgroundColor: room.bgColor }}
-                                />
-                                {/* Hover overlay */}
-                                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/25 transition-colors duration-500 z-10 pointer-events-none" />
-                                <div className="absolute inset-0 flex flex-col items-center justify-center z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none gap-3">
-                                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" className="text-[var(--tufo)] drop-shadow-lg">
-                                        <path d="M4 4h7M4 4v7M24 4h-7M24 4v7M4 24h7M4 24v-7M24 24h-7M24 24v-7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-                                    </svg>
-                                    <span className="font-inter text-[10px] tracking-[0.2em] uppercase text-[var(--tufo)] drop-shadow-lg">
-                                        {t('UI.photoOf', { count: room.photos.length })}
-                                    </span>
-                                </div>
-                                {/* Photo count badge */}
-                                <div className="absolute bottom-4 right-4 z-10 bg-black/40 backdrop-blur-sm rounded-full px-3 py-1 pointer-events-none">
-                                    <span className="font-inter text-[10px] tracking-[0.15em] text-[var(--tufo)] uppercase">
-                                        1 / {room.photos.length}
-                                    </span>
-                                </div>
-                            </button>
-
-                            <div className="flex flex-col">
-                                <div className="flex items-center gap-3 mb-3">
-                                    <div className="w-5 h-5 rounded-full shadow-sm border border-[var(--olive)]/20" style={{ backgroundColor: room.bgColor }} />
-                                    <span className="font-inter text-xs tracking-[0.2em] uppercase opacity-70 text-[var(--olive)]">{t('UI.gallery.identita')}</span>
-                                </div>
-                                <h3 className="font-playfair text-3xl lg:text-4xl mb-3 text-[var(--mucco-pisano)] group-hover:text-[var(--olive)] transition-colors">{room.name}</h3>
-                                <p className="font-inter text-sm md:text-base leading-[1.8] opacity-80 text-[var(--mucco-pisano)] max-w-sm">
-                                    {room.description}
-                                </p>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </section>
 
             {/* SECTION 4: L'Osservatorio (Stargazing e Finale CTA) */}
             <section className="relative min-h-[100vh] bg-[#111111] text-[#F3EFE7] flex items-center justify-center overflow-hidden">

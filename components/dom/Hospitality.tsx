@@ -5,7 +5,7 @@ import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import TransitionLink from '@/components/ui/TransitionLink';
-import { useAppStore } from '@/store/useAppStore';
+
 import { useTranslations } from 'next-intl';
 import { useReducedMotion } from '@/hooks/usePerformance';
 
@@ -16,7 +16,7 @@ if (typeof window !== 'undefined') {
 export default function Hospitality() {
     const sectionRef = useRef<HTMLElement>(null);
     const t = useTranslations();
-    const setConciergeOpen = useAppStore((s) => s.setConciergeOpen);
+
     const prefersReducedMotion = useReducedMotion();
 
     useLayoutEffect(() => {
@@ -135,6 +135,79 @@ export default function Hospitality() {
                 </h2>
             </div>
 
+
+
+            {/* ── PULL QUOTE ───────────────────────────────────── */}
+            <div style={{ padding: '8vh 10vw' }}>
+                <p className="hosp-quote" style={{
+                    fontFamily: 'var(--font-playfair), serif',
+                    fontStyle: 'italic',
+                    fontSize: 'clamp(1.4rem, 2.8vw, 3.5rem)',
+                    lineHeight: 1.25,
+                    color: 'rgba(236,232,223,0.72)',
+                    maxWidth: '860px',
+                    whiteSpace: 'pre-line',
+                    margin: 0,
+                }}>
+                    "{quote}"
+                </p>
+            </div>
+
+            {/* ── PHOTO BANNER (interni) ────────────────────────── */}
+            <div
+                id="media-casa-rossa-interiors"
+                style={{
+                    width: '100%',
+                    height: '70vh',
+                    position: 'relative',
+                    overflow: 'hidden',
+                }}
+            >
+                <Image
+                    src="/images/casa-rossa-interni.png"
+                    alt="La Casa Rossa — Interni"
+                    fill
+                    className="parallax-img-casarossa"
+                    style={{ objectFit: 'cover', scale: '1.25', transformOrigin: 'center center' }}
+                    sizes="100vw"
+                    priority
+                />
+                <div style={{
+                    position: 'absolute', inset: 0,
+                    background: 'linear-gradient(to bottom, rgba(176,92,70,0.28) 0%, transparent 30%, transparent 70%, rgba(176,92,70,0.4) 100%)',
+                    pointerEvents: 'none',
+                }} />
+                
+                {/* ── CTA ESPLORA (Centered Overlay) ──────────────── */}
+                <div style={{
+                    position: 'absolute',
+                    inset: 0,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    pointerEvents: 'none',
+                }}>
+                    <div style={{ pointerEvents: 'auto' }} className="hosp-fade">
+                        <TransitionLink
+                            href={t('Home.hospitality.cta.href')}
+                            bgColor="var(--argilla-ferrosa)"
+                            className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full border border-[rgba(236,232,223,0.3)] px-8 py-4"
+                            style={{ background: 'var(--argilla-ferrosa)' }}
+                        >
+                            {/* Fill dal basso verso l'alto */}
+                            <span
+                                aria-hidden="true"
+                                className="absolute inset-0 origin-bottom scale-y-0 rounded-full bg-[var(--tufo)] transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:scale-y-100"
+                            />
+                            <span className="relative z-10 font-inter text-xs font-medium uppercase tracking-[0.15em] text-[rgba(236,232,223,0.92)] transition-colors duration-300 group-hover:text-[var(--argilla-ferrosa)]">
+                                {t('Home.hospitality.cta.label')}
+                            </span>
+                            <span className="relative z-10 block h-px w-6 bg-[rgba(236,232,223,0.6)] transition-all duration-300 group-hover:w-10 group-hover:bg-[var(--argilla-ferrosa)]" />
+                        </TransitionLink>
+                    </div>
+                </div>
+            </div>
+
             {/* ── STATS BAR ────────────────────────────────────── */}
             <div
                 className="hosp-stats-row grid grid-cols-2 lg:grid-cols-4"
@@ -187,48 +260,6 @@ export default function Hospitality() {
                         </span>
                     </div>
                 ))}
-            </div>
-
-            {/* ── PULL QUOTE ───────────────────────────────────── */}
-            <div style={{ padding: '8vh 10vw' }}>
-                <p className="hosp-quote" style={{
-                    fontFamily: 'var(--font-playfair), serif',
-                    fontStyle: 'italic',
-                    fontSize: 'clamp(1.4rem, 2.8vw, 3.5rem)',
-                    lineHeight: 1.25,
-                    color: 'rgba(236,232,223,0.72)',
-                    maxWidth: '860px',
-                    whiteSpace: 'pre-line',
-                    margin: 0,
-                }}>
-                    "{quote}"
-                </p>
-            </div>
-
-            {/* ── PHOTO BANNER (interni) ────────────────────────── */}
-            <div
-                id="media-casa-rossa-interiors"
-                style={{
-                    width: '100%',
-                    height: '58vh',
-                    position: 'relative',
-                    overflow: 'hidden',
-                }}
-            >
-                <Image
-                    src="/images/casa-rossa-interni.png"
-                    alt="La Casa Rossa — Interni"
-                    fill
-                    className="parallax-img-casarossa"
-                    style={{ objectFit: 'cover', scale: '1.25', transformOrigin: 'center center' }}
-                    sizes="100vw"
-                    priority
-                />
-                <div style={{
-                    position: 'absolute', inset: 0,
-                    background: 'linear-gradient(to bottom, rgba(176,92,70,0.28) 0%, transparent 30%, transparent 70%, rgba(176,92,70,0.4) 100%)',
-                    pointerEvents: 'none',
-                }} />
             </div>
 
             {/* ── TWO COLUMNS ──────────────────────────────────── */}
@@ -334,46 +365,7 @@ export default function Hospitality() {
                 </div>
             </div>
 
-            {/* ── CTA ROW ──────────────────────────────────────── */}
-            <div className="hosp-fade flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3" style={{
-                padding: '4vh 8vw 10vh',
-                borderTop: '1px solid rgba(236,232,223,0.12)',
-            }}>
-                {/* Primary — filled */}
-                <button
-                    onClick={() => setConciergeOpen(true, 'default')}
-                    style={{
-                        background: 'var(--tufo)',
-                        color: 'var(--argilla-ferrosa)',
-                        border: 'none',
-                        borderRadius: '9999px',
-                        padding: '1rem 2.2rem',
-                        fontFamily: 'var(--font-inter)',
-                        fontSize: '11px',
-                        letterSpacing: '0.18em',
-                        textTransform: 'uppercase',
-                        cursor: 'pointer',
-                        transition: 'background 0.3s',
-                        minHeight: '48px',
-                    }}
-                    onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = 'var(--sabbia-limonitica)'; }}
-                    onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = 'var(--tufo)'; }}
-                >
-                    {t('Home.hospitality.cta2.label')}
-                </button>
 
-                {/* Secondary — outline */}
-                <TransitionLink
-                    href={t('Home.hospitality.cta.href')}
-                    bgColor="#B05C46"
-                    className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full border border-[rgba(236,232,223,0.35)] px-8 py-4 transition-colors hover:border-[var(--tufo)]"
-                >
-                    <span className="font-inter text-xs font-medium uppercase tracking-[0.15em] text-[rgba(236,232,223,0.7)] group-hover:text-[var(--tufo)] transition-colors">
-                        {t('Home.hospitality.cta.label')}
-                    </span>
-                    <span className="block h-px w-6 bg-[rgba(236,232,223,0.4)] transition-all group-hover:w-10 group-hover:bg-[var(--tufo)]" />
-                </TransitionLink>
-            </div>
         </section>
     );
 }
