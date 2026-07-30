@@ -15,7 +15,7 @@
 - Hosting: Vercel (Next.js nativo), team già in uso — niente costi extra Hobby/team attuale
 - Dominio custom: **non ancora acquistato** — si usa `*.vercel.app` finché il cliente non sceglie/compra il dominio
 - Deploy automatici: push su `main` → production
-- `NEXT_PUBLIC_SITE_URL` impostata su `https://fattoria-di-monti.vercel.app` (Production + Preview)
+- `NEXT_PUBLIC_SITE_URL`: da impostare in dashboard su `https://fattoria-di-monti.vercel.app` (poi ridistribuire); finché manca, fallback codice a `www.fattoriadimonti.it`
 
 ## File preparati
 
