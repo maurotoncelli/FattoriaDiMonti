@@ -44,5 +44,7 @@ Thumbs.db
 *.tsbuildinfo
 next-env.d.ts
 
-# ── Vercel (se mai usato) ────────────────────────────────────
+# ── Vercel ───────────────────────────────────────────────────
 .vercel
+.env*.local
+!.env.example

@@ -4,15 +4,14 @@ const withNextIntl = createNextIntlPlugin('./i18n/request.ts');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    // Ottimizzazione immagini — Netlify gestisce tramite il plugin Next.js
+    // Ottimizzazione immagini — su Vercel usa Image Optimization nativa
     images: {
         formats: ['image/avif', 'image/webp'],
         // Aggiungere qui domini esterni quando si integra Cloudinary/Sanity:
         // remotePatterns: [{ protocol: 'https', hostname: 'cdn.sanity.io' }],
     },
 
-    // Headers di sicurezza (Netlify aggiunge i propri via netlify.toml,
-    // questi si applicano in sviluppo locale e altri hosting)
+    // Headers di sicurezza (vercel.json ne aggiunge altri in produzione)
     async headers() {
         return [
             {

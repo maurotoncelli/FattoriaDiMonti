@@ -1,5 +1,7 @@
 # ============================================================
 # Fattoria di Monti — Netlify Deployment Configuration
+# LEGACY: hosting in migrazione su Vercel (vedi vercel.json e
+# MIGRAZIONE_VERCEL.md). Si può rimuovere dopo il go-live.
 # ============================================================
 
 [build]
