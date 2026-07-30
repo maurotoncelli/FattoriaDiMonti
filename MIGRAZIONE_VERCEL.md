@@ -1,14 +1,21 @@
 # Migrazione Netlify → Vercel (Fattoria di Monti)
 
-**Data prep:** 30 luglio 2026  
+**Data prep / go-live soft:** 30 luglio 2026  
 **Team Vercel:** `atstudio`  
+**Progetto:** `fattoria-di-monti`  
 **Repo:** `maurotoncelli/FattoriaDiMonti`
+
+## URL
+
+- Produzione: https://fattoria-di-monti.vercel.app
+- Dashboard: https://vercel.com/atstudio/fattoria-di-monti
 
 ## Scelte
 
 - Hosting: Vercel (Next.js nativo), team già in uso — niente costi extra Hobby/team attuale
 - Dominio custom: **non ancora acquistato** — si usa `*.vercel.app` finché il cliente non sceglie/compra il dominio
 - Deploy automatici: push su `main` → production
+- `NEXT_PUBLIC_SITE_URL` impostata su `https://fattoria-di-monti.vercel.app` (Production + Preview)
 
 ## File preparati
 
