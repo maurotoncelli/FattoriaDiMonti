@@ -115,11 +115,8 @@ export default function FooterSection() {
                     />
                 </div>
 
-                {/* Gradient */}
-                <div style={{
-                    position: 'absolute', inset: 0, zIndex: 1,
-                    background: 'linear-gradient(to bottom, rgba(43,36,32,0.6) 0%, rgba(0,0,0,0.08) 35%, rgba(0,0,0,0.08) 65%, rgba(43,36,32,0.8) 100%)',
-                }} />
+                {/* Niente scrim: la foto resta pulita, la leggibilità dei testi
+                    è affidata a una text-shadow leggera sui singoli elementi. */}
 
                 {/* Top-left: brand */}
                 <div style={{ position: 'absolute', top: '2.5rem', left: '10vw', zIndex: 2 }}>
@@ -128,7 +125,8 @@ export default function FooterSection() {
                         fontSize: 'clamp(0.85rem, 1.1vw, 1.1rem)',
                         fontStyle: 'italic',
                         letterSpacing: '0.04em',
-                        color: 'rgba(236,232,223,0.6)',
+                        color: 'rgba(236,232,223,0.85)',
+                        textShadow: '0 1px 10px rgba(43,36,32,0.6)',
                     }}>
                         Fattoria di Monti
                     </span>
@@ -141,7 +139,8 @@ export default function FooterSection() {
                         fontSize: '9px',
                         letterSpacing: '0.3em',
                         textTransform: 'uppercase',
-                        color: 'rgba(236,232,223,0.38)',
+                        color: 'rgba(236,232,223,0.7)',
+                        textShadow: '0 1px 10px rgba(43,36,32,0.6)',
                     }}>
                         {t('sectionLabel')}
                     </span>
@@ -163,6 +162,7 @@ export default function FooterSection() {
                         fontWeight: 400,
                         color: 'var(--tufo)',
                         margin: 0,
+                        textShadow: '0 2px 24px rgba(43,36,32,0.65), 0 1px 6px rgba(43,36,32,0.4)',
                     }}>
                         {t('title')}
                     </h2>
@@ -170,10 +170,11 @@ export default function FooterSection() {
                         fontFamily: 'var(--font-inter)',
                         fontSize: 'clamp(12px, 1vw, 14px)',
                         letterSpacing: '0.06em',
-                        color: 'rgba(236,232,223,0.5)',
+                        color: 'rgba(236,232,223,0.85)',
                         maxWidth: '360px',
                         lineHeight: 1.7,
                         margin: 0,
+                        textShadow: '0 1px 12px rgba(43,36,32,0.6)',
                     }}>
                         {t('hero.subtitle')}
                     </p>

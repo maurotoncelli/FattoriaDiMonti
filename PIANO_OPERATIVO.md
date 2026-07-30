@@ -7,6 +7,7 @@ Working checklist for the next product/engineering steps.
 - Architecture source of truth: `SITE_BLUEPRINT.md`
 - If this file conflicts with `STRATEGY.md` or `documenti di riferimento/`, follow `SITE_BLUEPRINT.md` for architecture and this file for current work priority.
 - Do not invent new routes or IA changes here without updating the blueprint.
+- Backlog dettagliato dei prossimi lavori richiesti da Mauro (Jul 30, 2026): `HANDOFF.md`.
 
 ---
 

@@ -17,6 +17,28 @@ export interface NavLink {
     };
 }
 
+/** Voce leggera per la navbar desktop: niente panelData né immagini. */
+export interface NavbarLink {
+    id: string;
+    index: string;
+    label: string;
+    href: string;
+}
+
+/**
+ * getNavbarLinks — voci compatte per la navbar desktop.
+ * Usa i `navLabel` corti dei messages; stessi href di getMainMenuLinks.
+ */
+export const getNavbarLinks = (t: any): NavbarLink[] => [
+    { id: 'nav-home', index: '00', label: t('home.navLabel'), href: '/' },
+    { id: 'nav-storia', index: '01', label: t('storia.navLabel'), href: '/storia' },
+    { id: 'nav-mucco', index: '02', label: t('mucco.navLabel'), href: '/mucco-pisano' },
+    { id: 'nav-boutique', index: '03', label: t('boutique.navLabel'), href: '/cucina-nomade' },
+    { id: 'nav-olio', index: '04', label: t('olio.navLabel'), href: '/olio' },
+    { id: 'nav-accoglienza', index: '05', label: t('accoglienza.navLabel'), href: '/ospitalita' },
+    { id: 'nav-contatti', index: '06', label: t('contatti.navLabel'), href: '/#04-footer' },
+];
+
 /**
  * getMainMenuLinks — locale-aware via next-intl.
  * Pass t from useTranslations('Navigation') for full i18n support.

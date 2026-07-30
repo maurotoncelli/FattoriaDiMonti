@@ -148,60 +148,32 @@
       "sectionLabel": "03 — L'Ospitalità",
       "heroLabel": "La Casa ",
       "heroItalic": "Rossa",
-      "stats": [
-        {
-          "value": "210",
-          "unit": "mq",
-          "label": "Superficie"
-        },
-        {
-          "value": "4",
-          "unit": "camere",
-          "label": "Stanze"
-        },
-        {
-          "value": "8",
-          "unit": "ospiti",
-          "label": "Capacità max"
-        },
-        {
-          "value": "1",
-          "unit": "piscina",
-          "label": "Uso esclusivo"
-        }
+      "intro": "Un tempo stalla e casa del fattore, oggi una casa intera per voi soli. Quattro camere luminose, la piscina privata e il silenzio delle colline di Volterra: la tenuta si vive da ospiti, con la libertà di casa vostra.",
+      "facts": [
+        "Fino a 8 ospiti",
+        "4 camere · 210 mq",
+        "Piscina a uso esclusivo"
       ],
-      "quote": "Un tempo stalla e casa del fattore.\nOggi, il rifugio perfetto dall'urgenza cittadina.",
-      "amenitiesPills": [
-        "Camino",
-        "Piscina privata",
-        "Barbecue",
-        "Telescopio",
-        "Biblioteca",
-        "Cucina attrezzata",
-        "Wi-Fi",
-        "Parquet listoni",
-        "Tappeti persiani",
-        "TV nascosta"
-      ],
+      "highlights": "Camino · Biblioteca · Cucina toscana · Terrazza sul tetto · Telescopio",
       "columns": {
         "day": {
-          "label": "L'ABITARE",
+          "label": "L'Abitare",
+          "title": "Le giornate lente",
           "text": "Vivere la Casa Rossa significa riappropriarsi del tempo: preparare una cena nella grande cucina toscana, perdersi tra i volumi della biblioteca o accendere il camino nel doppio soggiorno. All'esterno, la piscina è un invito al relax totale tra i profumi della macchia mediterranea."
         },
         "night": {
-          "label": "L'ESPERIENZA",
-          "text": "Quattro camere luminose al piano superiore, dove il silenzio è interrotto solo dalla natura. Dalla terrazza sul tetto, l'esperienza culmina nel cielo stellato: con il telescopio a disposizione potrete esplorare l'universo in un'oscurità pura e profonda.",
-          "media": {
-            "alt": "Cielo stellato notturno della Toscana visto dal tetto della Casa Rossa, non inquinato dalle luci artificiali",
-            "previewText": "Cielo Stellato · Telescopio"
-          }
+          "label": "L'Esperienza",
+          "title": "Le notti stellate",
+          "text": "Quattro camere luminose al piano superiore, dove il silenzio è interrotto solo dalla natura. Dalla terrazza sul tetto, l'esperienza culmina nel cielo stellato: con il telescopio a disposizione potrete esplorare l'universo in un'oscurità pura e profonda."
         }
       },
-      "amenities": {
-        "title": "Amenities della Villa"
+      "invite": {
+        "title": "La casa è vostra",
+        "text": "La Casa Rossa si affitta soltanto per intero, una prenotazione alla volta: nessun altro ospite, solo voi e la campagna.",
+        "secondaryCta": "Richiedi disponibilità"
       },
       "cta": {
-        "label": "Esplora la Casa Rossa",
+        "label": "Scopri la Casa Rossa",
         "href": "/ospitalita"
       },
       "ariaLabel": "Ospitalità — La Casa Rossa",
@@ -1173,8 +1145,10 @@
     }
   },
   "Navigation": {
+    "brand": "Fattoria di Monti",
     "home": {
       "label": "Home",
+      "navLabel": "Home",
       "panelTitle": "Fattoria di Monti",
       "stats": [
         {
@@ -1194,6 +1168,7 @@
     },
     "storia": {
       "label": "Storia",
+      "navLabel": "Storia",
       "panelTitle": "1839",
       "text": "Fondata sulle aspre e antiche colline etrusche di Volterra, la fattoria tramanda da secoli il rispetto quasi religioso per una terra dura ma incredibilmente generosa. Ogni pietra della villa seicentesca reca i segni del raccolto."
     },
@@ -1221,6 +1196,7 @@
     },
     "mucco": {
       "label": "Carne di Mucco Pisano",
+      "navLabel": "Mucco Pisano",
       "panelTitle": "Mucco Pisano",
       "stats": [
         {
@@ -1244,6 +1220,7 @@
     },
     "boutique": {
       "label": "Boutique Itinerante",
+      "navLabel": "Boutique",
       "panelTitle": "Cucina Nomade",
       "stats": [
         {
@@ -1263,6 +1240,7 @@
     },
     "olio": {
       "label": "Olio Extravergine",
+      "navLabel": "Olio",
       "panelTitle": "Olio EVO Biologico",
       "stats": [
         {
@@ -1285,11 +1263,13 @@
     },
     "accoglienza": {
       "label": "Accoglienza",
+      "navLabel": "Accoglienza",
       "panelTitle": "La Casa Rossa",
       "text": "Un ritiro materico assoluto dove il silenzio assordante delle colline aperte incontra il lusso discreto della pietra nuda e del legno recuperato, sospeso fuori dal tempo."
     },
     "contatti": {
       "label": "Contatti",
+      "navLabel": "Contatti",
       "panelTitle": "Coordinate",
       "stats": [
         {

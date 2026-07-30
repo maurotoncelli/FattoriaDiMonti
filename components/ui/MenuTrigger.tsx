@@ -18,6 +18,7 @@ export default function MenuTrigger() {
 
     return (
         <button
+            className="lg:hidden"
             onClick={() => setMenuOpen(true)}
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}

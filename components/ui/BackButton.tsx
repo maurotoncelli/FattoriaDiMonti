@@ -32,7 +32,9 @@ export default function BackButton() {
     const isAnyOverlayOpen = isMenuOpen || isOilModalOpen || isConciergeOpen || isOilSheetOpen;
 
     return (
+        // Solo mobile: su desktop la navbar copre la navigazione di ritorno
         <button
+            className="lg:hidden"
             onClick={handleBack}
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}

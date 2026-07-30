@@ -164,6 +164,11 @@ Current menu intent:
 6. Accoglienza
 7. Contatti
 
+Structure (Jul 2026):
+
+- **Desktop (≥1024px)**: navbar fissa in alto (`components/ui/NavBar.tsx`) — brand a sinistra, voci compatte da `getNavbarLinks(t)` (`Navigation.*.navLabel`), audio toggle e locale switcher a destra. Solo testo, nessuna immagine precaricata. La pill `MenuTrigger`, il `BackButton` e il `MainMenuOverlay` sono **solo mobile** (`lg:hidden`).
+- **Mobile (<1024px)**: pill `MenuTrigger` che apre `MainMenuOverlay` (layout colonna).
+
 Rules:
 
 - Keep menu compact.
@@ -233,6 +238,15 @@ Rules:
 - Jerky cards are static (photo, description, tags) — no product sheet. `JerkyProductSheet` was retired.
 - Single CTA opens Concierge with context `carne-secca` (info-request flow: name, contact, optional note).
 - No weights, specs, or SKU commerce pre-production.
+
+### Home — sezione Casa Rossa (Jul 2026)
+
+`components/dom/Hospitality.tsx` è un layout editoriale chiaro sul backdrop granuloso condiviso (bg `transparent`):
+
+- niente blocco argilla pieno: l'argilla è solo accento (em del titolo, label del dittico, CTA primario);
+- foto **pulite**, nessuna velatura o gradiente colorato sopra le immagini;
+- struttura: header + intro → foto interni full-bleed → riga di 3 fatti essenziali → due fasce sfalsate stile rivista (foto grande + pannello testo sovrapposto, alternate: Abitare/giornate lente, Esperienza/notti stellate) → invito finale con CTA `/ospitalita` + concierge;
+- contenuti in `Home.hospitality` (`intro`, `facts`, `highlights`, `columns`, `invite`, `cta`) in entrambe le lingue.
 
 ### Ospitalita
 

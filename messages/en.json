@@ -145,63 +145,35 @@
       }
     },
     "hospitality": {
-      "sectionLabel": "03 — L'Ospitalità",
+      "sectionLabel": "03 — Hospitality",
       "heroLabel": "La Casa ",
       "heroItalic": "Rossa",
-      "stats": [
-        {
-          "value": "210",
-          "unit": "mq",
-          "label": "Superficie"
-        },
-        {
-          "value": "4",
-          "unit": "camere",
-          "label": "Stanze"
-        },
-        {
-          "value": "8",
-          "unit": "ospiti",
-          "label": "Capacità max"
-        },
-        {
-          "value": "1",
-          "unit": "piscina",
-          "label": "Uso esclusivo"
-        }
+      "intro": "Once the farm's stable and farmer's house, today an entire home reserved for you alone. Four luminous bedrooms, a private pool and the silence of the Volterra hills: live the estate as guests, with the freedom of your own home.",
+      "facts": [
+        "Up to 8 guests",
+        "4 bedrooms · 210 sqm",
+        "Private pool, exclusive use"
       ],
-      "quote": "Un tempo stalla e casa del fattore.\nOggi, il rifugio perfetto dall'urgenza cittadina.",
-      "amenitiesPills": [
-        "Camino",
-        "Piscina privata",
-        "Barbecue",
-        "Telescopio",
-        "Biblioteca",
-        "Cucina attrezzata",
-        "Wi-Fi",
-        "Parquet listoni",
-        "Tappeti persiani",
-        "TV nascosta"
-      ],
+      "highlights": "Fireplace · Library · Tuscan kitchen · Roof terrace · Telescope",
       "columns": {
         "day": {
-          "label": "LIVING",
+          "label": "Living",
+          "title": "Slow days",
           "text": "Living at Casa Rossa means reclaiming your time: preparing a dinner in the large Tuscan kitchen, losing yourself among the volumes of the library, or lighting the fireplace in the double living room. Outside, the pool is an invitation to total relaxation amidst the scents of the Mediterranean scrub."
         },
         "night": {
-          "label": "THE EXPERIENCE",
-          "text": "Four luminous bedrooms on the upper floor, where silence is interrupted only by nature. From the roof terrace, the experience culminates in the starry sky: with the telescope at your disposal, you can explore the universe in pure and profound darkness.",
-          "media": {
-            "alt": "Starry night sky of Tuscany seen from the roof of Casa Rossa, unpolluted by artificial lights",
-            "previewText": "Starry Sky · Telescope"
-          }
+          "label": "The Experience",
+          "title": "Starry nights",
+          "text": "Four luminous bedrooms on the upper floor, where silence is interrupted only by nature. From the roof terrace, the experience culminates in the starry sky: with the telescope at your disposal, you can explore the universe in pure and profound darkness."
         }
       },
-      "amenities": {
-        "title": "Amenities della Villa"
+      "invite": {
+        "title": "The house is yours",
+        "text": "Casa Rossa is rented only as a whole, one booking at a time: no other guests, just you and the countryside.",
+        "secondaryCta": "Request availability"
       },
       "cta": {
-        "label": "Esplora la Casa Rossa",
+        "label": "Discover Casa Rossa",
         "href": "/ospitalita"
       },
       "ariaLabel": "Hospitality — La Casa Rossa",
@@ -1173,8 +1145,10 @@
     }
   },
   "Navigation": {
+    "brand": "Fattoria di Monti",
     "home": {
       "label": "Home",
+      "navLabel": "Home",
       "panelTitle": "Fattoria di Monti",
       "stats": [
         {
@@ -1193,12 +1167,13 @@
       "text": "Riconnettiti con l'essenza della terra in un luogo dove il tempo è dettato dalla ritmica della natura."
     },
     "storia": {
-      "label": "Storia",
+      "label": "Our Story",
+      "navLabel": "Our Story",
       "panelTitle": "1839",
       "text": "Fondata sulle aspre e antiche colline etrusche di Volterra, la fattoria tramanda da secoli il rispetto quasi religioso per una terra dura ma incredibilmente generosa. Ogni pietra della villa seicentesca reca i segni del raccolto."
     },
     "filiera": {
-      "label": "La filiera",
+      "label": "The Supply Chain",
       "panelTitle": "Ciclo Naturale",
       "stats": [
         {
@@ -1220,7 +1195,8 @@
       ]
     },
     "mucco": {
-      "label": "Carne di Mucco Pisano",
+      "label": "Mucco Pisano Beef",
+      "navLabel": "Mucco Pisano",
       "panelTitle": "Mucco Pisano",
       "stats": [
         {
@@ -1243,7 +1219,8 @@
       "text": "Una proteina pura, scolpita dal pascolo all'aperto nelle valli dell'Era."
     },
     "boutique": {
-      "label": "Boutique Itinerante",
+      "label": "Travelling Boutique",
+      "navLabel": "Boutique",
       "panelTitle": "Cucina Nomade",
       "stats": [
         {
@@ -1262,8 +1239,9 @@
       "text": "Eventi esclusivi e degustazioni private orchestrate direttamente nel cuore della fattoria viscerale o dove desideri."
     },
     "olio": {
-      "label": "Olio Extravergine",
-      "panelTitle": "Olio EVO Biologico",
+      "label": "Extra Virgin Olive Oil",
+      "navLabel": "Olive Oil",
+      "panelTitle": "Organic EVO Oil",
       "stats": [
         {
           "label": "Cultivar",
@@ -1284,13 +1262,15 @@
       ]
     },
     "accoglienza": {
-      "label": "Accoglienza",
+      "label": "Hospitality",
+      "navLabel": "Hospitality",
       "panelTitle": "La Casa Rossa",
       "text": "Un ritiro materico assoluto dove il silenzio assordante delle colline aperte incontra il lusso discreto della pietra nuda e del legno recuperato, sospeso fuori dal tempo."
     },
     "contatti": {
-      "label": "Contatti",
-      "panelTitle": "Coordinate",
+      "label": "Contact",
+      "navLabel": "Contact",
+      "panelTitle": "Coordinates",
       "stats": [
         {
           "label": "Sede",
