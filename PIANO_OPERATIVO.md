@@ -19,26 +19,27 @@ Working checklist for the next product/engineering steps.
 | English editorial translation | Real EN copy (structure already complete) | Open |
 | Future locales | `zh`, `ar` (RTL), `ru` — solo dopo copy stabile data-driven | Planned |
 | Cookie banner GDPR | UI + consent wiring to GA helpers | Open |
-| Carne secca — versione semplice launch | Pack provvisori Giacomo + 1 CTA info | Deciso — da implementare |
-| Olio — versione semplice launch | Foto archivio + 1 CTA info | Deciso — da implementare |
+| Carne secca — versione semplice launch | Card statiche + 1 CTA info (Concierge `carne-secca`) | Done Jul 2026 (uncommitted) |
+| Olio — versione semplice launch | Slot foto archivio + 1 CTA info (Concierge `olio`) | Done Jul 2026 (foto da caricare) |
 | Cucina Nomade — menu panini | Gusti da cartello food truck + ingredienti in arrivo | Open — nomi noti, ingredienti pending |
-| Casa Rossa — struttura contenuti | Casa unica (piani/stanze/bagni), non 4 suite brandizzate | Deciso — da ridisegnare con Lorenzo |
-| Casa Rossa — commodities list | Elenco servizi con Lorenzo | Todo call |
+| Casa Rossa — struttura contenuti | Casa unica: piani + piantine SVG + comodità | Done Jul 2026 (piantine placeholder, contenuti da validare con Lorenzo) |
+| Casa Rossa — commodities list | Prima lista in messages `Ospitalita.sections.casa.amenities`; rifinire con Lorenzo | Draft |
 | Casa Rossa booking quiz | Concierge con date reali | Open — con Lorenzo |
-| Lead destination | Google Form / Sheet / altro per CTA info | TBD Mauro |
+| Lead destination | Google Form / Sheet / altro per CTA info (`/api/contact` pronto con `topic`) | TBD Mauro |
 | Domain / launch polish | Custom domain, www redirect, final assets | Open |
-| Raffinamento visivo | Palette meno aggressiva, stile piana; **menu a sfondo chiaro** | Planned |
+| Raffinamento visivo | Palette meno aggressiva, stile piana; menu a sfondo chiaro | Done prima passata Jul 2026 |
+| Rimozione WebGL | three.js/R3F ritirati; immagini DOM native + backdrop CSS statico | Done Jul 2026 (uncommitted) |
 | CMS | Sanity replacing `getXData(t)` | Later |
 
 ---
 
-## 2. Bug note (Fable 5 — da sistemare)
+## 2. Bug note (Fable 5 — sistemati Jul 2026, da committare)
 
 | Severity | Location | Finding | Status |
 |---|---|---|---|
-| high | `messages/en.json` ~1126 | `Overlays.oilBottleSheet.details` EN ancora in italiano | Noted |
-| medium | `lib/site.ts` | Hreflang home trailing slash vs canonical | Noted |
-| medium | `app/[locale]/ospitalita/page.tsx` | Gallery reduced-motion briefly trapped | Noted |
+| high | `messages/en.json` ~1126 | `Overlays.oilBottleSheet.details` EN ancora in italiano | Fixed |
+| medium | `lib/site.ts` | Hreflang home trailing slash vs canonical | Fixed |
+| medium | `app/[locale]/ospitalita/page.tsx` | Gallery reduced-motion briefly trapped | Fixed |
 
 ---
 
@@ -87,9 +88,11 @@ Regole launch:
 - Destinazione CTA: Google Form (o equivalente) — **ancora da definire**.
 - Non vendere / non simulare e-commerce.
 
-Impatto codice (quando si implementa):
-- Semplificare `/mucco-pisano` sezione essiccata + ridurre/nascondere `JerkyProductSheet` multi-SKU se non serve.
-- Niente campi peso/ingredienti/specs in UI.
+Stato implementazione (Jul 2026):
+- `/mucco-pisano`: card prodotto **statiche** (foto + descrizione + tag), nessun click.
+- CTA unica → Concierge context `carne-secca` (flow info: nome, contatto, note).
+- `JerkyProductSheet` **eliminato** (componente, store flags, messages `Overlays.jerkySheet`).
+- Il payload `/api/contact` include `topic` (carne-secca / olio / default / cucina-nomade); manca solo l'endpoint reale (TBD Mauro).
 
 ### 4.2 Olio — launch semplice
 Stessa logica della carne secca:
@@ -98,6 +101,11 @@ Stessa logica della carne secca:
 - Destinazione: stesso tipo di lead form (TBD).
 - Niente fake cart / checkout.
 - Appunti storici restano in `documenti di riferimento/` per copy editoriale; non espandere schede tecniche se non richiesto.
+
+Stato implementazione (Jul 2026):
+- CTA finale pagina e CTA dello sheet bottiglia → Concierge context `olio` (flow info).
+- Card bottiglie: se `Olio.bottles[n].image.src` è valorizzato nei messages mostra la **foto reale**, altrimenti fallback bottiglia CSS. Basta caricare le foto e riempire gli src.
+- Rimossi `ctaLabel` per bottiglia e il blocco ordine fake (`Olio.order` ridotto a `openSheetLabel`).
 
 ### 4.3 Cucina Nomade / Food truck
 Gusti letti dal cartello inviato da Lorenzo (naming da normalizzare in copy):
@@ -119,40 +127,41 @@ Gusti letti dal cartello inviato da Lorenzo (naming da normalizzare in copy):
 - Destinazione: Google Form / equivalente — **TBD** (stesso tema lead Mauro).
 - Il Concierge `cucina-nomade` oggi chiede già data evento + ospiti + contatto: allinearlo a questa richiesta (date disponibilità + note), non a un fake booking.
 
-### 4.4 Casa Rossa — da ridisegnare
-**Non** presentare quattro stanze brandizzate (Avorio / Verde / Rosa / Albicocca) come suite separate.
+### 4.4 Casa Rossa — implementata come casa unica (Jul 2026)
+**Non** presentare quattro stanze brandizzate (Avorio / Verde / Rosa / Albicocca) come suite separate. ✔ fatto.
 
-Nuova direzione:
-- Una **grande Casa Rossa** raccontata per **piani**, **stanze**, **bagni** (casa unica, non hotel a camere nominate).
-- Lista **commodities / servizi**: da fare **insieme a Lorenzo** (todo call).
-- Booking quiz con date: ancora da definire con Lorenzo (campi, regole, destinazione lead).
-- Aggiornare blueprint quando la nuova IA pagina è chiusa.
+Stato implementazione:
+- `/ospitalita` sezione 3 = **casa unica**: due piani con **piantine SVG placeholder** (`components/ui/HouseFloorPlan.tsx`, marker numerati → legenda `spaces` dai messages), strip foto con lightbox, griglia comodità in 4 gruppi (`components/ui/AmenityIcon.tsx`).
+- Contratto dati: `CasaContent` in `lib/content/types.ts`; contenuti in `Ospitalita.sections.casa` (IT+EN).
+- `RoomSheet` e `RoomFloorPlan` **eliminati** (componenti, store flags, messages `Overlays.roomSheet`).
+- Home hospitality: rimosso il riferimento alle 4 stanze colorate nel testo "L'Esperienza".
 
-Bozza servizi storici (solo materiale di partenza per la call, non copy finale):
-- Veranda, doppio soggiorno-pranzo + camino, TV nascosta, biblioteca
-- Cucina attrezzata, pergola + barbecue, lavanderia
-- Bagno PT con vasca, bagni piano superiore, parquet camere
-- Terrazza tetto + telescopio, piscina privata, Wi‑Fi
+Da chiudere con Lorenzo:
+- Validare lista comodità (`Ospitalita.sections.casa.amenities` è la prima bozza dai servizi storici).
+- Sostituire le piantine placeholder con gli **SVG definitivi** del rilievo (stesso componente, due piani).
+- Capacità ospiti, mq, regole soggiorno; booking quiz con date (campi, regole, destinazione lead).
 
 ---
 
 ## 5. Todo operativi (backlog)
 
 ### Bug / hardening
-- [ ] Fix EN `oilBottleSheet.details`
-- [ ] Fix hreflang trailing slash home (`lib/site.ts`)
-- [ ] Fix gallery Ospitalità + reduced motion
-- [ ] Commit wave hardening quando i 3 bug sono ok
+- [x] Fix EN `oilBottleSheet.details`
+- [x] Fix hreflang trailing slash home (`lib/site.ts`)
+- [x] Fix gallery Ospitalità + reduced motion
+- [ ] Commit wave hardening quando i 3 bug sono ok (fix fatti, manca il commit)
 
 ### Lead / forms (Mauro)
-- [ ] Scegliere destinazione CTA: Google Form / Sheet / altro per carne secca
+- [ ] Scegliere destinazione CTA: Google Form / Sheet / altro per carne secca (`/api/contact` già invia `topic` + `message`; basta compilare `GOOGLE_FORMS_URL` + `FIELD_MAP`)
 - [ ] Stessa destinazione (o form dedicato) per olio
 - [ ] Form food truck: maggiori info + **disponibilità date** + **note** (+ contatto)
 - [ ] Eventuale form/booking Casa Rossa (date) — dopo ok Lorenzo
 
 ### Asset
-- [ ] Ricevere packaging provvisori carne secca da Giacomo → swap immagini
-- [ ] Ricevere/risistemare foto archivio olio → swap immagini
+- [ ] Ricevere packaging provvisori carne secca da Giacomo → swap `bustina-*.webp`
+- [ ] Ricevere/risistemare foto archivio olio → riempire `Olio.bottles[n].image.src` (IT+EN)
+- [ ] Piantine SVG definitive Casa Rossa → sostituire i due piani in `HouseFloorPlan.tsx`
+- [ ] Foto reali Casa Rossa → aggiornare src in `lib/data/ospitalita.tsx` (sezione casa)
 - [ ] Non chiedere specs prodotto carne secca pre-lancio
 
 ### Cucina Nomade / Food truck
@@ -162,18 +171,18 @@ Bozza servizi storici (solo materiale di partenza per la call, non copy finale):
 - [ ] CTA unica «Richiedi maggiori informazioni» con campi date disponibilità + note
 
 ### Casa Rossa (call Lorenzo)
-- [ ] Lista commodities / servizi definitiva
-- [ ] Struttura narrativa: piani / stanze / bagni (niente 4 suite colorate)
-- [ ] Capacità ospiti, mq, regole soggiorno
+- [ ] Validare lista commodities / servizi (bozza già in messages)
+- [x] Struttura narrativa: piani / stanze / bagni (niente 4 suite colorate) — implementata Jul 2026
+- [ ] Capacità ospiti, mq, regole soggiorno (confermare 210 mq / 8 ospiti)
 - [ ] Campi quiz prenotazione con date
-- [ ] Allineare UI `/ospitalita` + home hospitality + RoomSheet alla nuova struttura
-- [ ] Aggiornare `SITE_BLUEPRINT.md` sezione Ospitalità dopo decisione
+- [x] Allineare UI `/ospitalita` + home hospitality alla nuova struttura (RoomSheet ritirato)
+- [x] Aggiornare `SITE_BLUEPRINT.md` sezione Ospitalità
 
 ### Raffinamento visivo (palette)
-- [ ] Proposta palette più soft/elegante, ispirata alla **piana** della tenuta (meno contrasto aggressivo, meno accenti “gridati”)
-- [ ] Aggiornare CSS variables in `app/[locale]/globals.css` (e eventuali token correlati) senza rompere leggibilità CTA
-- [ ] Pass su sezioni scure / accenti (`--argilla-ferrosa`, slide Mucco, overlay) per tono più quiet luxury
-- [ ] **Menu overlay: sfondo chiaro** (non scuro) — testo/icone con contrasto adeguato su cream/tufo
+- [x] Proposta palette più soft/elegante, ispirata alla **piana** della tenuta (meno contrasto aggressivo, meno accenti “gridati”) — prima passata Jul 2026
+- [x] Aggiornare CSS variables in `app/[locale]/globals.css` (e token Tailwind ora puntano alle CSS vars; accenti hardcoded migrati a `var()`; `labelColor` bottiglie/prodotti desaturati in messages IT+EN; hero title home ridotto)
+- [x] **Menu overlay: sfondo chiaro** — testo mucco-pisano su tufo, toggle e locale switcher adattati, transizione pagina chiara (`#ECE8DF`); locale switcher desktop ridotto a it/en
+- [ ] Pass su sezioni scure / accenti (slide Mucco, overlay) per tono più quiet luxury — rifinire dopo validazione visiva
 - [ ] Validare con riferimento estetico “stile loro” (foto territorio / materiali) prima di shippare
 
 ### i18n / launch
@@ -191,7 +200,7 @@ Bozza servizi storici (solo materiale di partenza per la call, non copy finale):
 - Hero/text not blocked by long preloaders
 - Lenis + ScrollTrigger bridge centralized; no scroll/frame values in Zustand
 - Section reveals faster and reduced-motion aware
-- WebGL tiering / CSS fallback via performance + reduced motion
+- **WebGL rimosso (Jul 2026)**: niente three.js/R3F; hero, villa e product slides sono `<Image>` DOM native (parallax GSAP), backdrop CSS statico in `AppWrapper`; ritirati CanvasToggle, easter egg particellare e `useDevicePerformance`. First Load JS home ~174 kB.
 
 ### Product IA (attuale codice — da aggiornare dove sopra indicato)
 - `Storia` absorbs filiera/cereals narrative
@@ -202,7 +211,7 @@ Bozza servizi storici (solo materiale di partenza per la call, non copy finale):
 ### Audit hardening
 - Breaking EN/TS/asset fixes
 - Targeted ScrollTrigger cleanup only
-- Canvas sky routes limited to `/` and `/storia`
+- Backdrop "cielo" (ora gradiente CSS statico) limitato a `/` e `/storia`
 - Privacy + cookie pages, i18n-aware 404, robots/sitemap hygiene
 - Hardcoded user-facing copy moved into `messages` IT+EN
 - Heavy PNG → WebP where applicable; dead deps/files removed
@@ -211,30 +220,27 @@ Bozza servizi storici (solo materiale di partenza per la call, non copy finale):
 
 ## 7. Next — Priority Queue
 
-### P0 — Chiudere hardening
-1. Sistemare i 3 bug Fable 5.
-2. Commit + `npm run build` + smoke route `it`/`en`.
+### P0 — Commit
+1. Commit dell'intera wave (bug fix + palette + menu chiaro + semplificazione carne/olio + Casa Rossa unica + rimozione WebGL). Build già verde.
 
-### P1 — Semplificare conversioni prodotto (senza aspettare produzione carne)
-1. Carne secca: UI semplice + CTA unica info (form TBD).
-2. Olio: CTA unica info + foto archivio quando pronte.
-3. Food truck: CTA unica info con **date disponibilità** + **note**.
-4. Non aggiungere pesi/specs/SKU commerce.
+### P1 — Asset & lead endpoint
+1. Foto packaging Giacomo → swap `bustina-*.webp`.
+2. Foto archivio olio → riempire `Olio.bottles[n].image.src`.
+3. Endpoint lead Mauro → `GOOGLE_FORMS_URL` + `FIELD_MAP` in `/api/contact`.
 
-### P2 — Call Lorenzo (Casa Rossa + commodities)
-1. Lista servizi.
-2. Nuova struttura casa (piani/stanze/bagni).
-3. Booking date fields.
-4. Poi refactor pagina Ospitalità + blueprint.
+### P2 — Call Lorenzo (Casa Rossa)
+1. Validare comodità + numeri (mq, ospiti).
+2. Piantine SVG definitive.
+3. Booking date fields (poi aggiornare Concierge default).
 
 ### P3 — Cucina Nomade menu reale
 1. Gusti da cartello (già noti).
 2. Ingredienti appena arrivano.
-3. Swap dati menu.
+3. Swap dati menu + CTA info con date disponibilità + note.
 
-### P4 — Raffinamento palette + EN + launch polish
-1. Palette meno aggressiva / più elegante (stile piana tenuta) via CSS variables.
-2. Pass EN.
+### P4 — EN + launch polish
+1. Pass EN editoriale.
+2. Rifinitura sezioni scure (quiet luxury pass 2).
 3. Cookie banner.
 4. Dominio / env.
 
@@ -247,7 +253,7 @@ Bozza servizi storici (solo materiale di partenza per la call, non copy finale):
 - Re-promoting standalone `Cereali` or `La Filiera`
 - Abilitare in routing `zh` / `ar` / `ru` (o altre) prima di messages + metadata + sitemap completi
 - Hardcodare copy nei componenti invece di messages/data
-- WebGL on every inner page
+- Reintrodurre WebGL/three.js (rimosso Jul 2026 per fluidità) senza decisione esplicita
 - Fake e-commerce cart / ordini con quantità per carne secca o olio al launch
 - Specs, pesi, schede tecniche carne secca pre-produzione
 - Quattro stanze brandizzate Avorio/Verde/Rosa/Albicocca come modello hotel
@@ -271,8 +277,6 @@ Bozza servizi storici (solo materiale di partenza per la call, non copy finale):
 
 ## 10. Suggested Next Command
 
-1. Fix 3 bug Fable 5 + commit hardening, **oppure**
-2. Semplificare subito UI carne secca / olio (CTA unica, no specs), **oppure**
-3. Aspettare ingredienti panini / foto Giacomo / call commodities Lorenzo.
-
-Non mescolare refactor Casa Rossa e semplificazione prodotto nello stesso patch.
+1. Review visiva su localhost (menu chiaro, carne, olio, Casa Rossa) → poi **commit** della wave, **oppure**
+2. Inserire asset appena arrivano (packaging Giacomo, foto olio, piantine definitive), **oppure**
+3. Endpoint lead Mauro (`/api/contact`).

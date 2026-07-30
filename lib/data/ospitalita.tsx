@@ -66,52 +66,29 @@ export const getOspitalitaData = (t: any): OspitalitaContent => ({
                 scrollText: t('Ospitalita.sections.galleria.indicator.scrollText'),
             },
         },
-        stanze: {
-            label: t('Ospitalita.sections.stanze.label'),
-            titleHtml: t.rich('Ospitalita.sections.stanze.titleHtml', {
+        casa: {
+            label: t('Ospitalita.sections.casa.label'),
+            titleHtml: t.rich('Ospitalita.sections.casa.titleHtml', {
                 emClass: (chunks: React.ReactNode) => <em>{chunks}</em>,
             }),
-            introText: t('Ospitalita.sections.stanze.introText'),
-            rooms: (t.raw('Ospitalita.sections.stanze.rooms') as any[]).map((r: any, idx: number) => {
-                const baseColors = ['#F5F2EB', '#DDE2DB', '#EAD7D6', '#F3E2CF'];
-                const pl = t.raw('Ospitalita.sections.stanze.photoLabels') as Record<string, string>;
-                const photoSets = [
-                    [
-                        { src: '/images/casa-rossa-interni.webp', alt: `${r.name} — ${pl.letto}` },
-                        { src: '/images/casa-rossa-panoramic.webp', alt: `${r.name} — ${pl.vista}` },
-                        { src: '/images/villa-buontalenti.webp', alt: `${r.name} — ${pl.dettaglio}` }
-                    ],
-                    [
-                        { src: '/images/campi-grano.webp', alt: `${r.name} — ${pl.colline}` },
-                        { src: '/images/casa-rossa-panoramic.webp', alt: `${r.name} — ${pl.panorama}` },
-                        { src: '/images/villa-buontalenti.webp', alt: `${r.name} — ${pl.esterno}` }
-                    ],
-                    [
-                        { src: '/images/casa-rossa-interni.webp', alt: `${r.name} — ${pl.interni}` },
-                        { src: '/images/cucina-nomade.webp', alt: `${r.name} — ${pl.angolo}` },
-                        { src: '/images/olio-extravergine.webp', alt: `${r.name} — ${pl.dettaglio}` }
-                    ],
-                    [
-                        { src: '/images/hero-drone.webp', alt: `${r.name} — ${pl.drone}` },
-                        { src: '/images/casa-rossa-panoramic.webp', alt: `${r.name} — ${pl.panorama}` },
-                        { src: '/images/campi-grano.webp', alt: `${r.name} — ${pl.paesaggio}` }
-                    ]
-                ];
-                return {
-                    id: ['avorio', 'verde', 'rosa', 'albicocca'][idx],
-                    name: r.name,
-                    bgColor: baseColors[idx],
-                    description: r.description,
-                    longDescription: r.longDescription,
-                    bedType: r.bedType,
-                    surface: r.surface,
-                    floor: r.floor,
-                    view: r.view,
-                    highlights: r.highlights,
-                    amenities: r.amenities,
-                    photos: photoSets[idx],
-                };
-            }),
+            introText: t('Ospitalita.sections.casa.introText'),
+            planNote: t('Ospitalita.sections.casa.planNote'),
+            floors: t.raw('Ospitalita.sections.casa.floors') as { id: string; name: string; description: string; spaces: string[] }[],
+            photosTitle: t('Ospitalita.sections.casa.photosTitle'),
+            photoAria: t('Ospitalita.sections.casa.photoAria'),
+            photos: (t.raw('Ospitalita.sections.casa.photos') as { alt: string }[]).map((p, i) => ({
+                src: [
+                    '/images/casa-rossa-interni.webp',
+                    '/images/casa-rossa-panoramic.webp',
+                    '/images/hero-drone.webp',
+                ][i],
+                alt: p.alt,
+            })),
+            amenities: t.raw('Ospitalita.sections.casa.amenities') as {
+                title: string;
+                intro: string;
+                groups: { title: string; items: { icon: string; label: string }[] }[];
+            },
         },
         osservatorio: {
             label: t('Ospitalita.sections.osservatorio.label'),

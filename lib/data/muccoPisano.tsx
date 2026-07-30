@@ -29,9 +29,8 @@ export const getMuccoPisanoData = (t: any): MuccoPisanoContent => ({
             emClass: (chunks: React.ReactNode) => <em className="text-[var(--olive)]">{chunks}</em>,
         }),
         bodyText: t('MuccoPisano.tagli.bodyText'),
-        ctaLabel: t('MuccoPisano.tagli.ctaLabel'),
         images: {
-            primary: { src: '/images/mucco-pisano-16-9.webp', alt: t('MuccoPisano.tagli.titleHtml') },
+            primary: { src: '/images/mucco-pisano-16-9.webp', alt: t('MuccoPisano.tagli.label') },
         },
     },
     essiccata: {
@@ -41,6 +40,7 @@ export const getMuccoPisanoData = (t: any): MuccoPisanoContent => ({
             emClass: (chunks: React.ReactNode) => <em className="text-[var(--olive)]">{chunks}</em>,
         }),
         bodyText: t('MuccoPisano.essiccata.bodyText'),
+        ctaLabel: t('MuccoPisano.essiccata.ctaLabel'),
         images: {
             primary: { src: '/images/mucco-pisano.webp', alt: t('MuccoPisano.essiccata.label') },
         },
@@ -52,7 +52,6 @@ export const getMuccoPisanoData = (t: any): MuccoPisanoContent => ({
             tags: p.tags,
             labelColor: p.labelColor,
             glowColor: p.glowColor,
-            ctaLabel: p.ctaLabel,
             image: {
                 src: p.image.src,
                 alt: p.image.alt,

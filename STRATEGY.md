@@ -191,6 +191,8 @@ NEXT_PUBLIC_GA_FORCE_DEV=true                 # Solo per test locali — non com
 
 ## 7. Canvas WebGL — La Finestra sul Cielo
 
+> **DEPRECATO (Jul 2026)**: il layer WebGL è stato rimosso per problemi di fluidità. Il concetto di "finestra sul cielo" sopravvive con un gradiente CSS statico in `AppWrapper` (rotte `/` e `/storia`); le immagini sono `<Image>` DOM native. Vedi `SITE_BLUEPRINT.md` §8. Il resto di questa sezione è solo storico.
+
 Il `SkyNoiseShader` (via React Three Fiber) vive nel layout globale — non viene mai distrutto tra navigazioni.
 
 ### Pagine con cielo visibile

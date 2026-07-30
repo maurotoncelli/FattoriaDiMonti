@@ -12,13 +12,19 @@
 
 
 :root {
-  --tufo: #ECE8DF;
-  --mucco-pisano: #4A2E1B;
-  --argilla-ferrosa: #B05C46;
-  --sabbia-limonitica: #D4A361;
-  --olive: #6B7A65;
-  --terra-nera: #2B2420;
-  --grano: #B4B886;
+  /* Palette "piana" — toni desaturati e ravvicinati, quiet luxury (Jul 2026).
+     Regola: stessi nomi, hue smorzate; il contrasto testo/fondo resta alto,
+     ma i colori tra loro sono vicini e uniformi. */
+  --tufo: #EAE6DD;
+  --mucco-pisano: #52463A;
+  --argilla-ferrosa: #9E7767;
+  --sabbia-limonitica: #C4B197;
+  --olive: #7B8076;
+  --terra-nera: #2D2823;
+  --grano: #AFAC9D;
+  /* Note di blu smorzato, in armonia con i terrosi */
+  --cielo: #AEB9C2;
+  --notte: #232833;
 
   /* Typography */
   --font-display: 'Playfair Display', Georgia, serif;
@@ -127,6 +133,17 @@ p,
 .hairline {
   border: none;
   border-top: 1px solid var(--olive);
+}
+
+/* ===== BACKDROP TERROSO ===============================
+   Riempie le ex "finestre" trasparenti che davano sul
+   canvas WebGL: tufo chiaro con lievissima variazione
+   tonale e grana (rumore SVG statico, zero costo JS). */
+.backdrop-terroso {
+  background-color: var(--tufo);
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.05'/%3E%3C/svg%3E"),
+    linear-gradient(180deg, #F1ECE1 0%, var(--tufo) 45%, #E1DCCF 100%);
 }
 
 /* ===== KINETIC TEXT MASK ===== */

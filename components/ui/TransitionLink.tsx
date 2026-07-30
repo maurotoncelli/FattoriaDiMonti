@@ -21,7 +21,7 @@ export default function TransitionLink({
     bgColor = '#181A15',
     transitionKeyword,
 }: TransitionLinkProps) {
-    const { startPageTransition } = useAppStore();
+    const startPageTransition = useAppStore((s) => s.startPageTransition);
 
     const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault();

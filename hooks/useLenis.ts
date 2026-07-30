@@ -17,9 +17,7 @@ export function useLenis() {
     const isOilModalOpen = useAppStore((s) => s.isOilModalOpen);
     const isConciergeOpen = useAppStore((s) => s.isConciergeOpen);
     const isLightboxOpen = useAppStore((s) => s.isLightboxOpen);
-    const isJerkySheetOpen = useAppStore((s) => s.isJerkySheetOpen);
     const isOilSheetOpen = useAppStore((s) => s.isOilSheetOpen);
-    const isRoomSheetOpen = useAppStore((s) => s.isRoomSheetOpen);
 
     useEffect(() => {
         let tickerFn: ((time: number) => void) | null = null;
@@ -82,7 +80,7 @@ export function useLenis() {
     // Blocca / sblocca lo scroll quando overlay sono aperti
     useEffect(() => {
         const shouldLock = isMenuOpen || isOilModalOpen || isConciergeOpen
-            || isLightboxOpen || isJerkySheetOpen || isOilSheetOpen || isRoomSheetOpen;
+            || isLightboxOpen || isOilSheetOpen;
         if (!lenisRef.current) return;
         if (shouldLock) {
             lenisRef.current.stop();
@@ -91,7 +89,7 @@ export function useLenis() {
             lenisRef.current.start();
             document.body.style.overflow = '';
         }
-    }, [isMenuOpen, isOilModalOpen, isConciergeOpen, isLightboxOpen, isJerkySheetOpen, isOilSheetOpen, isRoomSheetOpen]);
+    }, [isMenuOpen, isOilModalOpen, isConciergeOpen, isLightboxOpen, isOilSheetOpen]);
 
     return lenisRef;
 }

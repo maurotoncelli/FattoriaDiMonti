@@ -16,6 +16,15 @@ const STEPS_CUCINA = [
     { field: 'contact' },
 ];
 
+// Flow "richiedi maggiori informazioni" (carne secca, olio)
+const STEPS_INFO = [
+    { field: 'name' },
+    { field: 'contact' },
+    { field: 'message' },
+];
+
+const INFO_CONTEXTS = ['carne-secca', 'olio'] as const;
+
 type StepConf = {
     field: string;
     isChoice?: boolean;
@@ -28,7 +37,8 @@ type StepConf = {
 import { useTranslations } from 'next-intl';
 
 export default function ConciergeForm() {
-    const { setConciergeOpen, conciergeContext } = useAppStore();
+    const setConciergeOpen = useAppStore((s) => s.setConciergeOpen);
+    const conciergeContext = useAppStore((s) => s.conciergeContext);
     const t = useTranslations('Overlays.concierge');
     const [currentStep, setCurrentStep] = useState(0);
     const [formData, setFormData] = useState<Record<string, string>>({});
@@ -38,10 +48,15 @@ export default function ConciergeForm() {
 
     const defaultStepsT = t.raw('defaultSteps') as any[];
     const cucinaStepsT = t.raw('cucinaSteps') as any[];
+    const infoStepsT = t.raw('infoSteps') as any[];
+
+    const isInfoContext = INFO_CONTEXTS.includes(conciergeContext as typeof INFO_CONTEXTS[number]);
 
     const stepsConf: StepConf[] = conciergeContext === 'cucina-nomade'
         ? STEPS_CUCINA.map((s, i) => ({ ...s, question: cucinaStepsT[i].question, placeholder: cucinaStepsT[i].placeholder, label: cucinaStepsT[i].label, optional: cucinaStepsT[i].optional }))
-        : STEPS_DEFAULT.map((s, i) => ({ ...s, question: defaultStepsT[i].question, placeholder: defaultStepsT[i].placeholder, label: defaultStepsT[i].label, optional: defaultStepsT[i].optional }));
+        : isInfoContext
+            ? STEPS_INFO.map((s, i) => ({ ...s, question: infoStepsT[i].question, placeholder: infoStepsT[i].placeholder, label: infoStepsT[i].label, optional: infoStepsT[i].optional }))
+            : STEPS_DEFAULT.map((s, i) => ({ ...s, question: defaultStepsT[i].question, placeholder: defaultStepsT[i].placeholder, label: defaultStepsT[i].label, optional: defaultStepsT[i].optional }));
 
     const step = stepsConf[currentStep];
 
@@ -59,12 +74,12 @@ export default function ConciergeForm() {
                 gsap.fromTo(containerRef.current, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: 'expo.out' });
             }
         } else {
-            // Submit
+            // Submit — il topic identifica la provenienza (carne secca, olio, ...)
             try {
                 await fetch('/api/contact', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(newData),
+                    body: JSON.stringify({ ...newData, topic: conciergeContext || 'default' }),
                 });
             } catch (_) { }
             setSubmitted(true);

@@ -10,6 +10,8 @@ import { useTranslations } from 'next-intl';
 import { getOspitalitaData } from '@/lib/data/ospitalita';
 import { useIsMobile } from '@/lib/hooks/useIsMobile';
 import { useReducedMotion } from '@/hooks/usePerformance';
+import HouseFloorPlan from '@/components/ui/HouseFloorPlan';
+import AmenityIcon from '@/components/ui/AmenityIcon';
 
 // Register GSAP plugins
 if (typeof window !== 'undefined') {
@@ -160,8 +162,8 @@ function Lightbox({ index, galleryItems, onClose, onPrev, onNext }: {
 }
 // ─────────────────────────────────────────────────────────────────────────────
 
-// ─── RoomLightbox (foto stanza specifica) ────────────────────────────────────
-function RoomLightbox({ photos, title, index, onClose, onPrev, onNext }: {
+// ─── HouseLightbox (foto della casa) ─────────────────────────────────────────
+function HouseLightbox({ photos, title, index, onClose, onPrev, onNext }: {
     photos: PhotoItem[];
     title: string;
     index: number;
@@ -300,7 +302,6 @@ export default function OspitalitaPage() {
     const galleryTrackRef = useRef<HTMLDivElement>(null);
     const setConciergeOpen = useAppStore((state) => state.setConciergeOpen);
     const setLightboxOpen = useAppStore((state) => state.setLightboxOpen);
-    const setRoomSheetOpen = useAppStore((state) => state.setRoomSheetOpen);
     const t = useTranslations();
     const ospitalitaData = getOspitalitaData(t);
     const galleryItems = ospitalitaData.sections.galleria.items;
@@ -316,33 +317,28 @@ export default function OspitalitaPage() {
     const nextImage = useCallback(() =>
         setLightboxIndex((i) => (i !== null ? (i + 1) % galleryItems.length : 0)), [galleryItems.length]);
 
-    // Room lightbox
-    const [roomLightbox, setRoomLightbox] = useState<{ roomIndex: number; photoIndex: number } | null>(null);
-    const openRoomLightbox = useCallback((roomIndex: number) => {
-        setRoomLightbox({ roomIndex, photoIndex: 0 });
+    // Lightbox foto della casa
+    const casa = ospitalitaData.sections.casa;
+    const casaPhotoCount = casa.photos.length;
+    const [casaPhotoIndex, setCasaPhotoIndex] = useState<number | null>(null);
+    const openCasaLightbox = useCallback((i: number) => {
+        setCasaPhotoIndex(i);
         setLightboxOpen(true);
     }, [setLightboxOpen]);
-    const closeRoomLightbox = useCallback(() => {
-        setRoomLightbox(null);
+    const closeCasaLightbox = useCallback(() => {
+        setCasaPhotoIndex(null);
         setLightboxOpen(false);
     }, [setLightboxOpen]);
-    const prevRoomPhoto = useCallback(() => {
-        setRoomLightbox((prev) => {
-            if (!prev) return null;
-            const len = ospitalitaData.sections.stanze.rooms[prev.roomIndex].photos.length;
-            return { ...prev, photoIndex: (prev.photoIndex - 1 + len) % len };
-        });
-    }, [ospitalitaData.sections.stanze.rooms]);
-    const nextRoomPhoto = useCallback(() => {
-        setRoomLightbox((prev) => {
-            if (!prev) return null;
-            const len = ospitalitaData.sections.stanze.rooms[prev.roomIndex].photos.length;
-            return { ...prev, photoIndex: (prev.photoIndex + 1) % len };
-        });
-    }, [ospitalitaData.sections.stanze.rooms]);
+    const prevCasaPhoto = useCallback(() =>
+        setCasaPhotoIndex((i) => (i !== null ? (i - 1 + casaPhotoCount) % casaPhotoCount : 0)), [casaPhotoCount]);
+    const nextCasaPhoto = useCallback(() =>
+        setCasaPhotoIndex((i) => (i !== null ? (i + 1) % casaPhotoCount : 0)), [casaPhotoCount]);
 
+    // Dipende da prefersReducedMotion così pin GSAP e overflow del contenitore
+    // (che legge lo stesso stato) restano sempre in sync; il check sync su
+    // matchMedia copre il primo render, quando lo stato è ancora false.
     useEffect(() => {
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        if (prefersReducedMotion || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
         const ctx = gsap.context(() => {
             // Universal fade up text
             gsap.utils.toArray('.fade-up-text').forEach((el: any) => {
@@ -403,7 +399,7 @@ export default function OspitalitaPage() {
             ctx.revert();
             mm.revert();
         };
-    }, []);
+    }, [prefersReducedMotion]);
 
     return (
         <main ref={containerRef} className="w-full relative z-10 font-inter overflow-hidden text-[var(--mucco-pisano)]">
@@ -418,19 +414,16 @@ export default function OspitalitaPage() {
                 />
             )}
 
-            {roomLightbox !== null && (() => {
-                const room = ospitalitaData.sections.stanze.rooms[roomLightbox.roomIndex];
-                return (
-                    <RoomLightbox
-                        photos={room.photos}
-                        title={room.name}
-                        index={roomLightbox.photoIndex}
-                        onClose={closeRoomLightbox}
-                        onPrev={prevRoomPhoto}
-                        onNext={nextRoomPhoto}
-                    />
-                );
-            })()}
+            {casaPhotoIndex !== null && (
+                <HouseLightbox
+                    photos={casa.photos}
+                    title={casa.photosTitle}
+                    index={casaPhotoIndex}
+                    onClose={closeCasaLightbox}
+                    onPrev={prevCasaPhoto}
+                    onNext={nextCasaPhoto}
+                />
+            )}
             
             {/* Close Cross */}
             <div className="fixed bottom-12 left-1/2 -translate-x-1/2 z-50">
@@ -495,72 +488,108 @@ export default function OspitalitaPage() {
                 </div>
             </section>
 
-            {/* SECTION 3: Le Stanze Cromatiche (Le 4 Identità) */}
-            <section className="relative min-h-screen px-[8vw] py-[20vh] text-center">
-                <div className="max-w-4xl mx-auto mb-20">
+            {/* SECTION 3: La Casa (piani, foto, comodità) */}
+            <section className="relative px-[8vw] py-[18vh]">
+                <div className="max-w-4xl mx-auto mb-24 text-center">
                     <span className="font-inter text-xs tracking-[0.2em] text-[var(--olive)] uppercase mb-6 block fade-up-text">
-                        {ospitalitaData.sections.stanze.label}
+                        {casa.label}
                     </span>
                     <h2 className="font-playfair text-5xl md:text-7xl leading-[1.1] mb-8 fade-up-text">
-                        {ospitalitaData.sections.stanze.titleHtml}
+                        {casa.titleHtml}
                     </h2>
                     <p className="font-inter text-base leading-[1.9] opacity-80 max-w-2xl mx-auto fade-up-text">
-                        {ospitalitaData.sections.stanze.introText}
+                        {casa.introText}
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 max-w-[1400px] mx-auto text-left mt-16 px-4 md:px-0">
-                    {ospitalitaData.sections.stanze.rooms.map((room, roomIndex) => (
-                        <div key={room.id} className="flex flex-col group fade-up-card">
-                            {/* Clickable cover image */}
-                            <button
-                                className="relative rounded-sm overflow-hidden w-full mb-6 text-left cursor-pointer"
-                                style={{ aspectRatio: '4/3', border: 'none', padding: 0, background: room.bgColor }}
-                                onClick={() => setRoomSheetOpen(true, room.id)}
-                                aria-label={`Apri dettagli ${room.name}`}
-                            >
-                                <Image
-                                    src={room.photos[0].src}
-                                    alt={room.photos[0].alt}
-                                    fill
-                                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                                    sizes="(max-width: 768px) 90vw, 45vw"
-                                />
-                                {/* Color tint overlay to hint the room identity */}
-                                <div
-                                    className="absolute inset-0 opacity-20 mix-blend-multiply pointer-events-none"
-                                    style={{ backgroundColor: room.bgColor }}
-                                />
-                                {/* Hover overlay */}
-                                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/25 transition-colors duration-500 z-10 pointer-events-none" />
-                                <div className="absolute inset-0 flex flex-col items-center justify-center z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none gap-3">
-                                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" className="text-[var(--tufo)] drop-shadow-lg">
-                                        <path d="M4 4h7M4 4v7M24 4h-7M24 4v7M4 24h7M4 24v-7M24 24h-7M24 24v-7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-                                    </svg>
-                                    <span className="font-inter text-[10px] tracking-[0.2em] uppercase text-[var(--tufo)] drop-shadow-lg">
-                                        {t('UI.photoOf', { count: room.photos.length })}
-                                    </span>
+                {/* I due piani: piantina + legenda */}
+                <div className="max-w-[1400px] mx-auto flex flex-col gap-24 lg:gap-32">
+                    {casa.floors.map((floor, fi) => (
+                        <div key={floor.id} className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                            <div className={`fade-up-card ${fi % 2 === 1 ? 'lg:order-2' : ''}`}>
+                                <div className="rounded-sm border border-[var(--argilla-ferrosa)]/25 bg-[rgba(78,64,48,0.03)] p-6 lg:p-10">
+                                    <HouseFloorPlan floorId={floor.id} className="w-full h-auto" />
                                 </div>
-                                {/* Photo count badge */}
-                                <div className="absolute bottom-4 right-4 z-10 bg-black/40 backdrop-blur-sm rounded-full px-3 py-1 pointer-events-none">
-                                    <span className="font-inter text-[10px] tracking-[0.15em] text-[var(--tufo)] uppercase">
-                                        1 / {room.photos.length}
-                                    </span>
-                                </div>
-                            </button>
-
-                            <div className="flex flex-col">
-                                <div className="flex items-center gap-3 mb-3">
-                                    <div className="w-5 h-5 rounded-full shadow-sm border border-[var(--olive)]/20" style={{ backgroundColor: room.bgColor }} />
-                                    <span className="font-inter text-xs tracking-[0.2em] uppercase opacity-70 text-[var(--olive)]">{t('UI.gallery.identita')}</span>
-                                </div>
-                                <h3 className="font-playfair text-3xl lg:text-4xl mb-3 text-[var(--mucco-pisano)] group-hover:text-[var(--olive)] transition-colors">{room.name}</h3>
-                                <p className="font-inter text-sm md:text-base leading-[1.8] opacity-80 text-[var(--mucco-pisano)] max-w-sm">
-                                    {room.description}
+                            </div>
+                            <div className={`fade-up-text ${fi % 2 === 1 ? 'lg:order-1' : ''}`}>
+                                <h3 className="font-playfair text-4xl lg:text-5xl mb-5 text-[var(--mucco-pisano)]">
+                                    {floor.name}
+                                </h3>
+                                <p className="font-inter text-sm md:text-base leading-[1.8] opacity-80 mb-8 max-w-lg">
+                                    {floor.description}
                                 </p>
+                                <ol className="flex flex-col gap-3">
+                                    {floor.spaces.map((space, si) => (
+                                        <li key={si} className="flex items-center gap-4">
+                                            <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full border border-[var(--argilla-ferrosa)]/40 font-inter text-[11px] text-[var(--argilla-ferrosa)]">
+                                                {si + 1}
+                                            </span>
+                                            <span className="font-inter text-sm md:text-base opacity-85">{space}</span>
+                                        </li>
+                                    ))}
+                                </ol>
                             </div>
                         </div>
                     ))}
+                </div>
+                <p className="mt-10 text-center font-inter text-[10px] tracking-[0.18em] uppercase opacity-40">
+                    {casa.planNote}
+                </p>
+
+                {/* Foto della casa */}
+                <div className="max-w-[1400px] mx-auto mt-28">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        {casa.photos.map((photo, i) => (
+                            <button
+                                key={i}
+                                onClick={() => openCasaLightbox(i)}
+                                aria-label={casa.photoAria}
+                                className="group relative overflow-hidden rounded-sm fade-up-card"
+                                style={{ aspectRatio: '4/3', border: 'none', padding: 0, background: 'transparent', cursor: 'pointer', display: 'block' }}
+                            >
+                                <Image
+                                    src={photo.src}
+                                    alt={photo.alt}
+                                    fill
+                                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                    sizes="(max-width: 768px) 90vw, 33vw"
+                                />
+                                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/25 transition-colors duration-500 pointer-events-none z-10" />
+                                <div className="absolute bottom-0 left-0 right-0 px-4 py-3 bg-gradient-to-t from-black/55 to-transparent pointer-events-none z-20">
+                                    <span className="font-playfair italic text-[var(--tufo)] text-sm">{photo.alt}</span>
+                                </div>
+                            </button>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Comodità */}
+                <div className="max-w-[1200px] mx-auto mt-28 text-center">
+                    <h3 className="font-playfair text-4xl lg:text-5xl mb-5 text-[var(--mucco-pisano)] fade-up-text">
+                        {casa.amenities.title}
+                    </h3>
+                    <p className="font-inter text-sm md:text-base leading-[1.8] opacity-75 max-w-xl mx-auto fade-up-text">
+                        {casa.amenities.intro}
+                    </p>
+                    <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-12 text-left">
+                        {casa.amenities.groups.map((group, gi) => (
+                            <div key={gi} className="fade-up-card">
+                                <h4 className="font-inter text-[10px] tracking-[0.24em] uppercase text-[var(--olive)] border-b border-[var(--olive)]/20 pb-3 mb-5">
+                                    {group.title}
+                                </h4>
+                                <ul className="flex flex-col gap-4">
+                                    {group.items.map((item, ii) => (
+                                        <li key={ii} className="flex items-center gap-3">
+                                            <span className="flex-shrink-0 text-[var(--argilla-ferrosa)]">
+                                                <AmenityIcon name={item.icon} />
+                                            </span>
+                                            <span className="font-inter text-sm opacity-85 leading-snug">{item.label}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </section>
 

@@ -10,15 +10,12 @@
   },
   "dependencies": {
     "@next/third-parties": "^14.2.35",
-    "@react-three/drei": "^9.122.0",
-    "@react-three/fiber": "^8.18.0",
     "gsap": "^3.12.7",
     "lenis": "^1.3.4",
     "next": "14.2.29",
     "next-intl": "^4.8.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "three": "^0.172.0",
     "zustand": "^5.0.3"
   },
   "devDependencies": {
@@ -26,7 +23,6 @@
     "@types/node": "^20.17.30",
     "@types/react": "^18.3.20",
     "@types/react-dom": "^18.3.5",
-    "@types/three": "^0.172.0",
     "autoprefixer": "^10.4.21",
     "postcss": "^8.5.3",
     "raw-loader": "^4.0.2",

@@ -178,7 +178,7 @@ export default function OlioPage() {
                 </div>
                 
                 <div className="relative z-10 text-center px-[8vw] max-w-5xl">
-                    <span className="font-inter text-xs tracking-[0.3em] uppercase block act-1-text opacity-70 mb-12 text-[#B4B886]">
+                    <span className="font-inter text-xs tracking-[0.3em] uppercase block act-1-text opacity-70 mb-12 text-[var(--grano)]">
                         {olioData.acts.act1.label}
                     </span>
                     <h1 className="font-playfair text-6xl md:text-8xl lg:text-[9rem] leading-[0.85] act-1-text mb-8">
@@ -205,21 +205,35 @@ export default function OlioPage() {
 
                                     <div className="relative mb-8 flex h-[430px] w-full items-end justify-center lg:h-[480px]">
                                         <div className="absolute bottom-0 h-6 w-56 rounded-full bg-black/55 blur-xl transition-all duration-500 group-hover:w-72 group-hover:bg-black/80" />
-                                        <div className="relative h-[410px] w-[156px] origin-bottom transition-transform duration-500 group-hover:scale-110 group-focus-visible:scale-110 lg:h-[460px] lg:w-[176px]">
-                                            <div className="absolute left-1/2 top-0 h-20 w-12 -translate-x-1/2 rounded-t-[1rem] bg-[#15130f] ring-1 ring-white/10 lg:h-24 lg:w-14" />
-                                            <div className="absolute left-1/2 top-16 h-11 w-20 -translate-x-1/2 rounded-t-full bg-[#1d1a13] ring-1 ring-white/10 lg:top-20 lg:h-12 lg:w-24" />
-                                            <div className="absolute inset-x-0 bottom-0 h-[334px] rounded-[3rem_3rem_1.3rem_1.3rem] bg-gradient-to-br from-[#16130d] via-[#2b2618] to-[#090806] shadow-2xl ring-1 ring-white/10 lg:h-[372px]" />
-                                            <div className="absolute left-7 top-[8.5rem] h-56 w-5 rounded-full bg-white/20 blur-[2px] lg:top-40 lg:h-64" />
-                                            <div
-                                                className="absolute left-1/2 top-44 flex h-36 w-36 -translate-x-1/2 flex-col items-center justify-center rounded-[1.35rem] border border-white/20 px-4 text-center shadow-lg transition-all duration-500 group-hover:shadow-[0_0_45px_rgba(246,211,101,0.45)] lg:top-52 lg:h-40 lg:w-40 backdrop-blur-sm"
-                                                style={{ background: bottle.labelColor }}
-                                            >
-                                                <span className="font-playfair text-3xl italic leading-none text-[#F3EFE7] lg:text-4xl">Monti</span>
-                                                <span className="mt-3 font-inter text-[8px] uppercase tracking-[0.24em] text-[#F3EFE7]/90">
-                                                    {bottle.subtitle}
-                                                </span>
+                                        {bottle.image.src ? (
+                                            /* Foto reale (archivio risistemato) quando disponibile nei messages */
+                                            <div className="relative h-[410px] w-[250px] origin-bottom transition-transform duration-500 group-hover:scale-105 group-focus-visible:scale-105 lg:h-[460px] lg:w-[290px]">
+                                                <Image
+                                                    src={bottle.image.src}
+                                                    alt={bottle.image.alt}
+                                                    fill
+                                                    className="object-contain object-bottom drop-shadow-[0_25px_45px_rgba(0,0,0,0.55)]"
+                                                    sizes="(max-width: 768px) 70vw, 30vw"
+                                                />
                                             </div>
-                                        </div>
+                                        ) : (
+                                            /* Fallback: bottiglia illustrativa CSS */
+                                            <div className="relative h-[410px] w-[156px] origin-bottom transition-transform duration-500 group-hover:scale-110 group-focus-visible:scale-110 lg:h-[460px] lg:w-[176px]">
+                                                <div className="absolute left-1/2 top-0 h-20 w-12 -translate-x-1/2 rounded-t-[1rem] bg-[#15130f] ring-1 ring-white/10 lg:h-24 lg:w-14" />
+                                                <div className="absolute left-1/2 top-16 h-11 w-20 -translate-x-1/2 rounded-t-full bg-[#1d1a13] ring-1 ring-white/10 lg:top-20 lg:h-12 lg:w-24" />
+                                                <div className="absolute inset-x-0 bottom-0 h-[334px] rounded-[3rem_3rem_1.3rem_1.3rem] bg-gradient-to-br from-[#16130d] via-[#2b2618] to-[#090806] shadow-2xl ring-1 ring-white/10 lg:h-[372px]" />
+                                                <div className="absolute left-7 top-[8.5rem] h-56 w-5 rounded-full bg-white/20 blur-[2px] lg:top-40 lg:h-64" />
+                                                <div
+                                                    className="absolute left-1/2 top-44 flex h-36 w-36 -translate-x-1/2 flex-col items-center justify-center rounded-[1.35rem] border border-white/20 px-4 text-center shadow-lg transition-all duration-500 group-hover:shadow-[0_0_45px_rgba(246,211,101,0.45)] lg:top-52 lg:h-40 lg:w-40 backdrop-blur-sm"
+                                                    style={{ background: bottle.labelColor }}
+                                                >
+                                                    <span className="font-playfair text-3xl italic leading-none text-[#F3EFE7] lg:text-4xl">Monti</span>
+                                                    <span className="mt-3 font-inter text-[8px] uppercase tracking-[0.24em] text-[#F3EFE7]/90">
+                                                        {bottle.subtitle}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        )}
                                     </div>
 
                                     <span className="mb-3 font-inter text-[10px] uppercase tracking-[0.24em] text-white/40 transition-colors duration-500 group-hover:text-[#F6D365]/80">
@@ -269,7 +283,7 @@ export default function OlioPage() {
                 </div>
 
                 <div className="w-full md:w-7/12 flex flex-col justify-center order-1 md:order-2 max-w-2xl">
-                    <span className="font-inter text-[10px] tracking-[0.3em] uppercase mb-6 block act-2-reveal opacity-70 text-[#B4B886]">
+                    <span className="font-inter text-[10px] tracking-[0.3em] uppercase mb-6 block act-2-reveal opacity-70 text-[var(--grano)]">
                         {olioData.acts.act2.label}
                     </span>
                     <h2 className="font-playfair text-4xl md:text-5xl lg:text-6xl leading-[1.1] mb-8 act-2-reveal">
@@ -301,9 +315,9 @@ export default function OlioPage() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-12 fade-up-text">
                         {olioData.acts.act3.timelineSteps.map((step, index) => (
                             <div key={index} className="group flex flex-col relative h-full">
-                                <div className="font-inter text-[9px] tracking-[0.25em] text-[#B4B886] font-semibold mb-4 border-b border-[#15130f]/5 pb-4 flex justify-between items-end">
+                                <div className="font-inter text-[9px] tracking-[0.25em] text-[var(--grano)] font-semibold mb-4 border-b border-[#15130f]/5 pb-4 flex justify-between items-end">
                                     <span>{t('UI.stepPrefix')}</span>
-                                    <span className="text-xl font-playfair italic text-[#15130f]/20 group-hover:text-[#B4B886] transition-colors">0{index + 1}</span>
+                                    <span className="text-xl font-playfair italic text-[#15130f]/20 group-hover:text-[var(--grano)] transition-colors">0{index + 1}</span>
                                 </div>
                                 <h3 className="font-playfair text-2xl mb-3 text-[#15130f]">
                                     {step.title.replace(/^\d+\.\s*/, '')}
@@ -393,7 +407,7 @@ export default function OlioPage() {
                         {olioData.acts.act5.awards.map((award, index) => (
                             <div className="flex items-center flex-col md:flex-row gap-12" key={index}>
                                 <div className="text-center">
-                                    <span className="block font-playfair text-3xl text-[#D4A361] mb-2">{award.year}</span>
+                                    <span className="block font-playfair text-3xl text-[var(--sabbia-limonitica)] mb-2">{award.year}</span>
                                     <span className="font-inter text-xs uppercase tracking-[0.2em] opacity-80">{award.name}</span>
                                 </div>
                                 {index < olioData.acts.act5.awards.length - 1 && (
@@ -409,7 +423,7 @@ export default function OlioPage() {
                             {olioData.acts.act5.cta.titleHtml}
                         </h2>
                         <button 
-                            onClick={() => setConciergeOpen(true)}
+                            onClick={() => setConciergeOpen(true, 'olio')}
                             className="group relative inline-flex items-center justify-center overflow-hidden rounded-full border border-white/30 bg-white/10 backdrop-blur-md px-12 py-6 transition-transform hover:scale-[1.03]"
                         >
                             <span className="absolute inset-0 bg-white translate-y-[101%] transition-transform duration-500 ease-in-out group-hover:translate-y-0" />

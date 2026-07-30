@@ -66,21 +66,11 @@
       "footer": "04 — L'Orizzonte"
     },
     "stepPrefix": "STEP",
-    "photoOf": "{count} foto",
     "closeLabel": "✕",
     "gallery": {
       "explore": "Esplora",
       "scroll": "Scorri",
-      "scrollHint": "Scorri per esplorare",
-      "identita": "Identità"
-    },
-    "canvasToggle": {
-      "enable": "Enable animated background",
-      "disable": "Disable animated background",
-      "titleEnable": "Enable animated sky background",
-      "titleDisable": "Disable the sky to lighten the site",
-      "on": "Sky ON",
-      "off": "Sky OFF"
+      "scrollHint": "Scorri per esplorare"
     }
   },
   "Home": {
@@ -200,7 +190,7 @@
         },
         "night": {
           "label": "THE EXPERIENCE",
-          "text": "Four unique residences — Ivory, Green, Pink, and Apricot — where silence is interrupted only by nature. From the roof terrace, the experience culminates in the starry sky: with the telescope at your disposal, you can explore the universe in pure and profound darkness.",
+          "text": "Four luminous bedrooms on the upper floor, where silence is interrupted only by nature. From the roof terrace, the experience culminates in the starry sky: with the telescope at your disposal, you can explore the universe in pure and profound darkness.",
           "media": {
             "alt": "Starry night sky of Tuscany seen from the roof of Casa Rossa, unpolluted by artificial lights",
             "previewText": "Starry Sky · Telescope"
@@ -275,14 +265,13 @@
       "label": "Vendita al kg",
       "titleHtml": "I Tagli <br></br><emClass>Nobili</emClass>",
       "bodyText": "Costate imponenti, Fiorentine e arrosti. L'equilibrio perfetto tra fibra magra e grasso protettivo, sviluppato camminando sui nostri pendii. Puoi prenotare la tua fornitura e ricevere a casa tagli freschi preparati al momento.",
-      "ctaLabel": "Prenota Tagli a Peso →",
       "imageAlt": "Mucco Pisano — Noble Cuts"
     },
     "essiccata": {
       "label": "Affinamento Estremo",
       "titleHtml": "L'Eccellenza <emClass>Essiccata</emClass>",
       "bodyText": "Un concentrato estremo di sapore toscano, ripensato in chiave contemporanea. Tagli pregiati lavorati artigianalmente e confezionati in packaging materici di design. Il compagno perfetto per i veri intenditori, facile da spedire, impossibile da dimenticare.",
-      "imagePlaceholder": "Immagine Box Kraft",
+      "ctaLabel": "Request more information about our dried beef",
       "products": [
         {
           "id": "pepe-e-sale",
@@ -296,7 +285,6 @@
           ],
           "labelColor": "#211D1A",
           "glowColor": "rgba(40, 35, 30, 0.4)",
-          "ctaLabel": "Request Pepe e Sale",
           "image": {
             "src": "/images/bustina-pepe-sale.webp",
             "alt": "Pepe e Sale Beef Jerky Pouch"
@@ -314,7 +302,6 @@
           ],
           "labelColor": "#4B5341",
           "glowColor": "rgba(75, 83, 65, 0.4)",
-          "ctaLabel": "Request Rosmarino e Aglio",
           "image": {
             "src": "/images/bustina-rosmarino-aglio.webp",
             "alt": "Rosmarino e Aglio Beef Jerky Pouch"
@@ -384,9 +371,8 @@
             "value": "Raw dishes, greens, warm bread"
           }
         ],
-        "labelColor": "#6B7A65",
-        "glowColor": "rgba(180, 184, 134, 0.45)",
-        "ctaLabel": "Order Classico",
+        "labelColor": "#75806F",
+        "glowColor": "rgba(178, 176, 152, 0.4)",
         "image": {
           "src": "",
           "alt": "Monti Classico bottle with green label"
@@ -420,9 +406,8 @@
             "value": "Meat, legumes, cheese"
           }
         ],
-        "labelColor": "#D4A361",
-        "glowColor": "rgba(246, 211, 101, 0.5)",
-        "ctaLabel": "Order Riserva",
+        "labelColor": "#C9AC85",
+        "glowColor": "rgba(201, 172, 133, 0.45)",
         "image": {
           "src": "",
           "alt": "Monti Riserva bottle with gold label"
@@ -456,9 +441,8 @@
             "value": "Soups, grill, bruschetta"
           }
         ],
-        "labelColor": "#B05C46",
-        "glowColor": "rgba(176, 92, 70, 0.48)",
-        "ctaLabel": "Order Selezione",
+        "labelColor": "#A5705B",
+        "glowColor": "rgba(165, 112, 91, 0.42)",
         "image": {
           "src": "",
           "alt": "Monti Selezione bottle with copper label"
@@ -466,19 +450,7 @@
       }
     ],
     "order": {
-      "productSheetLabel": "Product sheet",
-      "openSheetLabel": "Open product sheet",
-      "eyebrow": "Private order",
-      "title": "Reserve your selection",
-      "availabilityNote": "Limited availability, selected according to the harvest. Ask for quantities, shipping and gift packaging.",
-      "selectedPrefix": "Selected bottle",
-      "quantityLabel": "Quantity",
-      "nameLabel": "Name",
-      "namePlaceholder": "Your name",
-      "contactLabel": "Contact",
-      "contactPlaceholder": "Email or phone",
-      "submitLabel": "Send order request",
-      "successMessage": "Request received. We will contact you with availability, harvest and shipping details."
+      "openSheetLabel": "Open product sheet"
     },
     "acts": {
       "act1": {
@@ -607,7 +579,7 @@
         ],
         "cta": {
           "titleHtml": "Porta <emClass>l'Anima</emClass> di<br></br> Monti sulla tua tavola.",
-          "buttonLabel": "Acquista l'Olio Nuovo"
+          "buttonLabel": "Request more information about the oil"
         }
       }
     }
@@ -682,191 +654,138 @@
           "scrollText": "Scroll"
         }
       },
-      "stanze": {
-        "label": "Nightly Rest",
-        "titleHtml": "Four <emClass>Identities</emClass>",
-        "introText": "On the upper floor, golden light filters through large windows overlooking the hills into four rooms with well-defined chromatic identities, prepared with impeccable linens and essential scents.",
-        "rooms": [
+      "casa": {
+        "label": "The House",
+        "titleHtml": "One house, <emClass>entirely yours</emClass>",
+        "introText": "Casa Rossa is rented only as a whole: 210 square metres over two floors, four luminous bedrooms and generous spaces to enjoy with family or friends, for up to eight guests.",
+        "planNote": "Indicative floor plans, not to scale. Final survey drawings coming soon.",
+        "floors": [
           {
-            "name": "Avorio",
-            "description": "Double bed and spacious private bathroom. Pure Tuscan light meets pristine linens and delicate textures.",
-            "longDescription": "The brightest room in Casa Rossa. Facing south-east, it captures the first rays of the Tuscan dawn filtering through the ancient wooden shutters. The ivory and cream tones of the washed linen fabrics create an atmosphere of absolute calm, where every awakening is a ritual of natural light.",
-            "bedType": "King Double",
-            "surface": "26 sqm",
-            "floor": "Upper floor",
-            "view": "Hills and olive grove",
-            "highlights": [
-              "Private bathroom with shower",
-              "South-east exposure",
-              "Natural fiber linens",
-              "Panoramic view"
-            ],
-            "amenities": [
-              {
-                "icon": "bed",
-                "label": "King Size Bed"
-              },
-              {
-                "icon": "bath",
-                "label": "Private Bathroom"
-              },
-              {
-                "icon": "wind",
-                "label": "Natural Ventilation"
-              },
-              {
-                "icon": "sun",
-                "label": "Morning Natural Light"
-              },
-              {
-                "icon": "towel",
-                "label": "Premium Towel Set"
-              },
-              {
-                "icon": "hairdryer",
-                "label": "Hairdryer"
-              }
-            ],
-            "photoPlaceholderText": "Foto Stanza Avorio"
+            "id": "piano-terra",
+            "name": "Ground Floor",
+            "description": "The floor of conviviality. The veranda welcomes guests and leads to the double living room with fireplace, the dining room and the fully equipped kitchen.",
+            "spaces": [
+              "Entrance veranda",
+              "Double living room with fireplace",
+              "Dining room",
+              "Equipped kitchen",
+              "Bathroom with tub",
+              "Laundry room"
+            ]
           },
           {
-            "name": "Verde",
-            "description": "Divisible double bed. Sage and mint tones create the perfect refuge against urban stress.",
-            "longDescription": "A botanical retreat, where the sage green walls dialogue with the external landscape in a play of chromatic continuity. The divisible bed allows flexible configurations, ideal for couples seeking space or friends travelling together. A reading corner by the window completes the experience.",
-            "bedType": "Divisible Double",
-            "surface": "22 sqm",
-            "floor": "Upper floor",
-            "view": "Garden and vineyard",
-            "highlights": [
-              "Twin-convertible bed",
-              "Reading corner",
-              "Sage and mint tones",
-              "Garden view"
-            ],
-            "amenities": [
-              {
-                "icon": "bed",
-                "label": "Divisible Bed"
-              },
-              {
-                "icon": "book",
-                "label": "Reading Corner"
-              },
-              {
-                "icon": "wind",
-                "label": "Natural Ventilation"
-              },
-              {
-                "icon": "leaf",
-                "label": "Garden View"
-              },
-              {
-                "icon": "towel",
-                "label": "Premium Towel Set"
-              },
-              {
-                "icon": "hairdryer",
-                "label": "Hairdryer"
-              }
-            ],
-            "photoPlaceholderText": "Foto Stanza Verde"
-          },
-          {
-            "name": "Rosa",
-            "description": "Romantic French bed. Warm finishes and soft vibrations for a total comfort immersion.",
-            "longDescription": "The most intimate room of Casa Rossa. The antique pink walls and velvet fabrics create an enveloping nest, perfect for a romantic escape. The French bed, more compact but supremely comfortable, invites the deepest rest. Antique brass finishes add a touch of timeless elegance.",
-            "bedType": "French Bed (140cm)",
-            "surface": "18 sqm",
-            "floor": "Upper floor",
-            "view": "Inner courtyard",
-            "highlights": [
-              "Romantic atmosphere",
-              "Velvet fabrics",
-              "Brass finishes",
-              "Absolute silence"
-            ],
-            "amenities": [
-              {
-                "icon": "bed",
-                "label": "French Bed"
-              },
-              {
-                "icon": "heart",
-                "label": "Romantic Suite"
-              },
-              {
-                "icon": "moon",
-                "label": "Absolute Silence"
-              },
-              {
-                "icon": "sparkle",
-                "label": "Brass Finishes"
-              },
-              {
-                "icon": "towel",
-                "label": "Premium Towel Set"
-              },
-              {
-                "icon": "hairdryer",
-                "label": "Hairdryer"
-              }
-            ],
-            "photoPlaceholderText": "Foto Stanza Rosa"
-          },
-          {
-            "name": "Albicocca",
-            "description": "Panoramic double bed. Wake up to sunset views over the gentle Pisan hills from large windows.",
-            "longDescription": "The sunset room. Facing west, its large windows frame a different color spectacle each evening over the Pisan hills. The warm apricot and terracotta tones envelop the space in a material embrace. The largest room on the upper floor, with generous space to experience your stay with calm.",
-            "bedType": "King Double",
-            "surface": "28 sqm",
-            "floor": "Upper floor",
-            "view": "Sunset over the hills",
-            "highlights": [
-              "Largest room",
-              "Sunset view",
-              "Large windows",
-              "Warm terracotta tones"
-            ],
-            "amenities": [
-              {
-                "icon": "bed",
-                "label": "King Size Bed"
-              },
-              {
-                "icon": "sunset",
-                "label": "Sunset View"
-              },
-              {
-                "icon": "expand",
-                "label": "Most Spacious Room"
-              },
-              {
-                "icon": "wind",
-                "label": "Natural Ventilation"
-              },
-              {
-                "icon": "towel",
-                "label": "Premium Towel Set"
-              },
-              {
-                "icon": "hairdryer",
-                "label": "Hairdryer"
-              }
-            ],
-            "photoPlaceholderText": "Foto Stanza Albicocca"
+            "id": "piano-superiore",
+            "name": "Upper Floor",
+            "description": "The floor of rest. Four bedrooms with wide-plank parquet, where golden light filters through large windows overlooking the hills, two bathrooms and the staircase to the rooftop terrace.",
+            "spaces": [
+              "Double bedroom with hill view",
+              "Twin-convertible double bedroom",
+              "French-bed bedroom",
+              "Panoramic sunset bedroom",
+              "Bathroom with shower",
+              "Second bathroom",
+              "Staircase to the rooftop terrace"
+            ]
           }
         ],
-        "photoLabels": {
-          "letto": "Bed",
-          "vista": "View",
-          "dettaglio": "Detail",
-          "colline": "Hill view",
-          "panorama": "Panorama",
-          "esterno": "Exterior",
-          "interni": "Interiors",
-          "angolo": "Corner",
-          "drone": "Drone view",
-          "paesaggio": "Landscape"
+        "photosTitle": "Casa Rossa",
+        "photoAria": "Open the house photos",
+        "photos": [
+          {
+            "alt": "The interiors of Casa Rossa"
+          },
+          {
+            "alt": "Casa Rossa in the landscape"
+          },
+          {
+            "alt": "The estate seen from above"
+          }
+        ],
+        "amenities": {
+          "title": "The Amenities",
+          "intro": "Everything you need for a short or long stay, without giving up a thing.",
+          "groups": [
+            {
+              "title": "Interiors",
+              "items": [
+                {
+                  "icon": "fireplace",
+                  "label": "Double living room with fireplace"
+                },
+                {
+                  "icon": "book",
+                  "label": "Library and DVD collection"
+                },
+                {
+                  "icon": "tv",
+                  "label": "Concealed TV"
+                },
+                {
+                  "icon": "sparkle",
+                  "label": "Wide-plank parquet and Persian rugs"
+                }
+              ]
+            },
+            {
+              "title": "Kitchen and dining",
+              "items": [
+                {
+                  "icon": "kitchen",
+                  "label": "Fully equipped kitchen"
+                },
+                {
+                  "icon": "dining",
+                  "label": "Dining room for up to 8 guests"
+                },
+                {
+                  "icon": "washer",
+                  "label": "Full laundry room"
+                }
+              ]
+            },
+            {
+              "title": "Outdoors",
+              "items": [
+                {
+                  "icon": "pool",
+                  "label": "Private-use swimming pool"
+                },
+                {
+                  "icon": "grill",
+                  "label": "Pergola with barbecue"
+                },
+                {
+                  "icon": "telescope",
+                  "label": "Rooftop terrace with telescope"
+                },
+                {
+                  "icon": "leaf",
+                  "label": "Veranda and garden"
+                }
+              ]
+            },
+            {
+              "title": "Services",
+              "items": [
+                {
+                  "icon": "wifi",
+                  "label": "Wi-Fi throughout the property"
+                },
+                {
+                  "icon": "towel",
+                  "label": "Premium linens and towels"
+                },
+                {
+                  "icon": "hairdryer",
+                  "label": "Hairdryer"
+                },
+                {
+                  "icon": "car",
+                  "label": "Parking on the estate"
+                }
+              ]
+            }
+          ]
         }
       },
       "osservatorio": {
@@ -952,7 +871,8 @@
       "contacts": {
         "email": "info@fattoriadimonti.it",
         "phone": {
-          "label": "+39 300 0000000"
+          "label": "+39 300 0000000",
+          "href": "+393000000000"
         }
       },
       "quickLinks": [
@@ -1055,6 +975,24 @@
           "label": "Contatto"
         }
       ],
+      "infoSteps": [
+        {
+          "question": "Whom do we have the honour of addressing?",
+          "placeholder": "Your name",
+          "label": "Name"
+        },
+        {
+          "question": "Where may we send the information?",
+          "placeholder": "Email or phone number",
+          "label": "Contact"
+        },
+        {
+          "question": "Is there anything in particular you would like to know?",
+          "placeholder": "Your request",
+          "label": "Notes",
+          "optional": true
+        }
+      ],
       "skipLabel": "Salta",
       "submitLabel": "Invia",
       "optionalHint": "facoltativa",
@@ -1109,166 +1047,129 @@
         }
       ]
     },
-    "jerkySheet": {
-      "ariaLabel": "Product Sheet — Mucco Pisano Beef Jerky",
-      "closeAria": "Close product sheet",
-      "closeLabel": "× CLOSE",
-      "eyebrow": "Product Detail",
-      "ctaOrder": "Request Information",
-      "viewDetails": "View Details"
-    },
     "oilBottleSheet": {
       "ariaLabel": "Bottle Sheet — Extra Virgin Olive Oil",
       "closeAria": "Close bottle sheet",
       "closeLabel": "× CLOSE",
       "eyebrow": "Bottle Detail",
-      "ctaOrder": "Order New Oil",
+      "ctaOrder": "Request more information about the oil",
       "details": {
-        "dividerLabel": "Approfondimento",
-        "scrollHint": "Scorri per i dettagli",
+        "dividerLabel": "In Depth",
+        "scrollHint": "Scroll for details",
         "territory": {
-          "eyebrow": "Il Territorio",
-          "title": "Radici nella\nroccia calcarea.",
-          "text": "Le nostre olive crescono su pendenze calcaree a 150 metri sul livello del mare, battute dalla brezza mediterranea. Un microclima che nessun agronomo può replicare: è il patrimonio geologico della Toscana più profonda.",
+          "eyebrow": "The Territory",
+          "title": "Roots in\nlimestone rock.",
+          "text": "Our olives grow on limestone slopes 150 metres above sea level, swept by the Mediterranean breeze. A microclimate no agronomist can replicate: it is the geological heritage of Tuscany at its deepest.",
           "rows": [
             {
               "label": "Terroir",
-              "value": "Colline calcaree · Volterra"
+              "value": "Limestone hills · Volterra"
             },
             {
-              "label": "Altitudine",
-              "value": "150 m s.l.m."
+              "label": "Altitude",
+              "value": "150 m a.s.l."
             },
             {
-              "label": "Cultivar",
+              "label": "Cultivars",
               "value": "Razzo, Leccino, Moraiolo"
             },
             {
-              "label": "Età media piante",
-              "value": "30–80 anni"
+              "label": "Average tree age",
+              "value": "30–80 years"
             },
             {
-              "label": "Raccolta",
-              "value": "Manuale · Ottobre–Dicembre"
+              "label": "Harvest",
+              "value": "By hand · October–December"
             }
           ]
         },
         "method": {
-          "eyebrow": "Il Metodo",
-          "title": "Dal frutto all'oro,\nin poche ore.",
+          "eyebrow": "The Method",
+          "title": "From fruit to gold,\nin a few hours.",
           "steps": [
             {
               "step": "01",
-              "title": "Raccolta manuale",
-              "desc": "Agevolatori pneumatici proteggono la drupa. Nessun contatto con il suolo."
+              "title": "Hand harvesting",
+              "desc": "Pneumatic harvesters protect the fruit. No contact with the ground."
             },
             {
               "step": "02",
-              "title": "Frangitura entro 10 ore",
-              "desc": "L'oliva \"respira\" e consuma i polifenoli: l'urgenza è tutto."
+              "title": "Pressing within 10 hours",
+              "desc": "The olive \"breathes\" and burns through its polyphenols: urgency is everything."
             },
             {
               "step": "03",
-              "title": "Gramolatura a freddo",
-              "desc": "Sotto i 27°C per 30 minuti: le molecole aromatiche restano intatte."
+              "title": "Cold malaxation",
+              "desc": "Below 27°C for 30 minutes: the aromatic molecules remain intact."
             },
             {
               "step": "04",
-              "title": "Estrazione centrifuga",
-              "desc": "3500 giri/min separano l'oro liquido dall'acqua e dalla sansa."
+              "title": "Centrifugal extraction",
+              "desc": "3,500 rpm separates the liquid gold from water and pomace."
             }
           ]
         },
         "pairings": {
-          "eyebrow": "Abbinamenti",
-          "title": "La cucina\ncome tela.",
+          "eyebrow": "Pairings",
+          "title": "The kitchen\nas a canvas.",
           "texts": {
-            "classico": "Una fedeltà quotidiana: sul pane di Altamura ancora caldo, su carpacci di branzino, crudo su insalate di finocchio e arancia. La versatilità elevata a virtù.",
-            "riserva": "Pensata per chi cerca intensità: su bistecche alla fiorentina rare, su zuppe di legumi rustiche, su formaggi a pasta dura stagionati. Da gustare anche in purezza.",
-            "selezione": "Il gastronomico toscano nella sua forma più autentica: su ribollita, bruschette di pane sciocco, carni grigliate e zuppe di farro. Da condividere."
+            "classico": "An everyday companion: on still-warm Altamura bread, over sea bass carpaccio, raw on fennel and orange salads. Versatility elevated to a virtue.",
+            "riserva": "Made for those who seek intensity: on rare bistecca alla fiorentina, rustic legume soups, aged hard cheeses. Also to be enjoyed on its own.",
+            "selezione": "Tuscan gastronomy in its most authentic form: on ribollita, bruschetta of unsalted bread, grilled meats and spelt soups. Made for sharing."
           },
           "items": {
             "classico": [
-              "Carpaccio di branzino",
-              "Pane toscano caldo",
-              "Insalate fresche",
-              "Ribollita leggera",
-              "Verdure al vapore",
-              "Formaggi freschi"
+              "Sea bass carpaccio",
+              "Warm Tuscan bread",
+              "Fresh salads",
+              "Light ribollita",
+              "Steamed vegetables",
+              "Fresh cheeses"
             ],
             "riserva": [
               "Bistecca Fiorentina",
-              "Zuppa di lenticchie",
-              "Pecorino stagionato",
-              "Straccetti",
-              "Legumi rustici",
-              "Degustazione in purezza"
+              "Lentil soup",
+              "Aged pecorino",
+              "Beef straccetti",
+              "Rustic legumes",
+              "Tasting on its own"
             ],
             "selezione": [
               "Ribollita",
-              "Bruschette",
-              "Farro e legumi",
-              "Carni grigliate",
+              "Bruschetta",
+              "Spelt and legumes",
+              "Grilled meats",
               "Panzanella",
               "Cacciucco"
             ]
           }
         },
         "awards": {
-          "eyebrow": "Riconoscimenti",
-          "title": "Certificato dai\nmigliori al mondo.",
+          "eyebrow": "Awards",
+          "title": "Certified by the\nworld's finest.",
           "items": [
             {
               "year": "2022",
               "award": "Flos Olei",
-              "detail": "Top 100 Migliori Oli al Mondo"
+              "detail": "Top 100 Best Olive Oils in the World"
             },
             {
               "year": "2022",
               "award": "NYIOOC",
-              "detail": "Medaglia d'Oro · New York"
+              "detail": "Gold Medal · New York"
             },
             {
               "year": "2022",
               "award": "Premio Grande Gusto",
-              "detail": "3 Stelle — Eccellenza Assoluta"
+              "detail": "3 Stars — Absolute Excellence"
             }
           ]
         },
         "finalCta": {
-          "title": "Porta l'anima di Monti sulla tua tavola.",
-          "subtitle": "Disponibilità limitata per annata. Spedizione in tutta Italia."
+          "title": "Bring the soul of Monti to your table.",
+          "subtitle": "Limited availability per harvest. Shipping throughout Italy."
         }
       }
-    },
-    "roomSheet": {
-      "labelSpace": "The Space",
-      "labelAmenities": "Amenities",
-      "backLabel": "← BACK",
-      "ariaLabel": "Room Sheet — Casa Rossa",
-      "closeAria": "Close room sheet",
-      "closeLabel": "× CLOSE",
-      "eyebrow": "Casa Rossa",
-      "sectionAmenities": "Comfort & Amenities",
-      "sectionGallery": "Photo Gallery",
-      "sectionHighlights": "Highlights",
-      "specBed": "Bed",
-      "specSurface": "Surface",
-      "specFloor": "Floor",
-      "specView": "View",
-      "ctaBook": "Book this Room",
-      "scrollHint": "Scroll for details",
-      "sharedAmenities": "Shared House Amenities",
-      "sharedAmenitiesList": [
-        "Private adjacent pool",
-        "Fully equipped kitchen",
-        "Double living room with fireplace",
-        "Wi-Fi throughout the property",
-        "BBQ & outdoor pergola",
-        "Rooftop terrace with telescope",
-        "DVD Player & library",
-        "Full laundry facilities"
-      ]
     }
   },
   "Navigation": {
@@ -1459,7 +1360,7 @@
       },
       "act4": {
         "label": "Atto IV — Terroir ed Eccellenze",
-        "quoteHtml": "\"Una brezza costante dal Mar Tirreno.<brResp></br>Ciottoli alluvionali, fossili e minerali marini <brResp></br>che nutrono in un abbraccio protettivo le antiche vigne e gli ulivi secolari.\""
+        "quoteHtml": "\"A constant breeze from the Tyrrhenian Sea.<brResp></brResp>Alluvial pebbles, fossils and marine minerals <brResp></brResp>that nurture the ancient vines and centuries-old olive trees in a protective embrace.\""
       },
       "act5": {
         "cta": {

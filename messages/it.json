@@ -66,21 +66,11 @@
       "footer": "04 — L'Orizzonte"
     },
     "stepPrefix": "STEP",
-    "photoOf": "{count} foto",
     "closeLabel": "✕",
     "gallery": {
       "explore": "Esplora",
       "scroll": "Scorri",
-      "scrollHint": "Scorri per esplorare",
-      "identita": "Identità"
-    },
-    "canvasToggle": {
-      "enable": "Attiva sfondo animato",
-      "disable": "Disattiva sfondo animato",
-      "titleEnable": "Attiva sfondo cielo animato",
-      "titleDisable": "Disattiva cielo per alleggerire il sito",
-      "on": "Cielo ON",
-      "off": "Cielo OFF"
+      "scrollHint": "Scorri per esplorare"
     }
   },
   "Home": {
@@ -200,7 +190,7 @@
         },
         "night": {
           "label": "L'ESPERIENZA",
-          "text": "Quattro dimore uniche — Avorio, Verde, Rosa e Albicocca — dove il silenzio è interrotto solo dalla natura. Dalla terrazza sul tetto, l'esperienza culmina nel cielo stellato: con il telescopio a disposizione potrete esplorare l'universo in un'oscurità pura e profonda.",
+          "text": "Quattro camere luminose al piano superiore, dove il silenzio è interrotto solo dalla natura. Dalla terrazza sul tetto, l'esperienza culmina nel cielo stellato: con il telescopio a disposizione potrete esplorare l'universo in un'oscurità pura e profonda.",
           "media": {
             "alt": "Cielo stellato notturno della Toscana visto dal tetto della Casa Rossa, non inquinato dalle luci artificiali",
             "previewText": "Cielo Stellato · Telescopio"
@@ -275,14 +265,13 @@
       "label": "Vendita al kg",
       "titleHtml": "I Tagli <br></br><emClass>Nobili</emClass>",
       "bodyText": "Costate imponenti, Fiorentine e arrosti. L'equilibrio perfetto tra fibra magra e grasso protettivo, sviluppato camminando sui nostri pendii. Puoi prenotare la tua fornitura e ricevere a casa tagli freschi preparati al momento.",
-      "ctaLabel": "Prenota Tagli a Peso →",
       "imageAlt": "Mucco Pisano — Tagli Nobili"
     },
     "essiccata": {
       "label": "Affinamento Estremo",
       "titleHtml": "L'Eccellenza <emClass>Essiccata</emClass>",
       "bodyText": "Un concentrato estremo di sapore toscano, ripensato in chiave contemporanea. Tagli pregiati lavorati artigianalmente e confezionati in packaging materici di design. Il compagno perfetto per i veri intenditori, facile da spedire, impossibile da dimenticare.",
-      "imagePlaceholder": "Immagine Box Kraft",
+      "ctaLabel": "Richiedi maggiori informazioni sulla carne secca",
       "products": [
         {
           "id": "pepe-e-sale",
@@ -296,7 +285,6 @@
           ],
           "labelColor": "#211D1A",
           "glowColor": "rgba(40, 35, 30, 0.4)",
-          "ctaLabel": "Richiedi Pepe e Sale",
           "image": {
             "src": "/images/bustina-pepe-sale.webp",
             "alt": "Bustina Carne Secca Pepe e Sale"
@@ -314,7 +302,6 @@
           ],
           "labelColor": "#4B5341",
           "glowColor": "rgba(75, 83, 65, 0.4)",
-          "ctaLabel": "Richiedi Rosmarino e Aglio",
           "image": {
             "src": "/images/bustina-rosmarino-aglio.webp",
             "alt": "Bustina Carne Secca Rosmarino e Aglio"
@@ -384,9 +371,8 @@
             "value": "Crudo, verdure, pane caldo"
           }
         ],
-        "labelColor": "#6B7A65",
-        "glowColor": "rgba(180, 184, 134, 0.45)",
-        "ctaLabel": "Ordina Classico",
+        "labelColor": "#75806F",
+        "glowColor": "rgba(178, 176, 152, 0.4)",
         "image": {
           "src": "",
           "alt": "Bottiglia Monti Classico con etichetta verde"
@@ -420,9 +406,8 @@
             "value": "Carni, legumi, formaggi"
           }
         ],
-        "labelColor": "#D4A361",
-        "glowColor": "rgba(246, 211, 101, 0.5)",
-        "ctaLabel": "Ordina Riserva",
+        "labelColor": "#C9AC85",
+        "glowColor": "rgba(201, 172, 133, 0.45)",
         "image": {
           "src": "",
           "alt": "Bottiglia Monti Riserva con etichetta oro"
@@ -456,9 +441,8 @@
             "value": "Zuppe, griglia, bruschette"
           }
         ],
-        "labelColor": "#B05C46",
-        "glowColor": "rgba(176, 92, 70, 0.48)",
-        "ctaLabel": "Ordina Selezione",
+        "labelColor": "#A5705B",
+        "glowColor": "rgba(165, 112, 91, 0.42)",
         "image": {
           "src": "",
           "alt": "Bottiglia Monti Selezione con etichetta rame"
@@ -466,19 +450,7 @@
       }
     ],
     "order": {
-      "productSheetLabel": "Scheda prodotto",
-      "openSheetLabel": "Apri scheda prodotto",
-      "eyebrow": "Ordine privato",
-      "title": "Prenota la tua selezione",
-      "availabilityNote": "Disponibilità limitata, selezionata in base all'annata. Richiedi quantità, spedizione e confezione regalo.",
-      "selectedPrefix": "Bottiglia scelta",
-      "quantityLabel": "Quantità",
-      "nameLabel": "Nome",
-      "namePlaceholder": "Il tuo nome",
-      "contactLabel": "Contatto",
-      "contactPlaceholder": "Email o telefono",
-      "submitLabel": "Invia richiesta ordine",
-      "successMessage": "Richiesta ricevuta. Ti ricontatteremo per disponibilità, annata e spedizione."
+      "openSheetLabel": "Apri scheda prodotto"
     },
     "acts": {
       "act1": {
@@ -607,7 +579,7 @@
         ],
         "cta": {
           "titleHtml": "Porta <emClass>l'Anima</emClass> di<br></br> Monti sulla tua tavola.",
-          "buttonLabel": "Acquista l'Olio Nuovo"
+          "buttonLabel": "Richiedi maggiori informazioni sull'olio"
         }
       }
     }
@@ -682,191 +654,138 @@
           "scrollText": "Scorri"
         }
       },
-      "stanze": {
-        "label": "Il Riposo Notturno",
-        "titleHtml": "Quattro <emClass>Identità</emClass>",
-        "introText": "Al piano superiore, la luce dorata filtra da ampie finestre affacciate sui colli in quattro stanze dalle identità cromatiche ben definite, preparate con biancheria impeccabile e profumi essenziali.",
-        "rooms": [
+      "casa": {
+        "label": "La Casa",
+        "titleHtml": "Una sola casa, <emClass>tutta per voi</emClass>",
+        "introText": "La Casa Rossa si affitta soltanto per intero: 210 metri quadrati su due piani, quattro camere luminose e spazi generosi da vivere in famiglia o tra amici, fino a otto ospiti.",
+        "planNote": "Piantine indicative, non in scala. In attesa del rilievo definitivo.",
+        "floors": [
           {
-            "name": "Avorio",
-            "description": "Letto matrimoniale e bagno privato spazioso. La pura luce toscana incontra lini candidi e trame delicate.",
-            "longDescription": "La stanza più luminosa della Casa Rossa. Orientata a sud-est, cattura i primi raggi dell'alba toscana che filtrano attraverso le persiane di legno antico. I toni avorio e crema dei tessuti in lino lavato creano un'atmosfera di calma assoluta, dove ogni risveglio è un rituale di luce naturale.",
-            "bedType": "Matrimoniale King",
-            "surface": "26 mq",
-            "floor": "Piano superiore",
-            "view": "Colline e uliveto",
-            "highlights": [
-              "Bagno privato con doccia",
-              "Esposizione sud-est",
-              "Lini in fibra naturale",
-              "Vista panoramica"
-            ],
-            "amenities": [
-              {
-                "icon": "bed",
-                "label": "Letto King Size"
-              },
-              {
-                "icon": "bath",
-                "label": "Bagno privato"
-              },
-              {
-                "icon": "wind",
-                "label": "Ventilazione naturale"
-              },
-              {
-                "icon": "sun",
-                "label": "Luce naturale mattutina"
-              },
-              {
-                "icon": "towel",
-                "label": "Set asciugamani premium"
-              },
-              {
-                "icon": "hairdryer",
-                "label": "Asciugacapelli"
-              }
-            ],
-            "photoPlaceholderText": "Foto Stanza Avorio"
+            "id": "piano-terra",
+            "name": "Piano Terra",
+            "description": "Il piano della convivialità. La veranda accoglie gli ospiti e conduce al doppio soggiorno con camino, alla sala pranzo e alla cucina completamente attrezzata.",
+            "spaces": [
+              "Veranda d'ingresso",
+              "Doppio soggiorno con camino",
+              "Sala pranzo",
+              "Cucina attrezzata",
+              "Bagno con vasca",
+              "Lavanderia"
+            ]
           },
           {
-            "name": "Verde",
-            "description": "Letto matrimoniale divisibile. Tonalità salvia e menta creano il rifugio perfetto contro lo stress urbano.",
-            "longDescription": "Un rifugio dalle tonalità botaniche, dove il verde salvia delle pareti dialoga con il paesaggio esterno in un gioco di continuità cromatica. Il letto divisibile permette configurazioni flessibili, ideale per coppie che cercano spazio o amici in viaggio insieme. Un angolo lettura accanto alla finestra completa l'esperienza.",
-            "bedType": "Matrimoniale divisibile",
-            "surface": "22 mq",
-            "floor": "Piano superiore",
-            "view": "Giardino e vigneto",
-            "highlights": [
-              "Letto divisibile in due singoli",
-              "Angolo lettura",
-              "Tonalità salvia e menta",
-              "Vista giardino"
-            ],
-            "amenities": [
-              {
-                "icon": "bed",
-                "label": "Letto divisibile"
-              },
-              {
-                "icon": "book",
-                "label": "Angolo lettura"
-              },
-              {
-                "icon": "wind",
-                "label": "Ventilazione naturale"
-              },
-              {
-                "icon": "leaf",
-                "label": "Vista giardino"
-              },
-              {
-                "icon": "towel",
-                "label": "Set asciugamani premium"
-              },
-              {
-                "icon": "hairdryer",
-                "label": "Asciugacapelli"
-              }
-            ],
-            "photoPlaceholderText": "Foto Stanza Verde"
-          },
-          {
-            "name": "Rosa",
-            "description": "Letto alla francese romantico. Finiture calde e morbide vibrazioni per un'immersione nel comfort più totale.",
-            "longDescription": "La stanza più intima della Casa Rossa. Il rosa antico delle pareti e i tessuti in velluto creano un nido avvolgente, perfetto per una fuga romantica. Il letto alla francese, più compatto ma supremamente confortevole, invita al riposo più profondo. Le finiture in ottone antico aggiungono un tocco di eleganza senza tempo.",
-            "bedType": "Alla francese (140cm)",
-            "surface": "18 mq",
-            "floor": "Piano superiore",
-            "view": "Cortile interno",
-            "highlights": [
-              "Atmosfera romantica",
-              "Tessuti in velluto",
-              "Finiture in ottone",
-              "Silenzio assoluto"
-            ],
-            "amenities": [
-              {
-                "icon": "bed",
-                "label": "Letto alla francese"
-              },
-              {
-                "icon": "heart",
-                "label": "Suite romantica"
-              },
-              {
-                "icon": "moon",
-                "label": "Silenzio assoluto"
-              },
-              {
-                "icon": "sparkle",
-                "label": "Finiture in ottone"
-              },
-              {
-                "icon": "towel",
-                "label": "Set asciugamani premium"
-              },
-              {
-                "icon": "hairdryer",
-                "label": "Asciugacapelli"
-              }
-            ],
-            "photoPlaceholderText": "Foto Stanza Rosa"
-          },
-          {
-            "name": "Albicocca",
-            "description": "Letto matrimoniale panoramico. Svegliati con la vista del tramonto sui dolci paesaggi pisani dalle grandi finestre.",
-            "longDescription": "La stanza del tramonto. Orientata a ovest, le sue grandi finestre incorniciano ogni sera uno spettacolo diverso di colori sulle colline pisane. Le tonalità calde dell'albicocca e del terracotta avvolgono lo spazio in un abbraccio materico. La stanza più grande del piano superiore, con spazio generoso per vivere il soggiorno con calma.",
-            "bedType": "Matrimoniale King",
-            "surface": "28 mq",
-            "floor": "Piano superiore",
-            "view": "Tramonto sulle colline",
-            "highlights": [
-              "Stanza più grande",
-              "Vista tramonto",
-              "Grandi finestre",
-              "Tonalità calde terracotta"
-            ],
-            "amenities": [
-              {
-                "icon": "bed",
-                "label": "Letto King Size"
-              },
-              {
-                "icon": "sunset",
-                "label": "Vista tramonto"
-              },
-              {
-                "icon": "expand",
-                "label": "Stanza più spaziosa"
-              },
-              {
-                "icon": "wind",
-                "label": "Ventilazione naturale"
-              },
-              {
-                "icon": "towel",
-                "label": "Set asciugamani premium"
-              },
-              {
-                "icon": "hairdryer",
-                "label": "Asciugacapelli"
-              }
-            ],
-            "photoPlaceholderText": "Foto Stanza Albicocca"
+            "id": "piano-superiore",
+            "name": "Piano Superiore",
+            "description": "Il piano del riposo. Quattro camere dal parquet a listoni, dove la luce dorata filtra da ampie finestre affacciate sui colli, due bagni e la scala che sale alla terrazza sul tetto.",
+            "spaces": [
+              "Camera matrimoniale con vista colline",
+              "Camera matrimoniale divisibile",
+              "Camera alla francese",
+              "Camera panoramica al tramonto",
+              "Bagno con doccia",
+              "Secondo bagno",
+              "Scala alla terrazza sul tetto"
+            ]
           }
         ],
-        "photoLabels": {
-          "letto": "Letto",
-          "vista": "Vista",
-          "dettaglio": "Dettaglio",
-          "colline": "Vista Colline",
-          "panorama": "Panorama",
-          "esterno": "Esterno",
-          "interni": "Interni",
-          "angolo": "Angolo",
-          "drone": "Vista Drone",
-          "paesaggio": "Paesaggio"
+        "photosTitle": "La Casa Rossa",
+        "photoAria": "Apri le foto della casa",
+        "photos": [
+          {
+            "alt": "Gli interni della Casa Rossa"
+          },
+          {
+            "alt": "La Casa Rossa nel paesaggio"
+          },
+          {
+            "alt": "La tenuta vista dall'alto"
+          }
+        ],
+        "amenities": {
+          "title": "Le Comodità",
+          "intro": "Tutto ciò che serve per un soggiorno breve o lungo, senza rinunciare a nulla.",
+          "groups": [
+            {
+              "title": "Interni",
+              "items": [
+                {
+                  "icon": "fireplace",
+                  "label": "Doppio soggiorno con camino"
+                },
+                {
+                  "icon": "book",
+                  "label": "Biblioteca e collezione DVD"
+                },
+                {
+                  "icon": "tv",
+                  "label": "TV a scomparsa"
+                },
+                {
+                  "icon": "sparkle",
+                  "label": "Parquet a listoni e tappeti persiani"
+                }
+              ]
+            },
+            {
+              "title": "Cucina e pranzo",
+              "items": [
+                {
+                  "icon": "kitchen",
+                  "label": "Cucina completamente attrezzata"
+                },
+                {
+                  "icon": "dining",
+                  "label": "Sala pranzo fino a 8 ospiti"
+                },
+                {
+                  "icon": "washer",
+                  "label": "Lavanderia completa"
+                }
+              ]
+            },
+            {
+              "title": "Esterni",
+              "items": [
+                {
+                  "icon": "pool",
+                  "label": "Piscina a uso esclusivo"
+                },
+                {
+                  "icon": "grill",
+                  "label": "Pergola con barbecue"
+                },
+                {
+                  "icon": "telescope",
+                  "label": "Terrazza sul tetto con telescopio"
+                },
+                {
+                  "icon": "leaf",
+                  "label": "Veranda e giardino"
+                }
+              ]
+            },
+            {
+              "title": "Servizi",
+              "items": [
+                {
+                  "icon": "wifi",
+                  "label": "Wi-Fi in tutta la proprietà"
+                },
+                {
+                  "icon": "towel",
+                  "label": "Biancheria e asciugamani premium"
+                },
+                {
+                  "icon": "hairdryer",
+                  "label": "Asciugacapelli"
+                },
+                {
+                  "icon": "car",
+                  "label": "Parcheggio nella tenuta"
+                }
+              ]
+            }
+          ]
         }
       },
       "osservatorio": {
@@ -952,7 +871,8 @@
       "contacts": {
         "email": "info@fattoriadimonti.it",
         "phone": {
-          "label": "+39 300 0000000"
+          "label": "+39 300 0000000",
+          "href": "+393000000000"
         }
       },
       "quickLinks": [
@@ -1055,6 +975,24 @@
           "label": "Contatto"
         }
       ],
+      "infoSteps": [
+        {
+          "question": "A chi abbiamo l'onore di rivolgerci?",
+          "placeholder": "Il suo nome",
+          "label": "Nome"
+        },
+        {
+          "question": "Dove possiamo recapitarle le informazioni?",
+          "placeholder": "Email o numero di telefono",
+          "label": "Contatto"
+        },
+        {
+          "question": "C'è qualcosa in particolare che desidera sapere?",
+          "placeholder": "La sua richiesta",
+          "label": "Note",
+          "optional": true
+        }
+      ],
       "skipLabel": "Salta",
       "submitLabel": "Invia",
       "optionalHint": "facoltativa",
@@ -1109,20 +1047,12 @@
         }
       ]
     },
-    "jerkySheet": {
-      "ariaLabel": "Scheda Prodotto — Carne Secca di Mucco Pisano",
-      "closeAria": "Chiudi scheda prodotto",
-      "closeLabel": "× CHIUDI",
-      "eyebrow": "Dettaglio Prodotto",
-      "ctaOrder": "Richiedi Informazioni",
-      "viewDetails": "Vedi Dettagli"
-    },
     "oilBottleSheet": {
       "ariaLabel": "Scheda Bottiglia — Olio Extravergine di Oliva",
       "closeAria": "Chiudi scheda bottiglia",
       "closeLabel": "× CHIUDI",
       "eyebrow": "Dettaglio Bottiglia",
-      "ctaOrder": "Acquista l'Olio Nuovo",
+      "ctaOrder": "Richiedi maggiori informazioni sull'olio",
       "details": {
         "dividerLabel": "Approfondimento",
         "scrollHint": "Scorri per i dettagli",
@@ -1240,35 +1170,6 @@
           "subtitle": "Disponibilità limitata per annata. Spedizione in tutta Italia."
         }
       }
-    },
-    "roomSheet": {
-      "labelSpace": "Lo spazio",
-      "labelAmenities": "Amenities",
-      "backLabel": "← INDIETRO",
-      "ariaLabel": "Scheda Stanza — Casa Rossa",
-      "closeAria": "Chiudi scheda stanza",
-      "closeLabel": "× CHIUDI",
-      "eyebrow": "La Casa Rossa",
-      "sectionAmenities": "Comfort & Servizi",
-      "sectionGallery": "Galleria Fotografica",
-      "sectionHighlights": "Punti di Forza",
-      "specBed": "Letto",
-      "specSurface": "Superficie",
-      "specFloor": "Piano",
-      "specView": "Vista",
-      "ctaBook": "Prenota questa Stanza",
-      "scrollHint": "Scorri per i dettagli",
-      "sharedAmenities": "Servizi Condivisi della Casa",
-      "sharedAmenitiesList": [
-        "Piscina privata adiacente",
-        "Cucina completamente attrezzata",
-        "Doppio soggiorno con camino",
-        "Wi-Fi su tutta la proprietà",
-        "Barbecue & pergolato esterno",
-        "Terrazza con telescopio",
-        "DVD Player & biblioteca",
-        "Lavanderia completa"
-      ]
     }
   },
   "Navigation": {
@@ -1459,7 +1360,7 @@
       },
       "act4": {
         "label": "Atto IV — Terroir ed Eccellenze",
-        "quoteHtml": "\"Una brezza costante dal Mar Tirreno.<brResp></br>Ciottoli alluvionali, fossili e minerali marini <brResp></br>che nutrono in un abbraccio protettivo le antiche vigne e gli ulivi secolari.\""
+        "quoteHtml": "\"Una brezza costante dal Mar Tirreno.<brResp></brResp>Ciottoli alluvionali, fossili e minerali marini <brResp></brResp>che nutrono in un abbraccio protettivo le antiche vigne e gli ulivi secolari.\""
       },
       "act5": {
         "cta": {

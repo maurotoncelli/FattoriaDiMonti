@@ -6,7 +6,7 @@ import { useAppStore } from '@/store/useAppStore';
 import { useTranslations } from 'next-intl';
 
 export default function OilExtractionModal() {
-    const { setOilModalOpen } = useAppStore();
+    const setOilModalOpen = useAppStore((s) => s.setOilModalOpen);
     const t = useTranslations('Overlays.oilExtraction');
     const [activeStep, setActiveStep] = useState(0);
     const steps = t.raw('steps') as any[];

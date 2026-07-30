@@ -11,7 +11,7 @@ export const getFilieraData = (t: any): FilieraContent => ({
             label: t('LaFiliera.acts.act1.label'),
             titleHtml: t.rich('LaFiliera.acts.act1.titleHtml', {
                 br: () => <br />,
-                emClass: (chunks: React.ReactNode) => <em className="italic text-[#B4B886] font-light">{chunks}</em>,
+                emClass: (chunks: React.ReactNode) => <em className="italic text-[var(--grano)] font-light">{chunks}</em>,
             }),
             introText: t('LaFiliera.acts.act1.introText'),
             images: {
@@ -22,7 +22,7 @@ export const getFilieraData = (t: any): FilieraContent => ({
             label: t('LaFiliera.acts.act2.label'),
             titleHtml: t.rich('LaFiliera.acts.act2.titleHtml', {
                 br: () => <br />,
-                emClass: (chunks: React.ReactNode) => <em className="italic text-[#B4B886] font-light">{chunks}</em>,
+                emClass: (chunks: React.ReactNode) => <em className="italic text-[var(--grano)] font-light">{chunks}</em>,
             }),
             timelineSteps: t.raw('LaFiliera.acts.act2.timelineSteps') as { title: string; text: string }[],
         },
@@ -30,7 +30,7 @@ export const getFilieraData = (t: any): FilieraContent => ({
             label: t('LaFiliera.acts.act3.label'),
             titleHtml: t.rich('LaFiliera.acts.act3.titleHtml', {
                 br: () => <br />,
-                emClass: (chunks: React.ReactNode) => <em className="italic text-[#B4B886]">{chunks}</em>,
+                emClass: (chunks: React.ReactNode) => <em className="italic text-[var(--grano)]">{chunks}</em>,
             }),
             paragraphs: t.raw('LaFiliera.acts.act3.paragraphs') as string[],
             gallery: t.raw('LaFiliera.acts.act3.gallery') as { src: string; alt: string; caption: string }[],
@@ -54,7 +54,7 @@ export const getFilieraData = (t: any): FilieraContent => ({
             cta: {
                 titleHtml: t.rich('LaFiliera.acts.act5.cta.titleHtml', {
                     br: () => <br />,
-                    emClass: (chunks: React.ReactNode) => <em className="italic text-[#D4A361] font-light">{chunks}</em>,
+                    emClass: (chunks: React.ReactNode) => <em className="italic text-[var(--sabbia-limonitica)] font-light">{chunks}</em>,
                 }),
                 buttonLabel: t('LaFiliera.acts.act5.cta.buttonLabel'),
                 href: '/ospitalita',

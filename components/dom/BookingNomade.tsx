@@ -9,7 +9,7 @@ import { CucinaNomadeData } from '@/lib/data/cucinaNomade';
 gsap.registerPlugin(ScrollTrigger);
 
 export default function BookingNomade({ data }: { data: CucinaNomadeData['booking'] }) {
-    const { setConciergeOpen } = useAppStore();
+    const setConciergeOpen = useAppStore((s) => s.setConciergeOpen);
     const containerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {

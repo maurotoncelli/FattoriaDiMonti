@@ -75,7 +75,7 @@ export interface ProductSlideContent {
   cta: CtaConfig;
   bgColor?: string;
   theme?: 'light' | 'dark';
-  media: { webgl: boolean; effectType: string; textureSrc: string };
+  media: { textureSrc: string };
 }
 
 export interface HospitalityContent {
@@ -122,11 +122,13 @@ export interface MuccoPisanoContent {
     quoteHtml: React.ReactNode;
     items: { title: string; body: string }[];
   };
-  tagli: { label: string; titleHtml: React.ReactNode; bodyText: string; ctaLabel: string; images: { primary: MediaItem } };
+  tagli: { label: string; titleHtml: React.ReactNode; bodyText: string; images: { primary: MediaItem } };
   essiccata: { 
     label: string; 
     titleHtml: React.ReactNode; 
     bodyText: string; 
+    /** CTA unica launch: "Richiedi maggiori informazioni sulla carne secca" */
+    ctaLabel: string;
     images: { primary: MediaItem };
     products: {
       id: string;
@@ -136,7 +138,6 @@ export interface MuccoPisanoContent {
       tags: string[];
       labelColor: string;
       glowColor: string;
-      ctaLabel: string;
       image: MediaItem;
     }[];
   };
@@ -157,23 +158,11 @@ export interface OlioContent {
     specs: { label: string; value: string }[];
     labelColor: string;
     glowColor: string;
-    ctaLabel: string;
+    /** Foto reale (archivio); se src vuoto la card mostra la bottiglia illustrativa CSS */
     image: MediaItem;
   }[];
   order: {
-    productSheetLabel: string;
     openSheetLabel: string;
-    eyebrow: string;
-    title: string;
-    availabilityNote: string;
-    selectedPrefix: string;
-    quantityLabel: string;
-    nameLabel: string;
-    namePlaceholder: string;
-    contactLabel: string;
-    contactPlaceholder: string;
-    submitLabel: string;
-    successMessage: string;
   };
   acts: {
     act1: { label: string; titleHtml: React.ReactNode; introText: string; images: { background: MediaItem } };
@@ -218,19 +207,28 @@ export interface CerealiContent {
 
 // ─── Ospitalità ───────────────────────────────────────────────────────────────
 
-export interface RoomContent {
-  id: string;
+export interface CasaFloor {
+  id: string; // 'piano-terra' | 'piano-superiore'
   name: string;
-  bgColor: string;
   description: string;
-  longDescription?: string;
-  bedType?: string;
-  surface?: string;
-  floor?: string;
-  view?: string;
-  highlights?: string[];
-  amenities?: { icon: string; label: string }[];
+  /** Legenda ambienti: l'ordine corrisponde ai marker numerati di HouseFloorPlan */
+  spaces: string[];
+}
+
+export interface CasaContent {
+  label: string;
+  titleHtml: React.ReactNode;
+  introText: string;
+  planNote: string;
+  floors: CasaFloor[];
+  photosTitle: string;
+  photoAria: string;
   photos: MediaItem[];
+  amenities: {
+    title: string;
+    intro: string;
+    groups: { title: string; items: { icon: string; label: string }[] }[];
+  };
 }
 
 export interface OspitalitaContent {
@@ -245,7 +243,7 @@ export interface OspitalitaContent {
       items: (MediaWithOverlay & { aspect: '3/2' | '2/3' })[];
       indicator: { exploreText: string; scrollText: string };
     };
-    stanze: { label: string; titleHtml: React.ReactNode; introText: string; rooms: RoomContent[] };
+    casa: CasaContent;
     osservatorio: { label: string; titleHtml: React.ReactNode; introText: string; cta: { buttonLabel: string } };
   };
 }

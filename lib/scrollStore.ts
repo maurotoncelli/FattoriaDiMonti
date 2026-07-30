@@ -3,8 +3,8 @@
  *
  * Lenis aggiorna questo oggetto ogni frame (~60fps) senza innescare
  * alcun re-render React. I componenti che necessitano di valori di scroll
- * (SkyNoiseShader, ScrollProgressTracker, AppWrapper) lo leggono direttamente
- * in loop imperativi (useFrame, RAF, event listener) senza passare per React.
+ * (ScrollProgressTracker, AppWrapper) lo leggono direttamente
+ * in loop imperativi (RAF, event listener) senza passare per React.
  */
 export const scrollStore = {
     y: 0,

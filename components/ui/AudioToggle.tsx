@@ -5,7 +5,8 @@ import { useAppStore } from '@/store/useAppStore';
 import { useTranslations } from 'next-intl';
 
 export default function AudioToggle() {
-    const { audioEnabled, setAudioEnabled } = useAppStore();
+    const audioEnabled = useAppStore((s) => s.audioEnabled);
+    const setAudioEnabled = useAppStore((s) => s.setAudioEnabled);
     const [hovered, setHovered] = useState(false);
     const t = useTranslations('UI.audio');
 
@@ -24,7 +25,7 @@ export default function AudioToggle() {
                 border: 'none',
                 padding: '0.45rem 1rem',
                 cursor: 'none',
-                color: hovered ? 'var(--argilla-ferrosa)' : 'rgba(236,232,223,0.4)',
+                color: hovered ? 'var(--argilla-ferrosa)' : 'rgba(78,64,48,0.45)',
                 fontFamily: 'var(--font-inter)',
                 fontSize: '10px',
                 letterSpacing: '0.15em',

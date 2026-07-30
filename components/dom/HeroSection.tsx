@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useTranslations } from 'next-intl';
@@ -107,29 +108,43 @@ export default function HeroSection() {
             }}
             aria-label="Hero"
         >
-            {/* Background Image Placeholder */}
+            {/* Background image — DOM nativa (Ken Burns + parallax gestiti da GSAP sul wrapper) */}
             <div
                 ref={heroImageRef}
-                data-webgl-media="true"
-                data-effect-type="displacement"
-                data-texture-src="/images/hero-new.jpg"
                 id="media-hero-background"
+                aria-hidden="true"
                 style={{
                     position: 'absolute',
                     inset: 0,
                     zIndex: -1,
                     pointerEvents: 'none',
-                    opacity: 0.6,
                     willChange: 'transform',
                     transformOrigin: 'center center',
                 }}
-            />
+            >
+                <Image
+                    src="/images/hero-new.jpg"
+                    alt=""
+                    fill
+                    priority
+                    sizes="100vw"
+                    style={{ objectFit: 'cover' }}
+                />
+                {/* Velo scuro per leggibilità del titolo chiaro */}
+                <div
+                    style={{
+                        position: 'absolute',
+                        inset: 0,
+                        background: 'linear-gradient(to bottom, rgba(35,40,51,0.45) 0%, rgba(35,40,51,0.25) 45%, rgba(35,40,51,0.55) 100%)',
+                    }}
+                />
+            </div>
             {/* Main title */}
             <h1
                 ref={titleRef}
                 style={{
                     fontFamily: 'var(--font-playfair), var(--font-display)',
-                    fontSize: 'clamp(2.8rem, 9vw, 9rem)',
+                    fontSize: 'clamp(2.4rem, 6.5vw, 6.5rem)',
                     lineHeight: 0.88,
                     letterSpacing: '-0.02em',
                     color: '#F3EFE7',

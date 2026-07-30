@@ -27,7 +27,6 @@ export default function OilBottleSheet() {
         specs: b.specs as { label: string; value: string }[],
         labelColor: b.labelColor as string,
         glowColor: b.glowColor as string,
-        ctaLabel: b.ctaLabel as string,
     }));
     const selectedBottle = bottles.find((b) => b.id === selectedBottleId) || bottles[0];
     // Blocco "Approfondimento" data-driven dai messages
@@ -95,7 +94,7 @@ export default function OilBottleSheet() {
 
     const handleOrder = () => {
         handleClose();
-        setTimeout(() => setConciergeOpen(true, 'default'), 700);
+        setTimeout(() => setConciergeOpen(true, 'olio'), 700);
     };
 
     if (!selectedBottle) return null;
@@ -144,7 +143,7 @@ export default function OilBottleSheet() {
                     border: '1px solid rgba(180,184,134,0.35)',
                     borderRadius: 9999,
                     padding: '0.55rem 1.4rem',
-                    color: '#B4B886',
+                    color: 'var(--grano)',
                     fontFamily: 'var(--font-inter)',
                     fontSize: 10,
                     letterSpacing: '0.18em',
@@ -301,7 +300,7 @@ export default function OilBottleSheet() {
                     <div style={{ flex: 1, display: 'flex', flexDirection: 'column' as const, justifyContent: 'center', maxWidth: 620, paddingBottom: '2vh' }}>
 
                         {/* Eyebrow */}
-                        <span data-anim style={{ fontFamily: 'var(--font-inter)', fontSize: 10, letterSpacing: '0.3em', textTransform: 'uppercase' as const, marginBottom: 14, color: '#B4B886', fontWeight: 600, display: 'block' }}>
+                        <span data-anim style={{ fontFamily: 'var(--font-inter)', fontSize: 10, letterSpacing: '0.3em', textTransform: 'uppercase' as const, marginBottom: 14, color: 'var(--grano)', fontWeight: 600, display: 'block' }}>
                             {tOverlay('eyebrow')}
                         </span>
 
@@ -409,8 +408,8 @@ export default function OilBottleSheet() {
                         {details.scrollHint}
                     </span>
                     <svg width="16" height="24" viewBox="0 0 16 24" fill="none" style={{ opacity: 0.4 }}>
-                        <rect x="6.5" y="0" width="3" height="10" rx="1.5" fill="#B4B886" />
-                        <path d="M8 18 L4 13 M8 18 L12 13" stroke="#B4B886" strokeWidth="1.2" strokeLinecap="round" />
+                        <rect x="6.5" y="0" width="3" height="10" rx="1.5" fill="var(--grano)" />
+                        <path d="M8 18 L4 13 M8 18 L12 13" stroke="var(--grano)" strokeWidth="1.2" strokeLinecap="round" />
                     </svg>
                 </div>
             </div>
@@ -446,7 +445,7 @@ export default function OilBottleSheet() {
                     {/* ── Blocco 1: Il Territorio & Cultivar ── */}
                     <section style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 40 }} className="md:grid-cols-2">
                         <div>
-                            <span style={{ fontFamily: 'var(--font-inter)', fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: '#B4B886', display: 'block', marginBottom: 16 }}>
+                            <span style={{ fontFamily: 'var(--font-inter)', fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: 'var(--grano)', display: 'block', marginBottom: 16 }}>
                                 {details.territory.eyebrow}
                             </span>
                             <h3 style={{ fontFamily: 'var(--font-playfair)', fontSize: 'clamp(1.8rem, 2.5vw, 2.5rem)', fontStyle: 'italic', color: '#ECE8DF', lineHeight: 1.1, marginBottom: 20, whiteSpace: 'pre-line' as const }}>
@@ -471,7 +470,7 @@ export default function OilBottleSheet() {
 
                     {/* ── Blocco 2: Il Processo ── */}
                     <section>
-                        <span style={{ fontFamily: 'var(--font-inter)', fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: '#B4B886', display: 'block', marginBottom: 16 }}>
+                        <span style={{ fontFamily: 'var(--font-inter)', fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: 'var(--grano)', display: 'block', marginBottom: 16 }}>
                             {details.method.eyebrow}
                         </span>
                         <h3 style={{ fontFamily: 'var(--font-playfair)', fontSize: 'clamp(1.8rem, 2.5vw, 2.5rem)', fontStyle: 'italic', color: '#ECE8DF', lineHeight: 1.1, marginBottom: 40, whiteSpace: 'pre-line' as const }}>
@@ -509,7 +508,7 @@ export default function OilBottleSheet() {
                     {/* ── Blocco 3: Abbinamenti ── */}
                     <section style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 40 }} className="md:grid-cols-2">
                         <div>
-                            <span style={{ fontFamily: 'var(--font-inter)', fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: '#B4B886', display: 'block', marginBottom: 16 }}>
+                            <span style={{ fontFamily: 'var(--font-inter)', fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: 'var(--grano)', display: 'block', marginBottom: 16 }}>
                                 {details.pairings.eyebrow}
                             </span>
                             <h3 style={{ fontFamily: 'var(--font-playfair)', fontSize: 'clamp(1.8rem, 2.5vw, 2.5rem)', fontStyle: 'italic', color: '#ECE8DF', lineHeight: 1.1, marginBottom: 20, whiteSpace: 'pre-line' as const }}>
@@ -545,7 +544,7 @@ export default function OilBottleSheet() {
 
                     {/* ── Blocco 4: Riconoscimenti ── */}
                     <section>
-                        <span style={{ fontFamily: 'var(--font-inter)', fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: '#B4B886', display: 'block', marginBottom: 16 }}>
+                        <span style={{ fontFamily: 'var(--font-inter)', fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: 'var(--grano)', display: 'block', marginBottom: 16 }}>
                             {details.awards.eyebrow}
                         </span>
                         <h3 style={{ fontFamily: 'var(--font-playfair)', fontSize: 'clamp(1.8rem, 2.5vw, 2.5rem)', fontStyle: 'italic', color: '#ECE8DF', lineHeight: 1.1, marginBottom: 40, whiteSpace: 'pre-line' as const }}>

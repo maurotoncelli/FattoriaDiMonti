@@ -19,7 +19,7 @@ export const getOlioData = (t: any): OlioContent => ({
             label: t('Olio.acts.act1.label'),
             titleHtml: t.rich('Olio.acts.act1.titleHtml', {
                 br: () => <br />,
-                emClass: (chunks: React.ReactNode) => <em className="italic text-[#B4B886] font-light">{chunks}</em>,
+                emClass: (chunks: React.ReactNode) => <em className="italic text-[var(--grano)] font-light">{chunks}</em>,
             }),
             introText: t('Olio.acts.act1.introText'),
             images: {
@@ -30,7 +30,7 @@ export const getOlioData = (t: any): OlioContent => ({
             label: t('Olio.acts.act2.label'),
             titleHtml: t.rich('Olio.acts.act2.titleHtml', {
                 br: () => <br />,
-                emClass: (chunks: React.ReactNode) => <em className="italic text-[#B4B886]">{chunks}</em>,
+                emClass: (chunks: React.ReactNode) => <em className="italic text-[var(--grano)]">{chunks}</em>,
             }),
             paragraphs: t.raw('Olio.acts.act2.paragraphs') as string[],
             images: {
@@ -52,8 +52,8 @@ export const getOlioData = (t: any): OlioContent => ({
             label: t('Olio.acts.act4.label'),
             quoteHtml: t.rich('Olio.acts.act4.quoteHtml', {
                 br: () => <br className="hidden md:block" />,
-                emClass1: (chunks: React.ReactNode) => <em className="text-[#4A2E1B]">{chunks}</em>,
-                emClass2: (chunks: React.ReactNode) => <em className="text-[#6B7A65]">{chunks}</em>,
+                emClass1: (chunks: React.ReactNode) => <em className="text-[var(--mucco-pisano)]">{chunks}</em>,
+                emClass2: (chunks: React.ReactNode) => <em className="text-[var(--olive)]">{chunks}</em>,
             }),
             description: t('Olio.acts.act4.description'),
             formatsTitle: t('Olio.acts.act4.formatsTitle'),
@@ -71,7 +71,7 @@ export const getOlioData = (t: any): OlioContent => ({
             cta: {
                 titleHtml: t.rich('Olio.acts.act5.cta.titleHtml', {
                     br: () => <br />,
-                    emClass: (chunks: React.ReactNode) => <em className="italic text-[#D4A361] font-light">{chunks}</em>,
+                    emClass: (chunks: React.ReactNode) => <em className="italic text-[var(--sabbia-limonitica)] font-light">{chunks}</em>,
                 }),
                 buttonLabel: t('Olio.acts.act5.cta.buttonLabel'),
             },

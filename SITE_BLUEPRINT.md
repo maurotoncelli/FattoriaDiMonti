@@ -40,7 +40,7 @@ Current strategic simplification:
 - Locales: `it`, `en`
 - Animations: GSAP + ScrollTrigger
 - Smooth scroll: Lenis
-- WebGL: React Three Fiber, Drei, Three
+- WebGL: rimosso (Jul 2026) — sfondo CSS statico + immagini DOM native, niente three.js
 - State: Zustand in `store/useAppStore.ts`
 - Deployment target: Netlify
 - Analytics: consent-aware GA component, not always active
@@ -66,8 +66,7 @@ Important scripts:
 
 - `useLenis()`
 - hash scroll
-- easter egg
-- WebGL background canvas
+- static backdrop layer (`.backdrop-terroso`: tufo chiaro con grana SVG, uguale su tutte le route)
 - global UI
 - overlays
 - transition overlay
@@ -168,6 +167,8 @@ Current menu intent:
 Rules:
 
 - Keep menu compact.
+- The menu overlay uses a **light background** (tufo) with dark text (`--mucco-pisano`); page transitions started from the menu use the light `#ECE8DF`. Do not revert it to dark.
+- The locale switcher only shows locales enabled in `i18n/routing.ts` (`it`, `en`).
 - Do not create extra nav entries for subtopics that can live inside `Storia`.
 - Keep sitemap aligned with promoted routes only.
 - Use redirects for old routes rather than broken links.
@@ -223,13 +224,26 @@ It includes:
 Rules:
 
 - Do not add a fake cart unless requested.
-- Product ordering will later connect to Google Sheets / Google Forms through API plumbing.
+- Launch mode (Jul 2026): no purchase CTAs. All oil CTAs open the Concierge with context `olio` (info-request flow). Lead lands on `/api/contact` with a `topic` field.
 - Product bottle data lives in `messages.*.Olio.bottles`, typed by `OlioContent`.
-- PNG bottle images can replace CSS placeholders later via the existing `image` fields.
+- Real photos replace CSS bottle placeholders by filling `Olio.bottles[n].image.src` in messages (both locales); empty src keeps the CSS fallback.
+
+### Mucco Pisano / Carne secca (launch mode)
+
+- Jerky cards are static (photo, description, tags) — no product sheet. `JerkyProductSheet` was retired.
+- Single CTA opens Concierge with context `carne-secca` (info-request flow: name, contact, optional note).
+- No weights, specs, or SKU commerce pre-production.
 
 ### Ospitalita
 
 La Casa Rossa is a major conversion page/section.
+
+Structure (Jul 2026): the house is presented as a **single house**, not four branded suites.
+
+- Section content typed by `CasaContent` (`lib/content/types.ts`), data in `Ospitalita.sections.casa` (IT+EN).
+- Two floors rendered with `components/ui/HouseFloorPlan.tsx` (placeholder SVG blueprints, numbered markers matching the `spaces` legend from messages — no text inside the SVG for i18n). Swap the SVGs when the real survey drawings arrive.
+- Amenities grid in 4 groups using `components/ui/AmenityIcon.tsx`.
+- House photo strip with lightbox. `RoomSheet` and `RoomFloorPlan` were retired.
 
 Keep copy readable, high-contrast, and direct. Avoid hiding critical booking content behind slow reveals.
 
@@ -257,9 +271,8 @@ Current performance design:
 
 - `hooks/useLenis.ts` owns Lenis and the Lenis/ScrollTrigger bridge.
 - `lib/scrollStore.ts` holds high-frequency scroll values outside React.
-- `hooks/usePerformance.ts` detects low performance and reduced motion.
-- `CanvasZ0` uses CSS fallback for low tier or reduced motion.
-- `WebGLImageEngine` should not become an excuse for heavy per-frame DOM work.
+- `hooks/usePerformance.ts` exposes `useReducedMotion`.
+- No WebGL layer: images are native DOM `<Image>` elements; the fixed backdrop is the static `.backdrop-terroso` class (globals.css) rendered by `AppWrapper`.
 
 When editing scroll or animation:
 
@@ -271,26 +284,19 @@ When editing scroll or animation:
 
 ---
 
-## 8. WebGL Rules
+## 8. Backdrop Rules (ex WebGL)
 
-Global canvas: `components/canvas/CanvasZ0.tsx`
+Il layer WebGL (`CanvasZ0`, `SkyNoiseShader`, `WebGLImageEngine`, `WinterMemoryParticles`) è stato **rimosso a Jul 2026** perché causava problemi di fluidità (scan DOM + `getBoundingClientRect` per frame, compilazione shader, costo GPU).
 
-Current visible sky routes:
+Stato attuale:
 
-- `/`
-- `/storia`
+- Backdrop fisso in `AppWrapper`: classe `.backdrop-terroso` (globals.css) su **tutte** le route — tufo chiaro con lievissima variazione tonale verticale e grana via rumore SVG statico (data-URI, zero costo JS/GPU). Le ex "finestre" trasparenti della home (terroir, product walk) si affacciano su questo fondo.
+- Il vecchio gradiente "cielo" (crema→azzurro→salmone→notte) e la sincronizzazione scroll di `--sky-text-color` sono stati rimossi (Jul 2026): il testo delle sezioni trasparenti è sempre `--mucco-pisano`.
+- La palette include due note di blu smorzato coerenti coi terrosi: `--cielo` (azzurro grigio chiaro) e `--notte` (blu notte spento, usato dalla slide Cucina Nomade e dallo scrim dell'hero).
+- Tutte le immagini di contenuto (hero, villa, product slides) sono `<Image>` DOM native con parallax/Ken Burns via GSAP transform.
+- L'easter egg particellare e il toggle «Cielo» del menu sono stati ritirati insieme al canvas.
 
-Do not add WebGL to every page by default.
-
-Fallback requirements:
-
-- low performance device: CSS fallback;
-- reduced motion: CSS fallback;
-- canvas toggle off: CSS fallback.
-
-WebGL image placeholders use DOM elements with `data-webgl-media`, `data-texture-src`, and `data-effect-type`.
-
-Do not replace content images with WebGL-only output if it harms accessibility or layout stability. The DOM must still define the semantic surface.
+Non reintrodurre three.js / R3F senza una decisione esplicita di prodotto: se servisse, va reimplementato con fallback CSS, performance tiering e senza lavoro DOM per-frame.
 
 ---
 
@@ -300,12 +306,10 @@ Zustand is only for rare UI/application state:
 
 - menu open
 - oil modal open
-- concierge open
+- concierge open (contexts: `default`, `cucina-nomade`, `carne-secca`, `olio` — the last two use the info-request step flow)
 - transition state
 - preloader complete
-- canvas toggle
 - audio toggle
-- easter egg
 
 Use granular selectors:
 
@@ -399,7 +403,7 @@ These are explicitly forbidden unless the project owner asks for a throwaway pro
 5. Adding `scrollY` or animation frame values to React/Zustand state.
 6. Killing all ScrollTriggers from one component cleanup.
 7. Making the preloader longer or blocking hero text behind it.
-8. Adding WebGL to pages without fallback or performance tiering.
+8. Reintroducing WebGL/three.js (removed Jul 2026 for performance) without an explicit product decision.
 9. Editing layout exports with arbitrary constants; use `lib/site.ts` or other libs.
 10. Shipping an aesthetic-only patch that breaks build, routing, i18n, or accessibility.
 11. Leaving stale links in sitemap/menu/footer.
@@ -441,9 +445,8 @@ After editing:
 - `components/dom/HistoryTerroir.tsx`: home story/terroir
 - `app/[locale]/storia/page.tsx`: story plus absorbed filiera content
 - `app/[locale]/olio/page.tsx`: oil story/product page
-- `components/canvas/CanvasZ0.tsx`: global WebGL/CSS fallback
 - `hooks/useLenis.ts`: smooth scroll and ScrollTrigger bridge
-- `hooks/usePerformance.ts`: low tier/reduced motion
+- `hooks/usePerformance.ts`: reduced motion
 - `store/useAppStore.ts`: rare UI state
 - `lib/content/types.ts`: content contracts
 - `lib/data/*.tsx`: data constructors

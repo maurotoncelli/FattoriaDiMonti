@@ -1,12 +1,10 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { useAppStore } from '@/store/useAppStore';
 
 export default function CursorEngine() {
     const cursorRef = useRef<HTMLDivElement>(null);
     const cursorDotRef = useRef<HTMLDivElement>(null);
-    const currentSection = useAppStore((s) => s.currentSection);
 
     // Non mostrare il cursore custom su touch device (mobile/tablet)
     const [isTouch, setIsTouch] = useState(true); // default true = nascosto finché non verifica
@@ -71,8 +69,6 @@ export default function CursorEngine() {
         };
     }, [isTouch]);
 
-    const isTelescope = currentSection === '03-ospitalita';
-
     // Touch device: non renderizzare nulla
     if (isTouch) return null;
 
@@ -81,7 +77,7 @@ export default function CursorEngine() {
             {/* Trailing ring */}
             <div
                 ref={cursorRef}
-                className={`cursor-ring ${isTelescope ? 'is-telescope' : ''}`}
+                className="cursor-ring"
                 style={{
                     position: 'fixed',
                     top: 0,

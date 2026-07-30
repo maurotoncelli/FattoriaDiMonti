@@ -35,7 +35,7 @@ export default function InnerFooter() {
                         <a href={`mailto:${t('contacts.email')}`} className="font-inter text-sm hover:text-[var(--olive)] transition-colors" style={{ color: cream }}>
                             {t('contacts.email')}
                         </a>
-                        <a href={`tel:${t('contacts.phone.href', { fallback: '+393000000000' })}`} className="font-inter text-sm hover:text-[var(--olive)] transition-colors" style={{ color: cream }}>
+                        <a href={`tel:${t('contacts.phone.href')}`} className="font-inter text-sm hover:text-[var(--olive)] transition-colors" style={{ color: cream }}>
                             {t('contacts.phone.label')}
                         </a>
                     </div>

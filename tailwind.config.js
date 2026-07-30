@@ -7,13 +7,16 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                tufo: '#ECE8DF',
-                'mucco-pisano': '#4A2E1B',
-                'argilla-ferrosa': '#B05C46',
-                'sabbia-limonitica': '#D4A361',
-                olive: '#6B7A65',
-                'terra-nera': '#2B2420',
-                grano: '#B4B886',
+                // Allineati alle CSS variables in app/[locale]/globals.css
+                tufo: 'var(--tufo)',
+                'mucco-pisano': 'var(--mucco-pisano)',
+                'argilla-ferrosa': 'var(--argilla-ferrosa)',
+                'sabbia-limonitica': 'var(--sabbia-limonitica)',
+                olive: 'var(--olive)',
+                'terra-nera': 'var(--terra-nera)',
+                grano: 'var(--grano)',
+                cielo: 'var(--cielo)',
+                notte: 'var(--notte)',
             },
             fontFamily: {
                 display: ['var(--font-playfair)', 'Georgia', 'serif'],

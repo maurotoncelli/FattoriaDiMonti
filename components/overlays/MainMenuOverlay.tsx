@@ -5,7 +5,6 @@ import { useTranslations, useLocale } from 'next-intl';
 import { usePathname, useRouter } from '@/i18n/routing';
 import { useState, useMemo } from 'react';
 import AudioToggle from '../ui/AudioToggle';
-import CanvasToggle from '../ui/CanvasToggle';
 import { getMainMenuLinks, NavLink } from '@/lib/data/menu';
 import { useIsMobile } from '@/lib/hooks/useIsMobile';
 
@@ -15,14 +14,14 @@ const RenderDynamicPanel = ({ data }: { data: NavLink['panelData'] }) => {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                 <div style={{
                     fontFamily: 'var(--font-playfair)', fontStyle: 'italic', fontSize: '4.5rem',
-                    color: 'var(--tufo)', lineHeight: 1,
+                    color: 'var(--mucco-pisano)', lineHeight: 1,
                     animation: `fadeInUp 0.8s ease 0.1s both`
                 }}>
                     {data.title}
                 </div>
                 <div style={{
                     fontFamily: 'var(--font-inter)', fontSize: '0.9rem', letterSpacing: '0.04em',
-                    color: 'rgba(236,232,223,0.6)', maxWidth: '300px', lineHeight: 1.7,
+                    color: 'rgba(78,64,48,0.65)', maxWidth: '300px', lineHeight: 1.7,
                     animation: `fadeInUp 0.8s ease 0.3s both`
                 }}>
                     {data.text}
@@ -36,7 +35,7 @@ const RenderDynamicPanel = ({ data }: { data: NavLink['panelData'] }) => {
             {data.title && (
                 <div style={{
                     fontFamily: 'var(--font-playfair)', fontStyle: 'italic', fontSize: '2.5rem',
-                    color: 'var(--tufo)', letterSpacing: '0.02em',
+                    color: 'var(--mucco-pisano)', letterSpacing: '0.02em',
                     animation: `fadeInUp 0.8s ease 0.1s both`
                 }}>
                     {data.title}
@@ -47,7 +46,7 @@ const RenderDynamicPanel = ({ data }: { data: NavLink['panelData'] }) => {
                 {data.stats?.map((stat, idx) => (
                     <div key={idx} style={{ 
                         display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end',
-                        borderBottom: '1px solid rgba(236,232,223,0.1)', paddingBottom: '0.4rem',
+                        borderBottom: '1px solid rgba(78,64,48,0.12)', paddingBottom: '0.4rem',
                         animation: `fadeInUp 0.8s ease ${0.2 + idx * 0.08}s both`
                     }}>
                         <span style={{ 
@@ -58,7 +57,7 @@ const RenderDynamicPanel = ({ data }: { data: NavLink['panelData'] }) => {
                         </span>
                         <span style={{ 
                             fontFamily: 'var(--font-playfair)', fontStyle: 'italic', fontSize: '1.2rem', 
-                            color: 'rgba(236,232,223,0.85)', textAlign: 'right'
+                            color: 'rgba(78,64,48,0.9)', textAlign: 'right'
                         }}>
                             {stat.value}
                         </span>
@@ -69,7 +68,7 @@ const RenderDynamicPanel = ({ data }: { data: NavLink['panelData'] }) => {
             {data.text && (
                 <div style={{
                     fontFamily: 'var(--font-inter)', fontSize: '0.85rem', letterSpacing: '0.02em',
-                    color: 'rgba(236,232,223,0.5)', maxWidth: '320px', lineHeight: 1.6,
+                    color: 'rgba(78,64,48,0.55)', maxWidth: '320px', lineHeight: 1.6,
                     marginTop: '0.5rem',
                     animation: `fadeInUp 0.8s ease ${0.3 + (data.stats ? data.stats.length * 0.08 : 0)}s both`
                 }}>
@@ -80,7 +79,7 @@ const RenderDynamicPanel = ({ data }: { data: NavLink['panelData'] }) => {
             {data.quote && (
                 <div style={{
                     fontFamily: 'var(--font-playfair)', fontStyle: 'italic', fontSize: '1.35rem',
-                    color: 'rgba(236,232,223,0.4)', maxWidth: '300px', lineHeight: 1.4, 
+                    color: 'rgba(78,64,48,0.45)', maxWidth: '300px', lineHeight: 1.4, 
                     marginTop: '0.5rem',
                     animation: `fadeInUp 0.8s ease ${0.3 + (data.stats ? data.stats.length * 0.08 : 0)}s both`
                 }}>
@@ -92,7 +91,9 @@ const RenderDynamicPanel = ({ data }: { data: NavLink['panelData'] }) => {
 };
 
 export default function MainMenuOverlay() {
-    const { setMenuOpen, setConciergeOpen, startPageTransition } = useAppStore();
+    const setMenuOpen = useAppStore((s) => s.setMenuOpen);
+    const setConciergeOpen = useAppStore((s) => s.setConciergeOpen);
+    const startPageTransition = useAppStore((s) => s.startPageTransition);
     const tMenu = useTranslations('Overlays.mainMenu');
     const tNav = useTranslations('Navigation');
     const locale = useLocale();
@@ -127,7 +128,7 @@ export default function MainMenuOverlay() {
                 } else {
                     // Navigazione verso homepage con anchor: chiudi menu poi transizione
                     setMenuOpen(false);
-                    startPageTransition(href, '#181A15');
+                    startPageTransition(href, '#ECE8DF');
                 }
             } else if (href === '/') {
                 if (pathname === '/') {
@@ -139,13 +140,13 @@ export default function MainMenuOverlay() {
                 } else {
                     // Verso home da altra pagina: transizione
                     setMenuOpen(false);
-                    startPageTransition('/', '#181A15');
+                    startPageTransition('/', '#ECE8DF');
                 }
             } else {
                 // Navigazione standard verso pagina inner: transizione
                 // La navigazione avviene nell'onComplete GSAP di GlobalTransitionOverlay
                 setMenuOpen(false);
-                startPageTransition(href, '#181A15');
+                startPageTransition(href, '#ECE8DF');
             }
         }
     };
@@ -166,7 +167,7 @@ export default function MainMenuOverlay() {
                 position: 'fixed',
                 inset: 0,
                 zIndex: 95,
-                background: 'rgba(25, 23, 22, 0.99)',
+                background: 'rgba(236, 232, 223, 0.99)',
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
@@ -223,14 +224,14 @@ export default function MainMenuOverlay() {
                                 style={{
                                     background: 'transparent',
                                     border: 'none',
-                                    borderBottom: '1px solid rgba(236,232,223,0.07)',
+                                    borderBottom: '1px solid rgba(78,64,48,0.1)',
                                     textAlign: 'left',
                                     width: '100%',
                                     fontFamily: 'var(--font-playfair)',
                                     fontStyle: 'italic',
                                     fontSize: 'clamp(2rem, 8vw, 3rem)',
                                     lineHeight: 1.1,
-                                    color: 'var(--tufo)',
+                                    color: 'var(--mucco-pisano)',
                                     padding: '0.9rem 0',
                                     display: 'flex',
                                     alignItems: 'center',
@@ -245,7 +246,7 @@ export default function MainMenuOverlay() {
                                     fontFamily: 'var(--font-inter)',
                                     fontSize: '10px',
                                     letterSpacing: '0.1em',
-                                    color: 'rgba(236,232,223,0.2)',
+                                    color: 'rgba(78,64,48,0.25)',
                                     flexShrink: 0,
                                 }}>
                                     {link.index}
@@ -262,7 +263,7 @@ export default function MainMenuOverlay() {
                         display: 'flex',
                         justifyContent: 'space-between',
                         alignItems: 'center',
-                        borderTop: '1px solid rgba(236,232,223,0.08)',
+                        borderTop: '1px solid rgba(78,64,48,0.12)',
                         animation: 'fadeInUp 0.4s ease 0.5s both',
                     }}>
                         <div style={{ display: 'flex', gap: '1.2rem' }}>
@@ -273,7 +274,7 @@ export default function MainMenuOverlay() {
                                     style={{
                                         background: 'transparent',
                                         border: 'none',
-                                        color: locale === l ? 'var(--argilla-ferrosa)' : 'rgba(236,232,223,0.3)',
+                                        color: locale === l ? 'var(--argilla-ferrosa)' : 'rgba(78,64,48,0.35)',
                                         fontFamily: 'var(--font-inter)',
                                         fontSize: '11px',
                                         letterSpacing: '0.15em',
@@ -288,7 +289,6 @@ export default function MainMenuOverlay() {
                             ))}
                         </div>
                         <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-                            <CanvasToggle touchMode />
                             <AudioToggle />
                         </div>
                     </div>
@@ -323,8 +323,8 @@ export default function MainMenuOverlay() {
                                 position: 'relative',
                                 overflow: 'hidden',
                                 borderRadius: '4px',
-                                backgroundColor: 'rgba(0,0,0,0.3)',
-                                boxShadow: '0 10px 30px rgba(0,0,0,0.5)',
+                                backgroundColor: 'rgba(78,64,48,0.08)',
+                                boxShadow: '0 10px 30px rgba(43,36,32,0.18)',
                                 animation: 'fadeIn 1s ease 0.2s both',
                             }}>
                                 {NAV_LINKS.map(link => link.image && (
@@ -343,7 +343,7 @@ export default function MainMenuOverlay() {
                                             objectPosition: 'center center',
                                             opacity: activePanel.id === link.id ? 1 : 0,
                                             transition: 'opacity 0.6s ease',
-                                            filter: 'contrast(1.1) brightness(0.85) grayscale(15%)',
+                                            filter: 'contrast(1.04) saturate(0.9)',
                                         }}
                                     />
                                 ))}
@@ -386,7 +386,7 @@ export default function MainMenuOverlay() {
                                         fontFamily: 'var(--font-inter)',
                                         fontSize: '11px',
                                         letterSpacing: '0.1em',
-                                        color: hoveredLink?.id === link.id ? 'var(--argilla-ferrosa)' : 'rgba(236,232,223,0.15)',
+                                        color: hoveredLink?.id === link.id ? 'var(--argilla-ferrosa)' : 'rgba(78,64,48,0.2)',
                                         transition: 'color 0.4s',
                                         animation: `fadeInRight 0.6s ease ${0.1 + (i * 0.04)}s both`,
                                     }}>
@@ -402,7 +402,7 @@ export default function MainMenuOverlay() {
                                             fontStyle: 'italic',
                                             fontSize: 'clamp(2rem, 4.5vh, 5.5rem)',
                                             lineHeight: 1.05,
-                                            color: hoveredLink?.id === link.id ? 'var(--tufo)' : (hoveredLink ? 'rgba(236,232,223,0.2)' : 'var(--tufo)'),
+                                            color: hoveredLink?.id === link.id ? 'var(--mucco-pisano)' : (hoveredLink ? 'rgba(78,64,48,0.25)' : 'var(--mucco-pisano)'),
                                             cursor: 'none',
                                             transition: 'color 0.4s ease, transform 0.4s ease',
                                             transform: hoveredLink && hoveredLink.id !== link.id ? 'translateX(10px)' : 'translateX(0)',
@@ -429,18 +429,17 @@ export default function MainMenuOverlay() {
                         alignItems: 'center',
                         animation: 'fadeInUp 0.5s ease 0.6s both',
                     }}>
-                        <CanvasToggle />
                         <AudioToggle />
-                        <span style={{ color: 'rgba(236,232,223,0.15)' }}>|</span>
+                        <span style={{ color: 'rgba(78,64,48,0.2)' }}>|</span>
                         <div style={{ display: 'flex', gap: '1rem' }}>
-                            {['it', 'en', 'fr', 'de', 'es'].map((l) => (
+                            {['it', 'en'].map((l) => (
                                 <button
                                     key={l}
                                     onClick={() => switchLocale(l)}
                                     style={{
                                         background: 'transparent',
                                         border: 'none',
-                                        color: locale === l ? 'var(--argilla-ferrosa)' : 'rgba(236,232,223,0.3)',
+                                        color: locale === l ? 'var(--argilla-ferrosa)' : 'rgba(78,64,48,0.35)',
                                         fontFamily: 'var(--font-inter)',
                                         fontSize: '10px',
                                         letterSpacing: '0.15em',
@@ -448,8 +447,8 @@ export default function MainMenuOverlay() {
                                         cursor: 'none',
                                         transition: 'color 0.3s',
                                     }}
-                                    onMouseEnter={(e) => { if (locale !== l) (e.target as HTMLElement).style.color = 'var(--tufo)'; }}
-                                    onMouseLeave={(e) => { if (locale !== l) (e.target as HTMLElement).style.color = 'rgba(236,232,223,0.3)'; }}
+                                    onMouseEnter={(e) => { if (locale !== l) (e.target as HTMLElement).style.color = 'var(--mucco-pisano)'; }}
+                                    onMouseLeave={(e) => { if (locale !== l) (e.target as HTMLElement).style.color = 'rgba(78,64,48,0.35)'; }}
                                 >
                                     {l}
                                 </button>

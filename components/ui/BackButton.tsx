@@ -8,7 +8,10 @@ import { useTranslations } from 'next-intl';
 export default function BackButton() {
     const pathname = usePathname();
     const router = useRouter();
-    const { isMenuOpen, isOilModalOpen, isConciergeOpen, isRoomSheetOpen } = useAppStore();
+    const isMenuOpen = useAppStore((s) => s.isMenuOpen);
+    const isOilModalOpen = useAppStore((s) => s.isOilModalOpen);
+    const isConciergeOpen = useAppStore((s) => s.isConciergeOpen);
+    const isOilSheetOpen = useAppStore((s) => s.isOilSheetOpen);
     const [hovered, setHovered] = useState(false);
     const t = useTranslations('UI.backButton');
 
@@ -26,7 +29,7 @@ export default function BackButton() {
         router.push(returnHash ? `/${returnHash}` : '/');
     };
 
-    const isAnyOverlayOpen = isMenuOpen || isOilModalOpen || isConciergeOpen || isRoomSheetOpen;
+    const isAnyOverlayOpen = isMenuOpen || isOilModalOpen || isConciergeOpen || isOilSheetOpen;
 
     return (
         <button

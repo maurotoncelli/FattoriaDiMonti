@@ -28,7 +28,7 @@ function ProductSlide({
     accent = false,
     bgColor,
     theme,
-    ...props
+    imageSrc,
 }: {
     id: string;
     label: string;
@@ -42,7 +42,7 @@ function ProductSlide({
     accent?: boolean;
     bgColor?: string;
     theme?: 'light' | 'dark';
-    [key: string]: any;
+    imageSrc: string;
 }) {
     const isDark = theme === 'dark' || accent;
     return (
@@ -133,33 +133,30 @@ function ProductSlide({
                 )}
             </div>
 
-            {/* Media placeholder column */}
+            {/* Media column — immagine DOM nativa */}
             <div
-                {...props}
                 style={{
                     height: '100vh',
                     aspectRatio: '16/9',
                     flexShrink: 0,
-                    background: accent
-                        ? 'linear-gradient(135deg, rgba(176,92,70,0.2), rgba(43,36,32,0.8))'
-                        : 'linear-gradient(135deg, rgba(212,163,97,0.15), rgba(74,46,27,0.1))',
                     position: 'relative',
                     overflow: 'hidden',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
                 }}
             >
-                <span className="sr-only">{label}</span>
-                <span style={{
-                    fontFamily: 'var(--font-inter)',
-                    fontSize: '9px',
-                    letterSpacing: '0.2em',
-                    textTransform: 'uppercase',
-                    color: accent ? 'rgba(236,232,223,0.3)' : 'rgba(74,46,27,0.25)',
-                }}>
-                    {id} · WebGL
-                </span>
+                <Image
+                    src={imageSrc}
+                    alt={label}
+                    fill
+                    style={{ objectFit: 'cover' }}
+                    sizes="(min-width: 1024px) 60vw, 100vw"
+                />
+                <div style={{
+                    position: 'absolute', inset: 0,
+                    background: isDark
+                        ? 'linear-gradient(to right, rgba(43,36,32,0.35) 0%, transparent 35%)'
+                        : 'linear-gradient(to right, rgba(74,46,27,0.2) 0%, transparent 35%)',
+                    pointerEvents: 'none',
+                }} />
             </div>
         </div>
     );
@@ -190,7 +187,6 @@ function ProductCardMobile({
                     src={imageSrc}
                     alt={label}
                     fill
-                    className={`mob-parallax-img-${id}`}
                     style={{ objectFit: 'cover', scale: '1.2', transformOrigin: 'center center' }}
                     sizes="100vw"
                 />
@@ -263,7 +259,7 @@ function ProductCardMobile({
 export default function ProductsHorizontalWalk() {
     const containerRef = useRef<HTMLDivElement>(null);
     const trackRef = useRef<HTMLDivElement>(null);
-    const { setOilModalOpen, setConciergeOpen } = useAppStore();
+    const setConciergeOpen = useAppStore((s) => s.setConciergeOpen);
     const t = useTranslations();
     const slides = getProductsData(t);
     const isMobile = useIsMobile(1024);
@@ -343,10 +339,9 @@ export default function ProductsHorizontalWalk() {
             });
 
             // Parallax sulle immagini delle card mobile (stesso pattern Casa Rossa)
-            slides.forEach((slide) => {
-                const imgEl = document.querySelector(`.mob-parallax-img-${slide.id}`);
-                const triggerEl = document.getElementById(`mob-media-${slide.id}`);
-                if (!imgEl || !triggerEl) return;
+            gsap.utils.toArray<HTMLElement>('[id^="mob-media-"]').forEach((triggerEl) => {
+                const imgEl = triggerEl.querySelector('img');
+                if (!imgEl) return;
                 gsap.fromTo(imgEl,
                     { yPercent: -10 },
                     {
@@ -361,7 +356,12 @@ export default function ProductsHorizontalWalk() {
         });
 
         return () => mm.revert();
-    }, [slides, prefersReducedMotion]);
+        // `slides` è ricalcolato a ogni render: NON metterlo nelle deps,
+        // altrimenti il pin ScrollTrigger viene distrutto/ricreato a ogni
+        // re-render (scatti di scroll e salti di layout dal pin-spacer).
+        // `isMobile` invece serve: al flip desktop→mobile cambia il DOM
+        // renderizzato e i trigger vanno ricostruiti una volta.
+    }, [prefersReducedMotion, isMobile]);
 
     // Con reduced motion il pin orizzontale renderebbe i contenuti irraggiungibili:
     // usiamo la variante verticale (mobile) che è completamente statica.
@@ -418,9 +418,7 @@ export default function ProductsHorizontalWalk() {
                     <ProductSlide
                         key={slide.id}
                         id={slide.id}
-                        data-webgl-media={slide.media.webgl.toString()}
-                        data-effect-type={slide.media.effectType}
-                        data-texture-src={slide.media.textureSrc}
+                        imageSrc={slide.media.textureSrc}
                         label={slide.label}
                         title={slide.title}
                         titleItalic={slide.titleItalic}

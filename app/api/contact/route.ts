@@ -17,6 +17,8 @@ const FIELD_MAP = {
     contact: 'entry.000000003',  // → sostituire con entry ID reale del campo Contatto
     eventDate: 'entry.000000004', // → per Cucina Nomade
     guests: 'entry.000000005',   // → per Cucina Nomade
+    message: 'entry.000000006',  // → per flow "richiedi maggiori informazioni"
+    topic: 'entry.000000007',    // → provenienza richiesta (carne-secca, olio, default, ...)
 };
 
 export async function POST(request: Request) {

@@ -14,7 +14,7 @@ if (typeof window !== 'undefined') {
 
 export default function FooterSection() {
     const t = useTranslations('Footer.mainFooter');
-    const { setConciergeOpen } = useAppStore();
+    const setConciergeOpen = useAppStore((s) => s.setConciergeOpen);
     const footerRef = useRef<HTMLElement>(null);
     const heroImgRef = useRef<HTMLDivElement>(null);
 

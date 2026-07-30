@@ -13,9 +13,9 @@ export function pageAlternates(locale: string, path: string = '') {
     return {
         canonical: localeUrl(locale, path),
         languages: {
-            it: `${BASE_URL}${path || '/'}`,
-            en: `${BASE_URL}/en${path}`,
-            'x-default': `${BASE_URL}${path || '/'}`,
+            it: localeUrl('it', path),
+            en: localeUrl('en', path),
+            'x-default': localeUrl('it', path),
         },
     };
 }
