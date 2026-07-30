@@ -24,6 +24,7 @@ export default function OlioPage() {
     const [selectedFormatSize, setSelectedFormatSize] = useState(olioData.acts.act4.formats[0]?.size || '500 ml');
 
     useEffect(() => {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
         let ctx = gsap.context(() => {
             // General Text Reveals per i blocchi refattorizzati
             gsap.utils.toArray('.fade-up-text').forEach((el: any) => {
@@ -338,7 +339,7 @@ export default function OlioPage() {
 
                         {/* Right Scrollable Column: Primary Image */}
                         <div className="lg:w-7/12 flex flex-col pt-[5vh] lg:pt-0">
-                            <div className="act-4-masonry-item opacity-0 relative w-full aspect-[4/5] md:aspect-[3/4] overflow-hidden shadow-[0_30px_60px_rgba(74,46,27,0.15)]">
+                            <div className="act-4-masonry-item relative w-full aspect-[4/5] md:aspect-[3/4] overflow-hidden shadow-[0_30px_60px_rgba(74,46,27,0.15)]">
                                 <Image 
                                     src={olioData.acts.act4.images.primary.src}
                                     alt={olioData.acts.act4.images.primary.alt}
@@ -352,16 +353,16 @@ export default function OlioPage() {
 
                     {/* Bottom Section: Full-width Masonry Gallery */}
                     <div className="w-full grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 mt-10 md:mt-2 lg:-mt-24 pb-10 md:pb-20 relative z-20">
-                        <div className="act-4-masonry-item opacity-0 relative w-full aspect-[3/4] overflow-hidden shadow-[0_20px_40px_rgba(74,46,27,0.1)] lg:mt-32">
+                        <div className="act-4-masonry-item relative w-full aspect-[3/4] overflow-hidden shadow-[0_20px_40px_rgba(74,46,27,0.1)] lg:mt-32">
                             <Image src={olioData.acts.act4.images.gallery[0].src} alt={olioData.acts.act4.images.gallery[0].alt} fill className="object-cover parallax-img scale-[1.2]" sizes="(max-width: 1024px) 45vw, 25vw" />
                         </div>
-                        <div className="act-4-masonry-item opacity-0 relative w-full aspect-[4/5] overflow-hidden shadow-[0_20px_40px_rgba(74,46,27,0.1)] mt-8 md:mt-16">
+                        <div className="act-4-masonry-item relative w-full aspect-[4/5] overflow-hidden shadow-[0_20px_40px_rgba(74,46,27,0.1)] mt-8 md:mt-16">
                             <Image src={olioData.acts.act4.images.gallery[1].src} alt={olioData.acts.act4.images.gallery[1].alt} fill className="object-cover parallax-img scale-[1.2]" sizes="(max-width: 1024px) 45vw, 25vw" />
                         </div>
-                        <div className="act-4-masonry-item opacity-0 relative w-full aspect-[3/4] overflow-hidden shadow-[0_20px_40px_rgba(74,46,27,0.1)] mt-12 md:mt-24 lg:mt-32">
+                        <div className="act-4-masonry-item relative w-full aspect-[3/4] overflow-hidden shadow-[0_20px_40px_rgba(74,46,27,0.1)] mt-12 md:mt-24 lg:mt-32">
                             <Image src={olioData.acts.act4.images.gallery[2].src} alt={olioData.acts.act4.images.gallery[2].alt} fill className="object-cover parallax-img scale-[1.2]" sizes="(max-width: 1024px) 45vw, 25vw" />
                         </div>
-                        <div className="act-4-masonry-item opacity-0 relative w-full aspect-[4/5] overflow-hidden shadow-[0_20px_40px_rgba(74,46,27,0.1)] mt-4 md:mt-8">
+                        <div className="act-4-masonry-item relative w-full aspect-[4/5] overflow-hidden shadow-[0_20px_40px_rgba(74,46,27,0.1)] mt-4 md:mt-8">
                             <Image src={olioData.acts.act4.images.gallery[3].src} alt={olioData.acts.act4.images.gallery[3].alt} fill className="object-cover parallax-img scale-[1.2]" sizes="(max-width: 1024px) 45vw, 25vw" />
                         </div>
                     </div>

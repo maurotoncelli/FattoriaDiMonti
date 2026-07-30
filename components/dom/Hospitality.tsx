@@ -82,9 +82,9 @@ export default function Hospitality() {
 
             // Parallax panoramic (night column)
             gsap.fromTo('.parallax-img-panoramic',
-                { yPercent: -10 },
+                { yPercent: -6 },
                 {
-                    yPercent: 10, ease: 'none',
+                    yPercent: 6, ease: 'none',
                     scrollTrigger: {
                         trigger: '#media-casa-rossa-panoramic',
                         start: 'top bottom', end: 'bottom top', scrub: true,
@@ -94,9 +94,9 @@ export default function Hospitality() {
 
             // Parallax day column photo
             gsap.fromTo('.parallax-img-day',
-                { yPercent: -10 },
+                { yPercent: -12 },
                 {
-                    yPercent: 10, ease: 'none',
+                    yPercent: 12, ease: 'none',
                     scrollTrigger: {
                         trigger: '#media-casa-rossa-day',
                         start: 'top bottom', end: 'bottom top', scrub: true,
@@ -117,7 +117,7 @@ export default function Hospitality() {
             id="03-ospitalita"
             data-section-label={t('UI.sectionLabels.hospitality')}
             style={{ background: 'var(--argilla-ferrosa)', overflow: 'hidden' }}
-            aria-label="Ospitalità — La Casa Rossa"
+            aria-label={t('Home.hospitality.ariaLabel')}
         >
             {/* ── HEADER ───────────────────────────────────────── */}
             <div style={{ padding: '12vh 10vw 5vh' }}>
@@ -164,8 +164,8 @@ export default function Hospitality() {
                 }}
             >
                 <Image
-                    src="/images/casa-rossa-interni.png"
-                    alt="La Casa Rossa — Interni"
+                    src="/images/casa-rossa-interni.webp"
+                    alt={t('Home.hospitality.media.interiorsAlt')}
                     fill
                     className="parallax-img-casarossa"
                     style={{ objectFit: 'cover', scale: '1.25', transformOrigin: 'center center' }}
@@ -262,73 +262,91 @@ export default function Hospitality() {
                 ))}
             </div>
 
-            {/* ── TWO COLUMNS ──────────────────────────────────── */}
-            <div className="grid grid-cols-1 lg:grid-cols-2" style={{
+            {/* ── TWO COLUMNS: ASYMMETRICAL DITTICO ──────────────── */}
+            <div className="flex flex-col lg:flex-row items-start" style={{
                 gap: '0',
-                borderTop: '1px solid rgba(236,232,223,0.12)',
+                position: 'relative'
             }}>
-                {/* Day */}
-                <article className="lg:border-r lg:border-[rgba(236,232,223,0.12)]" style={{
-                    padding: '7vh 8vw',
+
+                {/* Day Section (L'ABITARE) */}
+                <article className="w-full lg:w-1/2 lg:border-r lg:border-[rgba(236,232,223,0.12)]" style={{
+                    padding: '12vh 8vw 10vh',
                 }}>
-                    <span className="label hosp-fade" style={{ display: 'block', marginBottom: '1.5rem', color: 'rgba(236,232,223,0.5)' }}>
-                        {t('Home.hospitality.columns.day.label')}
-                    </span>
-                    <p className="hosp-fade" style={{ fontSize: 'clamp(14px, 1.15vw, 17px)', lineHeight: 1.85, color: 'rgba(236,232,223,0.85)', marginBottom: '2.5rem' }}>
-                        {t.rich('Home.hospitality.columns.day.text', { br: () => <br /> })}
-                    </p>
+                    <div style={{ marginBottom: '5rem', minHeight: '300px' }}>
+                        <h3 className="hosp-fade" style={{
+                            fontFamily: 'var(--font-playfair), serif',
+                            fontStyle: 'italic',
+                            fontSize: 'clamp(2.2rem, 4vw, 4.5rem)',
+                            lineHeight: 1.1,
+                            color: 'var(--tufo)',
+                            marginBottom: '2rem'
+                        }}>
+                            {t('Home.hospitality.columns.day.label')}
+                        </h3>
+                        <p className="hosp-fade" style={{ fontSize: 'clamp(14px, 1.1vw, 16px)', lineHeight: 1.8, color: 'rgba(236,232,223,0.8)', maxWidth: '420px' }}>
+                            {t('Home.hospitality.columns.day.text')}
+                        </p>
+                    </div>
 
                     {/* Day photo */}
                     <div
                         id="media-casa-rossa-day"
-                        className="hosp-fade"
-                        style={{ position: 'relative', aspectRatio: '16/9', overflow: 'hidden', borderRadius: '2px' }}
+                        className="hosp-fade shadow-xl"
+                        style={{ position: 'relative', aspectRatio: '4/3', overflow: 'hidden', borderRadius: '2px' }}
                     >
                         <Image
-                            src="/images/villa-buontalenti.png"
-                            alt="La Casa Rossa — Villa"
+                            src="/images/villa-buontalenti.webp"
+                            alt={t('Home.hospitality.media.dayPhotoAlt')}
                             fill
                             className="parallax-img-day"
-                            style={{ objectFit: 'cover', scale: '1.15', transformOrigin: 'center center' }}
-                            sizes="(max-width: 1023px) 100vw, 50vw"
+                            style={{ objectFit: 'cover', scale: '1.2', transformOrigin: 'center center' }}
+                            sizes="(max-width: 1023px) 100vw, 40vw"
                         />
                         <div style={{
                             position: 'absolute', inset: 0,
-                            background: 'rgba(176,92,70,0.1)',
+                            background: 'rgba(176,92,70,0.08)',
                             pointerEvents: 'none',
                         }} />
                     </div>
                 </article>
 
-                {/* Night */}
-                <article style={{ padding: '7vh 8vw' }}>
-                    <span className="label hosp-fade" style={{ display: 'block', marginBottom: '1.5rem', color: 'rgba(236,232,223,0.5)' }}>
-                        {t('Home.hospitality.columns.night.label')}
-                    </span>
-                    <p className="hosp-fade" style={{ fontSize: 'clamp(14px, 1.15vw, 17px)', lineHeight: 1.85, color: 'rgba(236,232,223,0.85)', marginBottom: '2.5rem' }}>
-                        {t.rich('Home.hospitality.columns.night.text', {
-                            br: () => <br />,
-                            emClass: (chunks) => <em style={{ fontFamily: 'var(--font-playfair)' }}>{chunks}</em>
-                        })}
-                    </p>
+                {/* Night Section (L'ESPERIENZA) */}
+                <article className="w-full lg:w-1/2 relative z-10" style={{ 
+                    padding: '12vh 8vw 10vh',
+                }}>
+                    <div style={{ marginBottom: '5rem', minHeight: '300px' }}>
+                        <h3 className="hosp-fade" style={{
+                            fontFamily: 'var(--font-playfair), serif',
+                            fontStyle: 'italic',
+                            fontSize: 'clamp(2.2rem, 4vw, 4.5rem)',
+                            lineHeight: 1.1,
+                            color: 'var(--tufo)',
+                            marginBottom: '2rem'
+                        }}>
+                            {t('Home.hospitality.columns.night.label')}
+                        </h3>
+                        <p className="hosp-fade" style={{ fontSize: 'clamp(14px, 1.1vw, 16px)', lineHeight: 1.8, color: 'rgba(236,232,223,0.8)', maxWidth: '420px' }}>
+                            {t('Home.hospitality.columns.night.text')}
+                        </p>
+                    </div>
 
-                    {/* Panoramic photo replacing star placeholder */}
+                    {/* Night photo */}
                     <div
                         id="media-casa-rossa-panoramic"
-                        className="hosp-fade"
-                        style={{ position: 'relative', aspectRatio: '16/9', overflow: 'hidden', borderRadius: '2px' }}
+                        className="hosp-fade shadow-xl"
+                        style={{ position: 'relative', aspectRatio: '4/3', overflow: 'hidden', borderRadius: '2px' }}
                     >
                         <Image
-                            src="/images/casa-rossa-panoramic.png"
-                            alt="La Casa Rossa — Vista panoramica"
+                            src="/images/casa-rossa-panoramic.webp"
+                            alt={t('Home.hospitality.media.nightPhotoAlt')}
                             fill
                             className="parallax-img-panoramic"
-                            style={{ objectFit: 'cover', scale: '1.15', transformOrigin: 'center center' }}
-                            sizes="(max-width: 1023px) 100vw, 50vw"
+                            style={{ objectFit: 'cover', scale: '1.2', transformOrigin: 'center center' }}
+                            sizes="(max-width: 1023px) 100vw, 40vw"
                         />
                         <div style={{
                             position: 'absolute', inset: 0,
-                            background: 'rgba(176,92,70,0.12)',
+                            background: 'rgba(20,16,14,0.15)',
                             pointerEvents: 'none',
                         }} />
                     </div>

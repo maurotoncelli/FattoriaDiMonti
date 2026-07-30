@@ -24,9 +24,10 @@ export default function GlobalTransitionOverlay() {
     useEffect(() => {
         if (!readyToLift || !overlayRef.current) return;
         setReadyToLift(false);
+        const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         gsap.to(overlayRef.current, {
             yPercent: -100,
-            duration: 1.2,
+            duration: reduced ? 0.01 : 1.2,
             ease: 'power4.inOut',
             onComplete: () => {
                 gsap.set(overlayRef.current, { yPercent: 100 });
@@ -40,6 +41,7 @@ export default function GlobalTransitionOverlay() {
 
         // Cattura la rotta target al momento dell'avvio — endPageTransition la azzera
         const destination = nextRoute;
+        const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
         const tl = gsap.timeline({
             onComplete: () => {
@@ -53,7 +55,7 @@ export default function GlobalTransitionOverlay() {
             { yPercent: 100 },
             {
                 yPercent: 0,
-                duration: 1.2,
+                duration: reduced ? 0.01 : 1.2,
                 ease: 'power4.inOut',
                 backgroundColor: transitionBgColor,
                 onComplete: () => {
@@ -66,8 +68,8 @@ export default function GlobalTransitionOverlay() {
             }
         );
 
-        // Keyword reveal (opzionale)
-        if (transitionKeyword && keywordRef.current) {
+        // Keyword reveal (opzionale, saltato con reduced motion)
+        if (!reduced && transitionKeyword && keywordRef.current) {
             tl.fromTo(
                 keywordRef.current,
                 { opacity: 0, y: 20 },

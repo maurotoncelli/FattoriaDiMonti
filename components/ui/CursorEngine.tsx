@@ -42,20 +42,31 @@ export default function CursorEngine() {
         const handleEnterLink = () => cursor.classList.add('is-link');
         const handleLeaveLink = () => cursor.classList.remove('is-link');
 
+        // Delegation su document: niente listener per-elemento da rimuovere,
+        // e funziona anche per i nodi montati dopo (navigazione SPA).
+        const handleOver = (e: MouseEvent) => {
+            const target = e.target as Element | null;
+            if (!target) return;
+            if (target.closest('a, button')) {
+                cursor.classList.add('is-link');
+                cursor.classList.remove('is-text');
+            } else if (target.closest('h1, h2, h3, p')) {
+                cursor.classList.add('is-text');
+                cursor.classList.remove('is-link');
+            } else {
+                handleLeaveText();
+                handleLeaveLink();
+            }
+        };
+
         document.addEventListener('mousemove', moveCursor);
-        document.querySelectorAll('h1, h2, h3, p').forEach(el => {
-            el.addEventListener('mouseenter', handleEnterText);
-            el.addEventListener('mouseleave', handleLeaveText);
-        });
-        document.querySelectorAll('a, button').forEach(el => {
-            el.addEventListener('mouseenter', handleEnterLink);
-            el.addEventListener('mouseleave', handleLeaveLink);
-        });
+        document.addEventListener('mouseover', handleOver);
 
         animateCursor();
 
         return () => {
             document.removeEventListener('mousemove', moveCursor);
+            document.removeEventListener('mouseover', handleOver);
             cancelAnimationFrame(rafId);
         };
     }, [isTouch]);

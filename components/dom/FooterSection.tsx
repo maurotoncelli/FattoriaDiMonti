@@ -6,6 +6,7 @@ import { useAppStore } from '@/store/useAppStore';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useTranslations } from 'next-intl';
+import TransitionLink from '@/components/ui/TransitionLink';
 
 if (typeof window !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
@@ -18,6 +19,7 @@ export default function FooterSection() {
     const heroImgRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
         const ctx = gsap.context(() => {
             // Parallax on the drone hero image
             if (heroImgRef.current) {
@@ -94,18 +96,18 @@ export default function FooterSection() {
         <footer
             ref={footerRef}
             id="04-footer"
-            data-section-label="04 — L'Orizzonte"
+            data-section-label={t('sectionLabel')}
             style={{ background: 'var(--terra-nera)', position: 'relative' }}
-            aria-label="Footer — Contatti e Raggiungici"
+            aria-label={t('ariaLabel')}
         >
-            {/* ── HERO DRONE ───────────────────────────────────────────────── */}
+            {/* ── HERO ─────────────────────────────────────────────────────── */}
             <div id="footer-hero" style={{ position: 'relative', height: '65vh', overflow: 'hidden' }}>
 
                 {/* Photo + parallax */}
                 <div ref={heroImgRef} style={{ position: 'absolute', inset: '-15% 0', zIndex: 0 }}>
                     <Image
-                        src="/images/hero-drone.png"
-                        alt="Fattoria di Monti — Vista aerea"
+                        src="/images/mappa-tenuta-aerea.jpg"
+                        alt={t('hero.mapAlt')}
                         fill
                         style={{ objectFit: 'cover', objectPosition: 'center' }}
                         sizes="100vw"
@@ -141,7 +143,7 @@ export default function FooterSection() {
                         textTransform: 'uppercase',
                         color: 'rgba(236,232,223,0.38)',
                     }}>
-                        04 — L'Orizzonte
+                        {t('sectionLabel')}
                     </span>
                 </div>
 
@@ -173,7 +175,7 @@ export default function FooterSection() {
                         lineHeight: 1.7,
                         margin: 0,
                     }}>
-                        Toscana, Provincia di Pisa — A un&apos;ora da Firenze, Pisa, Livorno e Siena
+                        {t('hero.subtitle')}
                     </p>
                 </div>
 
@@ -230,7 +232,7 @@ export default function FooterSection() {
                             color: 'var(--tufo)',
                             lineHeight: 1.2,
                         }}>
-                            Loc. Monti — 56048<br />Volterra (PI)
+                            {(doveSiamo.address as string).split('\n')[0]}
                         </span>
                         <span style={{
                             fontFamily: 'var(--font-inter)',
@@ -238,7 +240,7 @@ export default function FooterSection() {
                             color: 'rgba(236,232,223,0.45)',
                             letterSpacing: '0.02em',
                         }}>
-                            Toscana, Provincia di Pisa
+                            {(doveSiamo.address as string).split('\n')[1]}
                         </span>
                     </div>
 
@@ -251,7 +253,7 @@ export default function FooterSection() {
                             textTransform: 'uppercase',
                             color: 'rgba(236,232,223,0.3)',
                         }}>
-                            Coordinate GPS
+                            {doveSiamo.gpsLabel}
                         </span>
                         <span style={{
                             fontFamily: 'var(--font-inter)',
@@ -443,9 +445,9 @@ export default function FooterSection() {
                 </span>
                 <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap' }}>
                     {(bottomBar.links as any[]).map((link: any) => (
-                        <a
+                        <TransitionLink
                             key={link.label}
-                            href={link.href || '#'}
+                            href={link.href || '/'}
                             style={{
                                 fontFamily: 'var(--font-inter)',
                                 fontSize: '10px',
@@ -455,11 +457,9 @@ export default function FooterSection() {
                                 textDecoration: 'none',
                                 transition: 'color 0.3s',
                             }}
-                            onMouseEnter={(e) => { (e.target as HTMLElement).style.color = 'var(--tufo)'; }}
-                            onMouseLeave={(e) => { (e.target as HTMLElement).style.color = 'rgba(236,232,223,0.3)'; }}
                         >
                             {link.label}
-                        </a>
+                        </TransitionLink>
                     ))}
                 </div>
             </div>

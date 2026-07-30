@@ -21,6 +21,7 @@ export default function StoriaPage() {
     const filieraData = getFilieraData(t);
 
     useEffect(() => {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
         let ctx = gsap.context(() => {
             // Background filigrana fade-in
             gsap.to(".bg-filigrana", {

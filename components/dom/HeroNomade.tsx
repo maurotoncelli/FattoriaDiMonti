@@ -14,26 +14,30 @@ export default function HeroNomade({ data }: { data: CucinaNomadeData['hero'] })
 
     useEffect(() => {
         if (!containerRef.current || !textRef.current || !bgRef.current) return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-        // Intro animation for all text nodes
-        gsap.fromTo(textRef.current.children, 
-            { y: 50, opacity: 0 },
-            { y: 0, opacity: 1, duration: 1.2, stagger: 0.2, ease: 'power3.out', delay: 0.3 }
-        );
+        const ctx = gsap.context(() => {
+            // Intro animation for all text nodes
+            gsap.fromTo(textRef.current!.children,
+                { y: 50, opacity: 0 },
+                { y: 0, opacity: 1, duration: 1.2, stagger: 0.2, ease: 'power3.out', delay: 0.3 }
+            );
 
-        // Parallax on scroll (only background moves slightly to create depth)
-        // Restricting parallax to a very subtle 15% instead of massive DOM shifts
-        gsap.to(bgRef.current, {
-            yPercent: 15,
-            ease: 'none',
-            scrollTrigger: {
-                trigger: containerRef.current,
-                start: 'top top',
-                end: 'bottom top',
-                scrub: true
-            }
-        });
+            // Parallax on scroll (only background moves slightly to create depth)
+            // Restricting parallax to a very subtle 15% instead of massive DOM shifts
+            gsap.to(bgRef.current, {
+                yPercent: 15,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: containerRef.current,
+                    start: 'top top',
+                    end: 'bottom top',
+                    scrub: true
+                }
+            });
+        }, containerRef);
 
+        return () => ctx.revert();
     }, []);
 
     return (

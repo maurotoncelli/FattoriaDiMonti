@@ -9,7 +9,7 @@ const SLIDES_CONFIG = [
         id: 'slide-mucco-pisano',
         bgColor: 'var(--terra-nera)',
         theme: 'dark' as const,
-        media: { webgl: true, effectType: 'displacement', textureSrc: '/images/mucco-pisano-16-9.png' },
+        media: { webgl: true, effectType: 'displacement', textureSrc: '/images/mucco-pisano-16-9.webp' },
         cta: { href: '/mucco-pisano' },
     },
     {
@@ -23,7 +23,7 @@ const SLIDES_CONFIG = [
         id: 'slide-olio',
         bgColor: 'var(--sabbia-limonitica)',
         theme: 'light' as const,
-        media: { webgl: true, effectType: 'liquid', textureSrc: '/images/olio-extravergine-16-9.png' },
+        media: { webgl: true, effectType: 'liquid', textureSrc: '/images/olio-extravergine-16-9.webp' },
         cta: { href: '/olio' },
     },
 ];

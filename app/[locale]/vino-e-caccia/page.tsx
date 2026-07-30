@@ -1,11 +1,9 @@
-'use client';
+import { redirect } from 'next/navigation';
 
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-
-// Pagina temporaneamente nascosta — reindirizza alla home
-export default function VinoPage() {
-    const router = useRouter();
-    useEffect(() => { router.replace('/'); }, [router]);
-    return null;
+// Pagina temporaneamente nascosta — redirect server-side locale-aware alla home
+export default async function VinoRedirectPage(
+    props: { params: Promise<{ locale: string }> }
+) {
+    const { locale } = await props.params;
+    redirect(locale === 'it' ? '/' : `/${locale}`);
 }

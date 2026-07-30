@@ -1,21 +1,20 @@
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
-import { BASE_URL } from '@/lib/site';
+import { localeUrl, pageAlternates } from '@/lib/site';
 
 export async function generateMetadata(
     props: { params: Promise<{ locale: string }> }
 ): Promise<Metadata> {
     const { locale } = await props.params;
     const t = await getTranslations({ locale, namespace: 'Metadata' });
-    const url = `${locale === 'it' ? BASE_URL : `${BASE_URL}/${locale}`}/mucco-pisano`;
     return {
         title: t('pages.muccoPisano.title'),
         description: t('pages.muccoPisano.description'),
-        alternates: { canonical: url },
+        alternates: pageAlternates(locale, '/mucco-pisano'),
         openGraph: {
             title: t('pages.muccoPisano.title'),
             description: t('pages.muccoPisano.description'),
-            url,
+            url: localeUrl(locale, '/mucco-pisano'),
         },
     };
 }

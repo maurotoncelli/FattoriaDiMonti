@@ -7,7 +7,17 @@ export default function robots(): MetadataRoute.Robots {
             {
                 userAgent: '*',
                 allow: '/',
-                disallow: ['/api/', '/_next/'],
+                disallow: [
+                    '/api/',
+                    '/_next/',
+                    // Route legacy: solo redirect, non vanno indicizzate
+                    '/cereali',
+                    '/la-filiera',
+                    '/vino-e-caccia',
+                    '/en/cereali',
+                    '/en/la-filiera',
+                    '/en/vino-e-caccia',
+                ],
             },
         ],
         sitemap: `${BASE_URL}/sitemap.xml`,

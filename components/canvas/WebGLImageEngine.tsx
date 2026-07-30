@@ -149,8 +149,12 @@ function WebGLImage({ el, texture, effect }: WebGLImageProps) {
 
     useFrame((state) => {
         if (!meshRef.current) return;
-        
-        // Sync position and scale with DOM
+
+        // Sync position and scale with DOM. Il rect va riletto ogni frame:
+        // gli elementi tracciati si muovono anche a scroll fermo (Ken Burns
+        // infinito sulla hero, scrub GSAP in coda, intro). La lettura avviene
+        // in un loop di sole letture (nessuna write interleaved), quindi al
+        // massimo costa un singolo reflow per frame.
         const rect = el.getBoundingClientRect();
         
         // Convert screen coordinates to Three.js coordinates

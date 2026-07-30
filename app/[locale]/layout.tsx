@@ -7,7 +7,7 @@ import { getMessages, getTranslations } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
 import GoogleAnalytics from '@/components/analytics/GoogleAnalytics';
-import { BASE_URL } from '@/lib/site';
+import { BASE_URL, localeUrl, pageAlternates } from '@/lib/site';
 
 const playfair = Playfair_Display({
     subsets: ['latin'],
@@ -35,7 +35,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
     const { locale } = params;
     const t = await getTranslations({ locale, namespace: 'Metadata' });
 
-    const canonicalUrl = `${BASE_URL}${locale === 'it' ? '' : `/${locale}`}`;
+    const canonicalUrl = localeUrl(locale);
 
     return {
         metadataBase: new URL(BASE_URL),
@@ -50,14 +50,9 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
             follow: true,
             googleBot: { index: true, follow: true },
         },
-        alternates: {
-            canonical: canonicalUrl,
-            languages: {
-                'it': BASE_URL,
-                'en': `${BASE_URL}/en`,
-                'x-default': BASE_URL,
-            },
-        },
+        // Fallback per le pagine senza metadata propri; le route promosse
+        // sovrascrivono con pageAlternates(locale, path) nei rispettivi layout.
+        alternates: pageAlternates(locale),
         openGraph: {
             title: t('openGraph.title'),
             description: t('openGraph.description'),

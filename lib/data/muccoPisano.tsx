@@ -14,7 +14,7 @@ export const getMuccoPisanoData = (t: any): MuccoPisanoContent => ({
         }),
         introText: t('MuccoPisano.hero.introText'),
         images: {
-            background: { src: '/images/mucco-pisano.png', alt: t('MuccoPisano.hero.label') },
+            background: { src: '/images/mucco-pisano.webp', alt: t('MuccoPisano.hero.label') },
         },
     },
     caratteristiche: {
@@ -31,7 +31,7 @@ export const getMuccoPisanoData = (t: any): MuccoPisanoContent => ({
         bodyText: t('MuccoPisano.tagli.bodyText'),
         ctaLabel: t('MuccoPisano.tagli.ctaLabel'),
         images: {
-            primary: { src: '/images/mucco-pisano-16-9.png', alt: t('MuccoPisano.tagli.titleHtml') },
+            primary: { src: '/images/mucco-pisano-16-9.webp', alt: t('MuccoPisano.tagli.titleHtml') },
         },
     },
     essiccata: {
@@ -42,7 +42,7 @@ export const getMuccoPisanoData = (t: any): MuccoPisanoContent => ({
         }),
         bodyText: t('MuccoPisano.essiccata.bodyText'),
         images: {
-            primary: { src: '/images/mucco-pisano.png', alt: t('MuccoPisano.essiccata.label') },
+            primary: { src: '/images/mucco-pisano.webp', alt: t('MuccoPisano.essiccata.label') },
         },
         products: (t.raw('MuccoPisano.essiccata.products') as any[]).map((p: any) => ({
             id: p.id,
@@ -66,7 +66,7 @@ export const getMuccoPisanoData = (t: any): MuccoPisanoContent => ({
         bodyText: t('MuccoPisano.cucina.bodyText'),
         ctaLabel: t('MuccoPisano.cucina.ctaLabel'),
         images: {
-            primary: { src: '/images/cucina-nomade.png', alt: t('MuccoPisano.cucina.ctaLabel') },
+            primary: { src: '/images/cucina-nomade.webp', alt: t('MuccoPisano.cucina.ctaLabel') },
         },
     },
 });

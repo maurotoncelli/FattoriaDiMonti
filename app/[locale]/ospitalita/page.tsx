@@ -9,6 +9,7 @@ import { useAppStore } from '@/store/useAppStore';
 import { useTranslations } from 'next-intl';
 import { getOspitalitaData } from '@/lib/data/ospitalita';
 import { useIsMobile } from '@/lib/hooks/useIsMobile';
+import { useReducedMotion } from '@/hooks/usePerformance';
 
 // Register GSAP plugins
 if (typeof window !== 'undefined') {
@@ -304,6 +305,7 @@ export default function OspitalitaPage() {
     const ospitalitaData = getOspitalitaData(t);
     const galleryItems = ospitalitaData.sections.galleria.items;
     const isMobile = useIsMobile(1024);
+    const prefersReducedMotion = useReducedMotion();
 
     // Gallery lightbox
     const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
@@ -340,6 +342,7 @@ export default function OspitalitaPage() {
     }, [ospitalitaData.sections.stanze.rooms]);
 
     useEffect(() => {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
         const ctx = gsap.context(() => {
             // Universal fade up text
             gsap.utils.toArray('.fade-up-text').forEach((el: any) => {
@@ -378,7 +381,7 @@ export default function OspitalitaPage() {
 
             const totalScroll = track.scrollWidth - window.innerWidth;
 
-            gsap.to(track, {
+            const galleryTween = gsap.to(track, {
                 x: -totalScroll,
                 ease: 'none',
                 scrollTrigger: {
@@ -390,7 +393,10 @@ export default function OspitalitaPage() {
                 }
             });
 
-            return () => ScrollTrigger.getAll().forEach(st => st.kill());
+            return () => {
+                galleryTween.scrollTrigger?.kill();
+                galleryTween.kill();
+            };
         });
 
         return () => {
@@ -492,20 +498,20 @@ export default function OspitalitaPage() {
             {/* SECTION 3: Le Stanze Cromatiche (Le 4 Identità) */}
             <section className="relative min-h-screen px-[8vw] py-[20vh] text-center">
                 <div className="max-w-4xl mx-auto mb-20">
-                    <span className="font-inter text-xs tracking-[0.2em] text-[var(--olive)] uppercase mb-6 block fade-up-text opacity-0">
+                    <span className="font-inter text-xs tracking-[0.2em] text-[var(--olive)] uppercase mb-6 block fade-up-text">
                         {ospitalitaData.sections.stanze.label}
                     </span>
-                    <h2 className="font-playfair text-5xl md:text-7xl leading-[1.1] mb-8 fade-up-text opacity-0">
+                    <h2 className="font-playfair text-5xl md:text-7xl leading-[1.1] mb-8 fade-up-text">
                         {ospitalitaData.sections.stanze.titleHtml}
                     </h2>
-                    <p className="font-inter text-base leading-[1.9] opacity-80 max-w-2xl mx-auto fade-up-text opacity-0">
+                    <p className="font-inter text-base leading-[1.9] opacity-80 max-w-2xl mx-auto fade-up-text">
                         {ospitalitaData.sections.stanze.introText}
                     </p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 max-w-[1400px] mx-auto text-left mt-16 px-4 md:px-0">
                     {ospitalitaData.sections.stanze.rooms.map((room, roomIndex) => (
-                        <div key={room.id} className="flex flex-col group fade-up-card opacity-0">
+                        <div key={room.id} className="flex flex-col group fade-up-card">
                             {/* Clickable cover image */}
                             <button
                                 className="relative rounded-sm overflow-hidden w-full mb-6 text-left cursor-pointer"
@@ -614,8 +620,8 @@ export default function OspitalitaPage() {
                     </div>
                 </section>
             ) : (
-                /* DESKTOP: sticky horizontal scroll */
-                <div ref={galleryContainerRef} style={{ overflow: 'hidden', position: 'relative' }}>
+                /* DESKTOP: sticky horizontal scroll (scroll nativo con reduced motion) */
+                <div ref={galleryContainerRef} style={{ overflow: prefersReducedMotion ? 'auto hidden' : 'hidden', position: 'relative' }}>
                     <div
                         ref={galleryTrackRef}
                         style={{ display: 'flex', width: 'max-content', willChange: 'transform', height: '100vh', alignItems: 'center' }}

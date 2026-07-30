@@ -22,6 +22,7 @@ export default function MuccoPisanoPage() {
     const tOverlay = useTranslations('Overlays.jerkySheet');
 
     useEffect(() => {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
         const ctx = gsap.context(() => {
 
             // Hero elements — timeline al mount (già in viewport, ScrollTrigger non scatta)
@@ -93,8 +94,8 @@ export default function MuccoPisanoPage() {
                 {/* Foto hero con parallax */}
                 <div className="absolute inset-0 z-0" style={{ overflow: 'hidden' }}>
                     <Image
-                        src="/images/mucco-pisano.png"
-                        alt="Mucco Pisano allo stato brado"
+                        src="/images/mucco-pisano.webp"
+                        alt={t('MuccoPisano.hero.imageAlt')}
                         fill
                         className="parallax-img"
                         style={{ objectFit: 'cover', objectPosition: 'center', scale: '1.15' }}
@@ -228,8 +229,8 @@ export default function MuccoPisanoPage() {
                     {/* Foto materica */}
                     <div className="relative h-[60vh] lg:h-[80vh] w-full overflow-hidden rounded-sm fade-up-text">
                         <Image
-                            src="/images/mucco-pisano-16-9.png"
-                            alt="Mucco Pisano — Tagli Nobili"
+                            src="/images/mucco-pisano-16-9.webp"
+                            alt={t('MuccoPisano.tagli.imageAlt')}
                             fill
                             className="parallax-img"
                             style={{ objectFit: 'cover', scale: '1.15' }}
@@ -268,8 +269,8 @@ export default function MuccoPisanoPage() {
                     {/* Foto */}
                     <div className="w-full relative h-[45vh] overflow-hidden rounded-sm fade-up-text">
                         <Image
-                            src="/images/mucco-pisano.png"
-                            alt="Mucco Pisano — Eccellenza Essiccata"
+                            src="/images/mucco-pisano.webp"
+                            alt={t('MuccoPisano.essiccata.imageAlt')}
                             fill
                             className="parallax-img"
                             style={{ objectFit: 'cover', objectPosition: 'center 30%', scale: '1.15' }}
@@ -286,8 +287,8 @@ export default function MuccoPisanoPage() {
                 {/* Foto di sfondo con parallax */}
                 <div className="absolute inset-0 z-0" style={{ overflow: 'hidden' }}>
                     <Image
-                        src="/images/cucina-nomade.png"
-                        alt="Cucina Nomade Itinerante"
+                        src="/images/cucina-nomade.webp"
+                        alt={t('MuccoPisano.cucina.imageAlt')}
                         fill
                         className="parallax-img"
                         style={{ objectFit: 'cover', scale: '1.15' }}

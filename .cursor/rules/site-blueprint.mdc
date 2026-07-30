@@ -5,7 +5,7 @@ alwaysApply: true
 
 # Fattoria di Monti Project Rules
 
-Before making non-trivial changes, read `SITE_BLUEPRINT.md`. It is the current source of truth for architecture, routing, i18n, animation, performance, and product strategy.
+Before making non-trivial changes, read `SITE_BLUEPRINT.md`. It is the current source of truth for architecture, routing, i18n, animation, performance, and product strategy. For current work priority, also read `PIANO_OPERATIVO.md`.
 
 Hard rules:
 

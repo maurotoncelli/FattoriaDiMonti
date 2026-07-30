@@ -20,17 +20,9 @@
         "title": "La Storia della Fattoria",
         "description": "Una fattoria costruita sul rispetto della terra e delle sue creature. Scopri la storia e la filosofia di Fattoria di Monti a Volterra, Toscana."
       },
-      "laFiliera": {
-        "title": "La Filiera — Dal Campo alla Tavola",
-        "description": "Dal campo alla tavola: il ciclo completo della nostra produzione. Cereali, pascolo, allevamento e olio in un ecosistema agricolo sostenibile a Volterra."
-      },
       "muccoPisano": {
         "title": "Mucco Pisano — Razza Bovina Autoctona Toscana",
         "description": "Il Mucco Pisano, antica razza bovina della Toscana. Carni di assoluta eccellenza, allevamento allo stato brado sulle colline di Volterra."
-      },
-      "cereali": {
-        "title": "Cereali — Frumento, Farro e Avena",
-        "description": "Frumento, farro, avena e orzo coltivati sulle nostre colline a Volterra. La base del ciclo naturale della fattoria e dell'alimentazione del bestiame."
       },
       "ospitalita": {
         "title": "La Casa Rossa — Ospitalità di Lusso a Volterra",
@@ -81,6 +73,14 @@
       "scroll": "Scorri",
       "scrollHint": "Scorri per esplorare",
       "identita": "Identità"
+    },
+    "canvasToggle": {
+      "enable": "Attiva sfondo animato",
+      "disable": "Disattiva sfondo animato",
+      "titleEnable": "Attiva sfondo cielo animato",
+      "titleDisable": "Disattiva cielo per alleggerire il sito",
+      "on": "Cielo ON",
+      "off": "Cielo OFF"
     }
   },
   "Home": {
@@ -111,16 +111,6 @@
     },
     "products": {
       "slides": {
-        "slide-cereali": {
-          "label": "02.1 — I Cereali",
-          "title": "Le Onde",
-          "titleItalic": "del Grano",
-          "body": "Le nostre colline sono nate per coltivare frumento, farro, avena e orzo. Con la brezza pomeridiana di aprile e maggio si ammirano le onde del mare di grano verde.<br></br><br></br>Pratichiamo la rotazione: cereali il primo anno, poi il favino da foraggio, poi tre anni di prato per il fieno («erba medica» o «sulla»).",
-          "cta": {
-            "label": "Scopri la Filiera",
-            "href": "/la-filiera"
-          }
-        },
         "slide-mucco-pisano": {
           "label": "02.1 — Il Mucco Pisano",
           "title": "Forza",
@@ -203,19 +193,14 @@
         "Tappeti persiani",
         "TV nascosta"
       ],
-      "video": {
-        "src": "https://www.youtube-nocookie.com/embed/nBdCRpGLdiA?autoplay=1&mute=1&controls=0&loop=1&playlist=nBdCRpGLdiA&disablekb=1&modestbranding=1&playsinline=1&start=10",
-        "alt": "Vista degli interni della Casa Rossa, design elegante e materico",
-        "previewText": "Interni Casa Rossa Preview"
-      },
       "columns": {
         "day": {
-          "label": "Il Giorno",
-          "text": "La Casa Rossa — 210 mq su due piani, un tempo stalla e casa del fattore. Doppio soggiorno con camino, tappeti persiani e biblioteca. Una grande cucina che si apre sul pergolato con barbecue, con una splendida vista sul paesaggio romantico della Toscana.<br></br><br></br>La piscina si trova immediatamente adiacente alla casa."
+          "label": "L'ABITARE",
+          "text": "Vivere la Casa Rossa significa riappropriarsi del tempo: preparare una cena nella grande cucina toscana, perdersi tra i volumi della biblioteca o accendere il camino nel doppio soggiorno. All'esterno, la piscina è un invito al relax totale tra i profumi della macchia mediterranea."
         },
         "night": {
-          "label": "La Notte",
-          "text": "Quattro ampie camere al piano superiore: <emClass>Avorio, Verde, Rosa e Albicocca</emClass>, tutte con pavimento in parquet a listoni.<br></br><br></br>Dal tetto — una terrazza aperta — si guarda il cielo stellato toscano, non inquinato dalle luci delle grandi città. Un telescopio è a disposizione degli ospiti.",
+          "label": "L'ESPERIENZA",
+          "text": "Quattro dimore uniche — Avorio, Verde, Rosa e Albicocca — dove il silenzio è interrotto solo dalla natura. Dalla terrazza sul tetto, l'esperienza culmina nel cielo stellato: con il telescopio a disposizione potrete esplorare l'universo in un'oscurità pura e profonda.",
           "media": {
             "alt": "Cielo stellato notturno della Toscana visto dal tetto della Casa Rossa, non inquinato dalle luci artificiali",
             "previewText": "Cielo Stellato · Telescopio"
@@ -223,26 +208,17 @@
         }
       },
       "amenities": {
-        "title": "Amenities della Villa",
-        "items": [
-          "TV Satellitare (nascosta in armadio antico)",
-          "Connessione Wi-Fi",
-          "Cucina completamente attrezzata (lavastoviglie, microonde, macchina caffè)",
-          "Lavanderia completa (lavatrice, asciugatrice, ferro)",
-          "4 camere doppie / matrimoniali (Avorio, Verde, Rosa, Albicocca)",
-          "2 bagni con doccia spaziosa",
-          "Pergolato con barbecue esterno",
-          "Piscina adiacente alla casa",
-          "Asciugacapelli in ogni bagno",
-          "DVD Player e biblioteca fornita"
-        ]
+        "title": "Amenities della Villa"
       },
       "cta": {
         "label": "Esplora la Casa Rossa",
         "href": "/ospitalita"
       },
-      "cta2": {
-        "label": "Verifica Disponibilità"
+      "ariaLabel": "Ospitalità — La Casa Rossa",
+      "media": {
+        "interiorsAlt": "La Casa Rossa — Interni",
+        "dayPhotoAlt": "La Casa Rossa — Villa",
+        "nightPhotoAlt": "La Casa Rossa — Vista panoramica"
       }
     }
   },
@@ -274,7 +250,8 @@
     "hero": {
       "label": "La Lentezza e l'Istinto",
       "titleHtml": "Mucco <emClass>Pisano</emClass>",
-      "introText": "Allevati allo stato brado, dove il benessere non è un compromesso ma la radice stessa della perfezione. Una razza orgogliosa, una maturazione lenta e rispettosa, per un prodotto dalla qualità inarrivabile."
+      "introText": "Allevati allo stato brado, dove il benessere non è un compromesso ma la radice stessa della perfezione. Una razza orgogliosa, una maturazione lenta e rispettosa, per un prodotto dalla qualità inarrivabile.",
+      "imageAlt": "Mucco Pisano allo stato brado"
     },
     "caratteristiche": {
       "label": "Un'Eredità Genetica Rara",
@@ -298,7 +275,8 @@
       "label": "Vendita al kg",
       "titleHtml": "I Tagli <br></br><emClass>Nobili</emClass>",
       "bodyText": "Costate imponenti, Fiorentine e arrosti. L'equilibrio perfetto tra fibra magra e grasso protettivo, sviluppato camminando sui nostri pendii. Puoi prenotare la tua fornitura e ricevere a casa tagli freschi preparati al momento.",
-      "ctaLabel": "Prenota Tagli a Peso →"
+      "ctaLabel": "Prenota Tagli a Peso →",
+      "imageAlt": "Mucco Pisano — Tagli Nobili"
     },
     "essiccata": {
       "label": "Affinamento Estremo",
@@ -311,12 +289,16 @@
           "name": "Pepe e Sale",
           "subtitle": "Jerky Classico",
           "description": "L'essenza pura del Mucco Pisano. Lavorazione artigianale con solo sale marino integrale e pepe nero in grani macinato al momento, per un'esperienza carnivora autentica senza distrazioni.",
-          "tags": ["Sale Marino", "Pepe Nero", "Classico"],
+          "tags": [
+            "Sale Marino",
+            "Pepe Nero",
+            "Classico"
+          ],
           "labelColor": "#211D1A",
           "glowColor": "rgba(40, 35, 30, 0.4)",
           "ctaLabel": "Richiedi Pepe e Sale",
           "image": {
-            "src": "/images/bustina-pepe-sale.png",
+            "src": "/images/bustina-pepe-sale.webp",
             "alt": "Bustina Carne Secca Pepe e Sale"
           }
         },
@@ -325,21 +307,27 @@
           "name": "Rosmarino e Aglio",
           "subtitle": "Profumi Toscani",
           "description": "La memoria olfattiva della fattoria racchiusa in una busta. Rosmarino fresco dei nostri campi e un delicato accenno di aglio donano un'esplosione mediterranea della Toscana ad ogni morso.",
-          "tags": ["Rosmarino Locale", "Aglio Dolce", "Aromatico"],
+          "tags": [
+            "Rosmarino Locale",
+            "Aglio Dolce",
+            "Aromatico"
+          ],
           "labelColor": "#4B5341",
           "glowColor": "rgba(75, 83, 65, 0.4)",
           "ctaLabel": "Richiedi Rosmarino e Aglio",
           "image": {
-            "src": "/images/bustina-rosmarino-aglio.png",
+            "src": "/images/bustina-rosmarino-aglio.webp",
             "alt": "Bustina Carne Secca Rosmarino e Aglio"
           }
         }
-      ]
+      ],
+      "imageAlt": "Mucco Pisano — Eccellenza Essiccata"
     },
     "cucina": {
       "titleHtml": "Esperienza sul <em>Campo</em>",
       "bodyText": "Non fermarti a prenderlo: vivilo. La nostra cucina itinerante porta la perfezione degli Hamburger Gourmet 100% Mucco Pisano direttamente nel cuore del tuo evento.",
-      "ctaLabel": "Richiedi la Cucina Itinerante"
+      "ctaLabel": "Richiedi la Cucina Itinerante",
+      "imageAlt": "Cucina Nomade Itinerante"
     }
   },
   "Cereali": {
@@ -559,10 +547,22 @@
             "alt": "L'Oro Liquido"
           },
           "gallery": [
-            { "src": "/images/villa-buontalenti.png", "alt": "Villa Buontalenti" },
-            { "src": "/images/casa-rossa-interni.png", "alt": "Interni Casa Rossa" },
-            { "src": "/images/olio-extravergine.png", "alt": "Dettagli Olio Extravergine" },
-            { "src": "/images/campi-grano.png", "alt": "Terroir della tenuta" }
+            {
+              "src": "/images/villa-buontalenti.webp",
+              "alt": "Villa Buontalenti"
+            },
+            {
+              "src": "/images/casa-rossa-interni.webp",
+              "alt": "Interni Casa Rossa"
+            },
+            {
+              "src": "/images/olio-extravergine.webp",
+              "alt": "Dettagli Olio Extravergine"
+            },
+            {
+              "src": "/images/campi-grano.webp",
+              "alt": "Terroir della tenuta"
+            }
           ]
         },
         "description": "Equilibrato e versatile, il nostro Extravergine raggiunge la sua massima espressione gustato in purezza, oppure utilizzato per esaltare i piatti della tradizione toscana, dalle zuppe calde ai crudi.",
@@ -644,7 +644,13 @@
         "paragraphs": [
           "Il piano inferiore è dominato da un doppio soggiorno avvolgente e ampi tappeti persiani, perfetti per i mesi invernali passati davanti al calore del camino.",
           "<strongClass>Il vero lusso: l'assenza visibile degli schermi.</strongClass> Abbiamo nascosto la televisione satellitare in un massiccio armadio antico. Se vuoi distrazioni digitali, sono lì per te. Se cerchi il disingaggio totale, la libreria a muro ti aspetta in un silenzio tombale."
-        ]
+        ],
+        "images": {
+          "primary": {
+            "alt": "Texture Fuoco e Libreria",
+            "overlayText": "Texture Fuoco e Libreria"
+          }
+        }
       },
       "galleria": {
         "titleHtml": "Frammenti <brResp></brResp><emClass>di Pace</emClass>",
@@ -689,14 +695,37 @@
             "surface": "26 mq",
             "floor": "Piano superiore",
             "view": "Colline e uliveto",
-            "highlights": ["Bagno privato con doccia", "Esposizione sud-est", "Lini in fibra naturale", "Vista panoramica"],
+            "highlights": [
+              "Bagno privato con doccia",
+              "Esposizione sud-est",
+              "Lini in fibra naturale",
+              "Vista panoramica"
+            ],
             "amenities": [
-              { "icon": "bed", "label": "Letto King Size" },
-              { "icon": "bath", "label": "Bagno privato" },
-              { "icon": "wind", "label": "Ventilazione naturale" },
-              { "icon": "sun", "label": "Luce naturale mattutina" },
-              { "icon": "towel", "label": "Set asciugamani premium" },
-              { "icon": "hairdryer", "label": "Asciugacapelli" }
+              {
+                "icon": "bed",
+                "label": "Letto King Size"
+              },
+              {
+                "icon": "bath",
+                "label": "Bagno privato"
+              },
+              {
+                "icon": "wind",
+                "label": "Ventilazione naturale"
+              },
+              {
+                "icon": "sun",
+                "label": "Luce naturale mattutina"
+              },
+              {
+                "icon": "towel",
+                "label": "Set asciugamani premium"
+              },
+              {
+                "icon": "hairdryer",
+                "label": "Asciugacapelli"
+              }
             ],
             "photoPlaceholderText": "Foto Stanza Avorio"
           },
@@ -708,14 +737,37 @@
             "surface": "22 mq",
             "floor": "Piano superiore",
             "view": "Giardino e vigneto",
-            "highlights": ["Letto divisibile in due singoli", "Angolo lettura", "Tonalità salvia e menta", "Vista giardino"],
+            "highlights": [
+              "Letto divisibile in due singoli",
+              "Angolo lettura",
+              "Tonalità salvia e menta",
+              "Vista giardino"
+            ],
             "amenities": [
-              { "icon": "bed", "label": "Letto divisibile" },
-              { "icon": "book", "label": "Angolo lettura" },
-              { "icon": "wind", "label": "Ventilazione naturale" },
-              { "icon": "leaf", "label": "Vista giardino" },
-              { "icon": "towel", "label": "Set asciugamani premium" },
-              { "icon": "hairdryer", "label": "Asciugacapelli" }
+              {
+                "icon": "bed",
+                "label": "Letto divisibile"
+              },
+              {
+                "icon": "book",
+                "label": "Angolo lettura"
+              },
+              {
+                "icon": "wind",
+                "label": "Ventilazione naturale"
+              },
+              {
+                "icon": "leaf",
+                "label": "Vista giardino"
+              },
+              {
+                "icon": "towel",
+                "label": "Set asciugamani premium"
+              },
+              {
+                "icon": "hairdryer",
+                "label": "Asciugacapelli"
+              }
             ],
             "photoPlaceholderText": "Foto Stanza Verde"
           },
@@ -727,14 +779,37 @@
             "surface": "18 mq",
             "floor": "Piano superiore",
             "view": "Cortile interno",
-            "highlights": ["Atmosfera romantica", "Tessuti in velluto", "Finiture in ottone", "Silenzio assoluto"],
+            "highlights": [
+              "Atmosfera romantica",
+              "Tessuti in velluto",
+              "Finiture in ottone",
+              "Silenzio assoluto"
+            ],
             "amenities": [
-              { "icon": "bed", "label": "Letto alla francese" },
-              { "icon": "heart", "label": "Suite romantica" },
-              { "icon": "moon", "label": "Silenzio assoluto" },
-              { "icon": "sparkle", "label": "Finiture in ottone" },
-              { "icon": "towel", "label": "Set asciugamani premium" },
-              { "icon": "hairdryer", "label": "Asciugacapelli" }
+              {
+                "icon": "bed",
+                "label": "Letto alla francese"
+              },
+              {
+                "icon": "heart",
+                "label": "Suite romantica"
+              },
+              {
+                "icon": "moon",
+                "label": "Silenzio assoluto"
+              },
+              {
+                "icon": "sparkle",
+                "label": "Finiture in ottone"
+              },
+              {
+                "icon": "towel",
+                "label": "Set asciugamani premium"
+              },
+              {
+                "icon": "hairdryer",
+                "label": "Asciugacapelli"
+              }
             ],
             "photoPlaceholderText": "Foto Stanza Rosa"
           },
@@ -746,18 +821,53 @@
             "surface": "28 mq",
             "floor": "Piano superiore",
             "view": "Tramonto sulle colline",
-            "highlights": ["Stanza più grande", "Vista tramonto", "Grandi finestre", "Tonalità calde terracotta"],
+            "highlights": [
+              "Stanza più grande",
+              "Vista tramonto",
+              "Grandi finestre",
+              "Tonalità calde terracotta"
+            ],
             "amenities": [
-              { "icon": "bed", "label": "Letto King Size" },
-              { "icon": "sunset", "label": "Vista tramonto" },
-              { "icon": "expand", "label": "Stanza più spaziosa" },
-              { "icon": "wind", "label": "Ventilazione naturale" },
-              { "icon": "towel", "label": "Set asciugamani premium" },
-              { "icon": "hairdryer", "label": "Asciugacapelli" }
+              {
+                "icon": "bed",
+                "label": "Letto King Size"
+              },
+              {
+                "icon": "sunset",
+                "label": "Vista tramonto"
+              },
+              {
+                "icon": "expand",
+                "label": "Stanza più spaziosa"
+              },
+              {
+                "icon": "wind",
+                "label": "Ventilazione naturale"
+              },
+              {
+                "icon": "towel",
+                "label": "Set asciugamani premium"
+              },
+              {
+                "icon": "hairdryer",
+                "label": "Asciugacapelli"
+              }
             ],
             "photoPlaceholderText": "Foto Stanza Albicocca"
           }
-        ]
+        ],
+        "photoLabels": {
+          "letto": "Letto",
+          "vista": "Vista",
+          "dettaglio": "Dettaglio",
+          "colline": "Vista Colline",
+          "panorama": "Panorama",
+          "esterno": "Esterno",
+          "interni": "Interni",
+          "angolo": "Angolo",
+          "drone": "Vista Drone",
+          "paesaggio": "Paesaggio"
+        }
       },
       "osservatorio": {
         "label": "Terrazza sul Tetto",
@@ -783,7 +893,8 @@
           "Livorno 45min",
           "Siena 1h",
           "Lucca 50min"
-        ]
+        ],
+        "gpsLabel": "Coordinate GPS"
       },
       "vieni": {
         "label": "Vieni a Trovarci",
@@ -816,17 +927,19 @@
         "links": [
           {
             "label": "Privacy Policy",
-            "href": "#"
+            "href": "/privacy"
           },
           {
             "label": "Cookie Policy",
-            "href": "#"
-          },
-          {
-            "label": "Credits",
-            "href": "#"
+            "href": "/cookie"
           }
         ]
+      },
+      "sectionLabel": "04 — L'Orizzonte",
+      "ariaLabel": "Footer — Contatti e Raggiungici",
+      "hero": {
+        "mapAlt": "Fattoria di Monti — Mappa aerea della tenuta",
+        "subtitle": "Toscana, Provincia di Pisa — A un'ora da Firenze, Pisa, Livorno e Siena"
       }
     },
     "innerFooter": {
@@ -1009,7 +1122,124 @@
       "closeAria": "Chiudi scheda bottiglia",
       "closeLabel": "× CHIUDI",
       "eyebrow": "Dettaglio Bottiglia",
-      "ctaOrder": "Acquista l'Olio Nuovo"
+      "ctaOrder": "Acquista l'Olio Nuovo",
+      "details": {
+        "dividerLabel": "Approfondimento",
+        "scrollHint": "Scorri per i dettagli",
+        "territory": {
+          "eyebrow": "Il Territorio",
+          "title": "Radici nella\nroccia calcarea.",
+          "text": "Le nostre olive crescono su pendenze calcaree a 150 metri sul livello del mare, battute dalla brezza mediterranea. Un microclima che nessun agronomo può replicare: è il patrimonio geologico della Toscana più profonda.",
+          "rows": [
+            {
+              "label": "Terroir",
+              "value": "Colline calcaree · Volterra"
+            },
+            {
+              "label": "Altitudine",
+              "value": "150 m s.l.m."
+            },
+            {
+              "label": "Cultivar",
+              "value": "Razzo, Leccino, Moraiolo"
+            },
+            {
+              "label": "Età media piante",
+              "value": "30–80 anni"
+            },
+            {
+              "label": "Raccolta",
+              "value": "Manuale · Ottobre–Dicembre"
+            }
+          ]
+        },
+        "method": {
+          "eyebrow": "Il Metodo",
+          "title": "Dal frutto all'oro,\nin poche ore.",
+          "steps": [
+            {
+              "step": "01",
+              "title": "Raccolta manuale",
+              "desc": "Agevolatori pneumatici proteggono la drupa. Nessun contatto con il suolo."
+            },
+            {
+              "step": "02",
+              "title": "Frangitura entro 10 ore",
+              "desc": "L'oliva \"respira\" e consuma i polifenoli: l'urgenza è tutto."
+            },
+            {
+              "step": "03",
+              "title": "Gramolatura a freddo",
+              "desc": "Sotto i 27°C per 30 minuti: le molecole aromatiche restano intatte."
+            },
+            {
+              "step": "04",
+              "title": "Estrazione centrifuga",
+              "desc": "3500 giri/min separano l'oro liquido dall'acqua e dalla sansa."
+            }
+          ]
+        },
+        "pairings": {
+          "eyebrow": "Abbinamenti",
+          "title": "La cucina\ncome tela.",
+          "texts": {
+            "classico": "Una fedeltà quotidiana: sul pane di Altamura ancora caldo, su carpacci di branzino, crudo su insalate di finocchio e arancia. La versatilità elevata a virtù.",
+            "riserva": "Pensata per chi cerca intensità: su bistecche alla fiorentina rare, su zuppe di legumi rustiche, su formaggi a pasta dura stagionati. Da gustare anche in purezza.",
+            "selezione": "Il gastronomico toscano nella sua forma più autentica: su ribollita, bruschette di pane sciocco, carni grigliate e zuppe di farro. Da condividere."
+          },
+          "items": {
+            "classico": [
+              "Carpaccio di branzino",
+              "Pane toscano caldo",
+              "Insalate fresche",
+              "Ribollita leggera",
+              "Verdure al vapore",
+              "Formaggi freschi"
+            ],
+            "riserva": [
+              "Bistecca Fiorentina",
+              "Zuppa di lenticchie",
+              "Pecorino stagionato",
+              "Straccetti",
+              "Legumi rustici",
+              "Degustazione in purezza"
+            ],
+            "selezione": [
+              "Ribollita",
+              "Bruschette",
+              "Farro e legumi",
+              "Carni grigliate",
+              "Panzanella",
+              "Cacciucco"
+            ]
+          }
+        },
+        "awards": {
+          "eyebrow": "Riconoscimenti",
+          "title": "Certificato dai\nmigliori al mondo.",
+          "items": [
+            {
+              "year": "2022",
+              "award": "Flos Olei",
+              "detail": "Top 100 Migliori Oli al Mondo"
+            },
+            {
+              "year": "2022",
+              "award": "NYIOOC",
+              "detail": "Medaglia d'Oro · New York"
+            },
+            {
+              "year": "2022",
+              "award": "Premio Grande Gusto",
+              "detail": "3 Stelle — Eccellenza Assoluta"
+            }
+          ]
+        },
+        "finalCta": {
+          "title": "Porta l'anima di Monti sulla tua tavola.",
+          "subtitle": "Disponibilità limitata per annata. Spedizione in tutta Italia."
+        }
+      }
     },
     "roomSheet": {
       "labelSpace": "Lo spazio",
@@ -1211,17 +1441,17 @@
         ],
         "gallery": [
           {
-            "src": "/images/mucco-pisano-hero-16-9.png",
+            "src": "/images/mucco-pisano.webp",
             "alt": "Il Mucco Pisano immerso nel paesaggio",
             "caption": "Forza Rustica"
           },
           {
-            "src": "/images/prati-fieno-16-9.png",
+            "src": "/images/campi-grano-16-9.webp",
             "alt": "Distese di fieno per foraggio",
             "caption": "Il nutrimento naturale"
           },
           {
-            "src": "/images/mucco-pisano-16-9.png",
+            "src": "/images/mucco-pisano-16-9.webp",
             "alt": "Mucco Pisano al pascolo brado",
             "caption": "Pascolo Brado e Lentezza"
           }
@@ -1237,6 +1467,64 @@
           "buttonLabel": "Esplora L'Ospitalità"
         }
       }
+    },
+    "images": {
+      "act1BackgroundAlt": "Campi e Colline della Fattoria",
+      "act4PrimaryAlt": "Terroir della Fattoria",
+      "act5BackgroundAlt": "La tenuta della Fattoria di Monti"
+    }
+  },
+  "NotFound": {
+    "title": "Pagina non trovata",
+    "message": "La pagina che cerchi non esiste o è stata spostata. Torna alla tenuta.",
+    "ctaLabel": "Torna alla Home"
+  },
+  "Legal": {
+    "privacy": {
+      "title": "Privacy Policy",
+      "updatedAt": "Ultimo aggiornamento: giugno 2026",
+      "intro": "La presente informativa descrive le modalità di trattamento dei dati personali degli utenti che consultano il sito di Fattoria di Monti, ai sensi del Regolamento (UE) 2016/679 (GDPR).",
+      "sections": [
+        {
+          "title": "Titolare del trattamento",
+          "body": "Fattoria di Monti — Loc. Monti, 56048 Volterra (PI), Italia.\nPer qualsiasi richiesta relativa ai dati personali: info@fattoriadimonti.it"
+        },
+        {
+          "title": "Dati raccolti",
+          "body": "Trattiamo esclusivamente i dati che ci fornisci volontariamente tramite il modulo di contatto o via email (nome, indirizzo email, contenuto del messaggio) e i dati tecnici di navigazione raccolti in forma aggregata e anonima."
+        },
+        {
+          "title": "Finalità del trattamento",
+          "body": "I dati sono utilizzati unicamente per rispondere alle tue richieste di informazioni, prenotazioni e ordini. Non vendiamo né cediamo i tuoi dati a terzi per finalità di marketing."
+        },
+        {
+          "title": "Conservazione",
+          "body": "I dati sono conservati per il tempo strettamente necessario a gestire la tua richiesta e per gli eventuali obblighi di legge."
+        },
+        {
+          "title": "I tuoi diritti",
+          "body": "Puoi richiedere in qualsiasi momento l'accesso, la rettifica o la cancellazione dei tuoi dati scrivendo a info@fattoriadimonti.it. Hai inoltre il diritto di proporre reclamo all'autorità di controllo (Garante per la protezione dei dati personali)."
+        }
+      ]
+    },
+    "cookie": {
+      "title": "Cookie Policy",
+      "updatedAt": "Ultimo aggiornamento: giugno 2026",
+      "intro": "Questo sito utilizza un numero minimo di cookie, necessari al funzionamento e — solo previo consenso — alla misurazione anonima del traffico.",
+      "sections": [
+        {
+          "title": "Cookie tecnici",
+          "body": "Sono necessari al funzionamento del sito (ad esempio per ricordare le preferenze di visualizzazione come l'attivazione degli effetti grafici). Non richiedono consenso e non raccolgono dati personali."
+        },
+        {
+          "title": "Cookie analitici",
+          "body": "Utilizziamo strumenti di analisi del traffico solo previo consenso esplicito. I dati sono raccolti in forma aggregata e non consentono di identificare il singolo visitatore."
+        },
+        {
+          "title": "Gestione dei cookie",
+          "body": "Puoi gestire o eliminare i cookie in qualsiasi momento dalle impostazioni del tuo browser. La disattivazione dei cookie tecnici potrebbe compromettere alcune funzionalità del sito."
+        }
+      ]
     }
   }
 }

@@ -19,11 +19,10 @@ export default function BackButton() {
         let returnHash = '';
         if (pathname.includes('/storia')) returnHash = '#01-storia-terroir';
         else if (pathname.includes('/mucco-pisano')) returnHash = '#02-prodotti';
-        else if (pathname.includes('/cereali')) returnHash = '#02-prodotti';
-        else if (pathname.includes('/vino-e-caccia')) returnHash = '#02-prodotti';
+        else if (pathname.includes('/cucina-nomade')) returnHash = '#02-prodotti';
         else if (pathname.includes('/olio')) returnHash = '#02-prodotti';
         else if (pathname.includes('/ospitalita')) returnHash = '#03-ospitalita';
-        
+
         router.push(returnHash ? `/${returnHash}` : '/');
     };
 

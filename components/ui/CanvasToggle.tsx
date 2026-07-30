@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useAppStore } from '@/store/useAppStore';
+import { useTranslations } from 'next-intl';
 
 interface CanvasToggleProps {
     /** Se true usa cursor:pointer (mobile), altrimenti cursor:none (desktop con cursore custom) */
@@ -12,14 +13,15 @@ export default function CanvasToggle({ touchMode = false }: CanvasToggleProps) {
     const canvasEnabled = useAppStore((s) => s.canvasEnabled);
     const setCanvasEnabled = useAppStore((s) => s.setCanvasEnabled);
     const [hovered, setHovered] = useState(false);
+    const t = useTranslations('UI.canvasToggle');
 
     return (
         <button
             onClick={() => setCanvasEnabled(!canvasEnabled)}
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
-            aria-label={canvasEnabled ? 'Disattiva sfondo animato' : 'Attiva sfondo animato'}
-            title={canvasEnabled ? 'Disattiva cielo per alleggerire il sito' : 'Attiva sfondo cielo animato'}
+            aria-label={canvasEnabled ? t('disable') : t('enable')}
+            title={canvasEnabled ? t('titleDisable') : t('titleEnable')}
             style={{
                 background: 'transparent',
                 border: 'none',
@@ -51,7 +53,7 @@ export default function CanvasToggle({ touchMode = false }: CanvasToggleProps) {
                 transition: 'background 0.3s',
                 flexShrink: 0,
             }} />
-            {canvasEnabled ? 'Cielo ON' : 'Cielo OFF'}
+            {canvasEnabled ? t('on') : t('off')}
         </button>
     );
 }

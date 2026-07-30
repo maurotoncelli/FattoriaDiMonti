@@ -30,6 +30,16 @@ export default function OilBottleSheet() {
         ctaLabel: b.ctaLabel as string,
     }));
     const selectedBottle = bottles.find((b) => b.id === selectedBottleId) || bottles[0];
+    // Blocco "Approfondimento" data-driven dai messages
+    const details = tRaw.raw('Overlays.oilBottleSheet.details') as {
+        dividerLabel: string;
+        scrollHint: string;
+        territory: { eyebrow: string; title: string; text: string; rows: { label: string; value: string }[] };
+        method: { eyebrow: string; title: string; steps: { step: string; title: string; desc: string }[] };
+        pairings: { eyebrow: string; title: string; texts: Record<string, string>; items: Record<string, string[]> };
+        awards: { eyebrow: string; title: string; items: { year: string; award: string; detail: string }[] };
+        finalCta: { title: string; subtitle: string };
+    };
 
     // ── Close handler ──
     const handleClose = useCallback(() => {
@@ -396,7 +406,7 @@ export default function OilBottleSheet() {
                     animation: 'scrollBounce 2s ease-in-out infinite',
                 }}>
                     <span style={{ fontFamily: 'var(--font-inter)', fontSize: 9, letterSpacing: '0.28em', textTransform: 'uppercase' as const, color: 'rgba(180,184,134,0.5)' }}>
-                        Scorri per i dettagli
+                        {details.scrollHint}
                     </span>
                     <svg width="16" height="24" viewBox="0 0 16 24" fill="none" style={{ opacity: 0.4 }}>
                         <rect x="6.5" y="0" width="3" height="10" rx="1.5" fill="#B4B886" />
@@ -426,7 +436,7 @@ export default function OilBottleSheet() {
                 }}>
                     <div style={{ flex: 1, height: 1, background: 'linear-gradient(90deg, rgba(180,184,134,0.3), transparent)' }} />
                     <span style={{ fontFamily: 'var(--font-playfair)', fontSize: 13, fontStyle: 'italic', color: 'rgba(180,184,134,0.6)', whiteSpace: 'nowrap' as const }}>
-                        Approfondimento — {selectedBottle.name}
+                        {details.dividerLabel} — {selectedBottle.name}
                     </span>
                     <div style={{ flex: 1, height: 1, background: 'linear-gradient(90deg, transparent, rgba(180,184,134,0.3))' }} />
                 </div>
@@ -437,23 +447,17 @@ export default function OilBottleSheet() {
                     <section style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 40 }} className="md:grid-cols-2">
                         <div>
                             <span style={{ fontFamily: 'var(--font-inter)', fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: '#B4B886', display: 'block', marginBottom: 16 }}>
-                                Il Territorio
+                                {details.territory.eyebrow}
                             </span>
-                            <h3 style={{ fontFamily: 'var(--font-playfair)', fontSize: 'clamp(1.8rem, 2.5vw, 2.5rem)', fontStyle: 'italic', color: '#ECE8DF', lineHeight: 1.1, marginBottom: 20 }}>
-                                Radici nella<br />roccia calcarea.
+                            <h3 style={{ fontFamily: 'var(--font-playfair)', fontSize: 'clamp(1.8rem, 2.5vw, 2.5rem)', fontStyle: 'italic', color: '#ECE8DF', lineHeight: 1.1, marginBottom: 20, whiteSpace: 'pre-line' as const }}>
+                                {details.territory.title}
                             </h3>
                             <p style={{ fontFamily: 'var(--font-inter)', fontSize: 15, lineHeight: 1.85, color: 'rgba(236,232,223,0.65)', fontWeight: 300, maxWidth: '46ch' }}>
-                                Le nostre olive crescono su pendenze calcaree a 150 metri sul livello del mare, battute dalla brezza mediterranea. Un microclima che nessun agronomo può replicare: è il patrimonio geologico della Toscana più profonda.
+                                {details.territory.text}
                             </p>
                         </div>
                         <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 1 }}>
-                            {[
-                                { label: 'Terroir', value: 'Colline calcaree · Volterra' },
-                                { label: 'Altitudine', value: '150 m s.l.m.' },
-                                { label: 'Cultivar', value: 'Razzo, Leccino, Moraiolo' },
-                                { label: 'Età media piante', value: '30–80 anni' },
-                                { label: 'Raccolta', value: 'Manuale · Ottobre–Dicembre' },
-                            ].map((row) => (
+                            {details.territory.rows.map((row) => (
                                 <div key={row.label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '14px 0', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
                                     <span style={{ fontFamily: 'var(--font-inter)', fontSize: 10, textTransform: 'uppercase' as const, letterSpacing: '0.18em', color: 'rgba(180,184,134,0.6)' }}>{row.label}</span>
                                     <span style={{ fontFamily: 'var(--font-playfair)', fontSize: 15, fontStyle: 'italic', color: '#ECE8DF' }}>{row.value}</span>
@@ -468,18 +472,13 @@ export default function OilBottleSheet() {
                     {/* ── Blocco 2: Il Processo ── */}
                     <section>
                         <span style={{ fontFamily: 'var(--font-inter)', fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: '#B4B886', display: 'block', marginBottom: 16 }}>
-                            Il Metodo
+                            {details.method.eyebrow}
                         </span>
-                        <h3 style={{ fontFamily: 'var(--font-playfair)', fontSize: 'clamp(1.8rem, 2.5vw, 2.5rem)', fontStyle: 'italic', color: '#ECE8DF', lineHeight: 1.1, marginBottom: 40 }}>
-                            Dal frutto all'oro,<br />in poche ore.
+                        <h3 style={{ fontFamily: 'var(--font-playfair)', fontSize: 'clamp(1.8rem, 2.5vw, 2.5rem)', fontStyle: 'italic', color: '#ECE8DF', lineHeight: 1.1, marginBottom: 40, whiteSpace: 'pre-line' as const }}>
+                            {details.method.title}
                         </h3>
                         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 24 }}>
-                            {[
-                                { step: '01', title: 'Raccolta manuale', desc: 'Agevolatori pneumatici proteggono la drupa. Nessun contatto con il suolo.' },
-                                { step: '02', title: 'Frangitura entro 10 ore', desc: 'L\'oliva "respira" e consuma i polifenoli: l\'urgenza è tutto.' },
-                                { step: '03', title: 'Gramolatura a freddo', desc: 'Sotto i 27°C per 30 minuti: le molecole aromatiche restano intatte.' },
-                                { step: '04', title: 'Estrazione centrifuga', desc: '3500 giri/min separano l\'oro liquido dall\'acqua e dalla sansa.' },
-                            ].map((item) => (
+                            {details.method.steps.map((item) => (
                                 <div
                                     key={item.step}
                                     style={{
@@ -511,24 +510,17 @@ export default function OilBottleSheet() {
                     <section style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 40 }} className="md:grid-cols-2">
                         <div>
                             <span style={{ fontFamily: 'var(--font-inter)', fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: '#B4B886', display: 'block', marginBottom: 16 }}>
-                                Abbinamenti
+                                {details.pairings.eyebrow}
                             </span>
-                            <h3 style={{ fontFamily: 'var(--font-playfair)', fontSize: 'clamp(1.8rem, 2.5vw, 2.5rem)', fontStyle: 'italic', color: '#ECE8DF', lineHeight: 1.1, marginBottom: 20 }}>
-                                La cucina<br />come tela.
+                            <h3 style={{ fontFamily: 'var(--font-playfair)', fontSize: 'clamp(1.8rem, 2.5vw, 2.5rem)', fontStyle: 'italic', color: '#ECE8DF', lineHeight: 1.1, marginBottom: 20, whiteSpace: 'pre-line' as const }}>
+                                {details.pairings.title}
                             </h3>
                             <p style={{ fontFamily: 'var(--font-inter)', fontSize: 15, lineHeight: 1.85, color: 'rgba(236,232,223,0.65)', fontWeight: 300, maxWidth: '44ch' }}>
-                                {selectedBottle.id === 'classico' && 'Una fedeltà quotidiana: sul pane di Altamura ancora caldo, su carpacci di branzino, crudo su insalate di finocchio e arancia. La versatilità elevata a virtù.'}
-                                {selectedBottle.id === 'riserva' && 'Pensata per chi cerca intensità: su bistecche alla fiorentina rare, su zuppe di legumi rustiche, su formaggi a pasta dura stagionati. Da gustare anche in purezza.'}
-                                {selectedBottle.id === 'selezione' && 'Il gastronomico toscano nella sua forma più autentica: su ribollita, bruschette di pane sciocco, carni grigliate e zuppe di farro. Da condividere.'}
+                                {details.pairings.texts[selectedBottle.id]}
                             </p>
                         </div>
                         <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: 12, alignContent: 'flex-start' as const }}>
-                            {(selectedBottle.id === 'classico'
-                                ? ['Carpaccio di branzino', 'Pane toscano caldo', 'Insalate fresche', 'Ribollita leggera', 'Verdure al vapore', 'Formaggi freschi']
-                                : selectedBottle.id === 'riserva'
-                                ? ['Bistecca Fiorentina', 'Zuppa di lenticchie', 'Pecorino stagionato', 'Straccetti', 'Legumi rustici', 'Degustazione in purezza']
-                                : ['Ribollita', 'Bruschette', 'Farro e legumi', 'Carni grigliate', 'Panzanella', 'Cacciucco']
-                            ).map((pairing) => (
+                            {(details.pairings.items[selectedBottle.id] ?? []).map((pairing) => (
                                 <span
                                     key={pairing}
                                     style={{
@@ -554,17 +546,13 @@ export default function OilBottleSheet() {
                     {/* ── Blocco 4: Riconoscimenti ── */}
                     <section>
                         <span style={{ fontFamily: 'var(--font-inter)', fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: '#B4B886', display: 'block', marginBottom: 16 }}>
-                            Riconoscimenti
+                            {details.awards.eyebrow}
                         </span>
-                        <h3 style={{ fontFamily: 'var(--font-playfair)', fontSize: 'clamp(1.8rem, 2.5vw, 2.5rem)', fontStyle: 'italic', color: '#ECE8DF', lineHeight: 1.1, marginBottom: 40 }}>
-                            Certificato dai<br />migliori al mondo.
+                        <h3 style={{ fontFamily: 'var(--font-playfair)', fontSize: 'clamp(1.8rem, 2.5vw, 2.5rem)', fontStyle: 'italic', color: '#ECE8DF', lineHeight: 1.1, marginBottom: 40, whiteSpace: 'pre-line' as const }}>
+                            {details.awards.title}
                         </h3>
                         <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: 20 }}>
-                            {[
-                                { year: '2022', award: 'Flos Olei', detail: 'Top 100 Migliori Oli al Mondo' },
-                                { year: '2022', award: 'NYIOOC', detail: 'Medaglia d\'Oro · New York' },
-                                { year: '2022', award: 'Premio Grande Gusto', detail: '3 Stelle — Eccellenza Assoluta' },
-                            ].map((a) => (
+                            {details.awards.items.map((a) => (
                                 <div
                                     key={a.award}
                                     style={{
@@ -600,10 +588,10 @@ export default function OilBottleSheet() {
                         backdropFilter: 'blur(12px)',
                     }}>
                         <p style={{ fontFamily: 'var(--font-playfair)', fontSize: 'clamp(1.5rem, 2vw, 2rem)', fontStyle: 'italic', color: '#ECE8DF', marginBottom: 8, lineHeight: 1.3 }}>
-                            Porta l'anima di Monti sulla tua tavola.
+                            {details.finalCta.title}
                         </p>
                         <p style={{ fontFamily: 'var(--font-inter)', fontSize: 13, color: 'rgba(236,232,223,0.5)', marginBottom: 32, fontWeight: 300 }}>
-                            Disponibilità limitata per annata. Spedizione in tutta Italia.
+                            {details.finalCta.subtitle}
                         </p>
                         <button
                             onClick={handleOrder}

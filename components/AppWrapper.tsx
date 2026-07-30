@@ -146,6 +146,17 @@ export default function AppWrapper({ children }: { children: React.ReactNode }) 
         }
     }, [isHome, isPreloaderComplete, setPreloaderComplete]);
 
+    // Chiudi gli overlay legati al contenuto di pagina quando la route cambia
+    // (es. back del browser con lightbox/sheet aperti): senza questo reset i
+    // flag resterebbero true e il lock Lenis bloccherebbe lo scroll per sempre.
+    useEffect(() => {
+        const s = useAppStore.getState();
+        if (s.isLightboxOpen) s.setLightboxOpen(false);
+        if (s.isJerkySheetOpen) s.setJerkySheetOpen(false);
+        if (s.isOilSheetOpen) s.setOilSheetOpen(false);
+        if (s.isRoomSheetOpen) s.setRoomSheetOpen(false);
+    }, [pathname]);
+
     return (
         <>
             {/* Preloader — only on Home */}

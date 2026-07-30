@@ -17,6 +17,12 @@ export default function CanvasZ0() {
     const prefersReducedMotion = useReducedMotion();
 
     const showSky = pathname === '/' || pathname === '/storia';
+    // I placeholder data-webgl-media esistono solo sulla home
+    const showImageEngine = pathname === '/';
+    // Il Canvas resta montato su tutte le route: distruggere/ricreare il
+    // contesto WebGL a ogni navigazione causa stalli (compilazione shader,
+    // re-upload texture) e flash visivi durante le transizioni. A cambiare
+    // per route sono solo i contenuti renderizzati (sky, image engine).
     const shouldUseCanvas = canvasEnabled && performanceTier === 'high' && !prefersReducedMotion;
 
     // Canvas disattivato: sfondo CSS statico come fallback leggero
@@ -59,7 +65,7 @@ export default function CanvasZ0() {
                 <Suspense fallback={null}>
                     <ambientLight intensity={0.6} />
                     {showSky && <SkyNoiseShader />}
-                    <WebGLImageEngine />
+                    {showImageEngine && <WebGLImageEngine />}
                     <WinterMemoryParticles visible={easterEggTriggered} />
                 </Suspense>
             </Canvas>

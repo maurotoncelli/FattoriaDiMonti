@@ -1,8 +1,9 @@
 'use client';
 
-import { usePathname, Link } from '@/i18n/routing';
+import { usePathname } from '@/i18n/routing';
 import { useAppStore } from '@/store/useAppStore';
 import { useTranslations } from 'next-intl';
+import TransitionLink from '@/components/ui/TransitionLink';
 
 
 export default function InnerFooter() {
@@ -53,9 +54,9 @@ export default function InnerFooter() {
                                 {link.label}
                             </button>
                         ) : (
-                            <Link key={idx} href={link.href as any || '/'} className="text-left font-inter text-xs tracking-[0.2em] uppercase hover:text-[var(--olive)] transition-colors" style={{ color: cream }}>
+                            <TransitionLink key={idx} href={link.href || '/'} className="text-left font-inter text-xs tracking-[0.2em] uppercase hover:text-[var(--olive)] transition-colors" style={{ color: cream }}>
                                 {link.label}
-                            </Link>
+                            </TransitionLink>
                         )
                     ))}
                 </div>
@@ -64,7 +65,7 @@ export default function InnerFooter() {
                 <div className="flex flex-col md:text-right gap-4">
                     <div className="flex flex-col gap-1 font-inter text-[10px] tracking-[0.1em] uppercase" style={{ color: creamDim }}>
                         {(t.raw('legalLinks') as any[]).map((link, idx) => (
-                            <Link key={idx} href={link.href as any || '/'} className="hover:text-[var(--olive)] transition-colors" style={{ color: creamDim }}>{link.label}</Link>
+                            <TransitionLink key={idx} href={link.href || '/'} className="hover:text-[var(--olive)] transition-colors" style={{ color: creamDim }}>{link.label}</TransitionLink>
                         ))}
                     </div>
                     <div className="mt-8 font-inter text-[10px] tracking-[0.2em] uppercase">

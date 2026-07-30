@@ -13,6 +13,9 @@ if (typeof window !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
 }
 
+// Unica fonte per l'immagine della villa (variante WebGL desktop + DOM mobile)
+const VILLA_MEDIA_SRC = '/images/villa-buontalenti-storica.jpg';
+
 export function EasterEggTrigger({ children }: { children: React.ReactNode }) {
     const triggerEasterEgg = useAppStore((s) => s.triggerEasterEgg);
     const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -109,7 +112,7 @@ export default function HistoryTerroir() {
                 gap: '4vw',
                 background: 'transparent',
             }}
-            aria-label="Storia e Terroir"
+            aria-label={t('UI.sectionLabels.terroir')}
         >
             {/* Terroir Block — left */}
             <article className="order-1 lg:order-none" style={{ gridColumn: 1, gridRow: 1, paddingTop: '4vh' }}>
@@ -145,7 +148,7 @@ export default function HistoryTerroir() {
             <div
                 data-webgl-media="true"
                 data-effect-type="displacement"
-                data-texture-src="/images/villa-buontalenti.png"
+                data-texture-src={VILLA_MEDIA_SRC}
                 id="media-villa-displacement"
                 className="order-3 lg:order-none hidden lg:block"
                 style={{
@@ -182,7 +185,7 @@ export default function HistoryTerroir() {
                 }}
             >
                 <Image
-                    src="/images/villa-buontalenti.png"
+                    src={VILLA_MEDIA_SRC}
                     alt={t('Home.terroir.villaMedia.alt')}
                     fill
                     className="parallax-img-villa"

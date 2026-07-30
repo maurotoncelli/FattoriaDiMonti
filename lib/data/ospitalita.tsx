@@ -16,7 +16,7 @@ export const getOspitalitaData = (t: any): OspitalitaContent => ({
             }),
             introText: t('Ospitalita.sections.hero.introText'),
             images: {
-                background: { src: '/images/bg-ospitalita.jpg', alt: t('Ospitalita.sections.hero.label') },
+                background: { src: '/images/casa-rossa-panoramic.webp', alt: t('Ospitalita.sections.hero.label') },
             },
         },
         calore: {
@@ -33,7 +33,11 @@ export const getOspitalitaData = (t: any): OspitalitaContent => ({
                 }),
             ],
             images: {
-                primary: { src: '', alt: 'Texture Fuoco e Libreria', overlayText: 'Texture Fuoco e Libreria' },
+                primary: {
+                    src: '',
+                    alt: t('Ospitalita.sections.calore.images.primary.alt'),
+                    overlayText: t('Ospitalita.sections.calore.images.primary.overlayText'),
+                },
             },
         },
         galleria: {
@@ -46,15 +50,15 @@ export const getOspitalitaData = (t: any): OspitalitaContent => ({
             items: (t.raw('Ospitalita.sections.galleria.items') as { alt: string; overlayText: string }[]).map(
                 (item, i) => ({
                     src: [
-                        '/images/casa-rossa-interni.png',
-                        '/images/cucina-nomade.png',
-                        '/images/casa-rossa-panoramic.png',
-                        '/images/villa-buontalenti.png',
+                        '/images/casa-rossa-interni.webp',
+                        '/images/cucina-nomade.webp',
+                        '/images/casa-rossa-panoramic.webp',
+                        '/images/villa-buontalenti.webp',
                         '/images/cucina-nomade-hero.jpg',
                     ][i],
                     alt: item.alt,
                     overlayText: item.overlayText,
-                    aspect: ['3/2', '2/3', '3/2', '2/3', '3/2'][i],
+                    aspect: (['3/2', '2/3', '3/2', '2/3', '3/2'] as const)[i],
                 })
             ),
             indicator: {
@@ -70,26 +74,27 @@ export const getOspitalitaData = (t: any): OspitalitaContent => ({
             introText: t('Ospitalita.sections.stanze.introText'),
             rooms: (t.raw('Ospitalita.sections.stanze.rooms') as any[]).map((r: any, idx: number) => {
                 const baseColors = ['#F5F2EB', '#DDE2DB', '#EAD7D6', '#F3E2CF'];
+                const pl = t.raw('Ospitalita.sections.stanze.photoLabels') as Record<string, string>;
                 const photoSets = [
                     [
-                        { src: '/images/casa-rossa-interni.png', alt: `${r.name} — Letto` },
-                        { src: '/images/casa-rossa-panoramic.png', alt: `${r.name} — Vista` },
-                        { src: '/images/villa-buontalenti.png', alt: `${r.name} — Dettaglio` }
+                        { src: '/images/casa-rossa-interni.webp', alt: `${r.name} — ${pl.letto}` },
+                        { src: '/images/casa-rossa-panoramic.webp', alt: `${r.name} — ${pl.vista}` },
+                        { src: '/images/villa-buontalenti.webp', alt: `${r.name} — ${pl.dettaglio}` }
                     ],
                     [
-                        { src: '/images/campi-grano.png', alt: `${r.name} — Vista Colline` },
-                        { src: '/images/casa-rossa-panoramic.png', alt: `${r.name} — Panorama` },
-                        { src: '/images/villa-buontalenti.png', alt: `${r.name} — Esterno` }
+                        { src: '/images/campi-grano.webp', alt: `${r.name} — ${pl.colline}` },
+                        { src: '/images/casa-rossa-panoramic.webp', alt: `${r.name} — ${pl.panorama}` },
+                        { src: '/images/villa-buontalenti.webp', alt: `${r.name} — ${pl.esterno}` }
                     ],
                     [
-                        { src: '/images/casa-rossa-interni.png', alt: `${r.name} — Interni` },
-                        { src: '/images/cucina-nomade.png', alt: `${r.name} — Angolo` },
-                        { src: '/images/olio-extravergine.png', alt: `${r.name} — Dettaglio` }
+                        { src: '/images/casa-rossa-interni.webp', alt: `${r.name} — ${pl.interni}` },
+                        { src: '/images/cucina-nomade.webp', alt: `${r.name} — ${pl.angolo}` },
+                        { src: '/images/olio-extravergine.webp', alt: `${r.name} — ${pl.dettaglio}` }
                     ],
                     [
-                        { src: '/images/hero-drone.png', alt: `${r.name} — Vista Drone` },
-                        { src: '/images/casa-rossa-panoramic.png', alt: `${r.name} — Panorama` },
-                        { src: '/images/campi-grano.png', alt: `${r.name} — Paesaggio` }
+                        { src: '/images/hero-drone.webp', alt: `${r.name} — ${pl.drone}` },
+                        { src: '/images/casa-rossa-panoramic.webp', alt: `${r.name} — ${pl.panorama}` },
+                        { src: '/images/campi-grano.webp', alt: `${r.name} — ${pl.paesaggio}` }
                     ]
                 ];
                 return {

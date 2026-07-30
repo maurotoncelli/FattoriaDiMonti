@@ -36,16 +36,21 @@ export default function WinterMemoryParticles({ visible }: { visible: boolean })
             if ((window as any).__lenis) (window as any).__lenis.stop();
 
             // Auto-reset after 5s
-            const timer = setTimeout(() => {
+            const dissolveTimer = setTimeout(() => {
                 phaseRef.current = 'dissolve';
-                setTimeout(() => {
-                    phaseRef.current = 'idle';
-                    resetEasterEgg();
-                    if ((window as any).__lenis) (window as any).__lenis.start();
-                }, 1500);
             }, 5000);
+            const resetTimer = setTimeout(() => {
+                phaseRef.current = 'idle';
+                resetEasterEgg();
+                if ((window as any).__lenis) (window as any).__lenis.start();
+            }, 6500);
 
-            return () => clearTimeout(timer);
+            return () => {
+                clearTimeout(dissolveTimer);
+                clearTimeout(resetTimer);
+                // Garantiamo il ripristino dello scroll anche su unmount anticipato
+                if ((window as any).__lenis) (window as any).__lenis.start();
+            };
         }
     }, [visible, resetEasterEgg]);
 

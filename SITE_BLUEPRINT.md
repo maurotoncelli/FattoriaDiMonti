@@ -6,6 +6,8 @@ This is the authoritative working blueprint for the current website. Any AI agen
 
 If this file conflicts with older notes in `STRATEGY.md` or `documenti di riferimento/`, this file wins. Reference documents are useful for tone and source material, but this file describes the live product architecture.
 
+Current work priority / checklist: `PIANO_OPERATIVO.md`. That file tracks what is done and what to do next; it must not invent architecture that contradicts this blueprint.
+
 ---
 
 ## 1. Product Intent
@@ -330,12 +332,14 @@ Do not add rapidly changing values to Zustand.
 - Add or update layout metadata when adding a promoted route.
 - Keep `i18n/routing.ts` limited to locales that actually have message files.
 
-Current locales:
+Current locales (live):
 
 - `it`
 - `en`
 
-Do not add `fr`, `de`, `es` unless corresponding `messages/*.json`, metadata, sitemap, and routing behavior are complete.
+Planned future locales (not live yet): `zh` (Chinese), `ar` (Arabic, RTL), `ru` (Russian).
+
+Do not add any new locale to routing until corresponding `messages/*.json`, metadata, sitemap, and routing behavior are complete. All user-facing copy must stay data-driven (`messages` + `lib/data`) so new languages are translation work, not UI rewrites.
 
 ---
 

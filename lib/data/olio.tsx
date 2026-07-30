@@ -23,7 +23,7 @@ export const getOlioData = (t: any): OlioContent => ({
             }),
             introText: t('Olio.acts.act1.introText'),
             images: {
-                background: { src: '/images/olio-extravergine-16-9.png', alt: t('Olio.acts.act1.images.background.alt') },
+                background: { src: '/images/olio-extravergine-16-9.webp', alt: t('Olio.acts.act1.images.background.alt') },
             },
         },
         act2: {
@@ -35,7 +35,7 @@ export const getOlioData = (t: any): OlioContent => ({
             paragraphs: t.raw('Olio.acts.act2.paragraphs') as string[],
             images: {
                 primary: {
-                    src: '/images/campi-grano-16-9.png',
+                    src: '/images/campi-grano-16-9.webp',
                     alt: t('Olio.acts.act2.images.primary.alt'),
                     overlayText: t('Olio.acts.act2.images.primary.overlayText'),
                 },
@@ -59,13 +59,13 @@ export const getOlioData = (t: any): OlioContent => ({
             formatsTitle: t('Olio.acts.act4.formatsTitle'),
             formats: t.raw('Olio.acts.act4.formats') as { name: string; size: string; idealFor: string }[],
             images: {
-                primary: { src: '/images/olio-extravergine.png', alt: t('Olio.acts.act4.images.primary.alt') },
+                primary: { src: '/images/olio-extravergine.webp', alt: t('Olio.acts.act4.images.primary.alt') },
                 gallery: t.raw('Olio.acts.act4.images.gallery') as { src: string; alt: string }[],
             },
         },
         act5: {
             images: {
-                background: { src: '/images/campi-grano-16-9.png', alt: t('Olio.acts.act5.images.background.alt') },
+                background: { src: '/images/campi-grano-16-9.webp', alt: t('Olio.acts.act5.images.background.alt') },
             },
             awards: t.raw('Olio.acts.act5.awards') as { year: string; name: string }[],
             cta: {

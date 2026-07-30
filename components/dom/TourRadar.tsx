@@ -13,7 +13,8 @@ export default function TourRadar({ data }: { data: CucinaNomadeData['radar'] })
 
     useEffect(() => {
         if (!containerRef.current) return;
-        
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
         const ctx = gsap.context(() => {
             // Textual fades
             gsap.utils.toArray('.fade-up-text').forEach((el: any) => {
@@ -43,13 +44,13 @@ export default function TourRadar({ data }: { data: CucinaNomadeData['radar'] })
                 
                 {/* Left: Info */}
                 <div className="md:w-1/3 flex flex-col pt-4">
-                    <span className="font-inter text-[10px] tracking-[0.2em] text-[var(--argilla-ferrosa)] uppercase mb-6 fade-up-text opacity-0">
+                    <span className="font-inter text-[10px] tracking-[0.2em] text-[var(--argilla-ferrosa)] uppercase mb-6 fade-up-text">
                         ✦ {data.tagline}
                     </span>
-                    <h2 className="font-playfair italic text-5xl md:text-6xl text-[var(--muccoPisano)] mb-6 fade-up-text opacity-0">
+                    <h2 className="font-playfair italic text-5xl md:text-6xl text-[var(--muccoPisano)] mb-6 fade-up-text">
                         {data.title}
                     </h2>
-                    <p className="font-inter text-base text-[var(--muccoPisano)]/70 max-w-sm leading-relaxed mt-4 fade-up-text opacity-0">
+                    <p className="font-inter text-base text-[var(--muccoPisano)]/70 max-w-sm leading-relaxed mt-4 fade-up-text">
                         {data.description}
                     </p>
                 </div>

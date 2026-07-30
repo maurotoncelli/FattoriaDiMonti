@@ -15,7 +15,7 @@ export const getFilieraData = (t: any): FilieraContent => ({
             }),
             introText: t('LaFiliera.acts.act1.introText'),
             images: {
-                background: { src: '/images/campi-grano-16-9.png', alt: 'Campi e Colline della Fattoria' },
+                background: { src: '/images/campi-grano-16-9.webp', alt: t('LaFiliera.images.act1BackgroundAlt') },
             },
         },
         act2: {
@@ -44,12 +44,12 @@ export const getFilieraData = (t: any): FilieraContent => ({
                 emClass2: (chunks: React.ReactNode) => <em className="text-[var(--sabbia-limonitica, #C8B47A)]">{chunks}</em>,
             }),
             images: {
-                primary: { src: '/images/olio-extravergine-16-9.png', alt: 'Terroir della Fattoria' },
+                primary: { src: '/images/olio-extravergine-16-9.webp', alt: t('LaFiliera.images.act4PrimaryAlt') },
             },
         },
         act5: {
             images: {
-                background: { src: '/images/campi-grano-16-9.png', alt: 'Fattoria di Monti Estate' },
+                background: { src: '/images/campi-grano-16-9.webp', alt: t('LaFiliera.images.act5BackgroundAlt') },
             },
             cta: {
                 titleHtml: t.rich('LaFiliera.acts.act5.cta.titleHtml', {

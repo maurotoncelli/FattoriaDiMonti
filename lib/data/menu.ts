@@ -49,7 +49,7 @@ export const getMainMenuLinks = (t?: any): NavLink[] => {
             },
         },
         {
-            id: 'nav-mucco', index: '02', label: s('mucco.label', 'Carne di Mucco Pisano'), href: '/mucco-pisano', image: '/images/mucco-pisano.png',
+            id: 'nav-mucco', index: '02', label: s('mucco.label', 'Carne di Mucco Pisano'), href: '/mucco-pisano', image: '/images/mucco-pisano.webp',
             panelData: {
                 type: 'STATS',
                 title: s('mucco.panelTitle', 'Mucco Pisano'),
@@ -77,7 +77,7 @@ export const getMainMenuLinks = (t?: any): NavLink[] => {
         },
         // nav-vino temporaneamente nascosto
         {
-            id: 'nav-olio', index: '04', label: s('olio.label', 'Olio Extravergine'), href: '/olio', image: '/images/olio-extravergine.png',
+            id: 'nav-olio', index: '04', label: s('olio.label', 'Olio Extravergine'), href: '/olio', image: '/images/olio-extravergine.webp',
             panelData: {
                 type: 'STATS',
                 title: s('olio.panelTitle', 'Olio EVO Biologico'),
@@ -90,7 +90,7 @@ export const getMainMenuLinks = (t?: any): NavLink[] => {
             },
         },
         {
-            id: 'nav-accoglienza', index: '05', label: s('accoglienza.label', 'Accoglienza'), href: '/ospitalita', image: '/images/casa-rossa-interni.png',
+            id: 'nav-accoglienza', index: '05', label: s('accoglienza.label', 'Accoglienza'), href: '/ospitalita', image: '/images/casa-rossa-interni.webp',
             panelData: {
                 type: 'STORY',
                 title: s('accoglienza.panelTitle', 'La Casa Rossa'),
@@ -98,7 +98,7 @@ export const getMainMenuLinks = (t?: any): NavLink[] => {
             },
         },
         {
-            id: 'nav-contatti', index: '06', label: s('contatti.label', 'Contatti'), href: '/#04-footer', image: '/images/hero-drone.png',
+            id: 'nav-contatti', index: '06', label: s('contatti.label', 'Contatti'), href: '/#04-footer', image: '/images/hero-drone.webp',
             panelData: {
                 type: 'CONTACT',
                 title: s('contatti.panelTitle', 'Coordinate'),

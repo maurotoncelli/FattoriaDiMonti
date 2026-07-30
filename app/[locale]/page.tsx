@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
-import { BASE_URL } from '@/lib/site';
+import { BASE_URL, localeUrl, pageAlternates } from '@/lib/site';
 import Script from 'next/script';
 import HeroSection from '@/components/dom/HeroSection';
 import HistoryTerroir from '@/components/dom/HistoryTerroir';
@@ -13,15 +13,14 @@ export async function generateMetadata(
 ): Promise<Metadata> {
     const { locale } = await props.params;
     const t = await getTranslations({ locale, namespace: 'Metadata' });
-    const url = locale === 'it' ? BASE_URL : `${BASE_URL}/${locale}`;
     return {
         title: t('pages.home.title'),
         description: t('pages.home.description'),
-        alternates: { canonical: url },
+        alternates: pageAlternates(locale),
         openGraph: {
             title: t('pages.home.title'),
             description: t('pages.home.description'),
-            url,
+            url: localeUrl(locale),
         },
     };
 }
@@ -32,7 +31,7 @@ const LOCAL_BUSINESS_JSONLD = {
     name: 'Fattoria di Monti',
     alternateName: 'Fattoria di Monti — Ere della Terra',
     url: BASE_URL,
-    logo: `${BASE_URL}/images/logo.png`,
+    logo: `${BASE_URL}/og-image.jpg`,
     image: `${BASE_URL}/og-image.jpg`,
     description: 'Agriturismo di lusso a Volterra con olio extravergine biologico premiato, Mucco Pisano e ospitalità nella Villa del Buontalenti.',
     address: {

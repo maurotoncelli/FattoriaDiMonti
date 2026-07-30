@@ -9,6 +9,7 @@ import TransitionLink from '@/components/ui/TransitionLink';
 import { getProductsData } from '@/lib/data/products';
 import { useTranslations } from 'next-intl';
 import { useIsMobile } from '@/lib/hooks/useIsMobile';
+import { useReducedMotion } from '@/hooks/usePerformance';
 
 if (typeof window !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
@@ -266,8 +267,10 @@ export default function ProductsHorizontalWalk() {
     const t = useTranslations();
     const slides = getProductsData(t);
     const isMobile = useIsMobile(1024);
+    const prefersReducedMotion = useReducedMotion();
 
     useEffect(() => {
+        if (prefersReducedMotion) return;
         const container = containerRef.current;
         const track = trackRef.current;
 
@@ -358,9 +361,11 @@ export default function ProductsHorizontalWalk() {
         });
 
         return () => mm.revert();
-    }, [slides]);
+    }, [slides, prefersReducedMotion]);
 
-    if (isMobile) {
+    // Con reduced motion il pin orizzontale renderebbe i contenuti irraggiungibili:
+    // usiamo la variante verticale (mobile) che è completamente statica.
+    if (isMobile || prefersReducedMotion) {
         return (
             <section
                 id="02-prodotti"

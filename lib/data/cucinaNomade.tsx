@@ -199,24 +199,21 @@ export const cucinaNomadeData: CucinaNomadeData = {
                 date: "14—16 LUGLIO 2026",
                 location: "11 Lune",
                 description: "Anfiteatro del Fonte Mazzola, Peccioli. Accompagniamo il gusto alle notti di teatro e musica sotto le stelle.",
-                coordinates: "43° 32' 50\" N 10° 43' 12\" E",
-                image: "/images/event-peccioli.png" // Fallback placeholder
+                coordinates: "43° 32' 50\" N 10° 43' 12\" E"
             },
             {
                 id: "ev-2",
                 date: "28 AGOSTO 2026",
                 location: "Castelfalfi Golf Club",
                 description: "Edizione speciale cena sotto le stelle nel prestigioso resort di Castelfalfi. Evento su invito.",
-                coordinates: "43° 33' 35\" N 10° 52' 14\" E",
-                image: "/images/event-castelfalfi.png"
+                coordinates: "43° 33' 35\" N 10° 52' 14\" E"
             },
             {
                 id: "ev-3",
                 date: "12 SETTEMBRE 2026",
                 location: "Volterra AD 1398",
                 description: "Il nostro ritorno alle origini medievali. La Boutique si inserisce nel contesto storico del borgo.",
-                coordinates: "43° 24' 07\" N 10° 51' 35\" E",
-                image: "/images/event-volterra.png"
+                coordinates: "43° 24' 07\" N 10° 51' 35\" E"
             }
         ]
     },

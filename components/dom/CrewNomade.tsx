@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { CucinaNomadeData } from '@/lib/data/cucinaNomade';
@@ -12,6 +13,7 @@ export default function CrewNomade({ data }: { data: CucinaNomadeData['crew'] })
 
     useEffect(() => {
         if (!containerRef.current) return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
         const ctx = gsap.context(() => {
             // Testi
@@ -38,13 +40,13 @@ export default function CrewNomade({ data }: { data: CucinaNomadeData['crew'] })
             <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-24">
                 
                 <div className="flex flex-col items-center text-center mb-20">
-                    <span className="font-inter text-[10px] tracking-[0.2em] text-[var(--argilla-ferrosa)] uppercase mb-6 fade-up-text opacity-0">
+                    <span className="font-inter text-[10px] tracking-[0.2em] text-[var(--argilla-ferrosa)] uppercase mb-6 fade-up-text">
                         ✦ {data.tagline}
                     </span>
-                    <h2 className="font-playfair italic text-4xl md:text-6xl text-[var(--ecru)] mb-6 fade-up-text opacity-0">
+                    <h2 className="font-playfair italic text-4xl md:text-6xl text-[var(--ecru)] mb-6 fade-up-text">
                         {data.title}
                     </h2>
-                    <p className="font-inter text-base text-[var(--ecru)]/60 max-w-xl font-light fade-up-text opacity-0">
+                    <p className="font-inter text-base text-[var(--ecru)]/60 max-w-xl font-light fade-up-text">
                         {data.description}
                     </p>
                 </div>
@@ -53,21 +55,23 @@ export default function CrewNomade({ data }: { data: CucinaNomadeData['crew'] })
                     {data.members.map((member, idx) => (
                         <div key={member.id} className={`crew-member flex flex-col group cursor-none ${idx === 1 ? 'md:mt-32' : ''}`}>
                             <div className="w-full aspect-[3/4] relative overflow-hidden mb-6 bg-[var(--tufo)]/5">
-                                <img 
-                                    src={member.image} 
+                                <Image
+                                    src={member.image}
                                     alt={member.name}
-                                    className="absolute inset-0 w-full h-full object-cover grayscale transition-transform duration-1000 group-hover:scale-105 group-hover:grayscale-0 filter brightness-90"
+                                    fill
+                                    className="object-cover grayscale transition-transform duration-1000 group-hover:scale-105 group-hover:grayscale-0 filter brightness-90"
+                                    sizes="(max-width: 767px) 100vw, 33vw"
                                 />
                                 <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-700" />
                             </div>
                             
-                            <h3 className="font-playfair italic text-2xl text-[var(--tufo)] mb-1 fade-up-text opacity-0">
+                            <h3 className="font-playfair italic text-2xl text-[var(--tufo)] mb-1 fade-up-text">
                                 {member.name}
                             </h3>
-                            <div className="font-inter text-[10px] tracking-[0.15em] text-[var(--olive)] uppercase mb-4 pb-4 border-b border-[var(--ecru)]/10 fade-up-text opacity-0">
+                            <div className="font-inter text-[10px] tracking-[0.15em] text-[var(--olive)] uppercase mb-4 pb-4 border-b border-[var(--ecru)]/10 fade-up-text">
                                 {member.role}
                             </div>
-                            <p className="font-inter text-sm text-white/80 italic leading-relaxed fade-up-text opacity-0">
+                            <p className="font-inter text-sm text-white/80 italic leading-relaxed fade-up-text">
                                 "{member.quote}"
                             </p>
                         </div>

@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState, useCallback } from 'react';
+import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { CucinaNomadeData } from '@/lib/data/cucinaNomade';
@@ -87,8 +88,8 @@ function MasonryItem({ item }: { item: MenuItem }) {
     return (
         <div className="masonry-item flex flex-col w-full mb-16 md:mb-24 px-4 md:px-0">
             {item.type === 'image' && (
-                <div className="w-full aspect-[4/5] bg-[var(--muccoPisano)]/5 overflow-hidden filter brightness-90 hover:brightness-100 transition-all duration-700">
-                    <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+                <div className="relative w-full aspect-[4/5] bg-[var(--muccoPisano)]/5 overflow-hidden filter brightness-90 hover:brightness-100 transition-all duration-700">
+                    <Image src={item.image} alt={item.name} fill className="object-cover" sizes="(max-width: 767px) 100vw, 50vw" />
                 </div>
             )}
 
@@ -106,8 +107,8 @@ function MasonryItem({ item }: { item: MenuItem }) {
 
             {item.type === 'mixed' && (
                 <div className="flex flex-col gap-6">
-                    <div className="w-full aspect-[4/3] bg-[var(--muccoPisano)]/5 overflow-hidden filter brightness-90 hover:brightness-100 transition-all duration-700">
-                        <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+                    <div className="relative w-full aspect-[4/3] bg-[var(--muccoPisano)]/5 overflow-hidden filter brightness-90 hover:brightness-100 transition-all duration-700">
+                        <Image src={item.image} alt={item.name} fill className="object-cover" sizes="(max-width: 767px) 100vw, 50vw" />
                     </div>
                     <div className="flex flex-col gap-2">
                         <h3 className="font-playfair italic text-3xl md:text-4xl text-[var(--argilla-ferrosa)]">{item.name}</h3>
@@ -129,6 +130,7 @@ export default function MenuMansonry({ data }: { data: CucinaNomadeData['menuGal
 
     useEffect(() => {
         if (!containerRef.current) return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
         const ctx = gsap.context(() => {
             gsap.utils.toArray('.fade-up-text').forEach((el: any) => {
@@ -158,10 +160,10 @@ export default function MenuMansonry({ data }: { data: CucinaNomadeData['menuGal
             <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-24">
 
                 <div className="flex flex-col items-center text-center mb-16 md:mb-24">
-                    <span className="font-inter text-[10px] tracking-[0.2em] text-[var(--argilla-ferrosa)] uppercase mb-6 fade-up-text opacity-0">
+                    <span className="font-inter text-[10px] tracking-[0.2em] text-[var(--argilla-ferrosa)] uppercase mb-6 fade-up-text">
                         ✦ {data.tagline}
                     </span>
-                    <h2 className="font-playfair italic text-5xl md:text-7xl text-[var(--muccoPisano)] fade-up-text opacity-0">
+                    <h2 className="font-playfair italic text-5xl md:text-7xl text-[var(--muccoPisano)] fade-up-text">
                         {data.title}
                     </h2>
                 </div>

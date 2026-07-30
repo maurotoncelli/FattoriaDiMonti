@@ -12,7 +12,8 @@ export default function ManifestoNavigante({ data }: { data: CucinaNomadeData['m
 
     useEffect(() => {
         if (!containerRef.current) return;
-        
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
         const ctx = gsap.context(() => {
             gsap.utils.toArray('.fade-up-text').forEach((el: any) => {
                 gsap.fromTo(el, 
@@ -33,13 +34,13 @@ export default function ManifestoNavigante({ data }: { data: CucinaNomadeData['m
                 
                 {/* Left Col: Tagline & Stats */}
                 <div className="md:col-span-4 flex flex-col justify-between">
-                    <div className="font-inter text-[10px] tracking-[0.2em] text-[var(--argilla-ferrosa)] uppercase mb-12 fade-up-text opacity-0">
+                    <div className="font-inter text-[10px] tracking-[0.2em] text-[var(--argilla-ferrosa)] uppercase mb-12 fade-up-text">
                         ✦ {data.tagline}
                     </div>
 
                     <div className="flex flex-col gap-6 mt-12 md:mt-0">
                         {data.stats.map((stat, idx) => (
-                            <div key={idx} className="border-t border-[var(--muccoPisano)]/10 pt-4 flex flex-col gap-2 fade-up-text opacity-0">
+                            <div key={idx} className="border-t border-[var(--muccoPisano)]/10 pt-4 flex flex-col gap-2 fade-up-text">
                                 <span className="font-inter text-[9px] tracking-[0.15em] text-[var(--olive)] uppercase">
                                     {stat.label}
                                 </span>
@@ -53,13 +54,13 @@ export default function ManifestoNavigante({ data }: { data: CucinaNomadeData['m
 
                 {/* Right Col: Title & Text */}
                 <div className="md:col-span-7 md:col-start-6 flex flex-col gap-12">
-                    <h2 className="font-playfair italic text-5xl md:text-7xl lg:text-8xl text-[var(--muccoPisano)] leading-[0.95] tracking-tight fade-up-text opacity-0">
+                    <h2 className="font-playfair italic text-5xl md:text-7xl lg:text-8xl text-[var(--muccoPisano)] leading-[0.95] tracking-tight fade-up-text">
                         {data.title}
                     </h2>
                     
                     <div className="flex flex-col gap-8 max-w-2xl font-inter text-base md:text-lg text-[var(--muccoPisano)]/70 leading-relaxed font-light">
                         {data.paragraphs.map((p, idx) => (
-                            <p key={idx} className="fade-up-text opacity-0">{p}</p>
+                            <p key={idx} className="fade-up-text">{p}</p>
                         ))}
                     </div>
                 </div>
