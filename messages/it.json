@@ -316,10 +316,10 @@
   "Olio": {
     "bottles": [
       {
-        "id": "classico",
-        "name": "Monti Classico",
-        "subtitle": "Etichetta Verde",
-        "description": "Il profilo più fedele della fattoria: verde brillante, fruttato netto, carciofo e mandorla fresca. Versatile, elegante, quotidiano solo nel gesto.",
+        "id": "monti",
+        "name": "Monti",
+        "subtitle": "Blend della tenuta",
+        "description": "Il profilo più fedele della fattoria: verde brillante, fruttato netto, carciofo e mandorla fresca. Biologico denocciolato, versatile ed elegante — quotidiano solo nel gesto.",
         "tastingNotes": [
           "Carciofo",
           "Mandorla",
@@ -332,29 +332,29 @@
           },
           {
             "label": "Cultivar",
-            "value": "Razzo, Leccino, Moraiolo"
+            "value": "Blend di tenuta"
           },
           {
-            "label": "Raccolta",
-            "value": "Ottobre · invaiatura"
+            "label": "Profilo",
+            "value": "Biologico denocciolato"
           },
           {
             "label": "Uso ideale",
             "value": "Crudo, verdure, pane caldo"
           }
         ],
-        "labelColor": "#75806F",
-        "glowColor": "rgba(178, 176, 152, 0.4)",
+        "labelColor": "#A67C52",
+        "glowColor": "rgba(166, 124, 82, 0.42)",
         "image": {
-          "src": "",
-          "alt": "Bottiglia Monti Classico con etichetta verde"
+          "src": "/images/olio/monti-bottiglia.webp",
+          "alt": "Bottiglia Olio Extravergine Monti biologico denocciolato"
         }
       },
       {
-        "id": "riserva",
-        "name": "Monti Riserva",
-        "subtitle": "Etichetta Oro",
-        "description": "La selezione più intensa: raccolta scelta, amaro fine, trama minerale e persistenza lunga. Pensata per chi cerca un extravergine da degustazione.",
+        "id": "moraiolo",
+        "name": "Moraiolo",
+        "subtitle": "Monocultivar",
+        "description": "La selezione più intensa: monocultivar Moraiolo, amaro fine, trama minerale e persistenza lunga. Pensata per chi cerca un extravergine da degustazione.",
         "tastingNotes": [
           "Polifenoli",
           "Erbe amare",
@@ -366,30 +366,30 @@
             "value": "500 ml"
           },
           {
-            "label": "Profilo",
-            "value": "Intenso · degustazione"
+            "label": "Cultivar",
+            "value": "Moraiolo 100%"
           },
           {
-            "label": "Estrazione",
-            "value": "A freddo entro poche ore"
+            "label": "Profilo",
+            "value": "Intenso · degustazione"
           },
           {
             "label": "Uso ideale",
             "value": "Carni, legumi, formaggi"
           }
         ],
-        "labelColor": "#C9AC85",
-        "glowColor": "rgba(201, 172, 133, 0.45)",
+        "labelColor": "#3D5A80",
+        "glowColor": "rgba(61, 90, 128, 0.42)",
         "image": {
-          "src": "",
-          "alt": "Bottiglia Monti Riserva con etichetta oro"
+          "src": "/images/olio/moraiolo-bottiglia.webp",
+          "alt": "Bottiglia Olio Extravergine Monocultivar Moraiolo"
         }
       },
       {
-        "id": "selezione",
-        "name": "Monti Selezione",
-        "subtitle": "Etichetta Rame",
-        "description": "Un taglio più materico e gastronomico, ideale su carni, zuppe di legumi e pane caldo. La Toscana più profonda, in una bottiglia da condividere.",
+        "id": "razzo",
+        "name": "Razzo",
+        "subtitle": "Monocultivar",
+        "description": "Un monocultivar più materico e gastronomico, ideale su carni, zuppe di legumi e pane caldo. La Toscana più profonda, in una bottiglia da condividere.",
         "tastingNotes": [
           "Oliva verde",
           "Nocciola",
@@ -401,23 +401,23 @@
             "value": "500 ml"
           },
           {
-            "label": "Profilo",
-            "value": "Gastronomico · rotondo"
+            "label": "Cultivar",
+            "value": "Razzo 100%"
           },
           {
-            "label": "Finale",
-            "value": "Pepato e persistente"
+            "label": "Profilo",
+            "value": "Gastronomico · rotondo"
           },
           {
             "label": "Uso ideale",
             "value": "Zuppe, griglia, bruschette"
           }
         ],
-        "labelColor": "#A5705B",
-        "glowColor": "rgba(165, 112, 91, 0.42)",
+        "labelColor": "#75806F",
+        "glowColor": "rgba(117, 128, 111, 0.42)",
         "image": {
-          "src": "",
-          "alt": "Bottiglia Monti Selezione con etichetta rame"
+          "src": "/images/olio/razzo-bottiglia.webp",
+          "alt": "Bottiglia Olio Extravergine Monocultivar Razzo"
         }
       }
     ],
@@ -1138,12 +1138,12 @@
           "eyebrow": "Abbinamenti",
           "title": "La cucina\ncome tela.",
           "texts": {
-            "classico": "Una fedeltà quotidiana: sul pane di Altamura ancora caldo, su carpacci di branzino, crudo su insalate di finocchio e arancia. La versatilità elevata a virtù.",
-            "riserva": "Pensata per chi cerca intensità: su bistecche alla fiorentina rare, su zuppe di legumi rustiche, su formaggi a pasta dura stagionati. Da gustare anche in purezza.",
-            "selezione": "Il gastronomico toscano nella sua forma più autentica: su ribollita, bruschette di pane sciocco, carni grigliate e zuppe di farro. Da condividere."
+            "monti": "Una fedeltà quotidiana: sul pane di Altamura ancora caldo, su carpacci di branzino, crudo su insalate di finocchio e arancia. La versatilità elevata a virtù.",
+            "moraiolo": "Pensata per chi cerca intensità: su bistecche alla fiorentina rare, su zuppe di legumi rustiche, su formaggi a pasta dura stagionati. Da gustare anche in purezza.",
+            "razzo": "Il gastronomico toscano nella sua forma più autentica: su ribollita, bruschette di pane sciocco, carni grigliate e zuppe di farro. Da condividere."
           },
           "items": {
-            "classico": [
+            "monti": [
               "Carpaccio di branzino",
               "Pane toscano caldo",
               "Insalate fresche",
@@ -1151,7 +1151,7 @@
               "Verdure al vapore",
               "Formaggi freschi"
             ],
-            "riserva": [
+            "moraiolo": [
               "Bistecca Fiorentina",
               "Zuppa di lenticchie",
               "Pecorino stagionato",
@@ -1159,7 +1159,7 @@
               "Legumi rustici",
               "Degustazione in purezza"
             ],
-            "selezione": [
+            "razzo": [
               "Ribollita",
               "Bruschette",
               "Farro e legumi",

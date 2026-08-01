@@ -26,7 +26,7 @@ Working checklist for the next product/engineering steps.
 | Casa Rossa — struttura contenuti | Casa unica: piani + piantine SVG + comodità | Done Jul 2026 (piantine placeholder, contenuti da validare con Lorenzo) |
 | Casa Rossa — commodities list | Prima lista in messages `Ospitalita.sections.casa.amenities`; rifinire con Lorenzo | Draft |
 | Casa Rossa booking quiz | Concierge con date reali | Open — con Lorenzo |
-| Lead destination | Google Form / Sheet / altro per CTA info (`/api/contact` pronto con `topic`) | TBD Mauro |
+| Lead destination | Google Form / Sheet per CTA info (`/api/contact` + `topic`); stesso form da navbar «Richiedi informazioni» (tendina: soggiorno / cucina / olio / mucco) e da CTA interni (es. Casa Rossa) | Open — vedi `HANDOFF.md` §1b; Google Form TBD Lorenzo/Mauro |
 | Domain / launch polish | Custom domain, www redirect, final assets | Open |
 | Raffinamento visivo | Palette meno aggressiva, stile piana; menu a sfondo chiaro | Done prima passata Jul 2026 |
 | Rimozione WebGL | three.js/R3F ritirati; immagini DOM native + backdrop CSS statico | Done Jul 2026 (uncommitted) |

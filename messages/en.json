@@ -316,10 +316,10 @@
   "Olio": {
     "bottles": [
       {
-        "id": "classico",
-        "name": "Monti Classico",
-        "subtitle": "Green Label",
-        "description": "The farm's purest profile: bright green, clean fruit, artichoke and fresh almond. Versatile, elegant, everyday only in gesture.",
+        "id": "monti",
+        "name": "Monti",
+        "subtitle": "Estate blend",
+        "description": "The farm's purest profile: bright green, clean fruit, artichoke and fresh almond. Organic destoned oil — versatile, elegant, everyday only in gesture.",
         "tastingNotes": [
           "Artichoke",
           "Almond",
@@ -331,30 +331,30 @@
             "value": "500 ml"
           },
           {
-            "label": "Cultivars",
-            "value": "Razzo, Leccino, Moraiolo"
+            "label": "Cultivar",
+            "value": "Estate blend"
           },
           {
-            "label": "Harvest",
-            "value": "October · veraison"
+            "label": "Profile",
+            "value": "Organic destoned"
           },
           {
             "label": "Best on",
             "value": "Raw dishes, greens, warm bread"
           }
         ],
-        "labelColor": "#75806F",
-        "glowColor": "rgba(178, 176, 152, 0.4)",
+        "labelColor": "#A67C52",
+        "glowColor": "rgba(166, 124, 82, 0.42)",
         "image": {
-          "src": "",
-          "alt": "Monti Classico bottle with green label"
+          "src": "/images/olio/monti-bottiglia.webp",
+          "alt": "Monti organic destoned extra virgin olive oil bottle"
         }
       },
       {
-        "id": "riserva",
-        "name": "Monti Riserva",
-        "subtitle": "Gold Label",
-        "description": "The most intense selection: chosen harvest, fine bitterness, mineral texture and long persistence. Made for extra virgin olive oil tasting.",
+        "id": "moraiolo",
+        "name": "Moraiolo",
+        "subtitle": "Monocultivar",
+        "description": "The most intense selection: monocultivar Moraiolo, fine bitterness, mineral texture and long persistence. Made for extra virgin olive oil tasting.",
         "tastingNotes": [
           "Polyphenols",
           "Bitter herbs",
@@ -366,30 +366,30 @@
             "value": "500 ml"
           },
           {
-            "label": "Profile",
-            "value": "Intense · tasting"
+            "label": "Cultivar",
+            "value": "Moraiolo 100%"
           },
           {
-            "label": "Extraction",
-            "value": "Cold-pressed within hours"
+            "label": "Profile",
+            "value": "Intense · tasting"
           },
           {
             "label": "Best on",
             "value": "Meat, legumes, cheese"
           }
         ],
-        "labelColor": "#C9AC85",
-        "glowColor": "rgba(201, 172, 133, 0.45)",
+        "labelColor": "#3D5A80",
+        "glowColor": "rgba(61, 90, 128, 0.42)",
         "image": {
-          "src": "",
-          "alt": "Monti Riserva bottle with gold label"
+          "src": "/images/olio/moraiolo-bottiglia.webp",
+          "alt": "Monocultivar Moraiolo extra virgin olive oil bottle"
         }
       },
       {
-        "id": "selezione",
-        "name": "Monti Selezione",
-        "subtitle": "Copper Label",
-        "description": "A more material and gastronomic cut, ideal on meat, legume soups and warm bread. The deepest Tuscany, bottled to be shared.",
+        "id": "razzo",
+        "name": "Razzo",
+        "subtitle": "Monocultivar",
+        "description": "A more material and gastronomic monocultivar, ideal on meat, legume soups and warm bread. The deepest Tuscany, bottled to be shared.",
         "tastingNotes": [
           "Green olive",
           "Hazelnut",
@@ -401,23 +401,23 @@
             "value": "500 ml"
           },
           {
-            "label": "Profile",
-            "value": "Gastronomic · round"
+            "label": "Cultivar",
+            "value": "Razzo 100%"
           },
           {
-            "label": "Finish",
-            "value": "Peppery and persistent"
+            "label": "Profile",
+            "value": "Gastronomic · round"
           },
           {
             "label": "Best on",
             "value": "Soups, grill, bruschetta"
           }
         ],
-        "labelColor": "#A5705B",
-        "glowColor": "rgba(165, 112, 91, 0.42)",
+        "labelColor": "#75806F",
+        "glowColor": "rgba(117, 128, 111, 0.42)",
         "image": {
-          "src": "",
-          "alt": "Monti Selezione bottle with copper label"
+          "src": "/images/olio/razzo-bottiglia.webp",
+          "alt": "Monocultivar Razzo extra virgin olive oil bottle"
         }
       }
     ],
@@ -1138,12 +1138,12 @@
           "eyebrow": "Pairings",
           "title": "The kitchen\nas a canvas.",
           "texts": {
-            "classico": "An everyday companion: on still-warm Altamura bread, over sea bass carpaccio, raw on fennel and orange salads. Versatility elevated to a virtue.",
-            "riserva": "Made for those who seek intensity: on rare bistecca alla fiorentina, rustic legume soups, aged hard cheeses. Also to be enjoyed on its own.",
-            "selezione": "Tuscan gastronomy in its most authentic form: on ribollita, bruschetta of unsalted bread, grilled meats and spelt soups. Made for sharing."
+            "monti": "An everyday companion: on still-warm Altamura bread, over sea bass carpaccio, raw on fennel and orange salads. Versatility elevated to a virtue.",
+            "moraiolo": "Made for those who seek intensity: on rare bistecca alla fiorentina, rustic legume soups, aged hard cheeses. Also to be enjoyed on its own.",
+            "razzo": "Tuscan gastronomy in its most authentic form: on ribollita, bruschetta of unsalted bread, grilled meats and spelt soups. Made for sharing."
           },
           "items": {
-            "classico": [
+            "monti": [
               "Sea bass carpaccio",
               "Warm Tuscan bread",
               "Fresh salads",
@@ -1151,7 +1151,7 @@
               "Steamed vegetables",
               "Fresh cheeses"
             ],
-            "riserva": [
+            "moraiolo": [
               "Bistecca Fiorentina",
               "Lentil soup",
               "Aged pecorino",
@@ -1159,7 +1159,7 @@
               "Rustic legumes",
               "Tasting on its own"
             ],
-            "selezione": [
+            "razzo": [
               "Ribollita",
               "Bruschetta",
               "Spelt and legumes",

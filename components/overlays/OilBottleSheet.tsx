@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useCallback } from 'react';
+import Image from 'next/image';
 import gsap from 'gsap';
 import { useAppStore } from '@/store/useAppStore';
 import { useTranslations } from 'next-intl';
@@ -27,6 +28,8 @@ export default function OilBottleSheet() {
         specs: b.specs as { label: string; value: string }[],
         labelColor: b.labelColor as string,
         glowColor: b.glowColor as string,
+        imageSrc: (b.image?.src as string) || '',
+        imageAlt: (b.image?.alt as string) || (b.name as string),
     }));
     const selectedBottle = bottles.find((b) => b.id === selectedBottleId) || bottles[0];
     // Blocco "Approfondimento" data-driven dai messages
@@ -102,14 +105,23 @@ export default function OilBottleSheet() {
     // Tasting notes icons map
     const noteIcons: Record<string, string> = {
         'Carciofo': '🌿',
+        'Artichoke': '🌿',
         'Mandorla': '🤍',
+        'Almond': '🤍',
         'Finale pepato': '🌶',
+        'Peppery finish': '🌶',
         'Polifenoli': '⚗️',
+        'Polyphenols': '⚗️',
         'Erbe amare': '🌱',
+        'Bitter herbs': '🌱',
         'Persistenza': '✦',
+        'Persistence': '✦',
         'Oliva verde': '🫒',
+        'Green olive': '🫒',
         'Nocciola': '🤎',
+        'Hazelnut': '🤎',
         'Spezie dolci': '🍂',
+        'Sweet spice': '🍂',
     };
 
     return (
@@ -266,33 +278,42 @@ export default function OilBottleSheet() {
                             pointerEvents: 'none',
                         }} />
 
-                        {/* CSS Bottle */}
-                        <div style={{ position: 'relative', height: 440, width: 176 }}>
-                            {/* Shadow */}
+                        {/* Bottle visual — foto reale se disponibile, altrimenti CSS fallback */}
+                        <div style={{ position: 'relative', height: 440, width: selectedBottle.imageSrc ? 260 : 176 }}>
                             <div style={{ position: 'absolute', bottom: 0, left: '50%', transform: 'translateX(-50%)', height: 24, width: 220, borderRadius: '50%', background: 'rgba(0,0,0,0.6)', filter: 'blur(18px)' }} />
-                            {/* Neck cap */}
-                            <div style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', height: 96, width: 56, borderRadius: '1rem 1rem 0 0', background: '#15130f', boxShadow: '0 0 0 1px rgba(255,255,255,0.10)' }} />
-                            {/* Neck shoulder */}
-                            <div style={{ position: 'absolute', top: 80, left: '50%', transform: 'translateX(-50%)', height: 48, width: 96, borderRadius: '5rem 5rem 0 0', background: '#1d1a13', boxShadow: '0 0 0 1px rgba(255,255,255,0.10)' }} />
-                            {/* Body */}
-                            <div style={{ position: 'absolute', inset: '0 0 0 0', top: 'auto', bottom: 0, height: 340, borderRadius: '3rem 3rem 1.3rem 1.3rem', background: 'linear-gradient(135deg, #16130d, #2b2618, #090806)', boxShadow: '0 0 0 1px rgba(255,255,255,0.10)' }} />
-                            {/* Highlight */}
-                            <div style={{ position: 'absolute', top: 148, left: 28, height: 210, width: 20, borderRadius: '50%', background: 'rgba(255,255,255,0.20)', filter: 'blur(2px)' }} />
-                            {/* Label */}
-                            <div style={{
-                                position: 'absolute', top: 156, left: '50%', transform: 'translateX(-50%)',
-                                height: 160, width: 162,
-                                borderRadius: '1.35rem',
-                                background: selectedBottle.labelColor,
-                                border: '1px solid rgba(255,255,255,0.22)',
-                                boxShadow: `0 0 50px ${selectedBottle.glowColor}`,
-                                display: 'flex', flexDirection: 'column' as const, alignItems: 'center', justifyContent: 'center',
-                                transition: 'background 0.6s, box-shadow 0.6s',
-                                backdropFilter: 'blur(4px)',
-                            }}>
-                                <span style={{ fontFamily: 'var(--font-playfair)', fontSize: 34, fontStyle: 'italic', lineHeight: 1, color: '#F3EFE7' }}>Monti</span>
-                                <span style={{ fontFamily: 'var(--font-inter)', fontSize: 8, textTransform: 'uppercase' as const, letterSpacing: '0.24em', color: 'rgba(243,239,231,0.90)', marginTop: 12 }}>{selectedBottle.subtitle}</span>
-                            </div>
+                            {selectedBottle.imageSrc ? (
+                                <div style={{ position: 'relative', height: 420, width: '100%' }}>
+                                    <Image
+                                        src={selectedBottle.imageSrc}
+                                        alt={selectedBottle.imageAlt}
+                                        fill
+                                        className="object-contain object-bottom drop-shadow-[0_25px_45px_rgba(0,0,0,0.55)]"
+                                        sizes="(max-width: 1024px) 60vw, 280px"
+                                        priority
+                                    />
+                                </div>
+                            ) : (
+                                <>
+                                    <div style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', height: 96, width: 56, borderRadius: '1rem 1rem 0 0', background: '#15130f', boxShadow: '0 0 0 1px rgba(255,255,255,0.10)' }} />
+                                    <div style={{ position: 'absolute', top: 80, left: '50%', transform: 'translateX(-50%)', height: 48, width: 96, borderRadius: '5rem 5rem 0 0', background: '#1d1a13', boxShadow: '0 0 0 1px rgba(255,255,255,0.10)' }} />
+                                    <div style={{ position: 'absolute', inset: '0 0 0 0', top: 'auto', bottom: 0, height: 340, borderRadius: '3rem 3rem 1.3rem 1.3rem', background: 'linear-gradient(135deg, #16130d, #2b2618, #090806)', boxShadow: '0 0 0 1px rgba(255,255,255,0.10)' }} />
+                                    <div style={{ position: 'absolute', top: 148, left: 28, height: 210, width: 20, borderRadius: '50%', background: 'rgba(255,255,255,0.20)', filter: 'blur(2px)' }} />
+                                    <div style={{
+                                        position: 'absolute', top: 156, left: '50%', transform: 'translateX(-50%)',
+                                        height: 160, width: 162,
+                                        borderRadius: '1.35rem',
+                                        background: selectedBottle.labelColor,
+                                        border: '1px solid rgba(255,255,255,0.22)',
+                                        boxShadow: `0 0 50px ${selectedBottle.glowColor}`,
+                                        display: 'flex', flexDirection: 'column' as const, alignItems: 'center', justifyContent: 'center',
+                                        transition: 'background 0.6s, box-shadow 0.6s',
+                                        backdropFilter: 'blur(4px)',
+                                    }}>
+                                        <span style={{ fontFamily: 'var(--font-playfair)', fontSize: 34, fontStyle: 'italic', lineHeight: 1, color: '#F3EFE7' }}>{selectedBottle.name}</span>
+                                        <span style={{ fontFamily: 'var(--font-inter)', fontSize: 8, textTransform: 'uppercase' as const, letterSpacing: '0.24em', color: 'rgba(243,239,231,0.90)', marginTop: 12 }}>{selectedBottle.subtitle}</span>
+                                    </div>
+                                </>
+                            )}
                         </div>
                     </div>
 

@@ -65,14 +65,18 @@ Se si rimuove: togliere `cursor: none` da `html` in `globals.css`, l'override to
   `public/images/casa-rossa/` e path legacy aggiornati. Rapporti mobile
   rivisti (hero `100dvh` + cover 16:9, terroir 5/6 desktop e 4/5 mobile,
   galleria ospitalità portrait/landscape).
-- **Bottiglie olio**: in attesa di editing Photoshop. Quando pronte, riempire
-  `Olio.bottles[n].image.src` nei messages (entrambe le lingue); src vuoto = fallback
-  CSS (vedi blueprint §6 Olio).
+- **Bottiglie olio** — ✅ FATTO (Aug 1, 2026): tre scontornate Monti / Moraiolo /
+  Razzo in `public/images/olio/*-bottiglia.webp` (sRGB, alpha, h≈1800). Nomi
+  prodotto allineati nei messages; packaging in
+  `public/images/olio/packaging-archivio/` per uso futuro.
+- **Foto Mucco home** — ✅ FATTO (Aug 1, 2026): evocativa mucche pisane in
+  `mucco-pisano-16-9.webp` (+ `mucco-pisano.webp` per menu/pagina).
 - **Mockup carne** (carne secca / jerky): sostituire le foto card su `/mucco-pisano`.
 - **Titolini eleganti**: rifinire i label/eyebrow delle sezioni; valutare qualche
   titolino **oro** per arricchire (introdurre un token tipo `--oro` in `globals.css`
   e Tailwind config, tono smorzato coerente con la palette quiet-luxury — non oro squillante).
-- **Altre foto ancora da sostituire**: Mucco, olio, cucina nomade, panini, crew.
+- **Altre foto ancora da sostituire**: cucina nomade, panini, crew; eventuale
+  refresh foto olio di contesto (oliveto / frantoio) oltre alle bottiglie.
 - **Video hero — grade colore** — ✅ FATTO (Aug 1, 2026): Mauro ha
   ri-esportato `minivideo_hero.mp4` con verde meno acido; ricompresso in
   `public/videos/hero.mp4` + poster aggiornato.
