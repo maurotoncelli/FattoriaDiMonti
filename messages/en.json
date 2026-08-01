@@ -591,8 +591,8 @@
         ],
         "images": {
           "primary": {
-            "alt": "Fire and library texture",
-            "overlayText": "Fire and library texture"
+            "alt": "Fireplace and library at Casa Rossa",
+            "overlayText": "The fireplace"
           }
         }
       },
@@ -619,6 +619,50 @@
           {
             "alt": "Reading room",
             "overlayText": "The reading corner"
+          },
+          {
+            "alt": "Fireplace and living room",
+            "overlayText": "The fireplace"
+          },
+          {
+            "alt": "Upstairs bedroom",
+            "overlayText": "A bedroom"
+          },
+          {
+            "alt": "Facade and olive trees",
+            "overlayText": "The grounds"
+          },
+          {
+            "alt": "Second bedroom",
+            "overlayText": "Bedroom two"
+          },
+          {
+            "alt": "Pool, vertical view",
+            "overlayText": "The pool"
+          },
+          {
+            "alt": "Roof terrace",
+            "overlayText": "The terrace"
+          },
+          {
+            "alt": "Third bedroom",
+            "overlayText": "Bedroom three"
+          },
+          {
+            "alt": "Bathroom",
+            "overlayText": "The bathroom"
+          },
+          {
+            "alt": "Indoor staircase",
+            "overlayText": "The stairs"
+          },
+          {
+            "alt": "Fourth bedroom",
+            "overlayText": "Bedroom four"
+          },
+          {
+            "alt": "Casa Rossa from above",
+            "overlayText": "From above"
           }
         ],
         "indicator": {
@@ -671,6 +715,15 @@
           },
           {
             "alt": "Casa Rossa from above"
+          },
+          {
+            "alt": "The living room with large windows"
+          },
+          {
+            "alt": "The private pool"
+          },
+          {
+            "alt": "The roof terrace"
           }
         ],
         "amenities": {

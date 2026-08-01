@@ -164,15 +164,6 @@ export default function HeroSection() {
                         <source src={HERO_VIDEO_SRC} type="video/mp4" />
                     </video>
                 )}
-                {/* Velo leggero solo per leggibilità del titolo: prima era un navy
-                    al 25–55% che spegneva i colori del video rispetto all'originale. */}
-                <div
-                    style={{
-                        position: 'absolute',
-                        inset: 0,
-                        background: 'linear-gradient(to bottom, rgba(43,36,32,0.28) 0%, rgba(43,36,32,0.08) 40%, rgba(43,36,32,0.32) 100%)',
-                    }}
-                />
             </div>
             {/* Main title */}
             <h1
@@ -186,6 +177,7 @@ export default function HeroSection() {
                     textAlign: 'center',
                     overflow: 'hidden',
                     willChange: 'transform',
+                    textShadow: '0 2px 28px rgba(20,16,14,0.55), 0 1px 8px rgba(20,16,14,0.35)',
                 }}
             >
                 {titleWords.map((word, i) => (
@@ -212,6 +204,7 @@ export default function HeroSection() {
                     color: '#F3EFE7',
                     marginTop: '3rem',
                     opacity: 0,
+                    textShadow: '0 1px 14px rgba(20,16,14,0.55)',
                 }}
             >
                 {t('Home.hero.subtitle')}
@@ -232,7 +225,7 @@ export default function HeroSection() {
                     opacity: 0,
                 }}
             >
-                <span className="label" style={{ color: '#F3EFE7' }}>
+                <span className="label" style={{ color: '#F3EFE7', textShadow: '0 1px 12px rgba(20,16,14,0.55)' }}>
                     {t('Home.hero.scrollHint')}
                 </span>
                 <div

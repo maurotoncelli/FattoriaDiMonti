@@ -16,7 +16,7 @@ export const getOspitalitaData = (t: any): OspitalitaContent => ({
             }),
             introText: t('Ospitalita.sections.hero.introText'),
             images: {
-                background: { src: '/images/casa-rossa-facade.webp', alt: t('Ospitalita.sections.hero.label') },
+                background: { src: '/images/casa-rossa/facade-01.webp', alt: t('Ospitalita.sections.hero.label') },
             },
         },
         calore: {
@@ -48,19 +48,33 @@ export const getOspitalitaData = (t: any): OspitalitaContent => ({
             }),
             scrollHint: t('Ospitalita.sections.galleria.scrollHint'),
             items: (t.raw('Ospitalita.sections.galleria.items') as { alt: string; overlayText: string }[]).map(
-                (item, i) => ({
-                    src: [
-                        '/images/casa-rossa-interni.webp',
-                        '/images/casa-rossa/facade-vertical.webp',
-                        '/images/casa-rossa/kitchen.webp',
-                        '/images/casa-rossa/pool-vertical.webp',
-                        '/images/casa-rossa/reading.webp',
-                    ][i],
-                    alt: item.alt,
-                    overlayText: item.overlayText,
-                    // Alternanza landscape/portrait allineata agli scatti reali
-                    aspect: (['3/2', '2/3', '3/2', '2/3', '3/2'] as const)[i],
-                })
+                (item, i) => {
+                    const slides: { src: string; aspect: '3/2' | '2/3' }[] = [
+                        { src: '/images/casa-rossa-interni.webp', aspect: '3/2' },
+                        { src: '/images/casa-rossa/facade-vertical.webp', aspect: '2/3' },
+                        { src: '/images/casa-rossa/kitchen.webp', aspect: '3/2' },
+                        { src: '/images/casa-rossa/pool-vertical.webp', aspect: '2/3' },
+                        { src: '/images/casa-rossa/reading.webp', aspect: '3/2' },
+                        { src: '/images/casa-rossa/fireplace.webp', aspect: '3/2' },
+                        { src: '/images/casa-rossa/room1.webp', aspect: '3/2' },
+                        { src: '/images/casa-rossa/facade-vertical-ab.webp', aspect: '2/3' },
+                        { src: '/images/casa-rossa/room2.webp', aspect: '3/2' },
+                        { src: '/images/casa-rossa/pool-vertical-01.webp', aspect: '2/3' },
+                        { src: '/images/casa-rossa-panoramic.webp', aspect: '3/2' },
+                        { src: '/images/casa-rossa/room3.webp', aspect: '3/2' },
+                        { src: '/images/casa-rossa/bathroom-gf.webp', aspect: '2/3' },
+                        { src: '/images/casa-rossa/stairs.webp', aspect: '3/2' },
+                        { src: '/images/casa-rossa/room4.webp', aspect: '3/2' },
+                        { src: '/images/casa-rossa/aerial.webp', aspect: '3/2' },
+                    ];
+                    const slide = slides[i] ?? slides[0];
+                    return {
+                        src: slide.src,
+                        alt: item.alt,
+                        overlayText: item.overlayText,
+                        aspect: slide.aspect,
+                    };
+                }
             ),
             indicator: {
                 exploreText: t('Ospitalita.sections.galleria.indicator.exploreText'),
@@ -82,6 +96,9 @@ export const getOspitalitaData = (t: any): OspitalitaContent => ({
                     '/images/casa-rossa/kitchen.webp',
                     '/images/casa-rossa/room1.webp',
                     '/images/casa-rossa/aerial.webp',
+                    '/images/casa-rossa-interni.webp',
+                    '/images/casa-rossa/pool-drone.webp',
+                    '/images/casa-rossa-panoramic.webp',
                 ][i],
                 alt: p.alt,
             })),

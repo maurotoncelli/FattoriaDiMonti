@@ -591,8 +591,8 @@
         ],
         "images": {
           "primary": {
-            "alt": "Texture Fuoco e Libreria",
-            "overlayText": "Texture Fuoco e Libreria"
+            "alt": "Camino e libreria della Casa Rossa",
+            "overlayText": "Il camino"
           }
         }
       },
@@ -619,6 +619,50 @@
           {
             "alt": "Sala lettura",
             "overlayText": "L'angolo lettura"
+          },
+          {
+            "alt": "Camino e soggiorno",
+            "overlayText": "Il camino"
+          },
+          {
+            "alt": "Camera al piano superiore",
+            "overlayText": "Una camera"
+          },
+          {
+            "alt": "Facciata e ulivi",
+            "overlayText": "Gli esterni"
+          },
+          {
+            "alt": "Seconda camera",
+            "overlayText": "Camera due"
+          },
+          {
+            "alt": "Piscina vista verticale",
+            "overlayText": "La piscina"
+          },
+          {
+            "alt": "Terrazza sul tetto",
+            "overlayText": "La terrazza"
+          },
+          {
+            "alt": "Terza camera",
+            "overlayText": "Camera tre"
+          },
+          {
+            "alt": "Bagno",
+            "overlayText": "Il bagno"
+          },
+          {
+            "alt": "Scala interna",
+            "overlayText": "Le scale"
+          },
+          {
+            "alt": "Quarta camera",
+            "overlayText": "Camera quattro"
+          },
+          {
+            "alt": "Casa Rossa dall’alto",
+            "overlayText": "Dall’alto"
           }
         ],
         "indicator": {
@@ -671,6 +715,15 @@
           },
           {
             "alt": "La Casa Rossa vista dall’alto"
+          },
+          {
+            "alt": "Il salone con le grandi finestre"
+          },
+          {
+            "alt": "La piscina a uso esclusivo"
+          },
+          {
+            "alt": "La terrazza sul tetto"
           }
         ],
         "amenities": {

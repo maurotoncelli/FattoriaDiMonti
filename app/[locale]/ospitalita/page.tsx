@@ -440,21 +440,27 @@ export default function OspitalitaPage() {
 
             {/* SECTION 1: Eroe (Il Ritiro Perfetto) */}
             <section className="intro-section relative min-h-[85vh] w-full flex flex-col justify-center items-center overflow-hidden parallax-wrap">
-                {/* Background Immersive Image */}
-                <div className="absolute inset-0 bg-[#3A3C30] parallax-img z-0" />
-                
-                {/* Dark Vignette Overlay for Text Legibility */}
-                <div className="absolute inset-0 bg-black/40 bg-gradient-to-b from-black/20 via-transparent to-black/60 z-0" />
+                <div className="absolute inset-0 parallax-img z-0">
+                    <Image
+                        src={ospitalitaData.sections.hero.images.background.src}
+                        alt={ospitalitaData.sections.hero.images.background.alt}
+                        fill
+                        priority
+                        className="object-cover"
+                        sizes="100vw"
+                        style={{ objectPosition: 'center 45%' }}
+                    />
+                </div>
 
-                {/* Text Content */}
+                {/* Text Content — leggibilità via text-shadow, senza velo sulla foto */}
                 <div className="relative z-10 w-full max-w-5xl text-center px-[8vw] py-[15vh]">
-                    <span className="font-inter text-xs tracking-[0.2em] text-[#E8E4DB] uppercase mb-8 block fade-up-text opacity-90">
+                    <span className="font-inter text-xs tracking-[0.2em] text-[#E8E4DB] uppercase mb-8 block fade-up-text opacity-90" style={{ textShadow: '0 1px 14px rgba(20,16,14,0.65)' }}>
                         {ospitalitaData.sections.hero.label}
                     </span>
-                    <h1 className="font-playfair text-6xl md:text-8xl lg:text-[9rem] leading-[0.85] text-[#F3EFE7] mb-12 fade-up-text">
+                    <h1 className="font-playfair text-6xl md:text-8xl lg:text-[9rem] leading-[0.85] text-[#F3EFE7] mb-12 fade-up-text" style={{ textShadow: '0 2px 28px rgba(20,16,14,0.6), 0 1px 8px rgba(20,16,14,0.4)' }}>
                         {ospitalitaData.sections.hero.titleHtml}
                     </h1>
-                    <p className="font-inter text-lg lg:text-xl leading-[1.8] text-[#E8E4DB] opacity-90 max-w-2xl mx-auto fade-up-text font-light">
+                    <p className="font-inter text-lg lg:text-xl leading-[1.8] text-[#E8E4DB] opacity-95 max-w-2xl mx-auto fade-up-text font-light" style={{ textShadow: '0 1px 16px rgba(20,16,14,0.65)' }}>
                         {ospitalitaData.sections.hero.introText}
                     </p>
                 </div>
@@ -478,11 +484,15 @@ export default function OspitalitaPage() {
                         </div>
                     </div>
 
-                    <div className="order-1 lg:order-2 h-[50vh] lg:h-[70vh] w-full rounded-sm overflow-hidden parallax-wrap bg-black relative fade-up-text">
-                        <div className="absolute inset-0 bg-[#352A22] parallax-img opacity-90 z-0" />
-                        <div className="absolute inset-0 z-10 flex items-center justify-center text-[#EAE5DA]/40 font-playfair italic text-2xl text-center">
-                             {ospitalitaData.sections.calore.images.primary.overlayText}
-                        </div>
+                    <div className="order-1 lg:order-2 h-[50vh] lg:h-[70vh] w-full rounded-sm overflow-hidden parallax-wrap relative fade-up-text">
+                        <Image
+                            src={ospitalitaData.sections.calore.images.primary.src}
+                            alt={ospitalitaData.sections.calore.images.primary.alt}
+                            fill
+                            className="object-cover parallax-img"
+                            sizes="(max-width: 1023px) 100vw, 45vw"
+                            style={{ objectPosition: 'center' }}
+                        />
                     </div>
 
                 </div>
