@@ -151,7 +151,7 @@ export default function StoriaPage() {
                 
                 {/* Right Col - Images */}
                 <div className="col-span-1 lg:col-span-7 mt-20 lg:mt-0 lg:pt-[15vh]">
-                    <div className="image-container relative w-full aspect-[3/4] overflow-hidden rounded-sm filter sepia-[0.2] contrast-[1.1]">
+                    <div className="image-container relative w-full aspect-[4/3] md:aspect-[3/4] overflow-hidden rounded-sm filter sepia-[0.2] contrast-[1.1]">
                         <Image 
                             src={storiaData.images.primary.src}
                             alt={storiaData.images.primary.alt}

@@ -103,7 +103,7 @@ export default function Hospitality() {
                     alt={t('Home.hospitality.media.interiorsAlt')}
                     fill
                     className="parallax-img-casarossa"
-                    style={{ objectFit: 'cover', scale: '1.25', transformOrigin: 'center center' }}
+                    style={{ objectFit: 'cover', objectPosition: 'center 55%', scale: '1.2', transformOrigin: 'center center' }}
                     sizes="100vw"
                     priority
                 />
@@ -149,11 +149,11 @@ export default function Hospitality() {
                     style={{ position: 'relative', aspectRatio: '3/2', overflow: 'hidden' }}
                 >
                     <Image
-                        src="/images/villa-buontalenti.webp"
+                        src="/images/casa-rossa-facade.webp"
                         alt={t('Home.hospitality.media.dayPhotoAlt')}
                         fill
                         className="parallax-img-day"
-                        style={{ objectFit: 'cover', scale: '1.2', transformOrigin: 'center center' }}
+                        style={{ objectFit: 'cover', objectPosition: 'center 45%', scale: '1.15', transformOrigin: 'center center' }}
                         sizes="(max-width: 1023px) 100vw, 66vw"
                     />
                 </div>
@@ -193,11 +193,11 @@ export default function Hospitality() {
                     style={{ position: 'relative', aspectRatio: '3/2', overflow: 'hidden' }}
                 >
                     <Image
-                        src="/images/casa-rossa-panoramic.webp"
+                        src="/images/casa-rossa/pool-drone.webp"
                         alt={t('Home.hospitality.media.nightPhotoAlt')}
                         fill
                         className="parallax-img-panoramic"
-                        style={{ objectFit: 'cover', scale: '1.2', transformOrigin: 'center center' }}
+                        style={{ objectFit: 'cover', objectPosition: 'center center', scale: '1.15', transformOrigin: 'center center' }}
                         sizes="(max-width: 1023px) 100vw, 66vw"
                     />
                 </div>

@@ -50,7 +50,7 @@ export const getMainMenuLinks = (t?: any): NavLink[] => {
 
     return [
         {
-            id: 'nav-home', index: '00', label: s('home.label', 'Home'), href: '/', image: '/images/hero-new.jpg',
+            id: 'nav-home', index: '00', label: s('home.label', 'Home'), href: '/', image: '/images/hero-poster.webp',
             panelData: {
                 type: 'STATS',
                 title: s('home.panelTitle', 'Fattoria di Monti'),
@@ -63,7 +63,7 @@ export const getMainMenuLinks = (t?: any): NavLink[] => {
             },
         },
         {
-            id: 'nav-storia', index: '01', label: s('storia.label', 'Storia'), href: '/storia', image: '/images/storia-antica.jpg',
+            id: 'nav-storia', index: '01', label: s('storia.label', 'Storia'), href: '/storia', image: '/images/historical-picture.webp',
             panelData: {
                 type: 'STORY',
                 title: s('storia.panelTitle', '1839'),
@@ -112,7 +112,7 @@ export const getMainMenuLinks = (t?: any): NavLink[] => {
             },
         },
         {
-            id: 'nav-accoglienza', index: '05', label: s('accoglienza.label', 'Accoglienza'), href: '/ospitalita', image: '/images/casa-rossa-interni.webp',
+            id: 'nav-accoglienza', index: '05', label: s('accoglienza.label', 'Accoglienza'), href: '/ospitalita', image: '/images/casa-rossa-facade.webp',
             panelData: {
                 type: 'STORY',
                 title: s('accoglienza.panelTitle', 'La Casa Rossa'),
@@ -120,7 +120,7 @@ export const getMainMenuLinks = (t?: any): NavLink[] => {
             },
         },
         {
-            id: 'nav-contatti', index: '06', label: s('contatti.label', 'Contatti'), href: '/#04-footer', image: '/images/hero-drone.webp',
+            id: 'nav-contatti', index: '06', label: s('contatti.label', 'Contatti'), href: '/#04-footer', image: '/images/casa-rossa/aerial.webp',
             panelData: {
                 type: 'CONTACT',
                 title: s('contatti.panelTitle', 'Coordinate'),

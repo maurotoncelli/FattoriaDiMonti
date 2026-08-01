@@ -287,6 +287,7 @@ Current performance design:
 - `lib/scrollStore.ts` holds high-frequency scroll values outside React.
 - `hooks/usePerformance.ts` exposes `useReducedMotion`.
 - No WebGL layer: images are native DOM `<Image>` elements; the fixed backdrop is the static `.backdrop-terroso` class (globals.css) rendered by `AppWrapper`.
+- Home hero uses a muted autoplay loop (`/videos/hero.mp4`, poster `/images/hero-poster.webp`); with `prefers-reduced-motion` only the poster is shown.
 
 When editing scroll or animation:
 

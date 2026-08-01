@@ -33,8 +33,14 @@ Se si rimuove: togliere `cursor: none` da `html` in `globals.css`, l'override to
 
 ## 3. Asset visivi da aggiornare
 
-- **Foto**: sostituire le foto provvisorie man mano che arrivano gli scatti reali
-  (hero, villa, Casa Rossa, prodotti). Percorsi in `public/images/`.
+- **Foto Casa Rossa + storica + video hero** — ✅ FATTO (Aug 1, 2026)
+  Source: `2026.05.14_FattoriadiMontiMateriale/Export/`. Video hero compresso
+  `public/videos/hero.mp4` (~2.7 MB da 33 MB, 1280×720, no audio) + poster
+  `hero-poster.webp`. Foto storica in `historical-picture.webp` + crop squared
+  `villa-buontalenti-storica.webp`. Interni/esterni Casa Rossa in WebP sotto
+  `public/images/casa-rossa/` e path legacy aggiornati. Rapporti mobile
+  rivisti (hero `100dvh` + cover 16:9, terroir 5/6 desktop e 4/5 mobile,
+  galleria ospitalità portrait/landscape).
 - **Bottiglie olio**: in attesa di editing Photoshop. Quando pronte, riempire
   `Olio.bottles[n].image.src` nei messages (entrambe le lingue); src vuoto = fallback
   CSS (vedi blueprint §6 Olio).
@@ -42,6 +48,7 @@ Se si rimuove: togliere `cursor: none` da `html` in `globals.css`, l'override to
 - **Titolini eleganti**: rifinire i label/eyebrow delle sezioni; valutare qualche
   titolino **oro** per arricchire (introdurre un token tipo `--oro` in `globals.css`
   e Tailwind config, tono smorzato coerente con la palette quiet-luxury — non oro squillante).
+- **Altre foto ancora da sostituire**: Mucco, olio, cucina nomade, panini, crew.
 
 ## 4. Casa Rossa — piantine interattive (pagina `/ospitalita`)
 

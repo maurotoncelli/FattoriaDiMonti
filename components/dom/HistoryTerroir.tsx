@@ -12,8 +12,8 @@ if (typeof window !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
 }
 
-// Unica fonte per l'immagine della villa (variante desktop + mobile)
-const VILLA_MEDIA_SRC = '/images/villa-buontalenti-storica.jpg';
+// Foto storica (crop quasi quadrato): adatta al media verticale home
+const VILLA_MEDIA_SRC = '/images/villa-buontalenti-storica.webp';
 
 export default function HistoryTerroir() {
     const sectionRef = useRef<HTMLElement>(null);
@@ -119,7 +119,8 @@ export default function HistoryTerroir() {
                     gridRow: '1 / 3',
                     marginTop: '5vh',
                     marginBottom: '5vh',
-                    aspectRatio: '4/5',
+                    // Quasi-quadrato: la foto storica squared è ~1:1; 4/5 tagliava troppo
+                    aspectRatio: '5/6',
                     position: 'relative',
                     overflow: 'hidden',
                 }}
@@ -135,7 +136,7 @@ export default function HistoryTerroir() {
                     alt={t('Home.terroir.villaMedia.alt')}
                     fill
                     className="parallax-img-villa"
-                    style={{ objectFit: 'cover', scale: '1.2', transformOrigin: 'center center' }}
+                    style={{ objectFit: 'cover', objectPosition: 'center 40%', scale: '1.15', transformOrigin: 'center center' }}
                     sizes="(min-width: 1024px) 55vw, 100vw"
                 />
                 <div style={{
@@ -152,6 +153,7 @@ export default function HistoryTerroir() {
                 className="order-3 lg:hidden"
                 style={{
                     width: '100%',
+                    // Mobile: 4/5 verticale — squared cover centra il soggetto
                     aspectRatio: '4/5',
                     position: 'relative',
                     overflow: 'hidden',
@@ -164,7 +166,7 @@ export default function HistoryTerroir() {
                     alt={t('Home.terroir.villaMedia.alt')}
                     fill
                     className="parallax-img-villa"
-                    style={{ objectFit: 'cover', scale: '1.2', transformOrigin: 'center center' }}
+                    style={{ objectFit: 'cover', objectPosition: 'center 35%', scale: '1.15', transformOrigin: 'center center' }}
                     sizes="100vw"
                 />
                 <div style={{

@@ -16,7 +16,7 @@ export const getOspitalitaData = (t: any): OspitalitaContent => ({
             }),
             introText: t('Ospitalita.sections.hero.introText'),
             images: {
-                background: { src: '/images/casa-rossa-panoramic.webp', alt: t('Ospitalita.sections.hero.label') },
+                background: { src: '/images/casa-rossa-facade.webp', alt: t('Ospitalita.sections.hero.label') },
             },
         },
         calore: {
@@ -34,7 +34,7 @@ export const getOspitalitaData = (t: any): OspitalitaContent => ({
             ],
             images: {
                 primary: {
-                    src: '',
+                    src: '/images/casa-rossa/fireplace.webp',
                     alt: t('Ospitalita.sections.calore.images.primary.alt'),
                     overlayText: t('Ospitalita.sections.calore.images.primary.overlayText'),
                 },
@@ -51,13 +51,14 @@ export const getOspitalitaData = (t: any): OspitalitaContent => ({
                 (item, i) => ({
                     src: [
                         '/images/casa-rossa-interni.webp',
-                        '/images/cucina-nomade.webp',
-                        '/images/casa-rossa-panoramic.webp',
-                        '/images/villa-buontalenti.webp',
-                        '/images/cucina-nomade-hero.jpg',
+                        '/images/casa-rossa/facade-vertical.webp',
+                        '/images/casa-rossa/kitchen.webp',
+                        '/images/casa-rossa/pool-vertical.webp',
+                        '/images/casa-rossa/reading.webp',
                     ][i],
                     alt: item.alt,
                     overlayText: item.overlayText,
+                    // Alternanza landscape/portrait allineata agli scatti reali
                     aspect: (['3/2', '2/3', '3/2', '2/3', '3/2'] as const)[i],
                 })
             ),
@@ -78,9 +79,9 @@ export const getOspitalitaData = (t: any): OspitalitaContent => ({
             photoAria: t('Ospitalita.sections.casa.photoAria'),
             photos: (t.raw('Ospitalita.sections.casa.photos') as { alt: string }[]).map((p, i) => ({
                 src: [
-                    '/images/casa-rossa-interni.webp',
-                    '/images/casa-rossa-panoramic.webp',
-                    '/images/hero-drone.webp',
+                    '/images/casa-rossa/kitchen.webp',
+                    '/images/casa-rossa/room1.webp',
+                    '/images/casa-rossa/aerial.webp',
                 ][i],
                 alt: p.alt,
             })),

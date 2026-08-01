@@ -601,24 +601,24 @@
         "scrollHint": "Scroll to explore",
         "items": [
           {
-            "alt": "Window Light",
-            "overlayText": "Window Light (3/2)"
+            "alt": "Living room with large windows",
+            "overlayText": "The living room"
           },
           {
-            "alt": "Blanket Detail",
-            "overlayText": "Blanket Detail (2/3)"
+            "alt": "Casa Rossa facade",
+            "overlayText": "The facade"
           },
           {
-            "alt": "Reading Corner",
-            "overlayText": "Reading Corner (3/2)"
+            "alt": "Tuscan kitchen",
+            "overlayText": "The kitchen"
           },
           {
-            "alt": "Library",
-            "overlayText": "Library (2/3)"
+            "alt": "Private pool",
+            "overlayText": "The pool"
           },
           {
-            "alt": "Bath & Towels",
-            "overlayText": "Bath & Towels (3/2)"
+            "alt": "Reading room",
+            "overlayText": "The reading corner"
           }
         ],
         "indicator": {
@@ -664,13 +664,13 @@
         "photoAria": "Open the house photos",
         "photos": [
           {
-            "alt": "The interiors of Casa Rossa"
+            "alt": "The kitchen at Casa Rossa"
           },
           {
-            "alt": "Casa Rossa in the landscape"
+            "alt": "One of the upstairs bedrooms"
           },
           {
-            "alt": "The estate seen from above"
+            "alt": "Casa Rossa from above"
           }
         ],
         "amenities": {

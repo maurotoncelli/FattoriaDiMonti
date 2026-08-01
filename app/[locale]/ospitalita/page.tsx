@@ -623,7 +623,8 @@ export default function OspitalitaPage() {
                                 aria-label={`Apri ${item.alt}`}
                                 className="group relative overflow-hidden rounded-sm"
                                 style={{
-                                    aspectRatio: '3/4',
+                                    // Rispetta lo scatto: portrait 2/3, landscape 4/5 (griglia 2 col)
+                                    aspectRatio: item.aspect === '2/3' ? '2/3' : '4/5',
                                     border: 'none',
                                     padding: 0,
                                     background: 'transparent',
@@ -637,6 +638,7 @@ export default function OspitalitaPage() {
                                     fill
                                     className="object-cover transition-transform duration-500 group-active:scale-105"
                                     sizes="45vw"
+                                    style={{ objectPosition: 'center' }}
                                 />
                                 <div className="absolute inset-0 bg-black/0 group-active:bg-black/20 transition-colors duration-300 pointer-events-none" />
                                 <div className="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/60 to-transparent pointer-events-none">

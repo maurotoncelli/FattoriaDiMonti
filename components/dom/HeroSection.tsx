@@ -11,15 +11,18 @@ if (typeof window !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
 }
 
+const HERO_VIDEO_SRC = '/videos/hero.mp4';
+const HERO_POSTER_SRC = '/images/hero-poster.webp';
+
 export default function HeroSection() {
     const titleRef = useRef<HTMLHeadingElement>(null);
     const subtitleRef = useRef<HTMLParagraphElement>(null);
     const scrollHintRef = useRef<HTMLDivElement>(null);
     const sectionRef = useRef<HTMLElement>(null);
+    const mediaRef = useRef<HTMLDivElement>(null);
+    const videoRef = useRef<HTMLVideoElement>(null);
     const t = useTranslations();
     const titleWords = t.raw('Home.hero.titleWords') as string[];
-
-    const heroImageRef = useRef<HTMLDivElement>(null);
     const prefersReducedMotion = useReducedMotion();
 
     useEffect(() => {
@@ -62,21 +65,10 @@ export default function HeroSection() {
                 );
             }
 
-            if (heroImageRef.current && !prefersReducedMotion) {
-                gsap.fromTo(heroImageRef.current,
-                    { scale: 1 },
-                    {
-                        scale: 1.08,
-                        duration: 18,
-                        repeat: -1,
-                        yoyo: true,
-                        ease: 'sine.inOut',
-                    }
-                );
-
-                // Scroll parallax on hero image
-                gsap.to(heroImageRef.current, {
-                    yPercent: 25,
+            if (mediaRef.current && !prefersReducedMotion) {
+                // Parallax leggero sul wrapper (video o poster)
+                gsap.to(mediaRef.current, {
+                    yPercent: 18,
                     ease: 'none',
                     scrollTrigger: {
                         trigger: sectionRef.current,
@@ -91,11 +83,32 @@ export default function HeroSection() {
         return () => ctx.revert();
     }, [prefersReducedMotion]);
 
+    // Autoplay affidabile su mobile: playsInline + muted; pause se reduced-motion
+    useEffect(() => {
+        const video = videoRef.current;
+        if (!video) return;
+        if (prefersReducedMotion) {
+            video.pause();
+            return;
+        }
+        const play = () => {
+            video.play().catch(() => { /* autoplay bloccato: resta il poster */ });
+        };
+        play();
+        const onVis = () => {
+            if (document.hidden) video.pause();
+            else play();
+        };
+        document.addEventListener('visibilitychange', onVis);
+        return () => document.removeEventListener('visibilitychange', onVis);
+    }, [prefersReducedMotion]);
+
     return (
         <section
             ref={sectionRef}
             id="00-hero"
             data-section-label={t('UI.sectionLabels.hero')}
+            className="hero-viewport"
             style={{
                 position: 'relative',
                 height: '100vh',
@@ -108,9 +121,9 @@ export default function HeroSection() {
             }}
             aria-label="Hero"
         >
-            {/* Background image — DOM nativa (Ken Burns + parallax gestiti da GSAP sul wrapper) */}
+            {/* Background — video 16:9 cover su viewport; poster come fallback / reduced-motion */}
             <div
-                ref={heroImageRef}
+                ref={mediaRef}
                 id="media-hero-background"
                 aria-hidden="true"
                 style={{
@@ -122,14 +135,35 @@ export default function HeroSection() {
                     transformOrigin: 'center center',
                 }}
             >
-                <Image
-                    src="/images/hero-new.jpg"
-                    alt=""
-                    fill
-                    priority
-                    sizes="100vw"
-                    style={{ objectFit: 'cover' }}
-                />
+                {prefersReducedMotion ? (
+                    <Image
+                        src={HERO_POSTER_SRC}
+                        alt=""
+                        fill
+                        priority
+                        sizes="100vw"
+                        style={{ objectFit: 'cover' }}
+                    />
+                ) : (
+                    <video
+                        ref={videoRef}
+                        poster={HERO_POSTER_SRC}
+                        muted
+                        playsInline
+                        loop
+                        autoPlay
+                        preload="metadata"
+                        style={{
+                            position: 'absolute',
+                            inset: 0,
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'cover',
+                        }}
+                    >
+                        <source src={HERO_VIDEO_SRC} type="video/mp4" />
+                    </video>
+                )}
                 {/* Velo scuro per leggibilità del titolo chiaro */}
                 <div
                     style={{
@@ -200,7 +234,6 @@ export default function HeroSection() {
                 <span className="label" style={{ color: '#F3EFE7' }}>
                     {t('Home.hero.scrollHint')}
                 </span>
-                {/* Animated scroll line */}
                 <div
                     style={{
                         width: 1,
@@ -212,6 +245,10 @@ export default function HeroSection() {
             </div>
 
             <style jsx>{`
+        .hero-viewport {
+          height: 100vh;
+          height: 100dvh;
+        }
         @keyframes scrollPulse {
           0%, 100% { opacity: 0.3; transform: scaleY(0.5); transform-origin: top; }
           50% { opacity: 1; transform: scaleY(1); transform-origin: top; }
