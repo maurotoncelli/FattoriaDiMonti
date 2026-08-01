@@ -139,11 +139,6 @@ export default function HistoryTerroir() {
                     style={{ objectFit: 'cover', objectPosition: 'center 40%', scale: '1.15', transformOrigin: 'center center' }}
                     sizes="(min-width: 1024px) 55vw, 100vw"
                 />
-                <div style={{
-                    position: 'absolute', inset: 0,
-                    background: 'linear-gradient(to bottom, rgba(74,46,27,0.1) 0%, transparent 40%, rgba(74,46,27,0.2) 100%)',
-                    pointerEvents: 'none',
-                }} />
             </div>
 
             {/* Mobile */}
@@ -169,11 +164,6 @@ export default function HistoryTerroir() {
                     style={{ objectFit: 'cover', objectPosition: 'center 35%', scale: '1.15', transformOrigin: 'center center' }}
                     sizes="100vw"
                 />
-                <div style={{
-                    position: 'absolute', inset: 0,
-                    background: 'linear-gradient(to bottom, rgba(74,46,27,0.1) 0%, transparent 40%, rgba(74,46,27,0.2) 100%)',
-                    pointerEvents: 'none',
-                }} />
             </div>
 
             {/* Renaissance Block — left */}

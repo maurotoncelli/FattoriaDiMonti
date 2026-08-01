@@ -151,18 +151,18 @@ export default function StoriaPage() {
                 
                 {/* Right Col - Images */}
                 <div className="col-span-1 lg:col-span-7 mt-20 lg:mt-0 lg:pt-[15vh]">
-                    <div className="image-container relative w-full aspect-[4/3] md:aspect-[3/4] overflow-hidden rounded-sm filter sepia-[0.2] contrast-[1.1]">
-                        <Image 
+                    <div className="image-container relative w-full aspect-[4/3] md:aspect-[3/4] overflow-hidden rounded-sm">
+                        <Image
                             src={storiaData.images.primary.src}
                             alt={storiaData.images.primary.alt}
                             fill
-                            className="parallax-img object-cover editorial-image scale-[1.3] transform-gpu will-change-transform"
+                            className="parallax-img object-cover scale-[1.3] transform-gpu will-change-transform"
                             sizes="(max-width: 1024px) 100vw, 50vw"
                         />
                     </div>
                     
                     {/* Second smaller overlapping image */}
-                    <div className="image-container w-3/4 lg:w-2/3 aspect-square relative ml-auto -mt-24 lg:-mt-40 overflow-hidden rounded-sm shadow-2xl filter sepia-[0.3] contrast-[1.1] grayscale-[0.2]">
+                    <div className="image-container w-3/4 lg:w-2/3 aspect-square relative ml-auto -mt-24 lg:-mt-40 overflow-hidden rounded-sm shadow-2xl">
                         <Image 
                             src={storiaData.images.secondary.src}
                             alt={storiaData.images.secondary.alt}

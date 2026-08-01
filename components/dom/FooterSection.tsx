@@ -106,7 +106,7 @@ export default function FooterSection() {
                 {/* Photo + parallax */}
                 <div ref={heroImgRef} style={{ position: 'absolute', inset: '-15% 0', zIndex: 0 }}>
                     <Image
-                        src="/images/casa-rossa/aerial.webp"
+                        src="/images/mappa-tenuta-aerea.jpg"
                         alt={t('hero.mapAlt')}
                         fill
                         style={{ objectFit: 'cover', objectPosition: 'center' }}
