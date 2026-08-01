@@ -164,12 +164,13 @@ export default function HeroSection() {
                         <source src={HERO_VIDEO_SRC} type="video/mp4" />
                     </video>
                 )}
-                {/* Velo scuro per leggibilità del titolo chiaro */}
+                {/* Velo leggero solo per leggibilità del titolo: prima era un navy
+                    al 25–55% che spegneva i colori del video rispetto all'originale. */}
                 <div
                     style={{
                         position: 'absolute',
                         inset: 0,
-                        background: 'linear-gradient(to bottom, rgba(35,40,51,0.45) 0%, rgba(35,40,51,0.25) 45%, rgba(35,40,51,0.55) 100%)',
+                        background: 'linear-gradient(to bottom, rgba(43,36,32,0.28) 0%, rgba(43,36,32,0.08) 40%, rgba(43,36,32,0.32) 100%)',
                     }}
                 />
             </div>
