@@ -21,6 +21,30 @@ apribile come prima. Tradotte anche le label EN di `Navigation` che erano in ita
 Rifiniture possibili in futuro: nascondere la navbar allo scroll verso il basso e
 rimostrarla allo scroll verso l'alto; stato attivo più elaborato.
 
+### 1b. Navbar — CTA fisso «Richiedi informazioni» (da fare)
+
+Nella navbar desktop (e in modo coerente su mobile) va un **pulsante fisso in evidenza**
+«Richiedi informazioni». Al click apre una **tendina elegante** (non un menu pesante)
+con quattro voci di contesto:
+
+1. Soggiorno (Casa Rossa / ospitalità)
+2. Cucina itinerante
+3. Vendita olio
+4. Vendita carne di Mucco Pisano
+
+In futuro, scegliendo una voce si apre **lo stesso form** già usato altrove
+(es. «Richiedi maggiori info» da dentro Casa Rossa / Concierge): l’oggetto /
+`topic` / `conciergeContext` si **precompila** in base alla scelta.
+
+Backend: lead verso **Google Forms** via `app/api/contact/route.ts` (campo `topic`
+già previsto). UI form sul sito: elegante e in linea col design; Lorenzo riceve
+le risposte nella vista Google Forms/Sheet. Un solo flusso, più ingressi
+(navbar, CTA interni pagina, ecc.) — non duplicare form diversi.
+
+Riusare / estendere `ConciergeForm` + `ConciergeContext` in `store/useAppStore.ts`
+(`default` | `cucina-nomade` | `carne-secca` | `olio`; aggiungere/allineare
+contesto soggiorno se manca). Copy IT+EN in `messages`.
+
 ## 2. Puntatore custom → classico o più semplice
 
 `components/ui/CursorEngine.tsx` (ring + dot, rAF continuo) più `cursor: none` globale
@@ -49,6 +73,14 @@ Se si rimuove: togliere `cursor: none` da `html` in `globals.css`, l'override to
   titolino **oro** per arricchire (introdurre un token tipo `--oro` in `globals.css`
   e Tailwind config, tono smorzato coerente con la palette quiet-luxury — non oro squillante).
 - **Altre foto ancora da sostituire**: Mucco, olio, cucina nomade, panini, crew.
+- **Video hero — grade colore** — ✅ FATTO (Aug 1, 2026): Mauro ha
+  ri-esportato `minivideo_hero.mp4` con verde meno acido; ricompresso in
+  `public/videos/hero.mp4` + poster aggiornato.
+- **Naming «Cucina itinerante» / Boutique**: trovare un **nuovo nome** di prodotto
+  più chiaro e brandabile (IT + EN) al posto di «Cucina Nomade» / «Boutique
+  Itinerante» / «Cucina itinerante». Quando deciso: aggiornare menu, navbar
+  `navLabel`, messages, route slug solo se serve (oggi `/cucina-nomade` —
+  preferire redirect se si cambia slug). Validare con Lorenzo.
 
 ## 4. Casa Rossa — piantine interattive (pagina `/ospitalita`)
 
