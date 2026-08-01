@@ -70,7 +70,8 @@ Se si rimuove: togliere `cursor: none` da `html` in `globals.css`, l'override to
   prodotto allineati nei messages; packaging in
   `public/images/olio/packaging-archivio/` per uso futuro.
 - **Foto Mucco home** — ✅ FATTO (Aug 1, 2026): evocativa mucche pisane in
-  `mucco-pisano-16-9.webp` (+ `mucco-pisano.webp` per menu/pagina).
+  `mucco-pisano-gregge.webp` (path nuovo per bustare cache `_next/image`)
+  + `mucco-pisano.webp` per menu/pagina.
 - **Mockup carne** (carne secca / jerky): sostituire le foto card su `/mucco-pisano`.
 - **Titolini eleganti**: rifinire i label/eyebrow delle sezioni; valutare qualche
   titolino **oro** per arricchire (introdurre un token tipo `--oro` in `globals.css`

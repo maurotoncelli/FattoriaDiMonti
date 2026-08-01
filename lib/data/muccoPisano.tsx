@@ -30,7 +30,7 @@ export const getMuccoPisanoData = (t: any): MuccoPisanoContent => ({
         }),
         bodyText: t('MuccoPisano.tagli.bodyText'),
         images: {
-            primary: { src: '/images/mucco-pisano-16-9.webp', alt: t('MuccoPisano.tagli.label') },
+            primary: { src: '/images/mucco-pisano-gregge.webp', alt: t('MuccoPisano.tagli.label') },
         },
     },
     essiccata: {

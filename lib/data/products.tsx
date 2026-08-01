@@ -9,7 +9,7 @@ const SLIDES_CONFIG = [
         id: 'slide-mucco-pisano',
         bgColor: 'var(--terra-nera)',
         theme: 'dark' as const,
-        media: { textureSrc: '/images/mucco-pisano-16-9.webp' },
+        media: { textureSrc: '/images/mucco-pisano-gregge.webp' },
         cta: { href: '/mucco-pisano' },
     },
     {

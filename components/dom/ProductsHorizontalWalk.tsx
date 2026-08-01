@@ -147,7 +147,10 @@ function ProductSlide({
                     src={imageSrc}
                     alt={label}
                     fill
-                    style={{ objectFit: 'cover' }}
+                    style={{
+                        objectFit: 'cover',
+                        objectPosition: id === 'slide-mucco-pisano' ? 'center 70%' : 'center',
+                    }}
                     sizes="(min-width: 1024px) 60vw, 100vw"
                 />
                 <div style={{
@@ -187,7 +190,12 @@ function ProductCardMobile({
                     src={imageSrc}
                     alt={label}
                     fill
-                    style={{ objectFit: 'cover', scale: '1.2', transformOrigin: 'center center' }}
+                    style={{
+                        objectFit: 'cover',
+                        objectPosition: id === 'slide-mucco-pisano' ? 'center 70%' : 'center',
+                        scale: '1.2',
+                        transformOrigin: 'center center',
+                    }}
                     sizes="100vw"
                 />
                 <div style={{

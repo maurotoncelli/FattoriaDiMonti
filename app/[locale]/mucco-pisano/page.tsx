@@ -219,7 +219,7 @@ export default function MuccoPisanoPage() {
                     {/* Foto materica */}
                     <div className="relative h-[60vh] lg:h-[80vh] w-full overflow-hidden rounded-sm fade-up-text">
                         <Image
-                            src="/images/mucco-pisano-16-9.webp"
+                            src="/images/mucco-pisano-gregge.webp"
                             alt={t('MuccoPisano.tagli.imageAlt')}
                             fill
                             className="parallax-img"
