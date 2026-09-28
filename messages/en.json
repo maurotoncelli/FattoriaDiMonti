@@ -346,7 +346,7 @@
         "labelColor": "#A67C52",
         "glowColor": "rgba(166, 124, 82, 0.42)",
         "image": {
-          "src": "/images/olio/bottiglie/monti.webp",
+          "src": "/images/olio/bottiglie/monti-hd.webp",
           "alt": "Monti organic destoned extra virgin olive oil bottle"
         }
       },
@@ -381,7 +381,7 @@
         "labelColor": "#3D5A80",
         "glowColor": "rgba(61, 90, 128, 0.42)",
         "image": {
-          "src": "/images/olio/bottiglie/moraiolo.webp",
+          "src": "/images/olio/bottiglie/moraiolo-hd.webp",
           "alt": "Monocultivar Moraiolo extra virgin olive oil bottle"
         }
       },
@@ -416,7 +416,7 @@
         "labelColor": "#75806F",
         "glowColor": "rgba(117, 128, 111, 0.42)",
         "image": {
-          "src": "/images/olio/bottiglie/razzo.webp",
+          "src": "/images/olio/bottiglie/razzo-hd.webp",
           "alt": "Monocultivar Razzo extra virgin olive oil bottle"
         }
       }

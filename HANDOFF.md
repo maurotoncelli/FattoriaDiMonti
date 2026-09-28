@@ -62,9 +62,9 @@ Il sito usa il cursore nativo del sistema.
   rivisti (hero `100dvh` + cover 16:9, terroir 5/6 desktop e 4/5 mobile,
   galleria ospitalità portrait/landscape).
 - **Bottiglie olio** — ✅ AGGIORNATE (Sep 28, 2026): nuove versioni di Mauro in
-  `public/images/olio/bottiglie/{monti,moraiolo,razzo}.webp` (alpha ricostruito dal
-  fondo nero perché la chat appiattisce i PNG trasparenti; ~175×775). Con i PNG
-  originali in alta risoluzione basta rigenerarle con un nome file nuovo.
+  `public/images/olio/bottiglie/{monti,moraiolo,razzo}-hd.webp`, dai PNG scontornati
+  originali (Google Drive → `Fotografie/Olio/ai/png scontornate/`, 1536×2752).
+  Attenzione: gli allegati in chat arrivano come JPEG con fondo nero, usare i file originali.
   Packaging in `public/images/olio/packaging-archivio/` per uso futuro.
 - **Foto Casa Rossa complete** — ✅ FATTO (Sep 28, 2026): tutte le 58 foto di
   «JPEG nomi sito» in `public/images/casa-rossa/galleria/`, galleria per aree su

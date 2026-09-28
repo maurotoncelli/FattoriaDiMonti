@@ -162,7 +162,7 @@ Da chiudere con Lorenzo:
 
 ### Asset
 - [ ] Ricevere packaging provvisori carne secca da Giacomo → swap `bustina-*.webp`
-- [x] Foto bottiglie olio → `public/images/olio/bottiglie/*.webp` (Sep 2026; se arrivano i PNG originali in alta risoluzione, sostituire con nome file nuovo)
+- [x] Foto bottiglie olio → `public/images/olio/bottiglie/*-hd.webp` dai PNG originali scontornati (Sep 2026)
 - [ ] Piantine SVG definitive Casa Rossa → sostituire i due piani in `HouseFloorPlan.tsx`
 - [x] Foto reali Casa Rossa → tutte le 58 foto in `public/images/casa-rossa/galleria/` + `CASA_PHOTOS` in `lib/data/ospitalita.tsx` (Sep 2026)
 - [ ] Didascalie camere: confermare con Lorenzo quale «Camera uno…quattro» corrisponde a quale voce della legenda (matrimoniale vista colline, divisibile, alla francese, panoramica)

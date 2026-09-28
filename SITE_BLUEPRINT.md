@@ -232,7 +232,7 @@ Rules:
 - Launch mode (Jul 2026): no purchase CTAs. All oil CTAs open the Concierge with context `olio` (info-request flow). Lead lands on `/api/contact` with a `topic` field.
 - Product bottle data lives in `messages.*.Olio.bottles`, typed by `OlioContent`.
 - Real photos replace CSS bottle placeholders by filling `Olio.bottles[n].image.src` in messages (both locales); empty src keeps the CSS fallback.
-- Bottiglie attuali (Sep 2026): scontornate WebP con alpha in `public/images/olio/bottiglie/{monti,moraiolo,razzo}.webp` (~175×775). Se arrivano i PNG originali trasparenti in alta risoluzione, sostituirli con un **nome file nuovo** (vedi §7, cache immagini).
+- Bottiglie attuali (Sep 2026): `public/images/olio/bottiglie/{monti,moraiolo,razzo}-hd.webp` (WebP con alpha, h 1824), generate dai PNG scontornati originali su Google Drive (`Fattoria di monti website/Fotografie/Olio/ai/png scontornate/`). Gli allegati in chat arrivano come JPEG senza trasparenza: partire sempre dai file originali. Per sostituirle usare un **nome file nuovo** (vedi §7, cache immagini).
 
 ### Mucco Pisano / Carne secca (launch mode)
 
