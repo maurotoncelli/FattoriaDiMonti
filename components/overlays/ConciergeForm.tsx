@@ -156,7 +156,7 @@ export default function ConciergeForm() {
                     fontSize: '10px',
                     letterSpacing: '0.18em',
                     textTransform: 'uppercase',
-                    cursor: 'none',
+                    cursor: 'pointer',
                 }}
             >
                 {t('closeLabel')}
@@ -261,7 +261,7 @@ export default function ConciergeForm() {
                                             fontSize: '10px',
                                             letterSpacing: '0.15em',
                                             textTransform: 'uppercase',
-                                            cursor: 'none',
+                                            cursor: 'pointer',
                                             transition: 'border-color 0.3s, background 0.3s',
                                             width: '100%',
                                             maxWidth: '340px',
@@ -316,7 +316,7 @@ export default function ConciergeForm() {
                                                 fontSize: '10px',
                                                 letterSpacing: '0.18em',
                                                 textTransform: 'uppercase',
-                                                cursor: 'none',
+                                                cursor: 'pointer',
                                                 transition: 'background 0.25s, color 0.25s',
                                             }}
                                             onMouseEnter={(e) => {
@@ -344,7 +344,7 @@ export default function ConciergeForm() {
                                                 letterSpacing: '0.18em',
                                                 textTransform: 'uppercase',
                                                 color: 'rgba(236,232,223,0.55)',
-                                                cursor: 'none',
+                                                cursor: 'pointer',
                                                 transition: 'border-color 0.25s, color 0.25s',
                                             }}
                                             onMouseEnter={(e) => {

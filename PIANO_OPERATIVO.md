@@ -1,6 +1,6 @@
 # Fattoria di Monti — Piano Operativo
 
-Last updated: July 2026
+Last updated: September 2026
 
 Working checklist for the next product/engineering steps.
 
@@ -21,7 +21,9 @@ Working checklist for the next product/engineering steps.
 | Future locales | `zh`, `ar` (RTL), `ru` — solo dopo copy stabile data-driven | Planned |
 | Cookie banner GDPR | UI + consent wiring to GA helpers | Open |
 | Carne secca — versione semplice launch | Card statiche + 1 CTA info (Concierge `carne-secca`) | Done Jul 2026 (uncommitted) |
-| Olio — versione semplice launch | Slot foto archivio + 1 CTA info (Concierge `olio`) | Done Jul 2026 (foto da caricare) |
+| Olio — versione semplice launch | Slot foto archivio + 1 CTA info (Concierge `olio`) | Done — bottiglie scontornate nuove Sep 2026 |
+| Stabilità & performance (Sep 2026) | Sipario transizioni, scroll scheda olio, cursore nativo, video hero fuori viewport, galleria senza pin, WebP + `sharp` | Done (uncommitted) |
+| Casa Rossa — galleria completa | 58 foto per area + lightbox, bottone foto per piano | Done Sep 2026 (uncommitted) |
 | Cucina Nomade — menu panini | Gusti da cartello food truck + ingredienti in arrivo | Open — nomi noti, ingredienti pending |
 | Casa Rossa — struttura contenuti | Casa unica: piani + piantine SVG + comodità | Done Jul 2026 (piantine placeholder, contenuti da validare con Lorenzo) |
 | Casa Rossa — commodities list | Prima lista in messages `Ospitalita.sections.casa.amenities`; rifinire con Lorenzo | Draft |
@@ -160,9 +162,10 @@ Da chiudere con Lorenzo:
 
 ### Asset
 - [ ] Ricevere packaging provvisori carne secca da Giacomo → swap `bustina-*.webp`
-- [ ] Ricevere/risistemare foto archivio olio → riempire `Olio.bottles[n].image.src` (IT+EN)
+- [x] Foto bottiglie olio → `public/images/olio/bottiglie/*.webp` (Sep 2026; se arrivano i PNG originali in alta risoluzione, sostituire con nome file nuovo)
 - [ ] Piantine SVG definitive Casa Rossa → sostituire i due piani in `HouseFloorPlan.tsx`
-- [ ] Foto reali Casa Rossa → aggiornare src in `lib/data/ospitalita.tsx` (sezione casa)
+- [x] Foto reali Casa Rossa → tutte le 58 foto in `public/images/casa-rossa/galleria/` + `CASA_PHOTOS` in `lib/data/ospitalita.tsx` (Sep 2026)
+- [ ] Didascalie camere: confermare con Lorenzo quale «Camera uno…quattro» corrisponde a quale voce della legenda (matrimoniale vista colline, divisibile, alla francese, panoramica)
 - [ ] Non chiedere specs prodotto carne secca pre-lancio
 
 ### Cucina Nomade / Food truck

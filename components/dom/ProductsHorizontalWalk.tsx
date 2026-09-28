@@ -122,7 +122,7 @@ function ProductSlide({
                                     letterSpacing: '0.18em',
                                     textTransform: 'uppercase',
                                     color: isDark ? 'var(--sabbia-limonitica)' : 'var(--mucco-pisano)',
-                                    cursor: 'none',
+                                    cursor: 'pointer',
                                     transition: 'background 0.3s, color 0.3s',
                                 }}
                             >

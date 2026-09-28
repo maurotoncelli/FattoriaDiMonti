@@ -67,9 +67,9 @@ export default function NavBar() {
                 gap: '2rem',
                 padding: '0 2.5rem',
                 height: '58px',
-                background: 'rgba(234,230,221,0.86)',
-                backdropFilter: 'blur(14px)',
-                WebkitBackdropFilter: 'blur(14px)',
+                // Niente backdrop-filter: su una barra fissa verrebbe ricalcolato
+                // a ogni frame di scroll e di video.
+                background: 'rgba(234,230,221,0.95)',
                 borderBottom: '1px solid rgba(82,70,58,0.12)',
             }}
         >
@@ -86,7 +86,7 @@ export default function NavBar() {
                     fontSize: '1.05rem',
                     letterSpacing: '0.02em',
                     color: 'var(--mucco-pisano)',
-                    cursor: 'none',
+                    cursor: 'pointer',
                     whiteSpace: 'nowrap',
                 }}
             >
@@ -113,7 +113,7 @@ export default function NavBar() {
                                 textTransform: 'uppercase',
                                 color: active ? 'var(--argilla-ferrosa)' : 'rgba(82,70,58,0.72)',
                                 borderBottom: active ? '1px solid var(--argilla-ferrosa)' : '1px solid transparent',
-                                cursor: 'none',
+                                cursor: 'pointer',
                                 whiteSpace: 'nowrap',
                                 transition: 'color 0.3s, border-color 0.3s',
                             }}
@@ -144,7 +144,7 @@ export default function NavBar() {
                             letterSpacing: '0.15em',
                             textTransform: 'uppercase',
                             color: locale === l ? 'var(--argilla-ferrosa)' : 'rgba(82,70,58,0.4)',
-                            cursor: 'none',
+                            cursor: 'pointer',
                             transition: 'color 0.3s',
                         }}
                         onMouseEnter={(e) => { if (locale !== l) (e.currentTarget as HTMLElement).style.color = 'var(--mucco-pisano)'; }}

@@ -346,7 +346,7 @@
         "labelColor": "#A67C52",
         "glowColor": "rgba(166, 124, 82, 0.42)",
         "image": {
-          "src": "/images/olio/monti-bottiglia.webp",
+          "src": "/images/olio/bottiglie/monti.webp",
           "alt": "Monti organic destoned extra virgin olive oil bottle"
         }
       },
@@ -381,7 +381,7 @@
         "labelColor": "#3D5A80",
         "glowColor": "rgba(61, 90, 128, 0.42)",
         "image": {
-          "src": "/images/olio/moraiolo-bottiglia.webp",
+          "src": "/images/olio/bottiglie/moraiolo.webp",
           "alt": "Monocultivar Moraiolo extra virgin olive oil bottle"
         }
       },
@@ -416,7 +416,7 @@
         "labelColor": "#75806F",
         "glowColor": "rgba(117, 128, 111, 0.42)",
         "image": {
-          "src": "/images/olio/razzo-bottiglia.webp",
+          "src": "/images/olio/bottiglie/razzo.webp",
           "alt": "Monocultivar Razzo extra virgin olive oil bottle"
         }
       }
@@ -496,7 +496,7 @@
               "alt": "Villa Buontalenti"
             },
             {
-              "src": "/images/casa-rossa-interni.webp",
+              "src": "/images/casa-rossa/galleria/pt-salone.webp",
               "alt": "Casa Rossa interiors"
             },
             {
@@ -597,77 +597,79 @@
         }
       },
       "galleria": {
+        "label": "The house in {count} photographs",
         "titleHtml": "Fragments <brResp></brResp><emClass>of Peace</emClass>",
-        "scrollHint": "Scroll to explore",
-        "items": [
-          {
-            "alt": "Living room with large windows",
-            "overlayText": "The living room"
-          },
-          {
-            "alt": "Casa Rossa facade",
-            "overlayText": "The facade"
-          },
-          {
-            "alt": "Tuscan kitchen",
-            "overlayText": "The kitchen"
-          },
-          {
-            "alt": "Private pool",
-            "overlayText": "The pool"
-          },
-          {
-            "alt": "Reading room",
-            "overlayText": "The reading corner"
-          },
-          {
-            "alt": "Fireplace and living room",
-            "overlayText": "The fireplace"
-          },
-          {
-            "alt": "Upstairs bedroom",
-            "overlayText": "A bedroom"
-          },
-          {
-            "alt": "Facade and olive trees",
-            "overlayText": "The grounds"
-          },
-          {
-            "alt": "Second bedroom",
-            "overlayText": "Bedroom two"
-          },
-          {
-            "alt": "Pool, vertical view",
-            "overlayText": "The pool"
-          },
-          {
-            "alt": "Roof terrace",
-            "overlayText": "The terrace"
-          },
-          {
-            "alt": "Third bedroom",
-            "overlayText": "Bedroom three"
-          },
-          {
-            "alt": "Bathroom",
-            "overlayText": "The bathroom"
-          },
-          {
-            "alt": "Indoor staircase",
-            "overlayText": "The stairs"
-          },
-          {
-            "alt": "Fourth bedroom",
-            "overlayText": "Bedroom four"
-          },
-          {
-            "alt": "Casa Rossa from above",
-            "overlayText": "From above"
-          }
-        ],
-        "indicator": {
-          "exploreText": "Explore",
-          "scrollText": "Scroll"
+        "allLabel": "All",
+        "groups": {
+          "esterni": "Grounds & pool",
+          "piano-terra": "Ground floor",
+          "piano-superiore": "Upper floor",
+          "terrazza": "Rooftop terrace"
+        },
+        "photos": {
+          "ext-facciata-prato": "Casa Rossa seen from the lawn, among the pines",
+          "ext-veranda": "The glazed veranda on the main façade",
+          "ext-vialetto": "The entrance drive and its terracotta jar",
+          "ext-facciata-veranda": "The main façade and its veranda",
+          "ext-cielo": "The façade under the Tuscan sky",
+          "ext-grandi-alberi": "The house in the shade of tall trees",
+          "ext-cedri": "The house among the cedars",
+          "ext-parco": "The park of cedars and pines around the house",
+          "ext-pergola": "The side façade and the pergola",
+          "ext-prato": "The lawn in front of the house",
+          "ext-edera-torretta": "The ivy-clad façade and the little tower",
+          "ext-ingresso-edera": "The side entrance framed by ivy",
+          "ext-edera": "Ivy on the red plaster",
+          "ext-piscina": "The private pool",
+          "ext-piscina-giardino": "The pool and the garden",
+          "ext-drone-piscina": "The pool among the trees, from above",
+          "ext-drone-tenuta": "The pool and the estate from above",
+          "ext-drone-casa": "Casa Rossa from above",
+          "ext-drone-colline": "The house and the surrounding hills, from above",
+          "pt-salone": "The drawing room with four tall windows",
+          "pt-salone-luce": "Light and plants in the drawing room",
+          "pt-sala-camino": "The fireplace room with the dining table",
+          "pt-lettura": "The reading room",
+          "pt-lettura-divani": "Sofas, books and Persian rugs",
+          "pt-cucina": "The large Tuscan kitchen",
+          "pt-cucina-madia": "The kitchen and its antique cupboard",
+          "pt-cucina-attrezzata": "The fully equipped kitchen",
+          "pt-cucina-giardino": "The kitchen table, opening onto the garden",
+          "pt-bagno-vasca": "The ground-floor bathroom with its tub",
+          "pt-bagno-maioliche": "Green tiles in the ground-floor bathroom",
+          "pt-lavanderia": "The laundry room",
+          "pt-scala": "The inner staircase",
+          "ps-camera1": "Bedroom one, with its striped bedspread",
+          "ps-camera1-tappeti": "Bedroom one, rugs and period furniture",
+          "ps-camera2": "Bedroom two, bright and airy",
+          "ps-camera2-letto": "Bedroom two, the double bed",
+          "ps-camera2-ritratto": "A painted portrait in bedroom two",
+          "ps-camera2-armadio-muro": "Bedroom two, towards the built-in wardrobe",
+          "ps-camera2-testiera": "The upholstered headboard",
+          "ps-camera2-armadio": "The white wardrobe",
+          "ps-camera2-finestra": "The pergola seen from the window",
+          "ps-camera3": "Bedroom three, with sage-green cushions",
+          "ps-camera3-specchi": "Bedroom three, the mirrored wardrobe and bookcase",
+          "ps-camera3-lino": "Linen and cotton in bedroom three",
+          "ps-camera3-dettaglio": "Bedspread detail",
+          "ps-camera4": "Bedroom four, with the red sofa",
+          "ps-camera4-scrittoio": "Bedroom four, the writing desk and built-in wardrobe",
+          "ps-camera4-letto": "Bedroom four, the double bed",
+          "ps-camera4-stampe": "Bedroom four, antique prints above the bed",
+          "ps-corridoio": "The hallway between the bedrooms",
+          "ps-bagno-doccia": "The bathroom with shower",
+          "ps-bagno-doppio-lavabo": "The second bathroom, with double basin",
+          "ps-bagno-finestra": "The second bathroom, lit by its window",
+          "ps-bagno-mosaico": "Mosaic and stone in the second bathroom",
+          "ps-bagno-doccia-mosaico": "The mosaic shower",
+          "terrazza-torretta": "The rooftop terrace and its little tower",
+          "terrazza-campagna": "The rooftop terrace, open to the landscape",
+          "terrazza-pini": "The pines seen from the terrace"
+        },
+        "lightbox": {
+          "closeAria": "Close the gallery",
+          "prevAria": "Previous photo",
+          "nextAria": "Next photo"
         }
       },
       "casa": {
@@ -704,28 +706,7 @@
             ]
           }
         ],
-        "photosTitle": "Casa Rossa",
-        "photoAria": "Open the house photos",
-        "photos": [
-          {
-            "alt": "The kitchen at Casa Rossa"
-          },
-          {
-            "alt": "One of the upstairs bedrooms"
-          },
-          {
-            "alt": "Casa Rossa from above"
-          },
-          {
-            "alt": "The living room with large windows"
-          },
-          {
-            "alt": "The private pool"
-          },
-          {
-            "alt": "The roof terrace"
-          }
-        ],
+        "floorPhotosLabel": "See all {count} photos",
         "amenities": {
           "title": "The Amenities",
           "intro": "Everything you need for a short or long stay, without giving up a thing.",

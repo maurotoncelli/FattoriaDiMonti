@@ -1,118 +1,162 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
-import { useRouter } from '@/i18n/routing';
+import { usePathname, useRouter } from '@/i18n/routing';
 import { useAppStore } from '@/store/useAppStore';
+
+type Phase = 'idle' | 'covering' | 'waiting' | 'lifting';
+
+const COVER_S = 0.7;
+const LIFT_S = 0.8;
+// Stessa rotta (o solo hash): non c'è un cambio di pathname da aspettare.
+const SAME_ROUTE_LIFT_MS = 120;
+// Rete lenta o navigazione fallita: il sipario non deve mai restare giù.
+const MAX_WAIT_MS = 4000;
+
+const isLightColor = (hex: string) => {
+    const m = /^#?([\da-f]{2})([\da-f]{2})([\da-f]{2})$/i.exec(hex);
+    if (!m) return true;
+    const [r, g, b] = m.slice(1).map((c) => parseInt(c, 16));
+    return 0.299 * r + 0.587 * g + 0.114 * b > 150;
+};
+
+const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 export default function GlobalTransitionOverlay() {
     const overlayRef = useRef<HTMLDivElement>(null);
     const keywordRef = useRef<HTMLSpanElement>(null);
     const router = useRouter();
-
+    const pathname = usePathname();
     const isTransitioning = useAppStore((s) => s.isTransitioning);
     const transitionBgColor = useAppStore((s) => s.transitionBgColor);
-    const transitionKeyword = useAppStore((s) => s.transitionKeyword);
-    const nextRoute = useAppStore((s) => s.nextRoute);
-    const endPageTransition = useAppStore((s) => s.endPageTransition);
+    const [keyword, setKeyword] = useState<string | null>(null);
 
-    // True solo dopo che il sipario ha completato la CHIUSURA (overlay copre 100% schermo).
-    // Usare useState garantisce che React ri-esegua il lift effect nello stesso render batch.
-    const [readyToLift, setReadyToLift] = useState(false);
+    // Il router di next-intl cambia identità a ogni cambio di pathname: se
+    // stesse nelle deps di un effect interromperebbe la transizione a metà.
+    const routerRef = useRef(router);
+    routerRef.current = router;
+    const pathnameRef = useRef(pathname);
+    pathnameRef.current = pathname;
 
-    // ── Sipario si ALZA (reveal nuova pagina) ────────────────────────────────
-    useEffect(() => {
-        if (!readyToLift || !overlayRef.current) return;
-        setReadyToLift(false);
-        const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        gsap.to(overlayRef.current, {
-            yPercent: -100,
-            duration: reduced ? 0.01 : 1.2,
-            ease: 'power4.inOut',
-            onComplete: () => {
-                gsap.set(overlayRef.current, { yPercent: 100 });
-            },
-        });
-    }, [readyToLift]);
+    const phaseRef = useRef<Phase>('idle');
+    const pathAtPushRef = useRef<string | null>(null);
+    const hasHashTargetRef = useRef(false);
+    const timersRef = useRef<number[]>([]);
+    const timelineRef = useRef<gsap.core.Timeline | null>(null);
 
-    // ── Sipario si ABBASSA (copre pagina corrente) ────────────────────────────
-    useEffect(() => {
-        if (!isTransitioning || !overlayRef.current) return;
+    const clearTimers = () => {
+        timersRef.current.forEach((id) => window.clearTimeout(id));
+        timersRef.current = [];
+    };
 
-        // Cattura la rotta target al momento dell'avvio — endPageTransition la azzera
-        const destination = nextRoute;
-        const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // Stato iniziale impostato da GSAP: con un transform CSS in percentuale
+    // GSAP lo leggerebbe come pixel e il sipario non coprirebbe mai la pagina.
+    useLayoutEffect(() => {
+        gsap.set(overlayRef.current, { yPercent: 100, y: 0 });
+    }, []);
 
-        const tl = gsap.timeline({
-            onComplete: () => {
-                endPageTransition();
-                setReadyToLift(true);
-            },
-        });
+    const lift = useCallback(() => {
+        const el = overlayRef.current;
+        if (phaseRef.current !== 'waiting' || !el) return;
+        phaseRef.current = 'lifting';
+        clearTimers();
 
-        tl.fromTo(
-            overlayRef.current,
-            { yPercent: 100 },
-            {
-                yPercent: 0,
-                duration: reduced ? 0.01 : 1.2,
-                ease: 'power4.inOut',
-                backgroundColor: transitionBgColor,
-                onComplete: () => {
-                    // Naviga QUI: overlay è garantito al 100% sullo schermo.
-                    // Nessun setTimeout esterno — nessuna race condition.
-                    if (destination) {
-                        router.push(destination as any, { scroll: true });
-                    }
-                },
-            }
-        );
-
-        // Keyword reveal (opzionale, saltato con reduced motion)
-        if (!reduced && transitionKeyword && keywordRef.current) {
-            tl.fromTo(
-                keywordRef.current,
-                { opacity: 0, y: 20 },
-                { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' },
-                '-=0.5'
-            );
-            tl.to(
-                keywordRef.current,
-                { opacity: 0, y: -15, duration: 0.4, ease: 'power2.in' },
-                '+=0.3'
-            );
+        if (!hasHashTargetRef.current) {
+            (window as any).__lenis?.scrollTo(0, { immediate: true, force: true });
         }
 
-        return () => { tl.kill(); };
-    }, [isTransitioning, transitionBgColor, transitionKeyword, nextRoute, endPageTransition, router]);
+        const reduced = prefersReducedMotion();
+        timelineRef.current?.kill();
+        const tl = gsap.timeline({
+            onComplete: () => {
+                gsap.set(el, { yPercent: 100, pointerEvents: 'none' });
+                phaseRef.current = 'idle';
+                setKeyword(null);
+                useAppStore.getState().endPageTransition();
+            },
+        });
+        tl.to(keywordRef.current, { opacity: 0, y: -12, duration: reduced ? 0 : 0.25, ease: 'power2.in' });
+        tl.to(el, { yPercent: -100, duration: reduced ? 0.01 : LIFT_S, ease: 'power3.inOut' }, '-=0.1');
+        timelineRef.current = tl;
+    }, []);
+
+    // Il sipario scende, poi naviga quando copre il 100% dello schermo.
+    useEffect(() => {
+        const el = overlayRef.current;
+        if (!isTransitioning || phaseRef.current !== 'idle' || !el) return;
+
+        const { nextRoute: destination, transitionKeyword } = useAppStore.getState();
+        const reduced = prefersReducedMotion();
+        phaseRef.current = 'covering';
+        setKeyword(transitionKeyword);
+
+        timelineRef.current?.kill();
+        const tl = gsap.timeline();
+        tl.set(el, { pointerEvents: 'auto' });
+        tl.fromTo(el, { yPercent: 100 }, { yPercent: 0, duration: reduced ? 0.01 : COVER_S, ease: 'power3.inOut' });
+        if (!reduced && transitionKeyword) {
+            tl.fromTo(keywordRef.current,
+                { opacity: 0, y: 16 },
+                { opacity: 1, y: 0, duration: 0.4, ease: 'power3.out' },
+                '-=0.25'
+            );
+        }
+        tl.call(() => {
+            phaseRef.current = 'waiting';
+            if (!destination) {
+                lift();
+                return;
+            }
+            const destPath = destination.split('#')[0] || '/';
+            hasHashTargetRef.current = destination.includes('#');
+            pathAtPushRef.current = pathnameRef.current;
+            routerRef.current.push(destination as any, { scroll: true });
+            const sameRoute = destPath === pathnameRef.current;
+            timersRef.current.push(window.setTimeout(lift, sameRoute ? SAME_ROUTE_LIFT_MS : MAX_WAIT_MS));
+        });
+        timelineRef.current = tl;
+    }, [isTransitioning, lift]);
+
+    // Si rialza solo quando la nuova pagina è montata (due frame: già dipinta).
+    useEffect(() => {
+        if (phaseRef.current !== 'waiting' || pathname === pathAtPushRef.current) return;
+        let raf2 = 0;
+        const raf1 = requestAnimationFrame(() => {
+            raf2 = requestAnimationFrame(lift);
+        });
+        return () => {
+            cancelAnimationFrame(raf1);
+            cancelAnimationFrame(raf2);
+        };
+    }, [pathname, lift]);
+
+    useEffect(() => () => {
+        timelineRef.current?.kill();
+        clearTimers();
+    }, []);
 
     return (
         <div
             ref={overlayRef}
-            // z-[500] garantisce che il sipario sia sopra QUALSIASI elemento UI fisso
-            // (MenuTrigger z-100, menu overlay z-95, ecc.)
+            aria-hidden="true"
+            // z-[500]: sopra qualsiasi UI fissa (navbar z-90, menu z-95, pill z-100)
             className="fixed inset-0 z-[500] pointer-events-none flex items-center justify-center"
-            style={{
-                transform: 'translateY(100%)',
-                backgroundColor: transitionBgColor,
-            }}
+            style={{ backgroundColor: transitionBgColor }}
         >
-            {transitionKeyword && (
-                <span
-                    ref={keywordRef}
-                    style={{
-                        fontFamily: 'var(--font-playfair, Georgia, serif)',
-                        fontStyle: 'italic',
-                        fontSize: 'clamp(1.5rem, 4vw, 3.5rem)',
-                        color: transitionBgColor === '#F3EFE7' ? '#4A2E1B' : '#ECE8DF',
-                        opacity: 0,
-                        letterSpacing: '-0.01em',
-                        pointerEvents: 'none',
-                    }}
-                >
-                    {transitionKeyword}
-                </span>
-            )}
+            <span
+                ref={keywordRef}
+                style={{
+                    fontFamily: 'var(--font-playfair, Georgia, serif)',
+                    fontStyle: 'italic',
+                    fontSize: 'clamp(1.5rem, 4vw, 3.5rem)',
+                    color: isLightColor(transitionBgColor) ? '#4A2E1B' : '#ECE8DF',
+                    opacity: 0,
+                    letterSpacing: '-0.01em',
+                }}
+            >
+                {keyword}
+            </span>
         </div>
     );
 }

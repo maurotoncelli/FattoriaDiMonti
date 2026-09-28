@@ -380,7 +380,7 @@ export default function MainMenuOverlay() {
                             {NAV_LINKS.map((link, i) => (
                                 <div
                                     key={link.id}
-                                    style={{ display: 'flex', alignItems: 'center', gap: '1.4rem', cursor: 'none' }}
+                                    style={{ display: 'flex', alignItems: 'center', gap: '1.4rem' }}
                                 >
                                     <span style={{
                                         fontFamily: 'var(--font-inter)',
@@ -403,7 +403,7 @@ export default function MainMenuOverlay() {
                                             fontSize: 'clamp(2rem, 4.5vh, 5.5rem)',
                                             lineHeight: 1.05,
                                             color: hoveredLink?.id === link.id ? 'var(--mucco-pisano)' : (hoveredLink ? 'rgba(78,64,48,0.25)' : 'var(--mucco-pisano)'),
-                                            cursor: 'none',
+                                            cursor: 'pointer',
                                             transition: 'color 0.4s ease, transform 0.4s ease',
                                             transform: hoveredLink && hoveredLink.id !== link.id ? 'translateX(10px)' : 'translateX(0)',
                                             animation: `fadeInRight 0.6s ease ${0.1 + (i * 0.04)}s both`,
@@ -444,7 +444,7 @@ export default function MainMenuOverlay() {
                                         fontSize: '10px',
                                         letterSpacing: '0.15em',
                                         textTransform: 'uppercase',
-                                        cursor: 'none',
+                                        cursor: 'pointer',
                                         transition: 'color 0.3s',
                                     }}
                                     onMouseEnter={(e) => { if (locale !== l) (e.target as HTMLElement).style.color = 'var(--mucco-pisano)'; }}

@@ -53,7 +53,7 @@ export default function CrewNomade({ data }: { data: CucinaNomadeData['crew'] })
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 lg:gap-16 items-start">
                     {data.members.map((member, idx) => (
-                        <div key={member.id} className={`crew-member flex flex-col group cursor-none ${idx === 1 ? 'md:mt-32' : ''}`}>
+                        <div key={member.id} className={`crew-member flex flex-col group ${idx === 1 ? 'md:mt-32' : ''}`}>
                             <div className="w-full aspect-[3/4] relative overflow-hidden mb-6 bg-[var(--tufo)]/5">
                                 <Image
                                     src={member.image}

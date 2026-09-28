@@ -45,15 +45,11 @@ Riusare / estendere `ConciergeForm` + `ConciergeContext` in `store/useAppStore.t
 (`default` | `cucina-nomade` | `carne-secca` | `olio`; aggiungere/allineare
 contesto soggiorno se manca). Copy IT+EN in `messages`.
 
-## 2. Puntatore custom → classico o più semplice
+## 2. Puntatore custom → classico — ✅ FATTO (Sep 28, 2026)
 
-`components/ui/CursorEngine.tsx` (ring + dot, rAF continuo) più `cursor: none` globale
-in `globals.css`. Difficile da gestire e da mantenere coerente sugli elementi interattivi.
-
-Da fare: rimuovere il cursore custom (o ridurlo a un dettaglio minimale, es. solo dot).
-Se si rimuove: togliere `cursor: none` da `html` in `globals.css`, l'override touch
-`@media (hover:none)`, e tutti i `cursor: 'none'` inline sparsi nei bottoni
-(cercare `cursor: 'none'` nel repo). CursorEngine è montato da `components/ui/GlobalUI.tsx`.
+`CursorEngine.tsx` eliminato (rAF perpetuo + `mix-blend-mode`: puntatore poco fluido),
+tolti `cursor: none` globale, override touch e tutti i `cursor: 'none'` inline.
+Il sito usa il cursore nativo del sistema.
 
 ## 3. Asset visivi da aggiornare
 
@@ -65,10 +61,15 @@ Se si rimuove: togliere `cursor: none` da `html` in `globals.css`, l'override to
   `public/images/casa-rossa/` e path legacy aggiornati. Rapporti mobile
   rivisti (hero `100dvh` + cover 16:9, terroir 5/6 desktop e 4/5 mobile,
   galleria ospitalità portrait/landscape).
-- **Bottiglie olio** — ✅ FATTO (Aug 1, 2026): tre scontornate Monti / Moraiolo /
-  Razzo in `public/images/olio/*-bottiglia.webp` (sRGB, alpha, h≈1800). Nomi
-  prodotto allineati nei messages; packaging in
-  `public/images/olio/packaging-archivio/` per uso futuro.
+- **Bottiglie olio** — ✅ AGGIORNATE (Sep 28, 2026): nuove versioni di Mauro in
+  `public/images/olio/bottiglie/{monti,moraiolo,razzo}.webp` (alpha ricostruito dal
+  fondo nero perché la chat appiattisce i PNG trasparenti; ~175×775). Con i PNG
+  originali in alta risoluzione basta rigenerarle con un nome file nuovo.
+  Packaging in `public/images/olio/packaging-archivio/` per uso futuro.
+- **Foto Casa Rossa complete** — ✅ FATTO (Sep 28, 2026): tutte le 58 foto di
+  «JPEG nomi sito» in `public/images/casa-rossa/galleria/`, galleria per aree su
+  `/ospitalita` (vedi blueprint §6). I `drone_cows_*` sono rimasti fuori: sono
+  mucche, eventualmente per `/mucco-pisano`.
 - **Foto Mucco home** — ✅ FATTO (Aug 1, 2026): evocativa mucche pisane in
   `mucco-pisano-gregge.webp` (path nuovo per bustare cache `_next/image`)
   + `mucco-pisano.webp` per menu/pagina.
@@ -98,8 +99,10 @@ numerati) devono diventare interattive:
   selezionata del rispettivo piano.
 - Dati: estendere `CasaContent` in `lib/content/types.ts` (es. `spaces[n].photos[]`)
   e i messages `Ospitalita.sections.casa` (IT+EN). Niente testo dentro gli SVG (i18n).
-- Le foto per stanza non esistono ancora: predisporre la struttura dati e un fallback
-  elegante (fascia nascosta o placeholder) finché non arrivano gli scatti.
+- Stato (Sep 28, 2026): le foto per stanza ora esistono (id `ps-camera1…4`,
+  `pt-cucina…` in `CASA_PHOTOS`) e ogni piano ha già un bottone che apre le sue foto.
+  Per il passo «foto della sola stanza» manca solo sapere da Lorenzo quale camera
+  del rilievo corrisponde a Camera uno…quattro, poi si aggiunge `room` alle voci.
 - Attenzione blueprint: le SVG placeholder verranno sostituite dai rilievi reali.
 
 ## 5. Osservatorio "Migliaia di Stelle" (pagina `/ospitalita`)

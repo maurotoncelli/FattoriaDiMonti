@@ -3,7 +3,6 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { useAppStore } from '@/store/useAppStore';
-import CursorEngine from './CursorEngine';
 import NavBar from './NavBar';
 import MenuTrigger from './MenuTrigger';
 import BackButton from './BackButton';
@@ -23,17 +22,13 @@ export default function GlobalUI() {
     }, [isPreloaderComplete]);
 
     return (
-        <>
-            {/* Cursor always active */}
-            <CursorEngine />
-            {/* Other UI fades in after preloader */}
-            <div ref={wrapRef} style={{ opacity: 0 }}>
-                {/* Desktop: navbar in alto. Mobile: pill + overlay. */}
-                <NavBar />
-                <BackButton />
-                <MenuTrigger />
-                <ScrollProgressTracker />
-            </div>
-        </>
+        // UI fades in after preloader
+        <div ref={wrapRef} style={{ opacity: 0 }}>
+            {/* Desktop: navbar in alto. Mobile: pill + overlay. */}
+            <NavBar />
+            <BackButton />
+            <MenuTrigger />
+            <ScrollProgressTracker />
+        </div>
     );
 }

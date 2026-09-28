@@ -10,12 +10,13 @@ export default function ScrollProgressTracker() {
 
     // Aggiorna la barra di progresso in modo IMPERATIVO via Lenis event —
     // nessun setState, nessun re-render React ad ogni frame di scroll.
+    // `lenis.progress` usa dimensioni già in cache (niente reflow per frame)
+    // e scaleY resta sul compositor, a differenza di `height`.
     useEffect(() => {
-        const updateProgress = ({ scroll }: { scroll: number }) => {
-            const maxScroll = document.body.scrollHeight - window.innerHeight;
-            const progress = maxScroll > 0 ? Math.min(scroll / maxScroll, 1) : 0;
+        const updateProgress = (lenis: { progress: number }) => {
+            const progress = Math.min(Math.max(lenis.progress || 0, 0), 1);
             if (lineRef.current) {
-                lineRef.current.style.height = `${progress * 100}%`;
+                lineRef.current.style.transform = `scaleY(${progress})`;
             }
         };
 
@@ -23,7 +24,7 @@ export default function ScrollProgressTracker() {
 
         const attachLenis = (lenis: any) => {
             cleanup?.();
-            updateProgress({ scroll: lenis.scroll || 0 });
+            updateProgress(lenis);
             lenis.on('scroll', updateProgress);
             cleanup = () => lenis.off('scroll', updateProgress);
         };
@@ -96,8 +97,10 @@ export default function ScrollProgressTracker() {
                     ref={lineRef}
                     style={{
                         width: '100%',
-                        height: '0%',
+                        height: '100%',
                         background: 'var(--olive)',
+                        transform: 'scaleY(0)',
+                        transformOrigin: 'top',
                         // Niente CSS transition: l'aggiornamento è già fluido via Lenis RAF
                     }}
                 />

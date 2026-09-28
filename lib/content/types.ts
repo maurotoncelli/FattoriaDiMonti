@@ -207,12 +207,39 @@ export interface CerealiContent {
 
 // ─── Ospitalità ───────────────────────────────────────────────────────────────
 
+/** Aree della galleria Casa Rossa; 'piano-terra' e 'piano-superiore' coincidono con gli id dei piani. */
+export type CasaGalleryGroupId = 'esterni' | 'piano-terra' | 'piano-superiore' | 'terrazza';
+
+export interface CasaGalleryPhoto extends MediaItem {
+  id: string;
+  group: CasaGalleryGroupId;
+  /** Dimensioni reali del file: il layout a righe giustificate usa il rapporto esatto */
+  width: number;
+  height: number;
+}
+
+export interface CasaGalleryGroup {
+  id: CasaGalleryGroupId;
+  label: string;
+  photos: CasaGalleryPhoto[];
+}
+
+export interface CasaGalleryContent {
+  label: string;
+  titleHtml: React.ReactNode;
+  allLabel: string;
+  groups: CasaGalleryGroup[];
+  lightbox: { closeAria: string; prevAria: string; nextAria: string };
+}
+
 export interface CasaFloor {
   id: string; // 'piano-terra' | 'piano-superiore'
   name: string;
   description: string;
   /** Legenda ambienti: l'ordine corrisponde ai marker numerati di HouseFloorPlan */
   spaces: string[];
+  /** Etichetta del bottone che apre le foto del piano (con il conteggio) */
+  photosLabel: string;
 }
 
 export interface CasaContent {
@@ -221,9 +248,6 @@ export interface CasaContent {
   introText: string;
   planNote: string;
   floors: CasaFloor[];
-  photosTitle: string;
-  photoAria: string;
-  photos: MediaItem[];
   amenities: {
     title: string;
     intro: string;
@@ -237,12 +261,7 @@ export interface OspitalitaContent {
   sections: {
     hero: { label: string; titleHtml: React.ReactNode; introText: string; images: { background: MediaItem } };
     calore: { label: string; titleHtml: React.ReactNode; paragraphs: React.ReactNode[]; images: { primary: MediaWithOverlay } };
-    galleria: {
-      titleHtml: React.ReactNode;
-      scrollHint: string;
-      items: (MediaWithOverlay & { aspect: '3/2' | '2/3' })[];
-      indicator: { exploreText: string; scrollText: string };
-    };
+    galleria: CasaGalleryContent;
     casa: CasaContent;
     osservatorio: { label: string; titleHtml: React.ReactNode; introText: string; cta: { buttonLabel: string } };
   };

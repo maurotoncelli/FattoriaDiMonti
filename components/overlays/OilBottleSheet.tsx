@@ -130,6 +130,9 @@ export default function OilBottleSheet() {
             role="dialog"
             aria-modal="true"
             aria-label={tOverlay('ariaLabel')}
+            // Lenis è fermo mentre la scheda è aperta e annulla wheel/touch:
+            // senza questo attributo la scheda non scorrerebbe.
+            data-lenis-prevent
             style={{
                 position: 'fixed',
                 inset: 0,
@@ -137,6 +140,7 @@ export default function OilBottleSheet() {
                 background: 'var(--terra-nera)',
                 overflowY: 'auto',
                 overflowX: 'hidden',
+                overscrollBehavior: 'contain',
                 animation: 'oilSheetSlideUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards',
                 scrollBehavior: 'smooth',
             }}
@@ -160,7 +164,7 @@ export default function OilBottleSheet() {
                     fontSize: 10,
                     letterSpacing: '0.18em',
                     textTransform: 'uppercase' as const,
-                    cursor: 'none',
+                    cursor: 'pointer',
                     transition: 'border-color 0.3s, background 0.3s',
                 }}
             >
@@ -208,7 +212,7 @@ export default function OilBottleSheet() {
                                     borderRadius: 16,
                                     padding: '14px 24px',
                                     fontFamily: 'var(--font-inter)',
-                                    cursor: 'none',
+                                    cursor: 'pointer',
                                     transition: 'all 0.35s cubic-bezier(0.4,0,0.2,1)',
                                     border: isActive
                                         ? `1.5px solid ${b.labelColor}`
@@ -216,7 +220,6 @@ export default function OilBottleSheet() {
                                     background: isActive
                                         ? `${b.labelColor}22`
                                         : 'rgba(255,255,255,0.04)',
-                                    backdropFilter: 'blur(12px)',
                                     boxShadow: isActive
                                         ? `0 0 24px ${b.glowColor}, inset 0 1px 0 rgba(255,255,255,0.1)`
                                         : 'none',
@@ -256,17 +259,14 @@ export default function OilBottleSheet() {
                 </div>
 
                 {/* ── CORPO HERO: bottiglia + dettagli ── */}
+                {/* Direzione e larghezze via classi: uno style inline le sovrascriverebbe
+                    e su desktop la bottiglia finirebbe sopra i dettagli invece che accanto. */}
                 <div
-                    style={{
-                        display: 'flex',
-                        flexDirection: 'column' as const,
-                        gap: 48,
-                        flex: 1,
-                    }}
-                    className="lg:flex-row lg:items-stretch lg:gap-[6vw]"
+                    style={{ flex: 1 }}
+                    className="flex flex-col gap-12 lg:flex-row lg:items-stretch lg:gap-[6vw]"
                 >
                     {/* ─── Left: Bottle visual ─── */}
-                    <div data-anim style={{ position: 'relative', flexShrink: 0, display: 'flex', flexDirection: 'column' as const, alignItems: 'center', justifyContent: 'center', width: '100%' }} className="lg:w-5/12">
+                    <div data-anim style={{ position: 'relative', flexShrink: 0, display: 'flex', flexDirection: 'column' as const, alignItems: 'center', justifyContent: 'center' }} className="w-full lg:w-5/12">
                         {/* Glow */}
                         <div style={{
                             position: 'absolute', top: '50%', left: '50%',
@@ -307,7 +307,6 @@ export default function OilBottleSheet() {
                                         boxShadow: `0 0 50px ${selectedBottle.glowColor}`,
                                         display: 'flex', flexDirection: 'column' as const, alignItems: 'center', justifyContent: 'center',
                                         transition: 'background 0.6s, box-shadow 0.6s',
-                                        backdropFilter: 'blur(4px)',
                                     }}>
                                         <span style={{ fontFamily: 'var(--font-playfair)', fontSize: 34, fontStyle: 'italic', lineHeight: 1, color: '#F3EFE7' }}>{selectedBottle.name}</span>
                                         <span style={{ fontFamily: 'var(--font-inter)', fontSize: 8, textTransform: 'uppercase' as const, letterSpacing: '0.24em', color: 'rgba(243,239,231,0.90)', marginTop: 12 }}>{selectedBottle.subtitle}</span>
@@ -371,7 +370,6 @@ export default function OilBottleSheet() {
                                         fontSize: 11,
                                         letterSpacing: '0.12em',
                                         color: '#ECE8DF',
-                                        backdropFilter: 'blur(4px)',
                                         display: 'flex',
                                         alignItems: 'center',
                                         gap: 8,
@@ -404,7 +402,7 @@ export default function OilBottleSheet() {
                                     textTransform: 'uppercase' as const,
                                     letterSpacing: '0.2em',
                                     color: '#12110E',
-                                    cursor: 'none',
+                                    cursor: 'pointer',
                                     transition: 'transform 0.3s',
                                     boxShadow: '0 8px 24px rgba(0,0,0,0.3)',
                                 }}
@@ -506,7 +504,6 @@ export default function OilBottleSheet() {
                                         borderRadius: 16,
                                         border: '1px solid rgba(255,255,255,0.07)',
                                         background: 'rgba(255,255,255,0.03)',
-                                        backdropFilter: 'blur(8px)',
                                     }}
                                 >
                                     <span style={{ fontFamily: 'var(--font-playfair)', fontSize: 40, fontStyle: 'italic', color: selectedBottle.labelColor, opacity: 0.5, lineHeight: 1, display: 'block', marginBottom: 12 }}>
@@ -551,7 +548,6 @@ export default function OilBottleSheet() {
                                         fontFamily: 'var(--font-inter)',
                                         fontSize: 12,
                                         color: 'rgba(236,232,223,0.75)',
-                                        backdropFilter: 'blur(4px)',
                                     }}
                                 >
                                     {pairing}
@@ -581,7 +577,6 @@ export default function OilBottleSheet() {
                                         borderRadius: 16,
                                         border: `1px solid ${selectedBottle.labelColor}33`,
                                         background: `${selectedBottle.labelColor}0D`,
-                                        backdropFilter: 'blur(8px)',
                                     }}
                                 >
                                     <span style={{ fontFamily: 'var(--font-inter)', fontSize: 9, letterSpacing: '0.28em', textTransform: 'uppercase' as const, color: selectedBottle.labelColor, display: 'block', marginBottom: 12 }}>
@@ -605,7 +600,6 @@ export default function OilBottleSheet() {
                         borderRadius: 24,
                         border: '1px solid rgba(180,184,134,0.15)',
                         background: 'rgba(180,184,134,0.04)',
-                        backdropFilter: 'blur(12px)',
                     }}>
                         <p style={{ fontFamily: 'var(--font-playfair)', fontSize: 'clamp(1.5rem, 2vw, 2rem)', fontStyle: 'italic', color: '#ECE8DF', marginBottom: 8, lineHeight: 1.3 }}>
                             {details.finalCta.title}
@@ -632,7 +626,7 @@ export default function OilBottleSheet() {
                                 textTransform: 'uppercase' as const,
                                 letterSpacing: '0.22em',
                                 color: '#12110E',
-                                cursor: 'none',
+                                cursor: 'pointer',
                                 transition: 'transform 0.3s',
                                 boxShadow: `0 12px 40px rgba(0,0,0,0.4), 0 0 60px ${selectedBottle.glowColor}`,
                             }}

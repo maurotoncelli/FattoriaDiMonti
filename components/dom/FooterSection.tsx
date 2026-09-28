@@ -50,15 +50,6 @@ export default function FooterSection() {
                 }
             );
 
-            // Scroll arrow bounce
-            gsap.to('.footer-scroll-arrow', {
-                y: 8,
-                repeat: -1,
-                yoyo: true,
-                duration: 1.1,
-                ease: 'power1.inOut',
-            });
-
             // Contact columns
             gsap.fromTo('.footer-col-left',
                 { opacity: 0, x: -40 },
@@ -111,7 +102,6 @@ export default function FooterSection() {
                         fill
                         style={{ objectFit: 'cover', objectPosition: 'center' }}
                         sizes="100vw"
-                        priority
                     />
                 </div>
 
@@ -185,7 +175,7 @@ export default function FooterSection() {
                     position: 'absolute', bottom: '2.5rem', left: '50%',
                     transform: 'translateX(-50%)', zIndex: 2,
                 }}>
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style={{ color: 'rgba(236,232,223,0.35)' }}>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style={{ color: 'rgba(236,232,223,0.35)', animation: 'fdm-bounce-y 2.2s ease-in-out infinite' }}>
                         <path d="M4 7L10 13L16 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                 </div>
@@ -360,7 +350,7 @@ export default function FooterSection() {
                             fontSize: '11px',
                             letterSpacing: '0.2em',
                             textTransform: 'uppercase',
-                            cursor: 'none',
+                            cursor: 'pointer',
                             width: '100%',
                             maxWidth: '360px',
                             transition: 'background 0.3s, color 0.3s',
@@ -388,7 +378,7 @@ export default function FooterSection() {
                                 letterSpacing: '0.18em',
                                 textTransform: 'uppercase' as const,
                                 color: 'rgba(236,232,223,0.65)',
-                                cursor: 'none',
+                                cursor: 'pointer',
                                 width: '100%',
                                 maxWidth: '360px',
                                 textDecoration: 'none',

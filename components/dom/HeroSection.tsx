@@ -83,24 +83,35 @@ export default function HeroSection() {
         return () => ctx.revert();
     }, [prefersReducedMotion]);
 
-    // Autoplay affidabile su mobile: playsInline + muted; pause se reduced-motion
+    // Autoplay affidabile su mobile: playsInline + muted; pause se reduced-motion.
+    // Il video gira solo con l'hero in viewport e la scheda visibile: fuori
+    // schermo la decodifica si ferma e non ruba frame allo scroll.
     useEffect(() => {
         const video = videoRef.current;
-        if (!video) return;
+        const section = sectionRef.current;
+        if (!video || !section) return;
         if (prefersReducedMotion) {
             video.pause();
             return;
         }
-        const play = () => {
-            video.play().catch(() => { /* autoplay bloccato: resta il poster */ });
+        let inView = true;
+        const sync = () => {
+            if (inView && !document.hidden) {
+                video.play().catch(() => { /* autoplay bloccato: resta il poster */ });
+            } else {
+                video.pause();
+            }
         };
-        play();
-        const onVis = () => {
-            if (document.hidden) video.pause();
-            else play();
+        const observer = new IntersectionObserver(([entry]) => {
+            inView = entry.isIntersecting;
+            sync();
+        });
+        observer.observe(section);
+        document.addEventListener('visibilitychange', sync);
+        return () => {
+            observer.disconnect();
+            document.removeEventListener('visibilitychange', sync);
         };
-        document.addEventListener('visibilitychange', onVis);
-        return () => document.removeEventListener('visibilitychange', onVis);
     }, [prefersReducedMotion]);
 
     return (

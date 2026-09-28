@@ -48,8 +48,6 @@ html {
   font-size: 16px;
   scroll-behavior: auto;
   /* Lenis handles smooth scroll */
-  cursor: none;
-  /* CursorEngine replaces native cursor */
 }
 
 body {
@@ -146,6 +144,17 @@ p,
     linear-gradient(180deg, #F1ECE1 0%, var(--tufo) 45%, #E1DCCF 100%);
 }
 
+/* ===== MICRO-ANIMAZIONI (solo transform/opacity: restano sul compositor) ===== */
+@keyframes fdm-bounce-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+@keyframes fdm-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 /* ===== KINETIC TEXT MASK ===== */
 .text-reveal-wrap {
   overflow: hidden;
@@ -202,16 +211,75 @@ html {
   display: none; /* Chrome, Safari and Opera */
 }
 
+/* ===== GALLERIA A RIGHE GIUSTIFICATE (Casa Rossa) =====
+   Ogni foto cresce in proporzione al proprio rapporto (--ar): le foto di una
+   riga hanno la stessa altezza e nessuna viene ritagliata o deformata.
+   Solo CSS: nessuna misura JS, nessun layout shift. */
+.gallery-justified {
+  --row-h: clamp(128px, 17vw, 280px);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: clamp(6px, 0.8vw, 12px);
+}
+
+/* L'ultima riga non si allarga a riempire lo spazio */
+.gallery-justified::after {
+  content: '';
+  flex-grow: 1000;
+}
+
+.gallery-justified-item {
+  position: relative;
+  display: block;
+  flex-grow: var(--ar);
+  flex-basis: calc(var(--ar) * var(--row-h));
+  aspect-ratio: var(--ar);
+  overflow: hidden;
+  border: none;
+  border-radius: 2px;
+  padding: 0;
+  background: rgba(82, 70, 58, 0.08);
+  cursor: zoom-in;
+}
+
+.gallery-justified-item:focus-visible {
+  outline: 2px solid var(--argilla-ferrosa);
+  outline-offset: 3px;
+}
+
+.gallery-justified-caption {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 2.4rem 0.9rem 0.7rem;
+  background: linear-gradient(to top, rgba(20, 16, 14, 0.62), transparent);
+  color: var(--tufo);
+  font-family: var(--font-playfair), serif;
+  font-style: italic;
+  font-size: 13px;
+  line-height: 1.3;
+  text-align: left;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+@media (hover: hover) {
+  .gallery-justified-item:hover .gallery-justified-caption,
+  .gallery-justified-item:focus-visible .gallery-justified-caption {
+    opacity: 1;
+  }
+}
+
+/* ===== GRANA (rumore SVG statico, zero richieste esterne) ===== */
+.grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+
 /* ===== EDITORIAL PHOTO TREATMENT ===== */
 .editorial-image {
   filter: contrast(1.06) saturate(0.88) sepia(0.06) brightness(0.97);
   transition: filter 0.6s ease;
-}
-
-/* ===== TOUCH DEVICES — ripristina cursore nativo ===== */
-@media (hover: none) and (pointer: coarse) {
-  html, body { cursor: auto; }
-  *, *::before, *::after { cursor: auto !important; }
 }
 
 /* ===== SAFE AREA (notch / Dynamic Island / home indicator) ===== */

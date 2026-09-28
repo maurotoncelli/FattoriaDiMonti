@@ -112,7 +112,7 @@ export const getMainMenuLinks = (t?: any): NavLink[] => {
             },
         },
         {
-            id: 'nav-accoglienza', index: '05', label: s('accoglienza.label', 'Accoglienza'), href: '/ospitalita', image: '/images/casa-rossa-facade.webp',
+            id: 'nav-accoglienza', index: '05', label: s('accoglienza.label', 'Accoglienza'), href: '/ospitalita', image: '/images/casa-rossa/galleria/ext-veranda.webp',
             panelData: {
                 type: 'STORY',
                 title: s('accoglienza.panelTitle', 'La Casa Rossa'),
@@ -120,7 +120,7 @@ export const getMainMenuLinks = (t?: any): NavLink[] => {
             },
         },
         {
-            id: 'nav-contatti', index: '06', label: s('contatti.label', 'Contatti'), href: '/#04-footer', image: '/images/casa-rossa/aerial.webp',
+            id: 'nav-contatti', index: '06', label: s('contatti.label', 'Contatti'), href: '/#04-footer', image: '/images/casa-rossa/galleria/ext-drone-casa.webp',
             panelData: {
                 type: 'CONTACT',
                 title: s('contatti.panelTitle', 'Coordinate'),

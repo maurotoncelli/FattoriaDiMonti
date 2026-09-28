@@ -24,7 +24,7 @@ export default function AudioToggle() {
                 background: 'transparent',
                 border: 'none',
                 padding: '0.45rem 1rem',
-                cursor: 'none',
+                cursor: 'pointer',
                 color: hovered ? 'var(--argilla-ferrosa)' : 'rgba(78,64,48,0.45)',
                 fontFamily: 'var(--font-inter)',
                 fontSize: '10px',

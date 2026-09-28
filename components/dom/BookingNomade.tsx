@@ -42,7 +42,7 @@ export default function BookingNomade({ data }: { data: CucinaNomadeData['bookin
 
                 <button 
                     onClick={openConcierge}
-                    className="group relative px-10 py-4 bg-transparent border border-[var(--argilla-ferrosa)] text-[var(--argilla-ferrosa)] overflow-hidden cursor-none fade-up-text"
+                    className="group relative px-10 py-4 bg-transparent border border-[var(--argilla-ferrosa)] text-[var(--argilla-ferrosa)] overflow-hidden cursor-pointer fade-up-text"
                 >
                     <div className="absolute inset-0 bg-[var(--argilla-ferrosa)] translate-y-[101%] group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)]" />
                     <span className="relative z-10 font-inter text-[10px] tracking-[0.2em] uppercase transition-colors duration-500 group-hover:text-white">

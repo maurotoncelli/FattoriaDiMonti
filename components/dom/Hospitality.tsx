@@ -99,13 +99,12 @@ export default function Hospitality() {
                 }}
             >
                 <Image
-                    src="/images/casa-rossa-interni.webp"
+                    src="/images/casa-rossa/galleria/pt-salone.webp"
                     alt={t('Home.hospitality.media.interiorsAlt')}
                     fill
                     className="parallax-img-casarossa"
                     style={{ objectFit: 'cover', objectPosition: 'center 55%', scale: '1.2', transformOrigin: 'center center' }}
                     sizes="100vw"
-                    priority
                 />
             </div>
 
@@ -149,7 +148,7 @@ export default function Hospitality() {
                     style={{ position: 'relative', aspectRatio: '3/2', overflow: 'hidden' }}
                 >
                     <Image
-                        src="/images/casa-rossa-facade.webp"
+                        src="/images/casa-rossa/galleria/ext-veranda.webp"
                         alt={t('Home.hospitality.media.dayPhotoAlt')}
                         fill
                         className="parallax-img-day"
@@ -193,7 +192,7 @@ export default function Hospitality() {
                     style={{ position: 'relative', aspectRatio: '3/2', overflow: 'hidden' }}
                 >
                     <Image
-                        src="/images/casa-rossa/pool-drone.webp"
+                        src="/images/casa-rossa/galleria/ext-drone-tenuta.webp"
                         alt={t('Home.hospitality.media.nightPhotoAlt')}
                         fill
                         className="parallax-img-panoramic"
@@ -286,7 +285,7 @@ export default function Hospitality() {
                             letterSpacing: '0.15em',
                             textTransform: 'uppercase',
                             color: 'var(--mucco-pisano)',
-                            cursor: 'none',
+                            cursor: 'pointer',
                             transition: 'border-color 0.3s, background 0.3s',
                         }}
                         onMouseEnter={(e) => {

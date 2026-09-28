@@ -50,7 +50,7 @@ export default function OilExtractionModal() {
                             border: 'none',
                             borderLeft: `2px solid ${activeStep === i ? 'var(--argilla-ferrosa)' : 'rgba(107,122,101,0.2)'}`,
                             padding: '1rem 1.5rem',
-                            cursor: 'none',
+                            cursor: 'pointer',
                             textAlign: 'left',
                             transition: 'border-color 0.3s',
                         }}
@@ -95,7 +95,7 @@ export default function OilExtractionModal() {
                         {activeStep > 0 && (
                             <button
                                 onClick={() => setActiveStep(activeStep - 1)}
-                                style={{ background: 'transparent', border: '1px solid rgba(107,122,101,0.3)', borderRadius: '9999px', padding: '0.5rem 1.5rem', color: 'var(--olive)', fontFamily: 'var(--font-inter)', fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase', cursor: 'none' }}
+                                style={{ background: 'transparent', border: '1px solid rgba(107,122,101,0.3)', borderRadius: '9999px', padding: '0.5rem 1.5rem', color: 'var(--olive)', fontFamily: 'var(--font-inter)', fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase', cursor: 'pointer' }}
                             >
                                 {t('btnPrev')}
                             </button>
@@ -103,7 +103,7 @@ export default function OilExtractionModal() {
                         {activeStep < steps.length - 1 && (
                             <button
                                 onClick={() => setActiveStep(activeStep + 1)}
-                                style={{ background: 'transparent', border: '1px solid var(--olive)', borderRadius: '9999px', padding: '0.5rem 1.5rem', color: 'var(--olive)', fontFamily: 'var(--font-inter)', fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase', cursor: 'none' }}
+                                style={{ background: 'transparent', border: '1px solid var(--olive)', borderRadius: '9999px', padding: '0.5rem 1.5rem', color: 'var(--olive)', fontFamily: 'var(--font-inter)', fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase', cursor: 'pointer' }}
                             >
                                 {t('btnNext')}
                             </button>
@@ -129,7 +129,7 @@ export default function OilExtractionModal() {
                     fontSize: '10px',
                     letterSpacing: '0.18em',
                     textTransform: 'uppercase',
-                    cursor: 'none',
+                    cursor: 'pointer',
                     transition: 'border-color 0.3s',
                 }}
             >

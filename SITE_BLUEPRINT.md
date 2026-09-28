@@ -1,6 +1,6 @@
 # Fattoria di Monti — Site Blueprint for AI Agents
 
-Last updated: April 2026
+Last updated: September 2026
 
 This is the authoritative working blueprint for the current website. Any AI agent working on this repo must read this file before changing architecture, content, animations, navigation, data models, or performance behavior.
 
@@ -42,7 +42,7 @@ Current strategic simplification:
 - Smooth scroll: Lenis
 - WebGL: rimosso (Jul 2026) — sfondo CSS statico + immagini DOM native, niente three.js
 - State: Zustand in `store/useAppStore.ts`
-- Deployment target: Netlify
+- Deployment target: Vercel (ex Netlify, vedi `MIGRAZIONE_VERCEL.md`)
 - Analytics: consent-aware GA component, not always active
 
 Important scripts:
@@ -232,6 +232,7 @@ Rules:
 - Launch mode (Jul 2026): no purchase CTAs. All oil CTAs open the Concierge with context `olio` (info-request flow). Lead lands on `/api/contact` with a `topic` field.
 - Product bottle data lives in `messages.*.Olio.bottles`, typed by `OlioContent`.
 - Real photos replace CSS bottle placeholders by filling `Olio.bottles[n].image.src` in messages (both locales); empty src keeps the CSS fallback.
+- Bottiglie attuali (Sep 2026): scontornate WebP con alpha in `public/images/olio/bottiglie/{monti,moraiolo,razzo}.webp` (~175×775). Se arrivano i PNG originali trasparenti in alta risoluzione, sostituirli con un **nome file nuovo** (vedi §7, cache immagini).
 
 ### Mucco Pisano / Carne secca (launch mode)
 
@@ -257,7 +258,16 @@ Structure (Jul 2026): the house is presented as a **single house**, not four bra
 - Section content typed by `CasaContent` (`lib/content/types.ts`), data in `Ospitalita.sections.casa` (IT+EN).
 - Two floors rendered with `components/ui/HouseFloorPlan.tsx` (placeholder SVG blueprints, numbered markers matching the `spaces` legend from messages — no text inside the SVG for i18n). Swap the SVGs when the real survey drawings arrive.
 - Amenities grid in 4 groups using `components/ui/AmenityIcon.tsx`.
-- House photo strip with lightbox. `RoomSheet` and `RoomFloorPlan` were retired.
+- `RoomSheet` and `RoomFloorPlan` were retired.
+
+Galleria Casa Rossa (Sep 2026) — `components/dom/CasaGallery.tsx` + `components/ui/GalleryLightbox.tsx`:
+
+- **Tutte le 58 foto** dello shooting (`2026.05.14_FattoriadiMontiMateriale/Export/Foto fattoria/JPEG nomi sito`, esclusi i `drone_cows_*`) in `public/images/casa-rossa/galleria/<id>.webp`, dimensioni originali (niente upscaling). È l'unica copia delle foto della casa: hero, «Il Calore», home e menu puntano qui.
+- Elenco ordinato con `id`, area e dimensioni reali in `lib/data/ospitalita.tsx` (`CASA_PHOTOS`); didascalie IT/EN per id in `Ospitalita.sections.galleria.photos`, aree in `…galleria.groups` (`esterni`, `piano-terra`, `piano-superiore`, `terrazza`). Mai mappare le foto per indice.
+- Layout a righe giustificate solo CSS (`.gallery-justified` in globals.css): nessun ritaglio, nessun layout shift, nessun pin. Il vecchio scroll orizzontale pinnato (~15.000px di tunnel) è stato ritirato: non reintrodurlo.
+- Filtri per area; ogni piano (`casa.floors`, id = id area) ha un bottone che apre la lightbox con le sole foto di quel piano (`casa.floorPhotosLabel`).
+- La lightbox è in portal su `document.body`, adatta la foto allo schermo (`object-contain`), precarica la precedente/successiva, tastiera + swipe.
+- Per aggiungere una foto: WebP in `galleria/`, voce in `CASA_PHOTOS` (con width/height), didascalia in entrambe le lingue.
 
 Keep copy readable, high-contrast, and direct. Avoid hiding critical booking content behind slow reveals.
 
@@ -288,6 +298,17 @@ Current performance design:
 - `hooks/usePerformance.ts` exposes `useReducedMotion`.
 - No WebGL layer: images are native DOM `<Image>` elements; the fixed backdrop is the static `.backdrop-terroso` class (globals.css) rendered by `AppWrapper`.
 - Home hero uses a muted autoplay loop (`/videos/hero.mp4`, poster `/images/hero-poster.webp`); with `prefers-reduced-motion` only the poster is shown.
+
+Lessons learned (Sep 2026 — cause reali di blocchi e scatti, non ripeterle):
+
+- **Lenis fermo annulla wheel/touch**: ogni overlay scrollabile aperto con Lenis in `stop()` (es. `OilBottleSheet`) deve avere `data-lenis-prevent` + `overscroll-behavior: contain`, altrimenti non scorre. Gli overlay non scrollabili (lightbox, concierge) NON lo mettono: è Lenis che blocca lo scroll della pagina sotto su iOS.
+- **Transform CSS in percentuale + GSAP**: GSAP legge `translateY(100%)` come pixel e poi somma `yPercent`. Stato iniziale sempre con `gsap.set(el, { yPercent, y: 0 })`, mai con un transform inline. Il sipario di `GlobalTransitionOverlay` si rialza solo quando il nuovo pathname è montato (con timeout di sicurezza) e tiene il router in un ref: il router di next-intl cambia identità a ogni navigazione.
+- **Overlay dentro `<main>`** (che ha `z-10`): finiscono sotto la navbar fissa qualunque z-index abbiano. Lightbox e simili vanno in portal su `document.body`.
+- **Cursore custom rimosso** (rAF perpetuo + `mix-blend-mode`): si usa il cursore nativo, mai `cursor: none`.
+- **Video hero**: gira solo con l'hero in viewport (IntersectionObserver) e scheda visibile.
+- **Niente `backdrop-filter` su elementi fissi grandi** (navbar): viene ricalcolato a ogni frame di scroll/video. Sopra fondi pieni è solo costo GPU.
+- **Niente letture di layout per frame** (`scrollHeight`, `getBoundingClientRect`) negli handler di scroll: usare i valori in cache di Lenis (`lenis.progress`, `lenis.limit`) e animare `transform`, non `height`.
+- **Immagini**: `next.config.js` serve solo WebP (AVIF era troppo lento alla prima codifica) con cache di 7 giorni → per sostituire una foto usare un **nome file nuovo**. `sharp` è in dependencies: senza, l'ottimizzatore locale (`next dev` / `next start`) impiega ~8 s per miniatura e il sito sembra bloccato. `priority` solo sull'immagine above-the-fold.
 
 When editing scroll or animation:
 
@@ -460,6 +481,9 @@ After editing:
 - `components/dom/HistoryTerroir.tsx`: home story/terroir
 - `app/[locale]/storia/page.tsx`: story plus absorbed filiera content
 - `app/[locale]/olio/page.tsx`: oil story/product page
+- `app/[locale]/ospitalita/page.tsx`: Casa Rossa (piani, comodità, galleria)
+- `components/dom/CasaGallery.tsx`, `components/ui/GalleryLightbox.tsx`: galleria Casa Rossa e lightbox
+- `components/overlays/GlobalTransitionOverlay.tsx`: sipario delle transizioni di pagina
 - `hooks/useLenis.ts`: smooth scroll and ScrollTrigger bridge
 - `hooks/usePerformance.ts`: reduced motion
 - `store/useAppStore.ts`: rare UI state

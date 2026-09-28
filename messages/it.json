@@ -346,7 +346,7 @@
         "labelColor": "#A67C52",
         "glowColor": "rgba(166, 124, 82, 0.42)",
         "image": {
-          "src": "/images/olio/monti-bottiglia.webp",
+          "src": "/images/olio/bottiglie/monti.webp",
           "alt": "Bottiglia Olio Extravergine Monti biologico denocciolato"
         }
       },
@@ -381,7 +381,7 @@
         "labelColor": "#3D5A80",
         "glowColor": "rgba(61, 90, 128, 0.42)",
         "image": {
-          "src": "/images/olio/moraiolo-bottiglia.webp",
+          "src": "/images/olio/bottiglie/moraiolo.webp",
           "alt": "Bottiglia Olio Extravergine Monocultivar Moraiolo"
         }
       },
@@ -416,7 +416,7 @@
         "labelColor": "#75806F",
         "glowColor": "rgba(117, 128, 111, 0.42)",
         "image": {
-          "src": "/images/olio/razzo-bottiglia.webp",
+          "src": "/images/olio/bottiglie/razzo.webp",
           "alt": "Bottiglia Olio Extravergine Monocultivar Razzo"
         }
       }
@@ -496,7 +496,7 @@
               "alt": "Villa Buontalenti"
             },
             {
-              "src": "/images/casa-rossa-interni.webp",
+              "src": "/images/casa-rossa/galleria/pt-salone.webp",
               "alt": "Interni Casa Rossa"
             },
             {
@@ -597,77 +597,79 @@
         }
       },
       "galleria": {
+        "label": "La casa in {count} fotografie",
         "titleHtml": "Frammenti <brResp></brResp><emClass>di Pace</emClass>",
-        "scrollHint": "Scorri per esplorare",
-        "items": [
-          {
-            "alt": "Salone con grandi finestre",
-            "overlayText": "Il salone"
-          },
-          {
-            "alt": "Facciata della Casa Rossa",
-            "overlayText": "La facciata"
-          },
-          {
-            "alt": "Cucina toscana",
-            "overlayText": "La cucina"
-          },
-          {
-            "alt": "Piscina privata",
-            "overlayText": "La piscina"
-          },
-          {
-            "alt": "Sala lettura",
-            "overlayText": "L'angolo lettura"
-          },
-          {
-            "alt": "Camino e soggiorno",
-            "overlayText": "Il camino"
-          },
-          {
-            "alt": "Camera al piano superiore",
-            "overlayText": "Una camera"
-          },
-          {
-            "alt": "Facciata e ulivi",
-            "overlayText": "Gli esterni"
-          },
-          {
-            "alt": "Seconda camera",
-            "overlayText": "Camera due"
-          },
-          {
-            "alt": "Piscina vista verticale",
-            "overlayText": "La piscina"
-          },
-          {
-            "alt": "Terrazza sul tetto",
-            "overlayText": "La terrazza"
-          },
-          {
-            "alt": "Terza camera",
-            "overlayText": "Camera tre"
-          },
-          {
-            "alt": "Bagno",
-            "overlayText": "Il bagno"
-          },
-          {
-            "alt": "Scala interna",
-            "overlayText": "Le scale"
-          },
-          {
-            "alt": "Quarta camera",
-            "overlayText": "Camera quattro"
-          },
-          {
-            "alt": "Casa Rossa dall’alto",
-            "overlayText": "Dall’alto"
-          }
-        ],
-        "indicator": {
-          "exploreText": "Esplora",
-          "scrollText": "Scorri"
+        "allLabel": "Tutte",
+        "groups": {
+          "esterni": "Esterni e piscina",
+          "piano-terra": "Piano terra",
+          "piano-superiore": "Piano superiore",
+          "terrazza": "Terrazza sul tetto"
+        },
+        "photos": {
+          "ext-facciata-prato": "La Casa Rossa dal prato, tra i pini",
+          "ext-veranda": "La veranda vetrata sulla facciata principale",
+          "ext-vialetto": "Il vialetto d’ingresso con l’orcio in terracotta",
+          "ext-facciata-veranda": "La facciata principale con la veranda",
+          "ext-cielo": "La facciata sotto il cielo toscano",
+          "ext-grandi-alberi": "La casa all’ombra dei grandi alberi",
+          "ext-cedri": "La casa tra i cedri",
+          "ext-parco": "Il parco di cedri e pini intorno alla casa",
+          "ext-pergola": "La facciata laterale con la pergola",
+          "ext-prato": "Il prato davanti alla casa",
+          "ext-edera-torretta": "La facciata coperta d’edera e la torretta",
+          "ext-ingresso-edera": "L’ingresso laterale incorniciato dall’edera",
+          "ext-edera": "Edera sull’intonaco rosso",
+          "ext-piscina": "La piscina a uso esclusivo",
+          "ext-piscina-giardino": "La piscina e il giardino",
+          "ext-drone-piscina": "La piscina immersa nel verde, dall’alto",
+          "ext-drone-tenuta": "La piscina e la tenuta viste dall’alto",
+          "ext-drone-casa": "La Casa Rossa vista dall’alto",
+          "ext-drone-colline": "La casa e le colline intorno, dall’alto",
+          "pt-salone": "Il salone delle quattro grandi finestre",
+          "pt-salone-luce": "Luce e piante nel salone",
+          "pt-sala-camino": "La sala del camino, con il tavolo da pranzo",
+          "pt-lettura": "Il soggiorno di lettura",
+          "pt-lettura-divani": "Divani, libri e tappeti persiani",
+          "pt-cucina": "La grande cucina toscana",
+          "pt-cucina-madia": "La cucina e la madia antica",
+          "pt-cucina-attrezzata": "La cucina completamente attrezzata",
+          "pt-cucina-giardino": "Il tavolo della cucina, aperto sul giardino",
+          "pt-bagno-vasca": "Il bagno del piano terra, con la vasca",
+          "pt-bagno-maioliche": "Maioliche verdi nel bagno del piano terra",
+          "pt-lavanderia": "La lavanderia",
+          "pt-scala": "La scala interna",
+          "ps-camera1": "Camera uno, con il copriletto a righe",
+          "ps-camera1-tappeti": "Camera uno, tappeti e mobili d’epoca",
+          "ps-camera2": "Camera due, luminosa e ariosa",
+          "ps-camera2-letto": "Camera due, il letto matrimoniale",
+          "ps-camera2-ritratto": "Un ritratto dipinto in camera due",
+          "ps-camera2-armadio-muro": "Camera due, verso l’armadio a muro",
+          "ps-camera2-testiera": "La testiera imbottita",
+          "ps-camera2-armadio": "L’armadio bianco",
+          "ps-camera2-finestra": "La pergola vista dalla finestra",
+          "ps-camera3": "Camera tre, con i cuscini verde salvia",
+          "ps-camera3-specchi": "Camera tre, l’armadio a specchi e la libreria",
+          "ps-camera3-lino": "Lino e cotone in camera tre",
+          "ps-camera3-dettaglio": "Dettaglio del copriletto",
+          "ps-camera4": "Camera quattro, con il divano rosso",
+          "ps-camera4-scrittoio": "Camera quattro, lo scrittoio e l’armadio a muro",
+          "ps-camera4-letto": "Camera quattro, il letto matrimoniale",
+          "ps-camera4-stampe": "Camera quattro, stampe antiche sopra il letto",
+          "ps-corridoio": "Il corridoio tra le camere",
+          "ps-bagno-doccia": "Il bagno con doccia",
+          "ps-bagno-doppio-lavabo": "Il secondo bagno, con doppio lavabo",
+          "ps-bagno-finestra": "Il secondo bagno, luce naturale dalla finestra",
+          "ps-bagno-mosaico": "Mosaico e pietra nel secondo bagno",
+          "ps-bagno-doccia-mosaico": "La doccia a mosaico",
+          "terrazza-torretta": "La terrazza sul tetto e la torretta",
+          "terrazza-campagna": "La terrazza sul tetto, aperta sul paesaggio",
+          "terrazza-pini": "I pini visti dalla terrazza"
+        },
+        "lightbox": {
+          "closeAria": "Chiudi la galleria",
+          "prevAria": "Foto precedente",
+          "nextAria": "Foto successiva"
         }
       },
       "casa": {
@@ -704,28 +706,7 @@
             ]
           }
         ],
-        "photosTitle": "La Casa Rossa",
-        "photoAria": "Apri le foto della casa",
-        "photos": [
-          {
-            "alt": "La cucina della Casa Rossa"
-          },
-          {
-            "alt": "Una delle camere al piano superiore"
-          },
-          {
-            "alt": "La Casa Rossa vista dall’alto"
-          },
-          {
-            "alt": "Il salone con le grandi finestre"
-          },
-          {
-            "alt": "La piscina a uso esclusivo"
-          },
-          {
-            "alt": "La terrazza sul tetto"
-          }
-        ],
+        "floorPhotosLabel": "Guarda le {count} foto",
         "amenities": {
           "title": "Le Comodità",
           "intro": "Tutto ciò che serve per un soggiorno breve o lungo, senza rinunciare a nulla.",
