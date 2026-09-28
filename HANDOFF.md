@@ -90,20 +90,14 @@ Il sito usa il cursore nativo del sistema.
 
 ## 4. Casa Rossa — piantine interattive (pagina `/ospitalita`)
 
-Le due piantine (`components/ui/HouseFloorPlan.tsx`, SVG placeholder con marker
-numerati) devono diventare interattive:
+Fatto (Sep 28, 2026). Piantine reali di piano terra, piano superiore e terrazza,
+stanze numerate 1–15 (`FLOOR_PLANS`, `lib/data/ospitalita.tsx`). I numeri e le voci
+della legenda sono pulsanti: aprono accanto al numero (sotto la piantina su mobile)
+un'anteprima della stanza con foto, miniature e link alla lightbox filtrata sulla
+stanza. Abbinamento foto → stanza con `room` in `CASA_PHOTOS`, dalle foto rinominate
+`punto_<n>_…` di Mauro. Dettagli in `SITE_BLUEPRINT.md` §6 Ospitalita.
 
-- **Pulsanti sulle stanze**: cliccando una stanza si vedono le foto di *quella sola* stanza.
-- **Una fascia foto dinamica per piano**: una tra la piantina del primo piano e quella
-  del secondo, una sotto la piantina del secondo. La fascia mostra le foto della stanza
-  selezionata del rispettivo piano.
-- Dati: estendere `CasaContent` in `lib/content/types.ts` (es. `spaces[n].photos[]`)
-  e i messages `Ospitalita.sections.casa` (IT+EN). Niente testo dentro gli SVG (i18n).
-- Stato (Sep 28, 2026): le foto per stanza ora esistono (id `ps-camera1…4`,
-  `pt-cucina…` in `CASA_PHOTOS`) e ogni piano ha già un bottone che apre le sue foto.
-  Per il passo «foto della sola stanza» manca solo sapere da Lorenzo quale camera
-  del rilievo corrisponde a Camera uno…quattro, poi si aggiunge `room` alle voci.
-- Attenzione blueprint: le SVG placeholder verranno sostituite dai rilievi reali.
+Resta da validare con Lorenzo: i nomi delle stanze in `Ospitalita.sections.casa.rooms`.
 
 ## 5. Osservatorio "Migliaia di Stelle" (pagina `/ospitalita`)
 

@@ -36,9 +36,11 @@ export default function OspitalitaPage() {
     );
 
     const [lightbox, setLightbox] = useState<{ photos: LightboxPhoto[]; index: number } | null>(null);
+    // Stanza aperta sulle piantine: una sola alla volta su tutta la pagina.
+    const [activeRoom, setActiveRoom] = useState<number | null>(null);
 
-    const openLightbox = useCallback((photos: CasaGalleryPhoto[], index: number) => {
-        setLightbox({ photos: photos.map((p) => ({ ...p, eyebrow: groupLabels[p.group] })), index });
+    const openLightbox = useCallback((photos: CasaGalleryPhoto[], index: number, eyebrow?: string) => {
+        setLightbox({ photos: photos.map((p) => ({ ...p, eyebrow: eyebrow ?? groupLabels[p.group] })), index });
         setLightboxOpen(true);
     }, [groupLabels, setLightboxOpen]);
 
@@ -59,6 +61,24 @@ export default function OspitalitaPage() {
         const group = galleria.groups.find((g) => g.id === floorId);
         if (group?.photos.length) openLightbox(group.photos, 0);
     };
+
+    // Anteprima stanza: si chiude con Esc o toccando fuori da numeri, legenda e
+    // anteprima. Con la lightbox aperta resta com'è, per ritrovarla alla chiusura.
+    useEffect(() => {
+        if (activeRoom === null || lightbox) return;
+        const onPointerDown = (e: PointerEvent) => {
+            if (!(e.target as Element).closest('[data-room-ui]')) setActiveRoom(null);
+        };
+        const onKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') setActiveRoom(null);
+        };
+        document.addEventListener('pointerdown', onPointerDown);
+        document.addEventListener('keydown', onKeyDown);
+        return () => {
+            document.removeEventListener('pointerdown', onPointerDown);
+            document.removeEventListener('keydown', onKeyDown);
+        };
+    }, [activeRoom, lightbox]);
 
     // Dipende da prefersReducedMotion; il check sync su matchMedia copre il
     // primo render, quando lo stato è ancora false.
@@ -194,6 +214,9 @@ export default function OspitalitaPage() {
                     <p className="font-inter text-base leading-[1.9] opacity-80 max-w-2xl mx-auto fade-up-text">
                         {casa.introText}
                     </p>
+                    <p className="mt-8 font-inter text-[10px] tracking-[0.18em] uppercase text-[var(--argilla-ferrosa)] fade-up-text">
+                        {casa.planHint}
+                    </p>
                 </div>
 
                 {/* I due piani: piantina + legenda + foto del piano */}
@@ -202,7 +225,13 @@ export default function OspitalitaPage() {
                         <div key={floor.id} className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
                             <div className={`fade-up-card ${fi % 2 === 1 ? 'lg:order-2' : ''}`}>
                                 <div className="rounded-sm border border-[var(--argilla-ferrosa)]/25 bg-[rgba(78,64,48,0.03)] p-6 lg:p-10">
-                                    <HouseFloorPlan floorId={floor.id} className="w-full h-auto" />
+                                    <HouseFloorPlan
+                                        floor={floor}
+                                        activeRoom={activeRoom}
+                                        onSelectRoom={setActiveRoom}
+                                        onOpenPhotos={openLightbox}
+                                        closeAria={casa.roomCloseAria}
+                                    />
                                 </div>
                             </div>
                             <div className={`fade-up-text ${fi % 2 === 1 ? 'lg:order-1' : ''}`}>
@@ -213,14 +242,33 @@ export default function OspitalitaPage() {
                                     {floor.description}
                                 </p>
                                 <ol className="flex flex-col gap-3">
-                                    {floor.spaces.map((space, si) => (
-                                        <li key={si} className="flex items-center gap-4">
-                                            <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full border border-[var(--argilla-ferrosa)]/40 font-inter text-[11px] text-[var(--argilla-ferrosa)]">
-                                                {si + 1}
-                                            </span>
-                                            <span className="font-inter text-sm md:text-base opacity-85">{space}</span>
-                                        </li>
-                                    ))}
+                                    {floor.spaces.map((space) => {
+                                        const active = activeRoom === space.n;
+                                        return (
+                                            <li key={space.n}>
+                                                <button
+                                                    type="button"
+                                                    data-room-ui
+                                                    aria-expanded={active}
+                                                    onClick={() => setActiveRoom(active ? null : space.n)}
+                                                    className="group flex items-center gap-4 text-left"
+                                                >
+                                                    <span
+                                                        className={`flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full border font-inter text-[11px] transition-colors duration-300 ${
+                                                            active
+                                                                ? 'border-[var(--argilla-ferrosa)] bg-[var(--argilla-ferrosa)] text-[var(--tufo)]'
+                                                                : 'border-[var(--argilla-ferrosa)]/40 text-[var(--argilla-ferrosa)] group-hover:border-[var(--argilla-ferrosa)]'
+                                                        }`}
+                                                    >
+                                                        {space.n}
+                                                    </span>
+                                                    <span className={`font-inter text-sm md:text-base transition-opacity ${active ? 'opacity-100' : 'opacity-85 group-hover:opacity-100'}`}>
+                                                        {space.name}
+                                                    </span>
+                                                </button>
+                                            </li>
+                                        );
+                                    })}
                                 </ol>
                                 <button
                                     type="button"

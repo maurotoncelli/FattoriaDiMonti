@@ -1,162 +1,182 @@
-import React from 'react';
+'use client';
+
+import React, { useEffect, useRef } from 'react';
+import Image from 'next/image';
+import type { CasaFloor, CasaGalleryPhoto, CasaSpace } from '@/lib/content/types';
 
 interface HouseFloorPlanProps {
-    floorId: string; // 'piano-terra' | 'piano-superiore'
-    className?: string;
+    floor: CasaFloor;
+    activeRoom: number | null;
+    onSelectRoom: (n: number | null) => void;
+    onOpenPhotos: (photos: CasaGalleryPhoto[], index: number, eyebrow: string) => void;
+    closeAria: string;
+}
+
+/** Distanza dell'anteprima dal centro del cerchio (raggio + respiro) */
+const POP_GAP = '22px';
+
+/**
+ * Piantina di un livello della Casa Rossa. Le linee arrivano dal gruppo `muri`
+ * dell'SVG in public/, unica copia del disegno; i numeri sono pulsanti HTML
+ * sovrapposti, a dimensione fissa, che aprono l'anteprima della stanza.
+ * Gli elementi con `data-room-ui` non chiudono l'anteprima al clic (vedi pagina).
+ */
+export default function HouseFloorPlan({ floor, activeRoom, onSelectRoom, onOpenPhotos, closeAria }: HouseFloorPlanProps) {
+    const { plan, spaces } = floor;
+    const [minX, minY, width, height] = plan.viewBox.split(' ').map(Number);
+    const place = (x: number, y: number) => ({ left: ((x - minX) / width) * 100, top: ((y - minY) / height) * 100 });
+
+    const activeMarker = plan.rooms.find((r) => r.n === activeRoom);
+    const activeSpace = spaces.find((s) => s.n === activeRoom);
+
+    return (
+        <div className="relative mx-auto w-full" style={{ maxWidth: `calc(80vh * ${width / height})` }}>
+            <div className="relative" style={{ aspectRatio: `${width} / ${height}` }}>
+                <svg viewBox={plan.viewBox} className="absolute inset-0 h-full w-full" aria-hidden="true">
+                    <use href={`${plan.src}#muri`} />
+                </svg>
+                {plan.rooms.map(({ n, x, y }) => {
+                    const space = spaces.find((s) => s.n === n);
+                    const { left, top } = place(x, y);
+                    const active = n === activeRoom;
+                    return (
+                        <button
+                            key={n}
+                            type="button"
+                            data-room-ui
+                            aria-label={space?.openAria}
+                            aria-expanded={active}
+                            aria-controls={active ? `room-preview-${n}` : undefined}
+                            onClick={() => onSelectRoom(active ? null : n)}
+                            className={`absolute flex h-6 w-6 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-[var(--argilla-ferrosa)] font-inter text-[10px] leading-none transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--argilla-ferrosa)] sm:h-7 sm:w-7 sm:text-[11px] ${
+                                active
+                                    ? 'z-10 bg-[var(--argilla-ferrosa)] text-[var(--tufo)]'
+                                    : 'bg-[var(--tufo)] text-[var(--argilla-ferrosa)] hover:bg-[var(--argilla-ferrosa)] hover:text-[var(--tufo)]'
+                            }`}
+                            style={{ left: `${left}%`, top: `${top}%` }}
+                        >
+                            {n}
+                        </button>
+                    );
+                })}
+            </div>
+
+            {activeMarker && activeSpace && activeSpace.photos.length > 0 && (
+                <RoomPreview
+                    key={activeSpace.n}
+                    space={activeSpace}
+                    {...place(activeMarker.x, activeMarker.y)}
+                    closeAria={closeAria}
+                    onClose={() => onSelectRoom(null)}
+                    onOpenPhotos={onOpenPhotos}
+                />
+            )}
+        </div>
+    );
+}
+
+interface RoomPreviewProps {
+    space: CasaSpace;
+    /** Posizione del cerchio in percentuale della piantina */
+    left: number;
+    top: number;
+    closeAria: string;
+    onClose: () => void;
+    onOpenPhotos: HouseFloorPlanProps['onOpenPhotos'];
 }
 
 /**
- * Piantine architettoniche placeholder della Casa Rossa.
- * Da sostituire con gli SVG definitivi del rilievo quando disponibili.
- *
- * Nessun testo dentro l'SVG (regola i18n): gli ambienti sono indicati da
- * marker numerati che corrispondono, in ordine, alla legenda `spaces`
- * definita nei messages.
+ * Da `sm` in su è un riquadro accanto al numero, dal lato con più spazio;
+ * su mobile scende sotto la piantina, nel flusso.
  */
-export default function HouseFloorPlan({ floorId, className = '' }: HouseFloorPlanProps) {
-    const stroke = 'var(--argilla-ferrosa)';
-    const thin = '1';
-    const wall = '2';
-    const dash = '4 4';
+function RoomPreview({ space, left, top, closeAria, onClose, onOpenPhotos }: RoomPreviewProps) {
+    const ref = useRef<HTMLDivElement>(null);
+    const [cover, ...others] = space.photos;
+    const open = (index: number) => onOpenPhotos(space.photos, index, space.name);
 
-    const Marker = ({ x, y, n }: { x: number; y: number; n: number }) => (
-        <g>
-            <circle cx={x} cy={y} r="11" fill="var(--tufo)" stroke={stroke} strokeWidth={thin} />
-            <text
-                x={x}
-                y={y + 4}
-                textAnchor="middle"
-                fontSize="11"
-                fontFamily="var(--font-inter)"
-                fill={stroke}
-            >
-                {n}
-            </text>
-        </g>
-    );
+    const toRight = left < 50;
+    const below = top < 55;
+    const anchor = {
+        '--pop-l': toRight ? `calc(${left}% + ${POP_GAP})` : 'auto',
+        '--pop-r': toRight ? 'auto' : `calc(${100 - left}% + ${POP_GAP})`,
+        '--pop-t': below ? `calc(${top}% - ${POP_GAP})` : 'auto',
+        '--pop-b': below ? 'auto' : `calc(${100 - top}% - ${POP_GAP})`,
+    } as React.CSSProperties;
 
-    if (floorId === 'piano-terra') {
-        return (
-            <svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg" className={className} aria-hidden="true">
-                {/* Perimetro doppio muro */}
-                <rect x="20" y="50" width="360" height="230" stroke={stroke} strokeWidth={wall} />
-                <rect x="26" y="56" width="348" height="218" stroke={stroke} strokeWidth="0.6" opacity="0.35" />
+    // Su mobile l'anteprima sta sotto la piantina: se aperta dalla legenda può
+    // essere fuori schermo. Lenis anima solo la rotellina, su touch lo scroll nativo è sicuro.
+    // `scroll-mb-32` la tiene sopra il pulsante di chiusura fisso della pagina.
+    useEffect(() => {
+        if (!window.matchMedia('(max-width: 639px)').matches) return;
+        const smooth = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        ref.current?.scrollIntoView({ block: 'nearest', behavior: smooth ? 'smooth' : 'auto' });
+    }, []);
 
-                {/* 1 — Veranda d'ingresso (avancorpo) */}
-                <rect x="140" y="20" width="120" height="30" stroke={stroke} strokeWidth={wall} />
-                <path d="M150 20 V50 M170 20 V50 M190 20 V50 M210 20 V50 M230 20 V50 M250 20 V50" stroke={stroke} strokeWidth="0.6" opacity="0.4" />
-                <Marker x={200} y={35} n={1} />
-
-                {/* 2 — Doppio soggiorno con camino (sinistra) */}
-                <path d="M20 165 H175" stroke={stroke} strokeWidth={thin} />
-                <path d="M175 50 V280" stroke={stroke} strokeWidth={thin} />
-                {/* camino sul muro ovest */}
-                <rect x="20" y="95" width="14" height="34" stroke={stroke} strokeWidth={thin} />
-                <path d="M23 101 h8 M23 108 h8 M23 115 h8" stroke={stroke} strokeWidth="0.6" opacity="0.5" />
-                {/* divani (tratteggio arredo) */}
-                <rect x="60" y="80" width="70" height="22" rx="3" stroke={stroke} strokeWidth={thin} strokeDasharray={dash} />
-                <rect x="60" y="118" width="70" height="22" rx="3" stroke={stroke} strokeWidth={thin} strokeDasharray={dash} />
-                <Marker x={100} y={200} n={2} />
-                {/* tappeto */}
-                <rect x="50" y="185" width="100" height="70" stroke={stroke} strokeWidth="0.6" opacity="0.35" />
-
-                {/* 3 — Sala pranzo (centro) */}
-                <path d="M285 50 V170" stroke={stroke} strokeWidth={thin} />
-                <ellipse cx="230" cy="105" rx="34" ry="22" stroke={stroke} strokeWidth={thin} strokeDasharray={dash} />
-                <Marker x={230} y={150} n={3} />
-
-                {/* 4 — Cucina attrezzata (destra alto) */}
-                <path d="M285 170 H380" stroke={stroke} strokeWidth={thin} />
-                <path d="M295 60 h75 M295 74 h75" stroke={stroke} strokeWidth={thin} opacity="0.6" />
-                <circle cx="310" cy="100" r="6" stroke={stroke} strokeWidth="0.8" opacity="0.5" />
-                <circle cx="328" cy="100" r="6" stroke={stroke} strokeWidth="0.8" opacity="0.5" />
-                <Marker x={332} y={135} n={4} />
-
-                {/* 5 — Bagno con vasca (destra basso) */}
-                <path d="M285 170 V280" stroke={stroke} strokeWidth={thin} />
-                <path d="M285 225 H380" stroke={stroke} strokeWidth={thin} />
-                <rect x="300" y="182" width="55" height="24" rx="10" stroke={stroke} strokeWidth={thin} opacity="0.6" />
-                <Marker x={332} y={210} n={5} />
-
-                {/* 6 — Lavanderia */}
-                <rect x="300" y="238" width="22" height="22" stroke={stroke} strokeWidth={thin} opacity="0.6" />
-                <circle cx="311" cy="249" r="7" stroke={stroke} strokeWidth="0.8" opacity="0.5" />
-                <Marker x={355} y={252} n={6} />
-
-                {/* Porte (archi tratteggiati) */}
-                <path d="M195 50 Q195 80 225 80" stroke={stroke} strokeWidth="0.8" strokeDasharray={dash} />
-                <path d="M175 200 Q205 200 205 230" stroke={stroke} strokeWidth="0.8" strokeDasharray={dash} />
-                <path d="M285 195 Q310 195 310 218" stroke={stroke} strokeWidth="0.8" strokeDasharray={dash} opacity="0.7" />
-
-                {/* Finestre */}
-                <rect x="55" y="277" width="50" height="6" fill={stroke} opacity="0.3" />
-                <rect x="210" y="277" width="50" height="6" fill={stroke} opacity="0.3" />
-                <rect x="17" y="200" width="6" height="50" fill={stroke} opacity="0.3" />
-                <rect x="377" y="90" width="6" height="50" fill={stroke} opacity="0.3" />
-            </svg>
-        );
-    }
-
-    // Piano superiore
     return (
-        <svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg" className={className} aria-hidden="true">
-            {/* Perimetro doppio muro */}
-            <rect x="20" y="30" width="360" height="240" stroke={stroke} strokeWidth={wall} />
-            <rect x="26" y="36" width="348" height="228" stroke={stroke} strokeWidth="0.6" opacity="0.35" />
+        <div
+            ref={ref}
+            id={`room-preview-${space.n}`}
+            data-room-ui
+            role="dialog"
+            aria-label={space.name}
+            style={anchor}
+            className="relative z-20 mt-5 w-full scroll-mb-32 overflow-hidden rounded-sm border border-[var(--argilla-ferrosa)]/30 bg-[var(--tufo)] shadow-[0_18px_40px_-18px_rgba(45,40,35,0.45)] motion-safe:animate-[room-preview-in_220ms_ease-out] sm:absolute sm:mt-0 sm:w-64 sm:[bottom:var(--pop-b)] sm:[left:var(--pop-l)] sm:[right:var(--pop-r)] sm:[top:var(--pop-t)]"
+        >
+            <button type="button" onClick={() => open(0)} className="group relative block aspect-[3/2] w-full overflow-hidden">
+                <Image
+                    src={cover.src}
+                    alt={cover.alt}
+                    fill
+                    sizes="(min-width: 640px) 256px, 90vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+            </button>
+            <button
+                type="button"
+                aria-label={closeAria}
+                onClick={onClose}
+                className="absolute right-2 top-2 flex h-7 w-7 items-center justify-center rounded-full bg-[var(--tufo)]/90 text-[var(--mucco-pisano)] transition-colors hover:bg-[var(--tufo)]"
+            >
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+                    <path d="M1 1l8 8M9 1L1 9" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+                </svg>
+            </button>
 
-            {/* Corridoio centrale */}
-            <path d="M20 138 H380 M20 162 H380" stroke={stroke} strokeWidth={thin} opacity="0.8" />
+            <div className="p-4">
+                <div className="flex items-center gap-3">
+                    <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-[var(--argilla-ferrosa)] font-inter text-[10px] leading-none text-[var(--tufo)]">
+                        {space.n}
+                    </span>
+                    <span className="font-playfair text-lg leading-tight text-[var(--mucco-pisano)]">{space.name}</span>
+                </div>
 
-            {/* 1 — Camera matrimoniale vista colline (alto sx) */}
-            <path d="M155 30 V138" stroke={stroke} strokeWidth={thin} />
-            <rect x="55" y="55" width="56" height="66" rx="2" stroke={stroke} strokeWidth={thin} strokeDasharray={dash} />
-            <path d="M55 72 H111" stroke={stroke} strokeWidth="0.6" opacity="0.5" />
-            <Marker x={130} y={55} n={1} />
+                {others.length > 0 && (
+                    <div className="mt-3 flex gap-1.5">
+                        {others.map((photo, i) => (
+                            <button
+                                key={photo.id}
+                                type="button"
+                                aria-label={photo.alt}
+                                onClick={() => open(i + 1)}
+                                className="relative h-10 w-10 flex-shrink-0 overflow-hidden rounded-[2px] opacity-90 transition-opacity hover:opacity-100"
+                            >
+                                <Image src={photo.src} alt="" fill sizes="40px" className="object-cover" />
+                            </button>
+                        ))}
+                    </div>
+                )}
 
-            {/* 2 — Camera matrimoniale divisibile (alto dx) */}
-            <path d="M255 30 V138" stroke={stroke} strokeWidth={thin} />
-            <rect x="285" y="55" width="26" height="64" rx="2" stroke={stroke} strokeWidth={thin} strokeDasharray={dash} />
-            <rect x="317" y="55" width="26" height="64" rx="2" stroke={stroke} strokeWidth={thin} strokeDasharray={dash} />
-            <Marker x={272} y={55} n={2} />
-
-            {/* 5 — Bagno (alto centro) */}
-            <circle cx="185" cy="70" r="9" stroke={stroke} strokeWidth="0.8" opacity="0.5" />
-            <rect x="215" y="55" width="22" height="34" rx="4" stroke={stroke} strokeWidth={thin} opacity="0.6" />
-            <Marker x={205} y={115} n={5} />
-
-            {/* 3 — Camera alla francese (basso sx) */}
-            <path d="M140 162 V270" stroke={stroke} strokeWidth={thin} />
-            <rect x="50" y="190" width="48" height="60" rx="2" stroke={stroke} strokeWidth={thin} strokeDasharray={dash} />
-            <path d="M50 205 H98" stroke={stroke} strokeWidth="0.6" opacity="0.5" />
-            <Marker x={118} y={245} n={3} />
-
-            {/* 4 — Camera panoramica al tramonto (basso dx, la più ampia) */}
-            <path d="M240 162 V270" stroke={stroke} strokeWidth={thin} />
-            <rect x="285" y="185" width="60" height="68" rx="2" stroke={stroke} strokeWidth={thin} strokeDasharray={dash} />
-            <path d="M285 202 H345" stroke={stroke} strokeWidth="0.6" opacity="0.5" />
-            <Marker x={262} y={245} n={4} />
-
-            {/* 6 — Secondo bagno (basso centro) */}
-            <circle cx="175" cy="200" r="9" stroke={stroke} strokeWidth="0.8" opacity="0.5" />
-            <rect x="200" y="185" width="22" height="34" rx="4" stroke={stroke} strokeWidth={thin} opacity="0.6" />
-            <Marker x={190} y={245} n={6} />
-
-            {/* 7 — Scala alla terrazza (corridoio, destra) */}
-            <path d="M340 138 V162 M348 138 V162 M356 138 V162 M364 138 V162 M372 138 V162" stroke={stroke} strokeWidth="0.8" opacity="0.6" />
-            <Marker x={325} y={150} n={7} />
-
-            {/* Porte camere dal corridoio */}
-            <path d="M85 138 Q85 118 65 118" stroke={stroke} strokeWidth="0.8" strokeDasharray={dash} opacity="0.7" />
-            <path d="M310 138 Q310 118 330 118" stroke={stroke} strokeWidth="0.8" strokeDasharray={dash} opacity="0.7" />
-            <path d="M85 162 Q85 182 105 182" stroke={stroke} strokeWidth="0.8" strokeDasharray={dash} opacity="0.7" />
-            <path d="M310 162 Q310 182 290 182" stroke={stroke} strokeWidth="0.8" strokeDasharray={dash} opacity="0.7" />
-
-            {/* Finestre panoramiche */}
-            <rect x="50" y="27" width="55" height="6" fill={stroke} opacity="0.3" />
-            <rect x="290" y="27" width="55" height="6" fill={stroke} opacity="0.3" />
-            <rect x="50" y="267" width="55" height="6" fill={stroke} opacity="0.3" />
-            <rect x="290" y="267" width="55" height="6" fill={stroke} opacity="0.3" />
-            <rect x="377" y="185" width="6" height="55" fill={stroke} opacity="0.3" />
-        </svg>
+                <button
+                    type="button"
+                    onClick={() => open(0)}
+                    className="mt-4 inline-flex items-center gap-2 font-inter text-[10px] uppercase tracking-[0.18em] text-[var(--argilla-ferrosa)] transition-opacity hover:opacity-70"
+                >
+                    {space.photosLabel}
+                    <svg width="12" height="12" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                        <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                </button>
+            </div>
+        </div>
     );
 }

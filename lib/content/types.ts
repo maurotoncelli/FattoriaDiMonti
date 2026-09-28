@@ -207,12 +207,16 @@ export interface CerealiContent {
 
 // ─── Ospitalità ───────────────────────────────────────────────────────────────
 
-/** Aree della galleria Casa Rossa; 'piano-terra' e 'piano-superiore' coincidono con gli id dei piani. */
+/** Aree della galleria Casa Rossa; tutte tranne 'esterni' coincidono con gli id dei piani. */
 export type CasaGalleryGroupId = 'esterni' | 'piano-terra' | 'piano-superiore' | 'terrazza';
+
+export type CasaFloorId = Exclude<CasaGalleryGroupId, 'esterni'>;
 
 export interface CasaGalleryPhoto extends MediaItem {
   id: string;
   group: CasaGalleryGroupId;
+  /** Numero della stanza nella piantina (assente per gli esterni) */
+  room?: number;
   /** Dimensioni reali del file: il layout a righe giustificate usa il rapporto esatto */
   width: number;
   height: number;
@@ -232,12 +236,38 @@ export interface CasaGalleryContent {
   lightbox: { closeAria: string; prevAria: string; nextAria: string };
 }
 
+/** Cerchio numerato di una stanza: centro in coordinate del viewBox della piantina */
+export interface CasaRoomMarker {
+  n: number;
+  x: number;
+  y: number;
+}
+
+export interface CasaFloorPlan {
+  /** SVG in public/ con i gruppi `muri` (linee) e `numeri` (cerchi) */
+  src: string;
+  viewBox: string;
+  rooms: CasaRoomMarker[];
+}
+
+export interface CasaSpace {
+  /** Numero della stanza nella piantina, continuo tra i piani */
+  n: number;
+  name: string;
+  photos: CasaGalleryPhoto[];
+  /** Etichetta del link che apre le foto della stanza (con il conteggio) */
+  photosLabel: string;
+  /** aria-label del numero cliccabile */
+  openAria: string;
+}
+
 export interface CasaFloor {
-  id: string; // 'piano-terra' | 'piano-superiore'
+  id: CasaFloorId;
   name: string;
   description: string;
-  /** Legenda ambienti: l'ordine corrisponde ai marker numerati di HouseFloorPlan */
-  spaces: string[];
+  plan: CasaFloorPlan;
+  /** Legenda: una voce per cerchio della piantina, nello stesso ordine */
+  spaces: CasaSpace[];
   /** Etichetta del bottone che apre le foto del piano (con il conteggio) */
   photosLabel: string;
 }
@@ -247,6 +277,9 @@ export interface CasaContent {
   titleHtml: React.ReactNode;
   introText: string;
   planNote: string;
+  /** Invito a toccare i numeri delle piantine */
+  planHint: string;
+  roomCloseAria: string;
   floors: CasaFloor[];
   amenities: {
     title: string;

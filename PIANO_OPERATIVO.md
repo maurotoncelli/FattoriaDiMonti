@@ -25,7 +25,7 @@ Working checklist for the next product/engineering steps.
 | Stabilità & performance (Sep 2026) | Sipario transizioni, scroll scheda olio, cursore nativo, video hero fuori viewport, galleria senza pin, WebP + `sharp` | Done (uncommitted) |
 | Casa Rossa — galleria completa | 58 foto per area + lightbox, bottone foto per piano | Done Sep 2026 (uncommitted) |
 | Cucina Nomade — menu panini | Gusti da cartello food truck + ingredienti in arrivo | Open — nomi noti, ingredienti pending |
-| Casa Rossa — struttura contenuti | Casa unica: piani + piantine SVG + comodità | Done Jul 2026 (piantine placeholder, contenuti da validare con Lorenzo) |
+| Casa Rossa — struttura contenuti | Casa unica: piani + piantine SVG + comodità | Done — piantine reali Sep 2026 (3 livelli, stanze 1–15); nomi camere e contenuti da validare con Lorenzo |
 | Casa Rossa — commodities list | Prima lista in messages `Ospitalita.sections.casa.amenities`; rifinire con Lorenzo | Draft |
 | Casa Rossa booking quiz | Concierge con date reali | Open — con Lorenzo |
 | Lead destination | Google Form / Sheet per CTA info (`/api/contact` + `topic`); stesso form da navbar «Richiedi informazioni» (tendina: soggiorno / cucina / olio / mucco) e da CTA interni (es. Casa Rossa) | Open — vedi `HANDOFF.md` §1b; Google Form TBD Lorenzo/Mauro |
@@ -134,14 +134,14 @@ Gusti letti dal cartello inviato da Lorenzo (naming da normalizzare in copy):
 **Non** presentare quattro stanze brandizzate (Avorio / Verde / Rosa / Albicocca) come suite separate. ✔ fatto.
 
 Stato implementazione:
-- `/ospitalita` sezione 3 = **casa unica**: due piani con **piantine SVG placeholder** (`components/ui/HouseFloorPlan.tsx`, marker numerati → legenda `spaces` dai messages), strip foto con lightbox, griglia comodità in 4 gruppi (`components/ui/AmenityIcon.tsx`).
+- `/ospitalita` sezione 3 = **casa unica**: piano terra, piano superiore e terrazza con le **piantine reali** (`public/images/casa-rossa/piantine/*.svg` + `components/ui/HouseFloorPlan.tsx`, cerchi numerati 1–15 → legenda da `Ospitalita.sections.casa.rooms`), bottone foto per livello con lightbox, griglia comodità in 4 gruppi (`components/ui/AmenityIcon.tsx`).
 - Contratto dati: `CasaContent` in `lib/content/types.ts`; contenuti in `Ospitalita.sections.casa` (IT+EN).
 - `RoomSheet` e `RoomFloorPlan` **eliminati** (componenti, store flags, messages `Overlays.roomSheet`).
 - Home hospitality: rimosso il riferimento alle 4 stanze colorate nel testo "L'Esperienza".
 
 Da chiudere con Lorenzo:
 - Validare lista comodità (`Ospitalita.sections.casa.amenities` è la prima bozza dai servizi storici).
-- Sostituire le piantine placeholder con gli **SVG definitivi** del rilievo (stesso componente, due piani).
+- Confermare i nomi delle stanze letti dalle piantine (`casa.rooms`: 10/12 matrimoniali, 13/14 matrimoniali divisibili, 3 veranda vetrata, 7 ingresso e scala, 8 bagno con doppio lavabo, 11 bagno con doccia).
 - Capacità ospiti, mq, regole soggiorno; booking quiz con date (campi, regole, destinazione lead).
 
 ---
@@ -163,9 +163,10 @@ Da chiudere con Lorenzo:
 ### Asset
 - [ ] Ricevere packaging provvisori carne secca da Giacomo → swap `bustina-*.webp`
 - [x] Foto bottiglie olio → `public/images/olio/bottiglie/*-hd.webp` dai PNG originali scontornati (Sep 2026)
-- [ ] Piantine SVG definitive Casa Rossa → sostituire i due piani in `HouseFloorPlan.tsx`
+- [x] Piantine SVG definitive Casa Rossa → `public/images/casa-rossa/piantine/` (piano terra, piano superiore, terrazza; Sep 2026)
+- [x] Piantine cliccabili: clic sul numero → anteprima della stanza accanto + lightbox con le sole sue foto (`room` in `CASA_PHOTOS` dalle foto `punto_N` di Mauro; Sep 2026)
 - [x] Foto reali Casa Rossa → tutte le 58 foto in `public/images/casa-rossa/galleria/` + `CASA_PHOTOS` in `lib/data/ospitalita.tsx` (Sep 2026)
-- [ ] Didascalie camere: confermare con Lorenzo quale «Camera uno…quattro» corrisponde a quale voce della legenda (matrimoniale vista colline, divisibile, alla francese, panoramica)
+- [x] Didascalie camere: «Camera uno…quattro» → numero stanza della piantina (camera1 = 14, camera2 = 12, camera3 = 13, camera4 = 10)
 - [ ] Non chiedere specs prodotto carne secca pre-lancio
 
 ### Cucina Nomade / Food truck

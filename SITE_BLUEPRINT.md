@@ -256,7 +256,10 @@ La Casa Rossa is a major conversion page/section.
 Structure (Jul 2026): the house is presented as a **single house**, not four branded suites.
 
 - Section content typed by `CasaContent` (`lib/content/types.ts`), data in `Ospitalita.sections.casa` (IT+EN).
-- Two floors rendered with `components/ui/HouseFloorPlan.tsx` (placeholder SVG blueprints, numbered markers matching the `spaces` legend from messages — no text inside the SVG for i18n). Swap the SVGs when the real survey drawings arrive.
+- Three levels (`piano-terra`, `piano-superiore`, `terrazza`) rendered with `components/ui/HouseFloorPlan.tsx` from the real plans (Sep 2026): `public/images/casa-rossa/piantine/<floor>.svg`, cleaned from the Illustrator export (`Fattoria di monti website/piantine appartamento/export vettoriale/` on Google Drive), cropped to the drawing, structure `g#piantina > g#muri + g#numeri`. The component pulls only `#muri` via `<use href>` (the file is the single copy of the drawing) and overlays fixed-size HTML number circles.
+- Room numbers are continuous across levels (1–7 ground, 8–14 upper, 15 terrace). Circle centres and viewBox live in `FLOOR_PLANS` (`lib/data/ospitalita.tsx`) and must match the `numeri` group of each SVG; room names are in `Ospitalita.sections.casa.rooms`, keyed by number (IT+EN). No room names inside the SVGs.
+- Interactive plans: numbers (and legend items) are buttons. The selected room opens a preview next to the number (below the plan on mobile) with cover photo, thumbnails and a link that opens the lightbox with only that room's photos. One room open per page (`activeRoom` in the page); it closes on Esc, on the × or on a click outside elements marked `data-room-ui`, and stays open while the lightbox is open.
+- Photo → room: `room` on each `CASA_PHOTOS` entry, taken from Mauro's renamed files `punto_<n>_…` (Drive `Fotografie/foto di mauro/JPEG low`, same shots as the site photos). The ids `ps-camera1…4` do not match the room numbers (camera1 = 14, camera2 = 12, camera3 = 13, camera4 = 10); captions use the plan numbers.
 - Amenities grid in 4 groups using `components/ui/AmenityIcon.tsx`.
 - `RoomSheet` and `RoomFloorPlan` were retired.
 
